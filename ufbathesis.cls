@@ -485,8 +485,7 @@ grau de \@degree\ em \@majorfield.}
       \vskip\baselineskip
       \@author
       \vskip 45mm
-      \textbf{Programa de P\'{o}s-Gradua\c{c}\~{a}o em 
-              Ci\^{e}ncia da Computa\c{c}\~{a}o -- PGCOMP}
+      \textbf{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
       \\
       \vskip\baselineskip
       \@address\\
