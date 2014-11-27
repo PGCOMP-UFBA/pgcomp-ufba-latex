@@ -23,45 +23,34 @@
 %%         * Paginacao
 %%           oneside - para impressao em face unica
 %%           twoside - para impressao em frente e verso (padrao)
+%% Preambulo
 \documentclass[qual, classic, a4paper]{ufbathesis}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{lipsum}
 
-%% Preambulo:
-%% coloque aqui o seu preambulo LaTeX, i.e., declara√ß√£o de pacotes,
-%% (re)definicoes de macros, medidas, etc.
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
-%% Identificacao:
-
-% Universidade
 \university{UNIVERSIDADE FEDERAL DA BAHIA}
 
-% Endereco (cidade)
-% e.g. \address{Campinas}
+% Cidade
 \address{Salvador}
 
 % Instituto ou Centro Academico
-% e.g. \institute{Centro de Ciencias Exatas e da Natureza}
-% Comente se nao se aplicar
 \institute{INSTITUTO DE MATEM\'{A}TICA}
 
-% Nome da biblioteca - usado na ficha catalografica
-% default: nome da biblioteca do Instituto de Matematica
-\library{BIBLIOTECA REITOR MAC\^{E}DO COSTA}
-
 % Programa de pos-graduacao
-% e.g. \program{Pos-graduacao em Ciencia da Computacao}
 \program{PROGRAMA DE P\'{O}S-GRADUA\c{C}\~{A}O EM CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
 
 % Årea de titulacao
 \majorfield{CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
 
-% Titulo da dissertacao/tese
-% e.g. \title{Sobre a conjectura $P=NP$}
-\title{TITULO DA OBRA}
+% Titulo do trabalho de qualificação
+\title{TITULO}
 
-% Data da defesa
+% Data
 % e.g. \date{19 de fevereiro de 2003}
-\date{DATA DA QUALI}
+\date{DATA DA QUALIFICACAO}
 
 % Autor
 % e.g. \author{Jose da Silva}
@@ -78,89 +67,34 @@
 % Comente se nao se aplicar
 \coadviser{NOME DO(DA) CO-ORIENTADOR(A)}
 
-%% Inicio do documento
+%------------------------------------------------------------------------------------------%
 \begin{document}
 
 % Folha de rosto
-%\pgcompfrontpage{PGCOMP-Dsc-XXXX}
-% Se seu trabalho for uma tese de doutorado do PGCOMP, use a linha acima
-%\pgcompfrontpage{PGCOMP-Msc-XXXX}
-% Se seu trabalho for uma dissertação de mestrado do PGCOMP, use a linha acima
 \frontpage
-% Se for qualificacao, use \frontpage
 
-%%
-%% Parte pre-textual
-%%
+% Parte pre-textual
 \frontmatter
 
-%\pgcomppresentationpage
-% Se seu trabalho for uma tese de doutorado do PGCOMP, use a linha acima
-%\pgcomppresentationpage
-% Se seu trabalho for uma dissertação de mestrado do PGCOMP, use a linha acima
-% acima e use \presentationpage
 \presentationpage
-% Se for qualificacao, use \presentationpage
-
-% Ficha catalogrofica
-\authorcitationname{SEU NOME EM CITACOES} % e.g. Terceiro, Antonio Soares de Azevedo
-\advisercitationname{NOME DO SEU ORIENTADOR EM CITACOES} % e.g. Chavez, Christina von Flach Garcia
-\coadvisercitationname{NOME DO SEU CO-ORIENTADOR EM CITACOES} % e.g. Mendonca, Manoel Gomes de
-\catalogtype{TIPO DE TRABALHO} % e.g. ``Tese (doutorado)''
-\catalogtopics{TOPICOS PARA FICHA CATALOGRAFICA} % e.g. ``1. Complexidade Estrutural. 2. Engenharia de Software''
-\catalogcdd{NUMERO CDD} % e.g. ``CDD 20.ed. XXX.YY'' (esse n√∫mero vai lhe ser dado pela biblioteca)
-\catalogingsheet
-
-% Termo de aprovacao
-% Se seu trabalho for Dissertação de Mestrado, inclua comitteemember 1,2 e 3
-% Se seu trabalho for Tese de Doutorado, inclua comitteemember 1,2,3,4 e 5
-%\approvalsheet{Salvador, DIA de MES de ANO}{
-%  \comittemember{Profa. Dra. Professora 1}{Universidade XYZ}
-%  \comittemember{Prof. Dr. Professor 2}{Universidade 123}
- % \comittemember{Profa. Dra. Professora 3}{Universidade ABC}
-%  \comittemember{Prof. Dr. Professor 4}{Universidade HJKL}
-%  \comittemember{Profa. Dra. Professora 5}{Universidade QWERTY}
-%}
-
-% Dedicatoria
-% Comente para ocultar
-%\begin{dedicatory}
-%DIGITE A DEDICATORIA AQUI
-%\end{dedicatory}
-
-% Agradecimentos
-% Se preferir, crie um arquivo √† parte e o inclua via \include{}
-\acknowledgements
-DIGITE OS AGRADECIMENTOS AQUI
-
-% Epigrafe
-% Comente para ocultar
-% e.g.
-%  \begin{epigraph}[Tarde, 1919]{Olavo Bilac}
-%  \'{U}ltima flor do L\'{a}cio, inculta e bela,\\
-%  \'{E}s, a um tempo, esplendor e sepultura;\\
-%  Ouro nativo, que, na ganga impura,\\
-%  A bruta mina entre os cascalhos vela.
-%  \end{epigraph}
 
 % Resumo em Portugues
-% Se preferir, crie um arquivo separado e o inclua via \include{}
 \resumo
-DIGITE O RESUMO AQUI
+COLOQUE O RESUMO. Se preferir, crie um arquivo separado e o inclua via comando include.
 % Palavras-chave do resumo em Portugues
 \begin{keywords}
-DIGITE AS PALAVRAS-CHAVE AQUI
+PALAVRAS-CHAVE.
 \end{keywords}
 
 % Resumo em Ingles
-% Se preferir, crie um arquivo separado e o inclua via \include{}
 \abstract
+COLOQUE O RESUMO EM INGLES. Se preferir, crie um arquivo separado e o inclua via comando include.
 % Palavras-chave do resumo em Ingles
 \begin{keywords}
-DIGITE AS PALAVRAS-CHAVE AQUI
+PALAVRAS-CHAVE EM INGLES.
 \end{keywords}
 
-% Sumario
+% Sumario / Indice
 % Comente para ocultar
 \tableofcontents
 
@@ -172,9 +106,7 @@ DIGITE AS PALAVRAS-CHAVE AQUI
 % Comente para ocultar
 \listoftables
 
-%%
 %% Parte textual
-%%
 \mainmatter
 
 % Eh aconselhavel criar cada capitulo em um arquivo separado, digamos
@@ -185,43 +117,44 @@ DIGITE AS PALAVRAS-CHAVE AQUI
 % ...
 % \include{capituloN}
 %
-% Importante: Use \xchapter ao inves de \chapter, conforme exemplo abaixo.
+% Importante: Use \xchapter ao inves de \chapter, se quiser colocar texto antes do inicio do capitulo.
 
-\xchapter{Introdu\c{c}\~{a}o}{Este eh o primeiro cap\'{\i}tulo, onde eu conto toda a historia deste trabalho}
+\xchapter{Introdu\c{c}\~{a}o}{Este eh o primeiro cap\'{\i}tulo, onde eu conto toda a historia deste trabalho, o problema, a solu\c{c}\~{a}o, etc.}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac tellus turpis. Donec vitae lorem odio. Sed luctus vestibulum libero eget pellentesque. Vivamus in mi turpis. Donec molestie feugiat sollicitudin. Nam et eleifend tortor. Cras lacinia, magna in tristique consequat, urna lorem placerat odio, id viverra mi nulla nec sem. Ut imperdiet, felis a hendrerit imperdiet, velit metus eleifend diam, ut convallis neque augue vitae leo. Morbi condimentum rhoncus faucibus. Fusce elit justo, semper lobortis blandit sed, lacinia et ligula. Pellentesque elit magna, vestibulum vitae adipiscing in, tincidunt eu erat. Nullam eu lectus vel nunc eleifend consectetur. Phasellus faucibus blandit nisi, eget fermentum erat tincidunt et. Aliquam ullamcorper varius nunc, nec eleifend dolor porttitor eu. Etiam eget nunc eu erat facilisis consequat sed accumsan urna. Nam vitae eros et justo iaculis gravida in sed nisl. Donec auctor gravida ipsum. Morbi sed ipsum tortor, quis ornare purus.
-
-Nulla facilisi. Praesent nec massa nulla, interdum lobortis orci. Integer convallis porttitor congue. Etiam lectus ipsum, iaculis eu malesuada malesuada, scelerisque semper est. In convallis ipsum lacus, at dapibus velit. Praesent semper diam eget eros ultrices quis elementum libero cursus. Aliquam erat volutpat. Nunc a lectus augue, id sagittis neque. Aliquam dignissim tempus sem ut pellentesque. Nulla libero orci, elementum vel malesuada mattis, adipiscing sed lorem. Cras lacinia elit vel magna mollis ut congue elit faucibus. Duis ornare mollis est, quis hendrerit neque convallis in.
-
-Donec at leo sed nisl varius iaculis. Sed ullamcorper nisl sit amet metus sollicitudin quis cursus elit imperdiet. Donec vel ante sed elit tempor hendrerit. Quisque commodo neque a ante tempor rhoncus. Proin purus metus, interdum mattis elementum quis, mollis et felis. Curabitur id nibh ac sapien porta pellentesque vel nec sapien. Duis ullamcorper consectetur elit, eleifend tincidunt leo adipiscing a. Cras nunc quam, sodales sit amet semper at, pharetra quis libero. Vestibulum posuere risus sed ante interdum tempor. Sed nec enim lorem, eu ultrices nisl. Maecenas cursus lacus non metus convallis cursus. Cras egestas feugiat libero, quis luctus justo mattis ut. Proin vitae magna et purus convallis blandit ut sed risus. Nulla vel ligula massa, vel interdum tortor. Integer sit amet eros sit amet lectus suscipit adipiscing. Aenean sagittis diam eu orci porttitor luctus.
-
-Sed sed elit eu ante malesuada aliquet. Nunc quis quam turpis, accumsan faucibus sapien. Nam eget sem velit, id eleifend elit. Phasellus auctor egestas libero a adipiscing. Integer convallis, nunc sed tincidunt sollicitudin, augue diam accumsan risus, sit amet lacinia neque quam at lorem. Quisque ac rhoncus mauris. Donec felis odio, consequat vitae pretium ullamcorper, blandit id lorem. Morbi nec tellus vitae velit eleifend bibendum at vel eros. Sed quis enim urna. Cras placerat ultricies ipsum, sed tempor lorem placerat vitae. Morbi tellus leo, blandit eget feugiat nec, bibendum egestas erat. Mauris lobortis congue vestibulum. Nunc ultricies arcu in neque hendrerit convallis. Phasellus facilisis dictum nulla vel iaculis. Donec in adipiscing tellus. Aliquam non turpis neque. Nam in velit nec tortor gravida convallis. Vivamus tincidunt eros quis elit ultricies at adipiscing urna tempor. Donec posuere, ante pulvinar laoreet adipiscing, eros nulla pharetra nulla, vel rutrum elit est vitae ligula.
-
-Phasellus urna nulla, laoreet in imperdiet a, porttitor eu nibh. Phasellus ac arcu magna, sit amet dapibus eros. Maecenas eget metus vitae leo feugiat lobortis ac quis tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque vel augue metus. Quisque fringilla, arcu ut fringilla consectetur, mauris tellus euismod sem, in vehicula est leo vel nisi. Praesent sapien ligula, malesuada eget hendrerit ac, aliquet nec turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla facilisi. Mauris commodo elementum elit, fermentum placerat nulla iaculis nec. Vestibulum neque dui, cursus at pharetra eu, sollicitudin eget justo. In id dignissim augue. Fusce interdum malesuada ipsum, non aliquet quam auctor eget. Curabitur turpis libero, pharetra ut cursus porta, pellentesque vitae magna. Cras porttitor interdum nisl.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac tellus turpis. Donec vitae lorem odio. Sed luctus vestibulum libero eget pellentesque. Vivamus in mi turpis. Donec molestie feugiat sollicitudin. Nam et eleifend tortor. Cras lacinia, magna in tristique consequat, urna lorem placerat odio, id viverra mi nulla nec sem. Ut imperdiet, felis a hendrerit imperdiet, velit metus eleifend diam, ut convallis neque augue vitae leo. Morbi condimentum rhoncus faucibus. Fusce elit justo, semper lobortis blandit sed, lacinia et ligula. Pellentesque elit magna, vestibulum vitae adipiscing in, tincidunt eu erat. Nullam eu lectus vel nunc eleifend consectetur. Phasellus faucibus blandit nisi, eget fermentum erat tincidunt et. Aliquam ullamcorper varius nunc, nec eleifend dolor porttitor eu. Etiam eget nunc eu erat facilisis consequat sed accumsan urna. Nam vitae eros et justo iaculis gravida in sed nisl. Donec auctor gravida ipsum. Morbi sed ipsum tortor, quis ornare purus.
+\lipsum
 
 \xchapter{Revis\~{a}o Bibliogr\'{a}fica}{Neste cap\'{\i}tulo eu apresento todo o material que eu estudei durante a elabora\c{c}\~{a}o do trabalho.}
 
+\lipsum
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac tellus turpis. Donec vitae lorem odio. Sed luctus vestibulum libero eget pellentesque. Vivamus in mi turpis. Donec molestie feugiat sollicitudin. Nam et eleifend tortor. Cras lacinia, magna in tristique consequat, urna lorem placerat odio, id viverra mi nulla nec sem. Ut imperdiet, felis a hendrerit imperdiet, velit metus eleifend diam, ut convallis neque augue vitae leo. Morbi condimentum rhoncus faucibus. Fusce elit justo, semper lobortis blandit sed, lacinia et ligula. Pellentesque elit magna, vestibulum vitae adipiscing in, tincidunt eu erat. Nullam eu lectus vel nunc eleifend consectetur. Phasellus faucibus blandit nisi, eget fermentum erat tincidunt et. Aliquam ullamcorper varius nunc, nec eleifend dolor porttitor eu. Etiam eget nunc eu erat facilisis consequat sed accumsan urna. Nam vitae eros et justo iaculis gravida in sed nisl. Donec auctor gravida ipsum. Morbi sed ipsum tortor, quis ornare purus.
+Livro \cite{demeyer2008} e  livro \cite{raymond1999}.
 
-Livro \cite{demeyer2008}.
+\chapter{Exemplos}
 
-Nulla facilisi. Praesent nec massa nulla, interdum lobortis orci. Integer convallis porttitor congue. Etiam lectus ipsum, iaculis eu malesuada malesuada, scelerisque semper est. In convallis ipsum lacus, at dapibus velit. Praesent semper diam eget eros ultrices quis elementum libero cursus. Aliquam erat volutpat. Nunc a lectus augue, id sagittis neque. Aliquam dignissim tempus sem ut pellentesque. Nulla libero orci, elementum vel malesuada mattis, adipiscing sed lorem. Cras lacinia elit vel magna mollis ut congue elit faucibus. Duis ornare mollis est, quis hendrerit neque convallis in.
+Figura \ref{default-regular} e tabela \ref{default-table}.
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[scale=0.5]{ufba.eps}[0.5]
+\caption{Figura UFBA}
+\label{default-regular}
+\end{center}
+\end{figure}
 
-Donec at leo sed nisl varius iaculis. Sed ullamcorper nisl sit amet metus sollicitudin quis cursus elit imperdiet. Donec vel ante sed elit tempor hendrerit. Quisque commodo neque a ante tempor rhoncus. Proin purus metus, interdum mattis elementum quis, mollis et felis. Curabitur id nibh ac sapien porta pellentesque vel nec sapien. Duis ullamcorper consectetur elit, eleifend tincidunt leo adipiscing a. Cras nunc quam, sodales sit amet semper at, pharetra quis libero. Vestibulum posuere risus sed ante interdum tempor. Sed nec enim lorem, eu ultrices nisl. Maecenas cursus lacus non metus convallis cursus. Cras egestas feugiat libero, quis luctus justo mattis ut. Proin vitae magna et purus convallis blandit ut sed risus. Nulla vel ligula massa, vel interdum tortor. Integer sit amet eros sit amet lectus suscipit adipiscing. Aenean sagittis diam eu orci porttitor luctus.
+\begin{table}[htdp]
+\caption{Tabela Exemplo}
+\begin{center}
+\begin{tabular}{|c|c|} 
+\hline
+elemento 11 & elemento 12 \\ \hline
+elemento 21 & elemento 22 \\ \hline
+elemento 31 & elemento 32 \\
+\hline
+\end{tabular}
+\end{center}
+\label{default-table}
+\end{table}%
 
-Sed sed elit eu ante malesuada aliquet. Nunc quis quam turpis, accumsan faucibus sapien. Nam eget sem velit, id eleifend elit. Phasellus auctor egestas libero a adipiscing. Integer convallis, nunc sed tincidunt sollicitudin, augue diam accumsan risus, sit amet lacinia neque quam at lorem. Quisque ac rhoncus mauris. Donec felis odio, consequat vitae pretium ullamcorper, blandit id lorem. Morbi nec tellus vitae velit eleifend bibendum at vel eros. Sed quis enim urna. Cras placerat ultricies ipsum, sed tempor lorem placerat vitae. Morbi tellus leo, blandit eget feugiat nec, bibendum egestas erat. Mauris lobortis congue vestibulum. Nunc ultricies arcu in neque hendrerit convallis. Phasellus facilisis dictum nulla vel iaculis. Donec in adipiscing tellus. Aliquam non turpis neque. Nam in velit nec tortor gravida convallis. Vivamus tincidunt eros quis elit ultricies at adipiscing urna tempor. Donec posuere, ante pulvinar laoreet adipiscing, eros nulla pharetra nulla, vel rutrum elit est vitae ligula.
-
-Phasellus urna nulla, laoreet in imperdiet a, porttitor eu nibh. Phasellus ac arcu magna, sit amet dapibus eros. Maecenas eget metus vitae leo feugiat lobortis ac quis tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque vel augue metus. Quisque fringilla, arcu ut fringilla consectetur, mauris tellus euismod sem, in vehicula est leo vel nisi. Praesent sapien ligula, malesuada eget hendrerit ac, aliquet nec turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla facilisi. Mauris commodo elementum elit, fermentum placerat nulla iaculis nec. Vestibulum neque dui, cursus at pharetra eu, sollicitudin eget justo. In id dignissim augue. Fusce interdum malesuada ipsum, non aliquet quam auctor eget. Curabitur turpis libero, pharetra ut cursus porta, pellentesque vitae magna. Cras porttitor interdum nisl.
-
-Livro \cite{raymond1999}.
-
-
-%%
 %% Parte pos-textual
-%%
 \backmatter
 
 % Apendices
@@ -236,7 +169,6 @@ Livro \cite{raymond1999}.
 % ...
 % \include{apendiceM}
 
-
 % Bibliografia
 % √â aconselh√°vel utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
 % Para ajuda na cria√ß√£o do arquivo .bib e utiliza√ß√£o do BibTeX, recorra ao
@@ -244,10 +176,6 @@ Livro \cite{raymond1999}.
 \bibliographystyle{abntex2-alf}
 \bibliography{biblio}
 
-% Colofon
-% Inclui uma pequena nota com referencia a UFPEThesis
-% Comente para omitir
-%\colophon
-
 %% Fim do documento
 \end{document}
+%------------------------------------------------------------------------------------------%
