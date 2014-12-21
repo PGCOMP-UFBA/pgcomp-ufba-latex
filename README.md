@@ -15,19 +15,19 @@ Adaptado para o PGCOMP por Christina von Flach em 2014.
 
 ## Como usar
 
-* Instale o [abnTeX](http://code.google.com/p/abntex2/ ou 
-http://www.ctan.org/pkg/abntex2).
+* Instale o [abnTeX2](http://code.google.com/p/abntex2/)
+(também disponível no [CTAN](http://www.ctan.org/pkg/abntex2)).
 
-* [Baixe o pacote/clone o projeto] pgcomp-ufba no
-github (https://github.com/christinaflach/pgcomp-ufba.git).
+* Baixe o pacote/clone o [projeto pgcomp-ufba no
+github](https://github.com/christinaflach/pgcomp-ufba.git).
 
 * Use `ufbathesis` como o `documentclass` do seu documento.
 
 * Tente seguir um dos modelos o mais fielmente possível.
 
 * Os templates em latex apresentam a estrutura para 
-msc (dissertacao de mestrado), phd (tese de doutorado),
-qual (qualificacao de mestrado) e prop (qualificacao de doutorado).
+`msc` (dissertacao de mestrado), `phd` (tese de doutorado),
+`qual` (qualificacao de mestrado) e `prop` (qualificacao de doutorado).
 
 * Em caso de dúvidas que não possam ser sanadas olhando o template, 
 por enquanto, a melhor coisa a fazer é olhar o código do `ufbathesis.cls`.
