@@ -1,4 +1,4 @@
-%% Template para dissertação/tese na classe UFBAthesis
+%% Template para dissertaÃ§Ã£o/tese na classe UFBAthesis
 %% versao 1.0
 %% (c) 2005 Paulo G. S. Fonseca
 %% (c) 2012 Antonio Terceiro
@@ -15,15 +15,15 @@
 %%           qual - exame de qualificacao de mestrado
 %%           prop - exame de qualificacao de doutorado
 %%           phd  - para teses de doutorado
-%%         * Mídia
-%%           scr  - para versão eletrônica (PDF) / consulte o guia do usuario
+%%         * MÃ­dia
+%%           scr  - para versÃ£o eletrÃ´nica (PDF) / consulte o guia do usuario
 %%         * Estilo
 %%           classic - estilo original a la TAOCP (deprecated)
 %%           std     - novo estilo a la CUP (padrao)
 %%         * Paginacao
 %%           oneside - para impressao em face unica
 %%           twoside - para impressao em frente e verso (padrao)
-\documentclass[msc, classic, a4paper]{ufbathesis}
+\documentclass[bsc, classic, a4paper]{ufbathesis}
 
 %% Preambulo:
 \usepackage[utf8]{inputenc}
@@ -37,38 +37,38 @@
 \address{Salvador}
 
 % Instituto ou Centro Academico
-\institute{INSTITUTO DE MATEM\'{A}TICA}
+\institute{INSTITUTO DE MATEMÁTICA}
 
 % Nome da biblioteca - usado na ficha catalografica
 \library{BIBLIOTECA REITOR MAC\^{E}DO COSTA}
 
 % Programa de pos-graduacao
-\program{PROGRAMA DE P\'{O}S-GRADUA\c{C}\~{A}O EM CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
+\program{Programa de Graduação em Ciência da Computação}
 
-% �rea de titulacao
+% rea de titulacao
 \majorfield{CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
 
 % Titulo da dissertacao
-\title{TITULO DA DISSERTACAO}
+\title{Uma abordagem fuzzy híbrida para organização de documentos, utilizando os algoritmos de agrupamento possibilístico e fuzzy c means }
 
 % Data da defesa
 % e.g. \date{19 de fevereiro de 2003}
-\date{DATA DA DEFESA}
+\date{1 de junho de 2016}
 
 % Autor
 % e.g. \author{Jose da Silva}
-\author{NOME DO AUTOR}
+\author{Nilton Vasques Carvalho Junior}
 
 % Orientador(a)
 % Opcao: [f] - para orientador do sexo feminino
 % e.g. \adviser[f]{Profa. Dra. Maria Santos}
-\adviser{NOME DO(DA) ORIENTADOR(A)}
+\adviser[f]{Profa. Dra. Tatiane Nogueira Rios}
 
 % Orientador(a)
 % Opcao: [f] - para orientador do sexo feminino
 % e.g. \coadviser{Prof. Dr. Pedro Pedreira}
 % Comente se nao se aplicar
-\coadviser{NOME DO(DA) CO-ORIENTADOR(A)}
+%\coadviser{NOME DO(DA) CO-ORIENTADOR(A)}
 
 %% Inicio do documento
 \begin{document}
@@ -81,17 +81,16 @@
 \pgcomppresentationpage
 
 % Ficha catalografica
-\authorcitationname{SEU NOME EM CITACOES} % e.g. Terceiro, Antonio Soares de Azevedo
-\advisercitationname{NOME DO SEU ORIENTADOR EM CITACOES} % e.g. Chavez, Christina von Flach Garcia
-\coadvisercitationname{NOME DO SEU CO-ORIENTADOR EM CITACOES} % e.g. Mendonca, Manoel Gomes de
-\catalogtype{Disserta\c{c}\~{a}o (Mestrado)} % e.g. ``Tese (Doutorado)''
-\catalogtopics{TOPICOS PARA FICHA CATALOGRAFICA} % e.g. ``1. Complexidade Estrutural. 2. Engenharia de Software''
-\catalogcdd{NUMERO CDD} % e.g. ``CDD 20.ed. XXX.YY'' (esse número vai lhe ser dado pela biblioteca)
+\authorcitationname{Carvalho, Nilton Vasques Jr.} % e.g. Terceiro, Antonio Soares de Azevedo
+\advisercitationname{Rios, Tatiane Nogueira} % e.g. Chavez, Christina von Flach Garcia
+\catalogtype{Monografia (Graduação)} % e.g. ``Tese (Doutorado)''
+\catalogtopics{``1. Fuzzy C Means. 2. Organização de documents. 3. Lógica Fuzzy. 4. Mineração de dados.''} % e.g. ``1. Complexidade Estrutural. 2. Engenharia de Software''
+\catalogcdd{NUMERO CDD} % e.g. ``CDD 20.ed. XXX.YY'' (esse nÃºmero vai lhe ser dado pela biblioteca)
 \catalogingsheet
 
 % Termo de aprovacaoo
 \approvalsheet{Salvador, DIA de MES de ANO}{
-   \comittemember{Profa. Dra. Professora 1}{Universidade XYZ}
+   \comittemember{Profa. Dra. Tatiane Nogueira Rios}{Universidade Federal da Bahia}
    \comittemember{Prof. Dr. Professor 2}{Universidade 123}
    \comittemember{Profa. Dra. Professora 3}{Universidade ABC}
 }
@@ -113,24 +112,25 @@ Coloque seus AGRADECIMENTOS AQUI.
 %  Ouro nativo, que, na ganga impura,\\
 %  A bruta mina entre os cascalhos vela.
 %  \end{epigraph}
-\begin{epigraph}[NOTA]{AUTOR}
-Se desejar, coloque  AQUI uma CITACAO
+\begin{epigraph}[1687]{Isaac Newton}
+  O que sabemos é uma gota, o que ignoramos é um oceano.
 \end{epigraph}
 
 % Resumo em Portugues
 \resumo
-COLOQUE O RESUMO. Se preferir, crie um arquivo separado e o inclua via comando "\"include.
+\input{resumo}
 % Palavras-chave do resumo em Portugues
 \begin{keywords}
-PALAVRAS-CHAVE.
+agrupamento fuzzy, agrupamento possibilístico, organização flexível de documentos, 
+mineração de textos
 \end{keywords}
 
 % Resumo em Ingles
 \abstract
-COLOQUE O RESUMO EM INGLES. Se preferir, crie um arquivo separado e o inclua via comando "\"include.
+\input{abstract}
 % Palavras-chave do resumo em Ingles
 \begin{keywords}
-PALAVRAS-CHAVE EM INGLES.
+fuzzy clustering, possibilistic clustering, flexible organization, documents, text mining
 \end{keywords}
 
 % Sumario / Indice
@@ -209,8 +209,8 @@ elemento 31 & elemento 32 \\
 % \include{apendiceM}
 
 % Bibliografia
-% É aconselhável utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
-% Para ajuda na criação do arquivo .bib e utilização do BibTeX, recorra ao
+% Ã aconselhÃ¡vel utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
+% Para ajuda na criaÃ§Ã£o do arquivo .bib e utilizaÃ§Ã£o do BibTeX, recorra ao
 % BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
 \bibliographystyle{abntex2-alf}
 \bibliography{biblio}
