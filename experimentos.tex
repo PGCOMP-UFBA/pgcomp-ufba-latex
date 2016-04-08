@@ -1,0 +1,74 @@
+A lógica fuzzy é uma lógica multi valorada, onde os valores das variáveis pertencem ao intervalo
+de [0,1], enquanto na lógica clássica os valores verdades só possuem os estados 0 ou 1 (também conhecido como valores {\it crisp\/}). Uma da mais importantes aplicações está no tratamento de precisão e incerteza. O que nos permite a modelar soluções mais adequadas para ambientes imprecisos e incertos.
+
+Primeiramente introduzida em \cite{Zadeh1965}, onde o autor inicia a discussão definindo os
+conjuntos fuzzy, sendo uma classe de objetos com valores contínuos de pertinência. Cada conjunto é então caracterizado por uma função de pertinência, a qual atribui a cada objeto do conjunto um grau de 
+pertinência que varia entre zero e um. As operações matemáticas da teoria dos conjuntos, como
+inclusão, união, intersecção, complemento, relação, etc., também são estendidas aos conjuntos fuzzy,
+assim como várias propriedades dessas notações são definidas.
+
+Uma das motivações da lógica fuzzy, vem da maneira como nosso cérebro classifica e rotula o mundo
+real. Por exemplo, ao rotularmos uma pessoa como alta, estamos atribuindo ela ao grupo de pessoas 
+altas. Assim como quando nos expressamos sobre o quanto um determinado dia está fazendo calor ou 
+frio. O conjunto de pessoas altas ou dias frios, não se enquadra na sua totalidade na lógica 
+clássica. Pois essa forma imprecisa de descrever o mundo a nossa volta, desempenha
+um papel fundamental na forma de pensar humana, assim como também nas áreas de reconhecimento 
+de padrões, comunicação e abstração\cite{Zadeh1965}.
+
+\section{Refinamento com os algoritmos PCM e PFCM}
+
+Seja X um espaço de objetos, com um elemento genérico {\it x\/}. 
+Sendo $X= \big\{x\big\}$.
+
+Um conjunto fuzzy $A$ em $X$ é caracterizado por uma função de pertinência $f_A(x)$, a qual associa
+a cada elemento de $X$ um número real presente no intervalo de $[0,1]$, sendo o valor de $f_A(x)$
+a representação do grau de pertinência de $x$ em $A$.
+
+\section{Refinamento da extração de descritores usando uma abordagem mista}
+
+Antes da lógica fuzzy ser introduzida em \cite{Zadeh1965}, em 1930 Lukasiewics\cite{Chen2000} 
+desenvolveu
+a lógica n-valorada para $3 < n < \infty$, utilizando apenas os operadores lógicos de negação $-$ e implicação $\Rightarrow$. Dado então um inteiro positivo, $n > 3$, a lógica n-valorada assume 
+valores verdade pertencente ao intervalo $[0,1]$, definidos pela seguinte partição igualmente 
+espaçada: 
+$$0 =  \frac{0}{n-1}, \frac{1}{n-1},\frac{2}{n-1},...,\frac{n-2}{n-1},\frac{n-1}{n-1} = 1$$
+Para estender a lógica n-valorada para uma lógica com infinitos valores $2 \leq n \leq \infty$, 
+\cite{Zadeh1965} modificou a lógica de Lukasiewics definindo os seguintes operadores lógicos:
+$$\bar{a} = 1 -a$$
+$$a \wedge b = min\{a,b\}$$
+$$a \vee b = max\{a,b\}$$
+$$a \Rightarrow b = min\{1, 1+b-a\}$$
+$$a \Leftrightarrow  b = 1 - |a-b|$$
+
+O objetivo da lógica fuzzy é prover mecanismos para tratar imprecisão e incerteza, se baseando na
+teoria de conjuntos fuzzy e usando proposições imprecisas, de modo similar a lógica clássica 
+usando proposições precisas baseadas na teoria dos conjuntos. 
+Para entendermos essa noção, vejamos então um mesmo exemplo pela ótica do raciocínio clássico e 
+em seguida usando as ferramentas para descrever imprecisão da lógica fuzzy. 
+\begin{enumerate}[label=\alph*)]
+  \item Todo texto com 100 palavras ou mais da área jurídica, tem como assunto o direito.
+  \item O texto A com título as manifestações de junho, tem 100 palavras da área jurídica.
+  \item O texto B com título política nas universidades, tem 99 palavras da área jurídica. 
+  \item O texto A tem como assunto o direito e o texto B não tem como assunto o direito.
+\end{enumerate}
+Essa série de proposições ilustra o raciocínio empregado na lógica clássica, e seguindo as regras
+de inferência conseguimos verificar que as sentenças estão corretas. No entanto é fácil notar que
+a sentença d) não expressa muito bem o nosso entendimento sobre a temática dos textos.
+Seria comum alguém substituir a sentença d), por e) O texto B fala um pouco sobre direito. 
+Vamos então adicionar a imprecisão comum no mundo real as sentenças anteriores.
+\begin{enumerate}[label=\alph*)]
+  \item Todo texto que tem entre 50 e 100 palavras da área jurídica fala um pouco sobre direito. 
+Enquanto todo texto que contenha 100 ou mais palavras da área jurídica fala bastante sobre direito.
+  \item O texto A com título as manifestações de junho, tem 100 palavras da área jurídica.
+  \item O texto B com título política nas universidades, tem 99 palavras da área jurídica. 
+  \item O texto A fala bastante sobre direito, enquanto o texto B fala um pouco sobre direito.
+\end{enumerate}
+Esse tipo de dedução comumente utilizada no nosso dia a dia, não tem como ser tratada pela lógica
+clássica. No entanto podemos lidar com esse tipo de inferência imprecisa, empregando a lógica fuzzy, a qual permite o uso de alguns termos linguísticos imprecisos como:
+\begin{itemize}
+  \item Predicados fuzzy: antigo, raro, caro, alto, rápido
+  \item Quantificadores fuzzy: muito, pouco, quase, alguns
+  \item Graus de verdade fuzzy: totalmente verdadeiro, verdadeiro, parcialmente falso, falso, definitivamente falso
+\end{itemize}
+
+\section{Abordagem possibilística hierárquica}
