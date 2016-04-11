@@ -90,5 +90,33 @@ seguindo o modelo defendido em \cite{Nogueira2013},
 
 
 \subsection{Pré-Processamento}
+A mineração de textos é um processo custoso, devido a variedade dos verbetes presente nos textos. 
+E quanto maior for a coleção de textos, maior será a quantidade de palavras distintas. E isso eleva
+bastante o custo computacional das tarefas da mineração de textos, que por sua vez são baseadas 
+na análise do vocabulário dos documentos. Com isso, vários pesquisadores propuseram métodos para 
+tentar simplificar, sintetizar e eliminar redundâncias desnecessárias nas coleções de textos.
+Pois, quanto mais compacto for a quantidade de verbetes da coleção de documentos, menor o custo
+computacional e a quantidade de memória utilizada nas fases de agrupamento, extração de descritores
+e classificação. A esse conjunto de técnicas realizadas inicialmente sobre os documentos, 
+denominamos de pré-processamento. 
+
+A fase de pré-processamento voltada para a mineração de textos, requer técnicas muito diferentes
+no preparo dos dados não estruturados para as fases posteriores, do que as técnicas comumente
+encontradas nos métodos de descoberta de informação. As quais visam preparar dados estruturados para
+as clássicas operações de mineração de dados \cite{Feldman2007}.
+
+Segundo \cite{Feldman2007}, é possível categorizar de maneira clara as técnicas de pré-processamento de textos em duas categorias, de acordo com as tarefas realizadas pela técnica e através dos 
+algoritmos e frameworks que a mesma utiliza. Por sua vez, as técnicas categorizadas pelas suas 
+tarefas, geralmente visam realizar a estruturação do documento através de tarefas e sub tarefas. 
+Como por exemplo, realizar a extração de título e sub título de documentos no formato PDF.
+No entanto, as demais técnicas de pré-processamento são derivadas de métodos formais, e incluem 
+esquemas de classificação, modelos probabilísticos e sistemas baseado em regras.
+
+O processo de pré-processamento de dados textuais, inicia com um documento parcialmente estruturado 
+e avança incrementando a estrutura através do refinamento das características do documento e
+adicionando novas \cite{Feldman2007}. 
+No contexto da mineração de textos as características dos documentos, são as 
+suas palavras. Então ao final do processo, as palavras mais relevantes são utilizadas, e as demais
+são descartadas.
 \subsection{Agrupamento Fuzzy}
 \subsection{Extração de descritores}
