@@ -123,8 +123,13 @@ são descartadas. Uma vez que manter estas palavras torna a dimensionalidade do 
 cada palavra no texto é tratada como uma dimensão\cite{Haddi2013}.
 
 O processo como um todo envolve várias etapas, as quais podemos elencar a remoção de espaços, 
-expansão de abreviações, radicalização, remoção de palavras terminais e por fim a seleção de 
-características \cite{Haddi2013}. 
+expansão de abreviações, remoção de $stopwords$, que são palavras que não possuem relevância no 
+significado geral do texto e geralmente são compostas por proposições, pronomes, artigos,
+interjeições dentre outras\cite{Nogueira2013}. Assim como também o processo de $stemming$ ou 
+lematização, onde se busca encontrar o radical da palavra, visando assim remover palavras que 
+possuam significados similares. Ainda é possível usar as técnicas de NLP 
+($Natural Language Processing$) para eliminar sinônimos. Por fim é realizada a seleção de 
+termos \cite{Haddi2013}. 
 
 Diversos métodos foram então propostos para se capturar a importância dos termos em coleções 
 textuais. Sendo o método { \it Term Frequency Inverse 
@@ -132,13 +137,15 @@ Document Frequency\/ }(TF-IDF) um dos mais importantes\cite{Haddi2013} e frequen
 documentos da coleção, $DF$ o total de documentos que possuem este termo e $FF$ ({\it frequency feature}) a frequência do termo no documento.
 
 \begin{equation}
- TF - IDF = FF * log(\frac{N}{DF}) 
+  \varphi(t,d) = FF * log(\frac{N}{DF}) 
  \label{eq:tfidf}
 \end{equation}
 
-Como resultado final de todo o processo de pré-processamento, obtém-se uma matriz 
-documentos x termos, onde as colunas da matriz são os termos da coleção, representados na forma
-TF-IDF e as linhas os documentos.
+Como resultado final de todo o processo de pré-processamento, obtém-se a matrix $D$. Onde $D$ 
+representa os $n$ documentos da coleção, sendo cada documento $d_{i}$, com $1 \leq n \leq N$, 
+uma linha da matriz $D$, definido como sendo 
+$ d_{i} = [\varphi(t_{1},d_{i}),\varphi(t_{2},d_{i}),\varphi(t_{3},d_{i}),...,\varphi(t_{k},d_{i})] $,
+onde $t_{j}$ é um termo presente na coleção, com $1 \leq j \leq k$.
 
 \subsection{Agrupamento Fuzzy}
 \subsection{Extração de descritores}
