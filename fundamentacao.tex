@@ -90,11 +90,13 @@ seguindo o modelo defendido em \cite{Nogueira2013},
 
 
 \subsection{Pré-Processamento}
-A mineração de textos é um processo custoso, devido a variedade dos verbetes presente nos textos. 
-E quanto maior for a coleção de textos, maior será a quantidade de palavras distintas. E isso eleva
-bastante o custo computacional das tarefas da mineração de textos, que por sua vez são baseadas 
-na análise do vocabulário dos documentos. Com isso, vários pesquisadores propuseram métodos para 
-tentar simplificar, sintetizar e eliminar redundâncias desnecessárias nas coleções de textos.
+Pré-processamento dos dados é o processo de limpeza e preparação do texto para classificação.
+Assim como muitas palavras em um texto não causam nenhum impacto no significado geral do documento\cite{Haddi2013}.
+Soma se a isso o enorme custo computacional do processo de mineração de textos, devido a grande quantidade de verbetes presente em dados textuais. 
+Portanto quanto maior for a coleção de textos, maior será a quantidade de palavras distintas. 
+Elevando bastante o custo computacional das tarefas de agrupamento e classificação, 
+que por sua vez são baseadas na análise do vocabulário dos documentos. 
+Com isso, vários pesquisadores propuseram métodos para tentar simplificar, sintetizar e eliminar redundâncias desnecessárias nas coleções de textos.
 Pois, quanto mais compacto for a quantidade de verbetes da coleção de documentos, menor o custo
 computacional e a quantidade de memória utilizada nas fases de agrupamento, extração de descritores
 e classificação. A esse conjunto de técnicas realizadas inicialmente sobre os documentos, 
@@ -115,8 +117,28 @@ esquemas de classificação, modelos probabilísticos e sistemas baseado em regr
 O processo de pré-processamento de dados textuais, inicia com um documento parcialmente estruturado 
 e avança incrementando a estrutura através do refinamento das características do documento e
 adicionando novas \cite{Feldman2007}. 
-No contexto da mineração de textos as características dos documentos, são as 
-suas palavras. Então ao final do processo, as palavras mais relevantes são utilizadas, e as demais
-são descartadas.
+No contexto da mineração de textos as características dos documentos são as 
+suas palavras\cite{Haddi2013}. Ao final do processo, as palavras mais relevantes são utilizadas, e as demais
+são descartadas. Uma vez que manter estas palavras torna a dimensionalidade do problema maior, pois 
+cada palavra no texto é tratada como uma dimensão\cite{Haddi2013}.
+
+O processo como um todo envolve várias etapas, as quais podemos elencar a remoção de espaços, 
+expansão de abreviações, radicalização, remoção de palavras terminais e por fim a seleção de 
+características \cite{Haddi2013}. 
+
+Diversos métodos foram então propostos para se capturar a importância dos termos em coleções 
+textuais. Sendo o método { \it Term Frequency Inverse 
+Document Frequency\/ }(TF-IDF) um dos mais importantes\cite{Haddi2013} e frequentemente utilizado na literatura. A definição da TF-IDF está na equação (\ref{eq:tfidf}), onde $N$ é o número de 
+documentos da coleção, $DF$ o total de documentos que possuem este termo e $FF$ ({\it frequency feature}) a frequência do termo no documento.
+
+\begin{equation}
+ TF - IDF = FF * log(\frac{N}{DF}) 
+ \label{eq:tfidf}
+\end{equation}
+
+Como resultado final de todo o processo de pré-processamento, obtém-se uma matriz 
+documentos x termos, onde as colunas da matriz são os termos da coleção, representados na forma
+TF-IDF e as linhas os documentos.
+
 \subsection{Agrupamento Fuzzy}
 \subsection{Extração de descritores}
