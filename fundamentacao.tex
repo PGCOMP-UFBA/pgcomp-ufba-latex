@@ -151,7 +151,8 @@ onde $t_{j}$ é um termo presente na coleção, com $1 \leq j \leq k$.
 O agrupamento é um processo não supervisionado \cite{Feldman2007}, onde o objetivo é organizar os 
 documentos similares no mesmo grupo e os documentos com grau de dissimilaridade elevado em 
 grupos distintos\cite{Nogueira2013}\cite{Feldman2007}. Este processo é de grande 
-utilidade para diversos campos, como mineração de dados, recuperação de informação, 
+utilidade para diversos campos de estudo da inteligência computacional, 
+como a mineração de dados, recuperação de informação, 
 segmentação de imagens e classificação de padrões \cite{Feldman2007}.
 
 O problema de organizar os documentos de maneira a maximizar a similaridade entre os membros
@@ -175,28 +176,29 @@ D(x_{i}, x_{j}) = \sqrt{\sum_k{(x_{ik}-x_{jk})^2}}
 \label{eq:euclidiana}
 \end{equation}
 
-No entanto, em coleções textuais a matriz documentos x termos é naturalmente são esparsos, 
+No entanto, em coleções textuais a matriz documentos x termos é naturalmente esparsa, 
 devido a grande variedade de 
 verbetes em uma coleção, o que faz com que um determinado documento $d_{i}$, não contenha diversos
-termos presentes em um outro documento $d_{j}$. Resultando assim que um vetor de características de 
+termos presentes em um outro documento $d_{j}$. Resultando assim que o vetor de características de 
 cada documento, seja preenchido com vários zeros. Reduzindo então a eficácia da distância 
 euclidiana (Equação \ref{eq:euclidiana})
 \cite{Nogueira2013}. Consequentemente a medida de similaridade mais comum para coleções textuais
-é o coeficiente de similaridade de cosseno \cite{Nogueira2013}\cite{Feldman2007}. O coeficiente
+é o coeficiente de similaridade de cosseno \cite{Nogueira2013}\cite{Feldman2007}. 
+Por sua vez o coeficiente
 de similaridade de cosseno, desconsidera os diversos zeros presentes nos vetores de termos 
 dos documentos, levando em conta apenas o ângulo formado entre eles\cite{Nogueira2013}.
 Na equação (\ref{eq:simcos}) temos a definição do coeficiente de similaridade de cosseno, onde 
 $d_1$ e $d_2$, são dois documentos quaisquer da coleção de documentos, e $1 \leq t \leq k$, onde 
-$t$ é a quantidade total de termos da coleção, e $d_{ik}$ a frequência do termo $t$ no documento $d_i$.
+$k$ é a quantidade total de termos da coleção, e $d_{ik}$ a frequência do termo $t$ no documento $d_i$.
 
 \begin{equation}
   scos(d_{1}, d_{2}) = cos\theta = \frac{d_{1} \cdot d_{2}}{|d_{1}||d_{2}|} = \sum_{t=1}^k{\varphi(d_{1t},d_1) \cdot \varphi(d_{2t},d_2)} \in [0,1]
   \label{eq:simcos}
 \end{equation}
 
-Os grupos resultantes desse processo, pode possuir algumas características que estão diretamente
+Os grupos resultantes desse processo, podem possuir algumas características que estão diretamente
 relacionadas com o método de agrupamento empregado. Estes podem ser $hard$ ou $crisp$, caso 
-o método de agrupamento seja baseado na lógica clássica, assim como podem ser $soft$ ou $fuzzy$, 
+o método de agrupamento seja baseado na lógica clássica, assim como podem ser $soft$, 
 caso o método seja baseado na lógica fuzzy. No agrupamento $hard$, cada documento 
 $d_{i}$ só poderá pertencer a um único grupo $g_{j}$ \cite{Bezdek1984}. Enquanto em grupos $soft$,
 cada documento $d_{i}$ pode pertencer a um ou mais grupos $g_{j}$, com grau de pertinência variados.
@@ -214,17 +216,44 @@ abordagem, pois quando um documento só pode pertencer a um único grupo, fica e
 não compartilha nenhuma similaridade com os documentos dos demais grupos, o que não expressa a
 imprecisão intrínseca da sobreposição dos assuntos em documentos de texto.
 
-Com o objetivo de tratar essa falha da abordagem $hard$ e adicionar imprecisão no agrupamento,
+Com o objetivo de tratar essa falha da abordagem $hard$ e adicionar o tratamento de imprecisão 
+e incerteza no agrupamento,
 \cite{Bezdek1984} utilizou o modelo de partições fuzzy definido em \cite{Zadeh1965}, para permitir
 pertinências parciais de um elemento a um grupo, propondo assim o algoritmo Fuzzy C Means (FCM). 
 Sendo assim, a função de pertinência de um documento $d_{i}$ em um grupo $g_{j}$, pode ser definida como sendo $\mu(d_{i}, g_{j}) \in [0,1]$, 
 tal que $\sum_{j=1}^m \mu(d_{i}, g_{j}) = 1$.
 
+Outro desafio sempre presente em métodos de agrupamento é a descoberta do número ideal de grupos
+em uma coleção. O método de organização flexível proposto em \cite{Nogueira2013} 
+fez uso da $Fuzzy Silhouette$ (FS) para realizar a validação do agrupamento fuzzy, e por conseguinte
+encontrar o número de grupos ideal. A função FS é uma adaptação do método de critério de largura 
+média ($Average  Silhuette Width Criterion$ - ASWC), desenvolvido para o agrupamento $crisp$
+\cite{Nogueira2013}. A definição da silhueta fuzzy (adaptado de \cite{Nogueira2013}) 
+está nas equações (\ref{eq:silhuette}) e (\ref{eq:fs}), onde $\alpha(d_i, g_l)$ é a distância 
+média entre o documento $d_i$ e todos os documentos 
+presentes no grupo $g_l$, enquanto 
+$\beta(d_i,g_l) = min\{\alpha(d_i,g_h) | 1 \leq h \leq m; h \neq l\}$, é a 
+medida de dissimilaridade de $d_i$ ao grupo vizinho mais próximo de $g_l$, tal que $m$ é a 
+quantidade de grupos.
+\begin{equation}
+  S(d_i) = \frac{\beta(d_i, g_l) - \alpha(d_i,g_l)}{max\{\alpha(d_i,g_l), \beta(d_i,g_l)\}}
+  \label{eq:silhuette}
+\end{equation}
+\begin{equation}
+  FS = \frac{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}S(d_i)}{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}}
+  \label{eq:fs}
+\end{equation}
+Na equação (\ref{eq:fs}), $\mu_1(d_i)$ é maior pertinência do documento $d_i$ em um grupo, enquanto 
+$\mu_2(d_i)$ é a segunda maior. Quanto maior então for o valor da função FS, melhor será o 
+agrupamento. Deste modo para encontrar o número de grupos ideal, basta executar a função FS 
+variando o número de grupos, e selecionar o agrupamento que tiver o valor máximo de FS.
+
 Toda investigação realizada neste trabalho tomou como base os métodos de agrupamento que 
 derivam do algoritmo FCM\cite{Bezdek1984}, para se beneficiar da capacidade de tratar imprecisão e 
 incerteza da lógica fuzzy, e por conseguinte permitir que um mesmo documento seja categorizado 
 em mais de um tópico, refletindo a realidade dos documentos textuais. Utilizando como medida
-de similaridade o coeficiente de similaridade de cosseno.
+de similaridade o coeficiente de similaridade de cosseno (Equação \ref{eq:simcos}). E por fim a quantidade
+de grupos ideal foi escolhida utilizando o método da silhueta fuzzy ( Equação \ref{eq:fs}).
 
 
 \subsection{Extração de descritores}
