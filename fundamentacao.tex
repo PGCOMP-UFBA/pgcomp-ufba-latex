@@ -255,5 +255,41 @@ em mais de um tópico, refletindo a realidade dos documentos textuais. Utilizand
 de similaridade o coeficiente de similaridade de cosseno (Equação \ref{eq:simcos}). E por fim a quantidade
 de grupos ideal foi escolhida utilizando o método da silhueta fuzzy ( Equação \ref{eq:fs}).
 
-
 \subsection{Extração de descritores}
+
+A tarefa de rotular grupos é um dos problemas chaves do agrupamento de textos, 
+pois ao final do processo de agrupamento, os grupos precisam apresentar alguma relevância para 
+o usuário\cite{Zhang2008}. Assim como pretend-se que os descritores escolhidos também sejam 
+significativos para os documentos presentes no grupo a ser rotulado. 
+
+Essa etapa pode ser realizada manualmente, com o usuário guiando o processo, ou de forma 
+automatizada, que por sua vez é mais interessante para a proposta de organização flexível de 
+documentos. Uma vez que para grandes bases de dados textuais, a tarefa de rotular todos os grupos
+encontrados durante o agrupamento, pode ser bastante exaustiva para o usuário.
+
+Dentre os métodos automatizados, é encontrado na literatura dois tipos de abordagens, uma 
+baseada em conhecimento interno e a outra baseada em conhecimento externo\cite{Nogueira2013}. 
+A primeira se utiliza somente de informações que podem ser obtidas na coleção de documentos, 
+como por exemplo a frequência do termo, localização do termo na estrutura do documento.
+Enquanto a abordagem de conhecimento externo, levam em considerações também fontes de informação
+externas, para auxiliar a escolha dos termos mais representativos. 
+
+Em ambas abordagens a literatura fornece uma ampla gama de métodos, com o objetivo de obter bons
+descritores dos grupos. Os descritores podem ser extraídos com os termos mais frequentes no grupo,
+, no entanto o resultado pode ser genérico demais\cite{Pucktada2006}, ou os descritores podem
+ser extraídos dos grupos que estão mais próximos do centroide do grupo.
+
+Contudo \cite{Nogueira2013} destaca que grande parte dos métodos de extração de descritores 
+encontrados na literatura, são embutidos na fase de agrupamento. O que justifica a avaliação 
+dos mesmos em função do desempenho do agrupamento. No entanto essa junção da extração de rótulos
+na fase de agrupamento, dificulta a combinação de diferentes técnicas de agrupamento e 
+consequentemente a escolha de bons descritores. Logo métodos que a extração é realizada 
+após a fase de agrupamento
+de maneira independente, permitem uma melhor adaptação da proposta de organização flexível de 
+documentos para diferentes contextos. Essa flexibilidade possibilitou que a investigação
+misturasse diferentes técnicas, permitindo obter melhores resultados.
+
+
+
+
+
