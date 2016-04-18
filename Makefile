@@ -1,7 +1,7 @@
 # FILE
 
-LATEX_FILE 	= template-bsc.tex
-LATEX_AUX 	=  template-bsc.aux
+LATEX_FILE 	= main.tex
+LATEX_AUX 	=  main.aux
 
 
 # TOOLCHAINS
