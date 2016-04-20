@@ -75,21 +75,21 @@ clássica. No entanto podemos lidar com esse tipo de inferência imprecisa, empr
   \item Graus de verdade fuzzy: totalmente verdadeiro, verdadeiro, parcialmente falso, falso, definitivamente falso
 \end{itemize}
 
-\section{Organização Flexível de Documentos}
+%\section{Organização Flexível de Documentos}
+%
+%A organização de documentos tem sido uma área de fundamental importância no campo da
+%mineração de dados. Pois na era da informação, onde temos mídias sociais, internet das coisas
+%e computação móvel, produzindo diariamente uma elevada quantidade de dados estruturados e 
+%não estruturados. 
+%
+%Se nos concentrarmos nos dados não estruturados, temos os dados textuais,
+%que por sua vez pertencem a uma ampla gama de tópicos que é constantemente atualizada, de maneira
+%que a organização deles em categorias não pode ser predefinida \cite{Carvalho2016}. 
+%Diante deste contexto, esse capítulo visa fundamentar as bases da organização flexível de documentos 
+%seguindo o modelo defendido em \cite{Nogueira2013},
 
-A organização de documentos tem sido uma área de fundamental importância no campo da
-mineração de dados. Pois na era da informação, onde temos mídias sociais, internet das coisas
-e computação móvel, produzindo diariamente uma elevada quantidade de dados estruturados e 
-não estruturados. 
 
-Se nos concentrarmos nos dados não estruturados, temos os dados textuais,
-que por sua vez pertencem a uma ampla gama de tópicos que é constantemente atualizada, de maneira
-que a organização deles em categorias não pode ser predefinida \cite{Carvalho2016}. 
-Diante deste contexto, esse capítulo visa fundamentar as bases da organização flexível de documentos 
-seguindo o modelo defendido em \cite{Nogueira2013},
-
-
-\subsection{Pré-Processamento}
+\section{Pré-Processamento}
 Pré-processamento dos dados é o processo de limpeza e preparação do texto para classificação.
 Assim como muitas palavras em um texto não causam nenhum impacto no significado geral do documento\cite{Haddi2013}.
 Soma se a isso o enorme custo computacional do processo de mineração de textos, devido a grande quantidade de verbetes presente em dados textuais. 
@@ -147,7 +147,7 @@ uma linha da matriz $D$, definido como sendo
 $ d_{i} = [\varphi(t_{1},d_{i}),\varphi(t_{2},d_{i}),\varphi(t_{3},d_{i}),...,\varphi(t_{k},d_{i})] $,
 onde $t_{j}$ é um termo presente na coleção, com $1 \leq j \leq k$.
 
-\subsection{Agrupamento Fuzzy}
+\section{Agrupamento Fuzzy}
 O agrupamento é um processo não supervisionado \cite{Feldman2007}, onde o objetivo é organizar os 
 documentos similares no mesmo grupo e os documentos com grau de dissimilaridade elevado em 
 grupos distintos\cite{Nogueira2013}\cite{Feldman2007}. Este processo é de grande 
@@ -255,7 +255,12 @@ em mais de um tópico, refletindo a realidade dos documentos textuais. Utilizand
 de similaridade o coeficiente de similaridade de cosseno (Equação \ref{eq:simcos}). E por fim a quantidade
 de grupos ideal foi escolhida utilizando o método da silhueta fuzzy ( Equação \ref{eq:fs}).
 
-\subsection{Extração de descritores}
+\subsection{Algoritmo Fuzzy C Means (FCM)}
+\subsection{Algoritmo Possibilistic C Means (PCM)}
+\subsection{Algoritmo Possibilistic Fuzzy C Means (PFCM)}
+\subsection{Algoritmo Hierarchic Fuzzy C Means (HFCM)}
+
+\section{Extração de descritores}
 
 A tarefa de rotular grupos é um dos problemas chaves do agrupamento de textos, 
 pois ao final do processo de agrupamento, os grupos precisam apresentar alguma relevância para 
