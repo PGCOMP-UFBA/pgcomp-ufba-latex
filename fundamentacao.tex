@@ -256,6 +256,43 @@ de similaridade o coeficiente de similaridade de cosseno (Equação \ref{eq:simc
 de grupos ideal foi escolhida utilizando o método da silhueta fuzzy ( Equação \ref{eq:fs}).
 
 \subsection{Algoritmo Fuzzy C Means (FCM)}
+\cite{Bezdek1984} descreve um método de agrupamento fuzzy que produz como saída partições 
+fuzzy e protótipos dos grupos. Esse algoritmo desempenha um papel importante no
+contexto do agrupamento fuzzy, devido seu pioneirismo no campo de estudo, possuindo diversas
+extensões. Assim como também é considerado um dos mais amplamente utilizados métodos de agrupamento
+fuzzy da literatura\cite{Pal2005}.
+
+O algoritmo FCM realiza uma série de atualizações nos protótipos $G = \{g_1,g_2,g_3,...g_n\}$ 
+dos grupos, a partir de uma uma pseudo partição fuzzy, tal que $n$ seja o total de grupos. 
+O termo pseudo partição é empregado pois os elementos em uma partição fuzzy, não estão associados 
+a um único grupo. Os valores de $g_1,g_2,g_3,...g_n$ são comumente inicializados 
+aleatoriamente\cite{Nogueira2013} ou com o resultado de outro agrupamento previamente 
+executado \cite{Pal2005}\cite{Krishnapuram1993}. Nas demais iterações a atualização dos protótipos é
+realizada a partir do grau de pertinência $\mu(d_i,g_k)$ de cada documento na coleção, conforme
+definido na equação (\ref{eq:pertinencia}), onde no contexto do agrupamento de documentos $dist(d_i,g_k) = scos(d_i,g_k)$.
+
+\begin{equation}
+  \mu(d_i,g_k) = \frac{1}{\sum_{j=1}^n(\frac{dist(d_i,g_k)}{dist(d_i,g_j)})^{\frac{1}{m-1}}}
+  \label{eq:pertinencia}
+\end{equation}
+
+O método FCM sujeita a equação (\ref{eq:pertinencia}) as restrições (\ref{eq:pert_restricao_1})
+(\ref{eq:pert_restricao_2}), o que impões limitações ao método.
+\begin{equation}
+  \sum_{k=1}^c \mu(d_i,g_k) = 1
+  \label{eq:pert_restricao_1}
+\end{equation}
+\begin{equation}
+  0 < \sum_{i=1}^n \mu(d_i,g_k) < n 
+  \label{eq:pert_restricao_2}
+\end{equation}
+
+
+
+
+ 
+
+
 \subsection{Algoritmo Possibilistic C Means (PCM)}
 \subsection{Algoritmo Possibilistic Fuzzy C Means (PFCM)}
 \subsection{Algoritmo Hierarchic Fuzzy C Means (HFCM)}
