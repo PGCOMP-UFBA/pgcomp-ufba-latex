@@ -266,46 +266,86 @@ Seja então $V = \{v_1,v_2,v_3,...,v_c\}$ os protótipos dos grupos $G = \{g_1,g
 definidos por
 \begin{equation}
   v_j = \frac{\sum_{i=1}^n[\mu(d_i,g_j)]^m d_i}{\sum_{i=1}^n[\mu(d_i,g_j)]^m}
+  \label{eq:prototipos}
 \end{equation}
 , 
-tal que $v_i$ seja o protótipo de $g_i$ e $c$ o número de grupos gerados no agrupamento. Enquanto
-$m$ é um parâmetro chamado de fator de fuzificação, que regula o quão fuzzy será as partições
-finais. De modo que para $m = 1$ a partição resultante é totalmente $hard$ e para 
+tal que $v_i$ seja o protótipo de $g_i$ e $c$ o número de grupos gerados no agrupamento. Sendo $m$ 
+o fator de fuzificação, que regula o quão fuzzy será as partições
+finais. De modo que para $m = 1$ a partição resultante é totalmente $crisp$ 
+(figura \ref{fig:cluster_crisp}) e para 
 $m \rightarrow \infty$ a interseção entre os grupos tende a 
-aumentar\cite{Pal2005}\cite{Nogueira2013}.
-O algoritmo FCM realiza então uma série de atualizações 
-nos protótipos dos grupos, a partir de uma uma pseudo partição fuzzy. 
-O termo pseudo partição é empregado pois os elementos em uma partição fuzzy, não estão associados 
-a um único grupo. Assim, os valores de $g_1,g_2,g_3,...g_n$ são comumente inicializados 
-com valores aleatórios\cite{Nogueira2013} ou com o resultado de outro agrupamento previamente 
-executado\cite{Pal2005}\cite{Krishnapuram1993}. Nas demais iterações a atualização dos protótipos é
-realizada a partir do grau de pertinência $\mu(d_i,g_k)$ de cada documento na coleção, conforme
-definido na equação (\ref{eq:pertinencia}), sendo $m$ um parâmetro chamado de fator de 
-fuzificação. No contexto do agrupamento de documentos $dist(d_i,g_k) = scos(d_i,g_k)$.
+aumentar (figura \ref{fig:cluster_fuzzy})\cite{Pal2005}\cite{Nogueira2013}. Segundo \cite{Bezdek1984} nenhuma teoria ou evidência
+computacional aponta para um valor ótimo de $m$, contudo o autor aponta que a faixa de valores 
+ideais aparenta ser [1,30]. Sendo assim, se existir um conjunto de dados para teste, uma boa 
+estratégia para a escolha de $m$ é a realização de testes experimentais. Caso contrário,
+o intervalo de [1.5, 3.0] aparenta trazer bons resultados para a maior parte dos dados.
 
+\begin{figure}[!htp]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.6\columnwidth]{assets/clusters_crisp.pdf}
+    \caption{Ilustração denotando os grupos $g_1,g_2,g_3$ organizados 
+      sem sobreposição, para $m = 1$.}
+    \label{fig:cluster_crisp}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.6\columnwidth]{assets/clusters_fuzzy.pdf}
+    \caption{Ilustração denotando os grupos $g_1,g_2,g_3$ organizados de maneira fuzzy, 
+      com sobreposição, quando $m \rightarrow \infty$.}
+    \label{fig:cluster_fuzzy}
+  \end{minipage}
+\end{figure}
+
+O algoritmo FCM realiza então uma série de atualizações nos protótipos dos grupos, a partir de
+uma uma pseudo partição fuzzy.
+O termo pseudo partição é empregado pois os elementos em uma partição fuzzy, não estão associados
+a um único grupo. Assim, os valores de $v_1,v_2,v_3,...,v_c$ são comumente inicializados
+com valores aleatórios\cite{Nogueira2013} ou com o resultado de um agrupamento previamente 
+executado\cite{Pal2005}\cite{Krishnapuram1993}. Nas demais iterações a atualização dos protótipos é
+realizada a partir da equação (\ref{eq:prototipos}). Onde por sua vez o grau de
+pertinência $\mu(d_i,g_k)$ de cada documento na coleção, se dá por
 \begin{equation}
   \mu(d_i,g_k) = \frac{1}{\sum_{j=1}^n(\frac{dist(d_i,v_k)}{dist(d_i,v_j)})^{\frac{1}{m-1}}}
   \label{eq:pertinencia}
 \end{equation}
-
-O método FCM sujeita a equação (\ref{eq:pertinencia}) as restrições (\ref{eq:pert_restricao_1})
-(\ref{eq:pert_restricao_2}), o que impõe algumas limitações ao método, que por sua vez são 
-exploradas por alguns métodos que estendem do FCM, como o PCM e o PFCM.
+, tal que $\mu(d_i, g_k)$ está sujeita as equações
 \begin{equation}
   \sum_{k=1}^c \mu(d_i,g_k) = 1
   \label{eq:pert_restricao_1}
 \end{equation}
+e
 \begin{equation}
   0 < \sum_{i=1}^n \mu(d_i,g_k) < n 
   \label{eq:pert_restricao_2}
 \end{equation}
+. Sendo no contexto do agrupamento de 
+coleções textuais $dist(d_i,g_k) = scos(d_i,g_k)$.
 
+Sendo assim 
+A restrição (\ref{eq:pert_restricao_2}) da equação 
+(\ref{eq:pertinencia}) tem como função evitar que algoritmo FCM produza grupos vazios. Enquanto a
+equação (\ref{eq:pert_restricao_1}) impõe que a soma das pertinências seja sempre igual a um. 
+Porém isto gera um problema em elementos equidistantes aos grupos. Ou seja, quando temos a caso 
+$\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c)$. Nessa situação o grau de pertinência do 
+elemento a cada grupo será a pertinência média, ou seja 
+$\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c) = \frac{1}{c}$. Supondo agora um segundo
+documento $d_2$, que seja mais distante do que $d_1$, porém assim como $d_2$, também 
+equidistante aos grupos, temos que $\mu(d_2, g_j) = \mu(d_1, g_j) = \frac{1}{c}$, para 
+$1 < j \leq c$. Nesse
+contexto a pertinência de $d_2$ e $d_1$, não expressa a distância relativa desses documentos aos 
+grupos. Esse problema está ilustrado na Figura (\ref{fig:fcm_problem}).
 
-
-
-
- 
-
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.4\columnwidth]{assets/clusters_fcm_problem.pdf}
+  \caption{Problema dos elementos equidistante do algoritmo FCM. Na imagem $g_1$ e $g_2$ são grupos,
+    com os seus respectivos protótipos $v_1$ e $v_2$. Enquanto $d_1$ e $d_2$ são documentos 
+  equidistantes aos protótipos $v_1$ e $v_2$. Portanto 
+$\mu(d_1,g_1) = \mu(d_1,g_2) = \mu(d_2,g_1) = \mu(d_2,g_2) = 0.5$.}
+  \label{fig:fcm_problem}
+\end{figure}
 
 \subsection{Algoritmo Possibilistic C Means (PCM)}
 \subsection{Algoritmo Possibilistic Fuzzy C Means (PFCM)}

@@ -9,3 +9,4 @@ ufba-eps-converted-to.pdf
 *.lof
 *.swp
 paper.tex
+*.out
