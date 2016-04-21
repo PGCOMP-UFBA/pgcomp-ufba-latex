@@ -104,6 +104,7 @@
   \RequirePackage[dvips,usenames]{color}
   \RequirePackage[dvipdfm,colorlinks,backref]{hyperref}
 \fi
+\RequirePackage[bookmarks]{hyperref}
 \RequirePackage[alf]{abntex2cite}
 \RequirePackage{lastpage}
 \RequirePackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
