@@ -262,22 +262,35 @@ contexto do agrupamento fuzzy, devido seu pioneirismo no campo de estudo, possui
 extensões. Assim como também é considerado um dos mais amplamente utilizados métodos de agrupamento
 fuzzy da literatura\cite{Pal2005}.
 
-O algoritmo FCM realiza uma série de atualizações nos protótipos $G = \{g_1,g_2,g_3,...g_n\}$ 
-dos grupos, a partir de uma uma pseudo partição fuzzy, tal que $n$ seja o total de grupos. 
+Seja então $V = \{v_1,v_2,v_3,...,v_c\}$ os protótipos dos grupos $G = \{g_1,g_2,g_3,...g_c\}$ 
+definidos por
+\begin{equation}
+  v_j = \frac{\sum_{i=1}^n[\mu(d_i,g_j)]^m d_i}{\sum_{i=1}^n[\mu(d_i,g_j)]^m}
+\end{equation}
+, 
+tal que $v_i$ seja o protótipo de $g_i$ e $c$ o número de grupos gerados no agrupamento. Enquanto
+$m$ é um parâmetro chamado de fator de fuzificação, que regula o quão fuzzy será as partições
+finais. De modo que para $m = 1$ a partição resultante é totalmente $hard$ e para 
+$m \rightarrow \infty$ a interseção entre os grupos tende a 
+aumentar\cite{Pal2005}\cite{Nogueira2013}.
+O algoritmo FCM realiza então uma série de atualizações 
+nos protótipos dos grupos, a partir de uma uma pseudo partição fuzzy. 
 O termo pseudo partição é empregado pois os elementos em uma partição fuzzy, não estão associados 
-a um único grupo. Os valores de $g_1,g_2,g_3,...g_n$ são comumente inicializados 
-aleatoriamente\cite{Nogueira2013} ou com o resultado de outro agrupamento previamente 
-executado \cite{Pal2005}\cite{Krishnapuram1993}. Nas demais iterações a atualização dos protótipos é
+a um único grupo. Assim, os valores de $g_1,g_2,g_3,...g_n$ são comumente inicializados 
+com valores aleatórios\cite{Nogueira2013} ou com o resultado de outro agrupamento previamente 
+executado\cite{Pal2005}\cite{Krishnapuram1993}. Nas demais iterações a atualização dos protótipos é
 realizada a partir do grau de pertinência $\mu(d_i,g_k)$ de cada documento na coleção, conforme
-definido na equação (\ref{eq:pertinencia}), onde no contexto do agrupamento de documentos $dist(d_i,g_k) = scos(d_i,g_k)$.
+definido na equação (\ref{eq:pertinencia}), sendo $m$ um parâmetro chamado de fator de 
+fuzificação. No contexto do agrupamento de documentos $dist(d_i,g_k) = scos(d_i,g_k)$.
 
 \begin{equation}
-  \mu(d_i,g_k) = \frac{1}{\sum_{j=1}^n(\frac{dist(d_i,g_k)}{dist(d_i,g_j)})^{\frac{1}{m-1}}}
+  \mu(d_i,g_k) = \frac{1}{\sum_{j=1}^n(\frac{dist(d_i,v_k)}{dist(d_i,v_j)})^{\frac{1}{m-1}}}
   \label{eq:pertinencia}
 \end{equation}
 
 O método FCM sujeita a equação (\ref{eq:pertinencia}) as restrições (\ref{eq:pert_restricao_1})
-(\ref{eq:pert_restricao_2}), o que impões limitações ao método.
+(\ref{eq:pert_restricao_2}), o que impõe algumas limitações ao método, que por sua vez são 
+exploradas por alguns métodos que estendem do FCM, como o PCM e o PFCM.
 \begin{equation}
   \sum_{k=1}^c \mu(d_i,g_k) = 1
   \label{eq:pert_restricao_1}
@@ -286,6 +299,7 @@ O método FCM sujeita a equação (\ref{eq:pertinencia}) as restrições (\ref{e
   0 < \sum_{i=1}^n \mu(d_i,g_k) < n 
   \label{eq:pert_restricao_2}
 \end{equation}
+
 
 
 
