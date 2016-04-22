@@ -206,10 +206,10 @@ Além destes, os grupos ainda podem ser $flat$ ou hierárquicos, onde no agrupam
 todos os grupos estão no mesmo nível, enquanto no modelo hierárquico os grupos podem estar dispostos
 em uma hierarquia, de modo que uma relação de parentesco é definida entre eles.
 
-Portanto, seja $G = \{g_{1},g_{2},g_{3},...,g_{m}\}$ os grupos resultantes do agrupamento, 
-sendo $m$ o total de grupos. No agrupamento $hard$, a pertinência de cada 
+Portanto, seja $G = \{g_{1},g_{2},g_{3},...,g_{c}\}$ os grupos resultantes do agrupamento, 
+sendo $c$ o total de grupos. No agrupamento $hard$, a pertinência de cada 
 documento $d_{i}$ pode ser representada pela função de pertinência 
-$\kappa(d_{i}, g_{j}) \in \{0,1\}$, tal que $\sum_{j=1}^m \kappa(d_{i}, g_{j}) = 1$. 
+$\kappa(d_{i}, g_{j}) \in \{0,1\}$, tal que $\sum_{j=1}^c \kappa(d_{i}, g_{j}) = 1$. 
 Um dos mais populares algoritmos a implementar essa abordagem $hard$ é o K Means.
 Em \cite{Bezdek1984}\cite{Nogueira2013}\cite{Feldman2007}, é apontado uma falha inerente dessa
 abordagem, pois quando um documento só pode pertencer a um único grupo, fica evidenciado que o mesmo
@@ -225,15 +225,15 @@ tal que $\sum_{j=1}^m \mu(d_{i}, g_{j}) = 1$.
 
 Outro desafio sempre presente em métodos de agrupamento é a descoberta do número ideal de grupos
 em uma coleção. O método de organização flexível proposto em \cite{Nogueira2013} 
-fez uso da $Fuzzy Silhouette$ (FS) para realizar a validação do agrupamento fuzzy, e por conseguinte
+utiliza a  $Fuzzy\ Silhouette$ (FS) para realizar a validação do agrupamento fuzzy, e por conseguinte
 encontrar o número de grupos ideal. A função FS é uma adaptação do método de critério de largura 
-média ($Average  Silhuette Width Criterion$ - ASWC), desenvolvido para o agrupamento $crisp$
-\cite{Nogueira2013}. A definição da silhueta fuzzy (adaptado de \cite{Nogueira2013}) 
+média ($Average\ Silhuette\ Width\ Criterion$ - ASWC), desenvolvido para o agrupamento $crisp$
+\cite{Nogueira2013}. A definição da silhueta fuzzy 
 está nas equações (\ref{eq:silhuette}) e (\ref{eq:fs}), onde $\alpha(d_i, g_l)$ é a distância 
 média entre o documento $d_i$ e todos os documentos 
 presentes no grupo $g_l$, enquanto 
-$\beta(d_i,g_l) = min\{\alpha(d_i,g_h) | 1 \leq h \leq m; h \neq l\}$, é a 
-medida de dissimilaridade de $d_i$ ao grupo vizinho mais próximo de $g_l$, tal que $m$ é a 
+$\beta(d_i,g_l) = min\{\alpha(d_i,g_h) | 1 \leq h \leq c; h \neq l\}$, é a 
+medida de dissimilaridade de $d_i$ ao grupo vizinho mais próximo de $g_l$, tal que $c$ é a 
 quantidade de grupos.
 \begin{equation}
   S(d_i) = \frac{\beta(d_i, g_l) - \alpha(d_i,g_l)}{max\{\alpha(d_i,g_l), \beta(d_i,g_l)\}}
@@ -265,11 +265,22 @@ fuzzy da literatura\cite{Pal2005}.
 Seja então $V = \{v_1,v_2,v_3,...,v_c\}$ os protótipos dos grupos $G = \{g_1,g_2,g_3,...g_c\}$ 
 definidos por
 \begin{equation}
-  v_j = \frac{\sum_{i=1}^n[\mu(d_i,g_j)]^m d_i}{\sum_{i=1}^n[\mu(d_i,g_j)]^m}
+  V = \left\{ 
+    v_j | v_j = \frac{\sum_{i=1}^n[\mu(d_i,g_j)]^m d_i}{\sum_{i=1}^n[\mu(d_i,g_j)]^m}, 
+  1 < j \leq c
+\right\}
   \label{eq:prototipos}
 \end{equation}
 , 
-tal que $v_i$ seja o protótipo de $g_i$ e $c$ o número de grupos gerados no agrupamento. Sendo $m$ 
+tal que $v_i$ seja o protótipo de $g_i$, $c$ o número de grupos gerados no agrupamento e $n$ o
+número de documentos presentes na coleção. Bem como
+seja 
+\begin{equation}
+  U_{c \times n} = \{\mu(d_i, g_k) | \mu(d_i, g_k) \in [0,1], 1 < i \leq n, 1 < k \leq c, 
+  eqs (\ref{eq:pert_restricao_1})(\ref{eq:pert_restricao_2})\}
+  \label{eq:part_fuzzy}
+\end{equation}
+uma partição fuzzy, com todas as pertinências dos documentos aos grupos. Sendo $m$ 
 o fator de fuzificação, que regula o quão fuzzy será as partições
 finais. De modo que para $m = 1$ a partição resultante é totalmente $crisp$ 
 (figura \ref{fig:cluster_crisp}) e para 
@@ -297,15 +308,7 @@ o intervalo de [1.5, 3.0] aparenta trazer bons resultados para a maior parte dos
     \label{fig:cluster_fuzzy}
   \end{minipage}
 \end{figure}
-
-O algoritmo FCM realiza então uma série de atualizações nos protótipos dos grupos, a partir de
-uma uma pseudo partição fuzzy.
-O termo pseudo partição é empregado pois os elementos em uma partição fuzzy, não estão associados
-a um único grupo. Assim, os valores de $v_1,v_2,v_3,...,v_c$ são comumente inicializados
-com valores aleatórios\cite{Nogueira2013} ou com o resultado de um agrupamento previamente 
-executado\cite{Pal2005}\cite{Krishnapuram1993}. Nas demais iterações a atualização dos protótipos é
-realizada a partir da equação (\ref{eq:prototipos}). Onde por sua vez o grau de
-pertinência $\mu(d_i,g_k)$ de cada documento na coleção, se dá por
+E ademais a função de pertinência $\mu(d_i,g_k)$ de cada documento na coleção, é definida como sendo 
 \begin{equation}
   \mu(d_i,g_k) = \frac{1}{\sum_{j=1}^n(\frac{dist(d_i,v_k)}{dist(d_i,v_j)})^{\frac{1}{m-1}}}
   \label{eq:pertinencia}
@@ -320,14 +323,12 @@ e
   0 < \sum_{i=1}^n \mu(d_i,g_k) < n 
   \label{eq:pert_restricao_2}
 \end{equation}
-. Sendo no contexto do agrupamento de 
-coleções textuais $dist(d_i,g_k) = scos(d_i,g_k)$.
-
-Sendo assim 
-A restrição (\ref{eq:pert_restricao_2}) da equação 
-(\ref{eq:pertinencia}) tem como função evitar que algoritmo FCM produza grupos vazios. Enquanto a
+. Onde usualmente no contexto do agrupamento de coleções textuais $dist(d_i,g_k) = scos(d_i,g_k)$.
+Sendo assim a restrição (\ref{eq:pert_restricao_2}) da equação 
+(\ref{eq:pertinencia}) tem como função evitar que algoritmo FCM produza grupos 
+vazios\cite{Nogueira2013}. Enquanto a
 equação (\ref{eq:pert_restricao_1}) impõe que a soma das pertinências seja sempre igual a um. 
-Porém isto gera um problema em elementos equidistantes aos grupos. Ou seja, quando temos a caso 
+Entretanto a restrição (\ref{eq:pert_restricao_2}) produz um problema em elementos equidistantes aos grupos. Ou seja, quando temos o caso 
 $\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c)$. Nessa situação o grau de pertinência do 
 elemento a cada grupo será a pertinência média, ou seja 
 $\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c) = \frac{1}{c}$. Supondo agora um segundo
@@ -340,12 +341,59 @@ grupos. Esse problema está ilustrado na Figura (\ref{fig:fcm_problem}).
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.4\columnwidth]{assets/clusters_fcm_problem.pdf}
-  \caption{Problema dos elementos equidistante do algoritmo FCM. Na imagem $g_1$ e $g_2$ são grupos,
+  \caption{Problema dos elementos equidistantes do algoritmo FCM. Na imagem $g_1$ e $g_2$ são grupos,
     com os seus respectivos protótipos $v_1$ e $v_2$. Enquanto $d_1$ e $d_2$ são documentos 
   equidistantes aos protótipos $v_1$ e $v_2$. Portanto 
 $\mu(d_1,g_1) = \mu(d_1,g_2) = \mu(d_2,g_1) = \mu(d_2,g_2) = 0.5$.}
   \label{fig:fcm_problem}
 \end{figure}
+
+Segundo \cite{Bezdek1984} várias funções de otimização das partições fuzzy produzidas no agrupamento
+foram propostas. Sendo a minimização da função objetivo $J(U_{c \times n},G,V,D)$, 
+que visa minimizar a distância entre os documentos e os protótipos dos grupos\cite{Nogueira2013}, 
+definida na equação (\ref{eq:fcm_obj}) a mais popular.
+\begin{equation}
+  min\{(J(U_{c \times n},G,V,D) = \sum_{i=1}^n \sum_{j=1}^c [\mu(d_i, g_j)]^m dist(d_i, v_j)\}
+  \label{eq:fcm_obj}
+\end{equation}
+O mais utilizado algoritmo para soluções aproximadas da minimização (\ref{eq:fcm_obj}), é a iteração
+de Picard\footnote{Método iterativo para construção de soluções aproximadas, atribuído ao 
+matemático francês Charles Emile Picard (1856-1941). 
+\url{http://mathfaculty.fullerton.edu/mathews/n2003/PicardIterationMod.html}}\cite{Pal2005} 
+através das equações (\ref{eq:prototipos})(\ref{eq:part_fuzzy}). Sendo assim  
+o ciclo de aproximações se dá por $V_{t-1} \Rightarrow  U_t \Rightarrow  V_t$, onde ao final
+de cada iteração é verificado se $\parallel V_{t-1} - V_t\parallel < \varepsilon$. 
+A literatura também expressa que os ciclos podem começar pela partição fuzzy, fazendo então 
+$U_{t-1} \Rightarrow  V_t \Rightarrow  U_t$, e ao final do ciclo checando o erro mínimo com 
+$\parallel U_{t-1} - U_t\parallel < \varepsilon$, sendo $t$ o contador de iterações. 
+Contudo existem benefícios em termos de processamento e memória ao utilizar a iteração iniciando
+e finalizando com $V$\cite{Pal2005}.
+\cite{Bezdek1984} e \cite{Pal2005} afirmam que convergência desse modelo iterativo ocorre
+em ambos os tipos de ciclo.
+A partição fuzzy inicial $U_0$ é comumente inicializada
+com valores aleatórios\cite{Nogueira2013} ou com o resultado de um agrupamento previamente 
+executado\cite{Pal2005}\cite{Krishnapuram1993}. Nas demais iterações a atualização dos protótipos é
+realizada a partir da equação (\ref{eq:prototipos}). O pseudo código utilizando essa abordagem
+iterativa está listado no algoritmo (\ref{alg:fcm}), no qual 
+$\textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}$, pode ser uma das duas formas
+de inicialização descritas anteriormente.
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{D, c, m, $\varepsilon$}
+\KwResult{V, U}
+G $\gets$ $[g_1,g_2,...,g_c]$\;
+$U_0$ $\gets$ \textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}\;
+$t \gets 0$\;
+\Do{ $\parallel U_{t-1} - U_t\parallel > \varepsilon$ }{
+  $V_t$ $\gets$ calcula usando (\ref{eq:prototipos})\;
+  $t \gets t + 1$\;
+  $U_t$ $\gets$ calcula usando (\ref{eq:part_fuzzy})\;
+}
+$\textbf{retorne} (U_t, V_t)$\;
+\caption{Pseudo código da implementação iterativa do método FCM}
+\label{alg:fcm}
+\end{algorithm}
 
 \subsection{Algoritmo Possibilistic C Means (PCM)}
 \subsection{Algoritmo Possibilistic Fuzzy C Means (PFCM)}
