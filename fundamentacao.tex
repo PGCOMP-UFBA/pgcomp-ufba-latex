@@ -368,7 +368,7 @@ $U_{t-1} \Rightarrow  V_t \Rightarrow  U_t$, e ao final do ciclo checando o erro
 $\parallel U_{t-1} - U_t\parallel < \varepsilon$, sendo $t$ o contador de iterações. 
 Contudo existem benefícios em termos de processamento e memória ao utilizar a iteração iniciando
 e finalizando com $V$\cite{Pal2005}.
-\cite{Bezdek1984} e \cite{Pal2005} afirmam que convergência desse modelo iterativo ocorre
+\cite{Bezdek1984} e \cite{Pal2005} afirmam que a convergência desse modelo iterativo ocorre
 em ambos os tipos de ciclo.
 A partição fuzzy inicial $U_0$ é comumente inicializada
 com valores aleatórios\cite{Nogueira2013} ou com o resultado de um agrupamento previamente 
@@ -394,6 +394,20 @@ $\textbf{retorne} (U_t, V_t)$\;
 \caption{Pseudo código da implementação iterativa do método FCM}
 \label{alg:fcm}
 \end{algorithm}
+
+Por fim está ilustrado na figura (\ref{fig:samples_fcm}), os resultados produzido pelo algoritmo FCM,
+em dois conjuntos de coordenadas no $R^2$. Na figura os pontos foram pintados com a cor 
+correspondente ao grupo em que o mesmo obteve o maior valor de pertinência.
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.8\columnwidth]{assets/samples_fcm.png}
+  \caption{Resultado do agrupamento de dois conjuntos de coordenadas no $R^2$ usando o algoritmo 
+  FCM\protect\footnotemark.}
+  \label{fig:samples_fcm}
+\end{figure}
+
+\footnotetext{Implementação na linguagem C do algoritmo FCM, disponível em: \url{https://github.com/niltonvasques/fcm}}
 
 \subsection{Algoritmo Possibilistic C Means (PCM)}
 \subsection{Algoritmo Possibilistic Fuzzy C Means (PFCM)}
