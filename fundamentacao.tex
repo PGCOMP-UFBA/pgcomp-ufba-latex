@@ -407,13 +407,21 @@ correspondente ao grupo em que o mesmo obteve o maior valor de pertinência.
   \label{fig:samples_fcm}
 \end{figure}
 
-\footnotetext{Implementação na linguagem C do algoritmo FCM, disponível em: \url{https://github.com/niltonvasques/fcm}}
-
 \subsection{Algoritmo Possibilistic C Means (PCM)}
+
+A restrição probabilística (\ref{eq:pert_restricao_2}) do FCM que obriga a soma das pertinências de um elemento ser
+igual a um, nem sempre resulta em pertinências que representam bem a realidade dos dados,
+conforme exemplificado na figura (\ref{fig:fcm_problem}). 
+Esse problema se agrava ainda mais, em bases com muitos dados ruidosos ($outliers$).
+Visando então contornar esses problemas do FCM, foi proposto em \cite{Krishnapuram1993} 
+o algoritmo $Possiblistic\ C\ Means$ (PCM).
+
+
 \subsection{Algoritmo Possibilistic Fuzzy C Means (PFCM)}
 \subsection{Algoritmo Hierarchic Fuzzy C Means (HFCM)}
 
 \section{Extração de descritores}
+\footnotetext{Implementação na linguagem C do algoritmo FCM, disponível em: \url{https://github.com/niltonvasques/fcm}}
 
 A tarefa de rotular grupos é um dos problemas chaves do agrupamento de textos, 
 pois ao final do processo de agrupamento, os grupos precisam apresentar alguma relevância para 
