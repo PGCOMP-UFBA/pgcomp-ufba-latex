@@ -372,7 +372,7 @@ dados, conforme exemplificado na figura (\ref{fig:fcm_problem}).  Esse problema 
 mais, em bases com muitos dados ruidosos ($outliers$).  Visando então contornar esses problemas do
 FCM, foi proposto em \cite{Krishnapuram1993} o algoritmo $Possiblistic\ C\ Means$ (PCM). 
 
-Ao contrário do FCM, o PCM não atribui pertinências dos documentos aos grupos, e sim tipicalidades. 
+Ao contrário do FCM, o PCM não atribui pertinências dos documentos aos grupos, e sim tipicidades. 
 Que podem ser interpretadas como graus de possibilidade de um elemento pertencer ao grupo. Como
 consequência a partição resultante é possibilística. Para se adequar a essa abordagem
 possibilística, a função objetivo do PCM deriva da equação (\ref{eq:fcm_obj}) do FCM. Tendo também 
@@ -387,7 +387,7 @@ agrupamento com dois grupos. Portanto \cite{Krishnapuram1993} relaxa a restriç�
 (\ref{eq:fcmrestri2}), fazendo com que a pertinência dependa unicamente da distância do
 elemento ao grupo. Logo as restrições (\ref{eq:fcmrestri1}) e (\ref{eq:fcmrestri2}), são 
 redefinidas nas equações (\ref{eq:pcmrestri1})(\ref{eq:pcmrestri2}), onde $\lambda(d_i,g_j)$
-representa a tipicalidade do documento $d_i$ em relação ao grupo $g_j$.
+representa a tipicidade do documento $d_i$ em relação ao grupo $g_j$.
 \begin{equation}
   \lambda(d_i, g_j) \in [0,1], \forall i,j
   \label{eq:pcmrestri1}
@@ -461,15 +461,94 @@ uniforme os pontos em 4 grupos.
   \centering 
   \includegraphics[width=0.8\columnwidth]{assets/samples_pcm_fcm.png}
   \caption{Demonstração de agrupamentos obtidos com os algoritmos 
-    FCM (a) e PCM\protect\footnotemark(b)
+    FCM\protect\footnotemark (a) e PCM\protect\footnotemark[\value{footnote}](b)
   .} 
   \label{fig:samples_pcm_fcm} 
 \end{figure}
 
-\subsection{Algoritmo Possibilistic Fuzzy C Means (PFCM)} \subsection{Algoritmo Hierarchic Fuzzy C
-Means (HFCM)}
+\subsection{Algoritmo Possibilistic Fuzzy C Means (PFCM)} 
+De acordo com \cite{Pal2005} o algoritmo PCM pode levar os resultados do agrupamento 
+a conter grupos coincidentes, ou seja quando o protótipo $v_i$ está muito próximo de outro protótipo
+$v_j$. Segundo os autores, isto ocorre quando a inicialização da partição inicial não possui 
+protótipos
+suficientemente separados. Esse problema não é causado por uma escolha ruim da penalidade presente
+na função objetivo do PCM, o que ocorre é uma falta de restrições para evitar que isso aconteça.
 
-\section{Extração de descritores} \footnotetext{Resultados obtidos baseados na implementação
+\cite{Carvalho2016} cita que as pertinências do FCM e as tipicidades do PCM são ambas importantes
+para a correta interpretação das sub estruturas dos dados. Pois quando se tem dados que precisam
+ser rotulados de maneira $hard$, as pertinências se mostram como uma escolha adequada, de modo que é
+intuitivo atribuir o elemento ao grupo em que o mesmo possua a menor distância. Por outro lado,
+durante a atualização dos protótipos, as tipicidades desempenham um papel fundamental para 
+aliviar os efeitos indesejados dos dados ruidosos.
+
+Com o propósito de aproveitar então os benefícios de ambas as abordagens, \cite{Pal2005} propôs o
+algoritmo PFCM, que utiliza as pertinências $\mu(d_i,g_j)$ do FCM e as tipicidades
+$\lambda(d_i,g_j)$ do PCM. Deixando o usuário definir a proporção de cada uma das contribuições com
+parâmetros que ponderam o peso de ambos. Portanto é realizado uma mistura entre as funções objetivo
+(\ref{eq:fcm_obj}) e (\ref{eq:pcmobj}) resultando na minimização da função objetivo
+(\ref{eq:pfcmobj}), que está sujeita as condições de (\ref{eq:pfcmrestri}), onde 
+$a,b > 0$ e $m,n > 1$. Os parâmetros $a,b$ representam a importância
+relativa dos valores de pertinência e tipicidades e devem ser definidos pelo usuário de acordo com o
+problema. Os autores sugerem que $b$ seja maior que $a$, porém não muito maior, para não eliminar
+completamente os benefícios do FCM. 
+\begin{equation}
+  L_m(U_{c \times n},P_{c \times n},G,V,D) = \sum_{j=1}^c 
+  \sum_{i=1}^n [a\mu(d_i,g_j)^n + b\lambda(d_i, g_j)^m] dist(d_i, v_j) +
+  \sum_{j=1}^c \gamma_j \sum_{i=1}^n [1 - \lambda(d_i, g_j)]^m
+  \label{eq:pfcmobj}
+\end{equation}
+\begin{equation}
+  \sum_{j=i}^c \mu(d_i,g_j) = 1, \forall i, 0 < \mu(d_i,g_j),\lambda(d_i,g_j) \leq 1
+  \label{eq:pfcmrestri}
+\end{equation}
+A mistura e as ponderações adicionados no algoritmo PFCM também são agregadas a função de
+atualização dos protótipos (\ref{eq:pfcmproto}), a qual passa a se beneficiar das características de
+ambos os algoritmos.
+De maneira a reduzir os efeitos dos dados ruidosos, minimizar o problema dos protótipos coincidentes
+e evitar a singularidade do FCM. O pseudo código do PFCM é apresentado no Algoritmo \ref{alg:pfcm}, 
+onde a
+função $\textbf{\color{blue}inicializa-prototipos}(D,G)$ gera os protótipos iniciais da partição
+$V_0$. Como resultado demonstrativo desse algoritmo está ilustrado na figura
+(\ref{fig:samples_pfcm}), onde é possível observar que os grupos produzidos são em certa perspectiva
+um intermédio entre o agrupamento produzido pelo FCM e PCM no mesmo conjunto de dados, apresentados
+na figura (\ref{fig:samples_pcm_fcm}).
+\begin{equation}
+  V = \left\{ v_j | v_j = \frac{\sum_{i=1}^n[a\mu(d_i,g_j)^n + b\lambda(d_i, g_j)^m] d_i}
+    {\sum_{i=1}^n[a\mu(d_i,g_j)^n + b\lambda(d_i, g_j)^m]}, 
+  1 < j \leq c \right\} 
+  \label{eq:pfcmproto}
+\end{equation}
+
+\begin{algorithm}[H] 
+  \SetAlgoLined \KwData{D, c, m, $\varepsilon$} 
+  \KwResult{V, P} 
+  G $\gets$ $[g_1,g_2,...,g_c]$\; 
+  $V_0$ $\gets$ \textbf{{\color{blue}inicializa-prototipos}(D,G)}\; 
+  $\gamma_j \gets$ calcula utilizando (\ref{eq:pcmgamma})\;
+  $t \gets 0$\; 
+  \Do{ $\parallel V_{t-1} - V_t\parallel > \varepsilon$ }{ 
+    $U_t$ $\gets$ calcula com (\ref{eq:part_fuzzy}) usando $V_{t-1}$\; 
+    $P_t$ $\gets$ calcula com (\ref{eq:pcmpart}) usando $V_{t-1}$\; 
+    $V_t$ $\gets$ calcula com (\ref{eq:pfcmproto})\; 
+    $t \gets t + 1$\; 
+  }
+  $\textbf{retorne} (U_t,P_t,V_t)$\; 
+  \caption{Pseudo código da implementação iterativa do método PFCM}
+  \label{alg:pfcm} 
+\end{algorithm}
+
+\begin{figure}[!htp] 
+  \centering 
+  \includegraphics[width=0.6\columnwidth]{assets/samples_pfcm.png}
+  \caption{Demonstração do agrupamento obtido com os algoritmo 
+    PFCM\protect\footnotemark em um conjunto de coordenadas de pontos no $R^2$.} 
+  \label{fig:samples_pfcm} 
+\end{figure}
+
+\subsection{Algoritmo Hierarchic Fuzzy C Means (HFCM)}
+
+\section{Extração de descritores} 
+\footnotetext{Resultados obtidos baseados na implementação
   dos algoritmo FCM e PCM, produzida como parte este trabalho disponível em: 
 \url{https://github.com/niltonvasques/fcm}}
 
