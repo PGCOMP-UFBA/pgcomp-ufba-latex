@@ -21,7 +21,6 @@ de documentos. Portanto definições mais aprofundadas sobre fuzzy fogem do esco
 \subsection{Definição de conjuntos fuzzy}
 
 Seja X um espaço de objetos, com um elemento genérico {\it x\/}.  Sendo $X= \big\{x\big\}$.
-
 Um conjunto fuzzy $A$ em $X$ é caracterizado por uma função de pertinência $f_A(x)$, a qual associa
 a cada elemento de $X$ um número real presente no intervalo de $[0,1]$, sendo o valor de $f_A(x)$ a
 representação do grau de pertinência de $x$ em $A$.
@@ -160,7 +159,9 @@ de similaridade, e esta escolha precisa ser feita de acordo com o tipo dos dados
 medida de similaridade mais popular\cite{Feldman2007} é a distância euclidiana (Equação
 \ref{eq:euclidiana}), que tem se mostrado bastante adequada em dados com baixa dimensionalidade.
 
-\begin{equation} D(x_{i}, x_{j}) = \sqrt{\sum_k{(x_{ik}-x_{jk})^2}} \label{eq:euclidiana}
+\begin{equation} 
+  D(x_{i}, x_{j}) = \sqrt{\sum_k{(x_{ik}-x_{jk})^2}} 
+  \label{eq:euclidiana}
 \end{equation}
 
 No entanto, em coleções textuais a matriz documentos x termos é naturalmente esparsa, devido a
@@ -176,8 +177,10 @@ definição do coeficiente de similaridade de cosseno, onde $d_1$ e $d_2$, são 
 quaisquer da coleção de documentos, e $1 \leq t \leq k$, onde $k$ é a quantidade total de termos da
 coleção, e $d_{ik}$ a frequência do termo $t$ no documento $d_i$.
 
-\begin{equation} scos(d_{1}, d_{2}) = cos\theta = \frac{d_{1} \cdot d_{2}}{|d_{1}||d_{2}|} =
-\sum_{t=1}^k{\varphi(d_{1t},d_1) \cdot \varphi(d_{2t},d_2)} \in [0,1] \label{eq:simcos}
+\begin{equation} 
+  scos(d_{1}, d_{2}) = cos\theta = \frac{d_{1} \cdot d_{2}}{|d_{1}||d_{2}|} =
+  \sum_{t=1}^k{\varphi(d_{1t},d_1) \cdot \varphi(d_{2t},d_2)} \in [0,1] 
+  \label{eq:simcos}
 \end{equation}
 
 Os grupos resultantes desse processo, podem possuir algumas características que estão diretamente
@@ -235,16 +238,25 @@ ideal foi escolhida utilizando o método da silhueta fuzzy ( Equação \ref{eq:f
 que produz como saída partições fuzzy e protótipos dos grupos. Esse algoritmo desempenha um papel
 importante no contexto do agrupamento fuzzy, devido seu pioneirismo no campo de estudo, possuindo
 diversas extensões. Assim como também é considerado um dos mais amplamente utilizados métodos de
-agrupamento fuzzy da literatura\cite{Pal2005}.
+agrupamento fuzzy da literatura\cite{Pal2005}. Sendo a maioria dos métodos de agrupamento fuzzy,
+derivações do FCM\cite{Krishnapuram1993}.
 
 Seja então $V = \{v_1,v_2,v_3,...,v_c\}$ os protótipos dos grupos $G = \{g_1,g_2,g_3,...g_c\}$
-definidos por \begin{equation} V = \left\{ v_j | v_j = \frac{\sum_{i=1}^n[\mu(d_i,g_j)]^m
-d_i}{\sum_{i=1}^n[\mu(d_i,g_j)]^m}, 1 < j \leq c \right\} \label{eq:prototipos} \end{equation} , tal
+definidos por 
+\begin{equation} 
+  V = \left\{ v_j | v_j = \frac{\sum_{i=1}^n[\mu(d_i,g_j)]^m d_i}{\sum_{i=1}^n[\mu(d_i,g_j)]^m}, 
+  1 < j \leq c \right\} 
+  \label{eq:prototipos} 
+\end{equation}
+, tal
 que $v_i$ seja o protótipo de $g_i$, $c$ o número de grupos gerados no agrupamento e $n$ o número de
-documentos presentes na coleção. Bem como seja \begin{equation} U_{c \times n} = \{\mu(d_i, g_k) |
-\mu(d_i, g_k) \in [0,1], 1 < i \leq n, 1 < k \leq c, eqs
-(\ref{eq:pert_restricao_1})(\ref{eq:pert_restricao_2})\} \label{eq:part_fuzzy} \end{equation} uma
-partição fuzzy, com todas as pertinências dos documentos aos grupos. Sendo $m$ o fator de
+documentos presentes na coleção. Bem como seja 
+\begin{equation} 
+  U_{c \times n} = \{\mu(d_i, g_k) |\mu(d_i, g_k) \in [0,1], 1 < i \leq n, 1 < k \leq c, eqs
+  (\ref{eq:fcmrestri1})(\ref{eq:fcmrestri2})\} 
+  \label{eq:part_fuzzy} 
+\end{equation} 
+uma partição fuzzy, com todas as pertinências dos documentos aos grupos. Sendo $m$ o fator de
 fuzificação, que regula o quão fuzzy será as partições finais. De modo que para $m = 1$ a partição
 resultante é totalmente $crisp$ (figura \ref{fig:cluster_crisp}) e para $m \rightarrow \infty$ a
 interseção entre os grupos tende a aumentar (figura
@@ -254,23 +266,35 @@ valores ideais aparenta ser [1,30]. Sendo assim, se existir um conjunto de dados
 estratégia para a escolha de $m$ é a realização de testes experimentais. Caso contrário, o intervalo
 de [1.5, 3.0] aparenta trazer bons resultados para a maior parte dos dados.
 
-\begin{figure}[!htp] \centering \begin{minipage}{0.45\textwidth} \centering
-\includegraphics[width=0.6\columnwidth]{assets/clusters_crisp.pdf} \caption{Ilustração denotando os
+\begin{figure}[!htp] \centering 
+  \begin{minipage}{0.45\textwidth} 
+    \centering
+    \includegraphics[width=0.6\columnwidth]{assets/clusters_crisp.pdf} 
+    \caption{Ilustração denotando os
 grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.} \label{fig:cluster_crisp}
-\end{minipage}\hfill \begin{minipage}{0.45\textwidth} \centering
-\includegraphics[width=0.6\columnwidth]{assets/clusters_fuzzy.pdf} \caption{Ilustração denotando os
-grupos $g_1,g_2,g_3$ organizados de maneira fuzzy, com sobreposição, quando $m \rightarrow \infty$.}
-\label{fig:cluster_fuzzy} \end{minipage} \end{figure} E ademais a função de pertinência
-$\mu(d_i,g_k)$ de cada documento na coleção, é definida como sendo \begin{equation} \mu(d_i,g_k) =
-\frac{1}{\sum_{j=1}^n(\frac{dist(d_i,v_k)}{dist(d_i,v_j)})^{\frac{1}{m-1}}} \label{eq:pertinencia}
-\end{equation} , tal que $\mu(d_i, g_k)$ está sujeita as equações \begin{equation} \sum_{k=1}^c
-\mu(d_i,g_k) = 1 \label{eq:pert_restricao_1} \end{equation} e \begin{equation} 0 < \sum_{i=1}^n
-\mu(d_i,g_k) < n \label{eq:pert_restricao_2} \end{equation} . Onde usualmente no contexto do
+  \end{minipage}\hfill 
+  \begin{minipage}{0.45\textwidth} \centering
+    \includegraphics[width=0.6\columnwidth]{assets/clusters_fuzzy.pdf} 
+    \caption{Ilustração denotando os
+    grupos $g_1,g_2,g_3$ organizados de maneira fuzzy, com sobreposição, quando 
+    $m \rightarrow \infty$.}
+    \label{fig:cluster_fuzzy} 
+  \end{minipage} 
+\end{figure} 
+E ademais a função de pertinência
+$\mu(d_i,g_k)$ de cada documento na coleção, é definida como sendo 
+\begin{equation} 
+  \mu(d_i,g_k) = \frac{1}{\sum_{j=1}^n(\frac{dist(d_i,v_k)}{dist(d_i,v_j)})^{\frac{1}{m-1}}} 
+  \label{eq:pertinencia}
+\end{equation}
+, tal que $\mu(d_i, g_k)$ está sujeita as equações \begin{equation} \sum_{k=1}^c
+\mu(d_i,g_k) = 1 \label{eq:fcmrestri1} \end{equation} e \begin{equation} 0 < \sum_{i=1}^n
+\mu(d_i,g_k) < n \label{eq:fcmrestri2} \end{equation} . Onde usualmente no contexto do
 agrupamento de coleções textuais $dist(d_i,g_k) = scos(d_i,g_k)$.  Sendo assim a restrição
-(\ref{eq:pert_restricao_2}) da equação (\ref{eq:pertinencia}) tem como função evitar que algoritmo
-FCM produza grupos vazios\cite{Nogueira2013}. Enquanto a equação (\ref{eq:pert_restricao_1}) impõe
+(\ref{eq:fcmrestri2}) da equação (\ref{eq:pertinencia}) tem como função evitar que algoritmo
+FCM produza grupos vazios\cite{Nogueira2013}. Enquanto a equação (\ref{eq:fcmrestri1}) impõe
 que a soma das pertinências seja sempre igual a um.  Entretanto a restrição
-(\ref{eq:pert_restricao_2}) produz um problema em elementos equidistantes aos grupos. Ou seja,
+(\ref{eq:fcmrestri2}) produz um problema em elementos equidistantes aos grupos. Ou seja,
 quando temos o caso $\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c)$. Nessa situação o grau de
 pertinência do elemento a cada grupo será a pertinência média, ou seja $\mu(d_i, g_1) = \mu(d_i,
 g_2) = ... = \mu(d_i, g_c) = \frac{1}{c}$. Supondo agora um segundo documento $d_2$, que seja mais
@@ -280,11 +304,14 @@ $d_1$, não expressa a distância relativa desses documentos aos grupos. Esse pr
 na Figura (\ref{fig:fcm_problem}).
 
 \begin{figure}[!htp] \centering
-  \includegraphics[width=0.4\columnwidth]{assets/clusters_fcm_problem.pdf} \caption{Problema dos
+  \includegraphics[width=0.4\columnwidth]{assets/clusters_fcm_problem.pdf} 
+  \caption{Problema dos
     elementos equidistantes do algoritmo FCM. Na imagem $g_1$ e $g_2$ são grupos, com os seus
     respectivos protótipos $v_1$ e $v_2$. Enquanto $d_1$ e $d_2$ são documentos equidistantes aos
     protótipos $v_1$ e $v_2$. Portanto $\mu(d_1,g_1) = \mu(d_1,g_2) = \mu(d_2,g_1) = \mu(d_2,g_2) =
-0.5$.} \label{fig:fcm_problem} \end{figure}
+0.5$.} 
+  \label{fig:fcm_problem} 
+\end{figure}
 
 Segundo \cite{Bezdek1984} várias funções de otimização das partições fuzzy produzidas no agrupamento
 foram propostas. Sendo a minimização da função objetivo $J(U_{c \times n},G,V,D)$, que visa
@@ -310,35 +337,141 @@ pseudo código utilizando essa abordagem iterativa está listado no algoritmo (\
 $\textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}$, pode ser uma das duas formas de
 inicialização descritas anteriormente.
 
-\begin{algorithm}[H] \SetAlgoLined \KwData{D, c, m, $\varepsilon$} \KwResult{V, U} G $\gets$
-  $[g_1,g_2,...,g_c]$\; $U_0$ $\gets$ \textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}\; $t
-  \gets 0$\; \Do{ $\parallel U_{t-1} - U_t\parallel > \varepsilon$ }{ $V_t$ $\gets$ calcula usando
-    (\ref{eq:prototipos})\; $t \gets t + 1$\; $U_t$ $\gets$ calcula usando (\ref{eq:part_fuzzy})\; }
-  $\textbf{retorne} (U_t, V_t)$\; \caption{Pseudo código da implementação iterativa do método FCM}
+\begin{algorithm}[H] 
+  \SetAlgoLined \KwData{D, c, m, $\varepsilon$} 
+  \KwResult{V, U} 
+  G $\gets$ $[g_1,g_2,...,g_c]$\; 
+  $U_0$ $\gets$ \textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}\; 
+  $t \gets 0$\; 
+  \Do{ $\parallel U_{t-1} - U_t\parallel > \varepsilon$ }{ 
+    $V_t$ $\gets$ calcula usando (\ref{eq:prototipos})\; 
+    $t \gets t + 1$\; 
+    $U_t$ $\gets$ calcula usando (\ref{eq:part_fuzzy})\; 
+  }
+  $\textbf{retorne} (U_t, V_t)$\; 
+  \caption{Pseudo código da implementação iterativa do método FCM}
 \label{alg:fcm} \end{algorithm}
 
 Por fim está ilustrado na figura (\ref{fig:samples_fcm}), os resultados produzido pelo algoritmo
 FCM, em dois conjuntos de coordenadas no $R^2$. Na figura os pontos foram pintados com a cor
 correspondente ao grupo em que o mesmo obteve o maior valor de pertinência.
 
-\begin{figure}[!htp] \centering \includegraphics[width=0.8\columnwidth]{assets/samples_fcm.png}
-\caption{Resultado do agrupamento de dois conjuntos de coordenadas no $R^2$ usando o algoritmo
-FCM\protect\footnotemark.} \label{fig:samples_fcm} \end{figure}
+\begin{figure}[!htp] 
+  \centering 
+  \includegraphics[width=0.8\columnwidth]{assets/samples_fcm.png}
+  \caption{Resultado do agrupamento de dois conjuntos de coordenadas no $R^2$ usando o algoritmo
+  FCM\protect\footnotemark.} 
+  \label{fig:samples_fcm} 
+\end{figure}
 
 \subsection{Algoritmo Possibilistic C Means (PCM)}
 
-A restrição probabilística (\ref{eq:pert_restricao_2}) do FCM que obriga a soma das pertinências de
+A restrição probabilística (\ref{eq:fcmrestri2}) do FCM que obriga a soma das pertinências de
 um elemento ser igual a um, nem sempre resulta em pertinências que representam bem a realidade dos
 dados, conforme exemplificado na figura (\ref{fig:fcm_problem}).  Esse problema se agrava ainda
 mais, em bases com muitos dados ruidosos ($outliers$).  Visando então contornar esses problemas do
-FCM, foi proposto em \cite{Krishnapuram1993} o algoritmo $Possiblistic\ C\ Means$ (PCM).
+FCM, foi proposto em \cite{Krishnapuram1993} o algoritmo $Possiblistic\ C\ Means$ (PCM). 
 
+Ao contrário do FCM, o PCM não atribui pertinências dos documentos aos grupos, e sim tipicalidades. 
+Que podem ser interpretadas como graus de possibilidade de um elemento pertencer ao grupo. Como
+consequência a partição resultante é possibilística. Para se adequar a essa abordagem
+possibilística, a função objetivo do PCM deriva da equação (\ref{eq:fcm_obj}) do FCM. Tendo também 
+as funções de atualização de prótotipos e atribuição de pertinências modificadas.
+
+Na teoria de conjuntos fuzzy, a pertinência de um elemento a um grupo fuzzy não depende da
+pertinência desse mesmo elemento em outro grupo. No entanto no modelo FCM, a restrição
+(\ref{eq:fcmrestri2}) torna dependente a pertinência dos elementos aos grupos. De maneira que
+se um elemento obtiver um grau elevado de pertinência em um dado grupo, ele não poderá ter uma
+pertinência também elevada em outro grupo, ou seja $\mu(d_1, g_1) = 1-\mu(d_1,g_2)$, supondo um
+agrupamento com dois grupos. Portanto \cite{Krishnapuram1993} relaxa a restrição
+(\ref{eq:fcmrestri2}), fazendo com que a pertinência dependa unicamente da distância do
+elemento ao grupo. Logo as restrições (\ref{eq:fcmrestri1}) e (\ref{eq:fcmrestri2}), são 
+redefinidas nas equações (\ref{eq:pcmrestri1})(\ref{eq:pcmrestri2}), onde $\lambda(d_i,g_j)$
+representa a tipicalidade do documento $d_i$ em relação ao grupo $g_j$.
+\begin{equation}
+  \lambda(d_i, g_j) \in [0,1], \forall i,j
+  \label{eq:pcmrestri1}
+\end{equation}
+
+\begin{equation}
+  0 < \sum_{j=1}^n \lambda(d_i, g_j) \leq n, \forall j
+  \label{eq:pcmrestri2}
+\end{equation}
+Após relaxar a restrição (\ref{eq:fcmrestri2}) se mantivermos a função objetivo do FCM 
+(equação \ref{eq:fcm_obj}), teríamos uma solução trivial, bastando atribuir $0$ a todas as
+pertinências para minimizar $J(U_{c \times n},G,V,D)$\cite{Krishnapuram1993}\cite{Nogueira2013}. 
+Portanto buscando evitar essa solução trivial, e 
+manter a característica de atribuir aos elementos representativos pertinências elevadas aos grupos e 
+penalizar os elementos não representativos, a função objetivo é reformulada como sendo 
+\begin{equation}
+  K_m(P_{c \times n},G,V,D) = \sum_{j=1}^c \sum_{i=1}^n [\lambda(d_i, g_j)]^m dist(d_i, v_j) +
+  \sum_{j=1}^c \gamma_j \sum_{i=1}^n [1 - \lambda(d_i, g_j)]^m
+  \label{eq:pcmobj}
+\end{equation}
+, onde $\gamma_j > 0$ são parâmetros que determinam a distância a qual o valor de pertinência
+(tipicidade) se torna $0.5$. \cite{Krishnapuram1993} explica que $\gamma_j$ seja escolhido
+a depender da faixa de possibilidades (pertinência) desejada para um grupo. Por exemplo, 
+$\gamma_j$ pode ser igual para todos os grupos, quando se deseja que a forma dos grupos seja similar.
+Contudo na maioria dos casos se espera que $\gamma_j$ reflita o formato e tamanho particular de cada
+grupo. Assim sendo, o autor indica que a definição (\ref{eq:pcmgamma}) se mostra adequada para maior
+parte dos dados, onde $L$ é usualmente 1.
+\begin{equation}
+  \gamma_j = L \frac{\sum_{i=1}^n \lambda(d_i,g_j)^m dist(d_i,v_j)}{\sum_{i=1}^n \lambda(d_i,g_j)^m}
+  \label{eq:pcmgamma}
+\end{equation}
+A partição de pertinências possibilísticas produzidas pelo PCM é então definida como sendo
+\begin{equation} 
+  P_{c \times n} = \{\lambda(d_i, g_k) |\lambda(d_i, g_k) \in [0,1], 1 < i \leq n, 1 < k \leq c, eqs
+  (\ref{eq:pcmrestri1})(\ref{eq:pcmrestri2})\}
+  \label{eq:pcmpart} 
+\end{equation} 
+\begin{equation}
+  \lambda(d_i,g_j) = \frac{1}{1+\left(\frac{dist(d_i,g_j)}{\gamma_j}\right)^{\frac{1}{m-1}}}
+  \label{eq:lambda}
+\end{equation}
+, enquanto a atualização de protótipos ocorre de maneira similar a equação (\ref{eq:prototipos}) do
+FCM, apenas alterando a pertinência $\mu(d_i,g_j)$ por $\lambda(d_i,g_j)$. A síntese do 
+algoritmo PCM está apresentada em forma de pseudo código no algoritmo (\ref{alg:pcm}). 
+
+\begin{algorithm}[H] 
+  \SetAlgoLined \KwData{D, c, m, $\varepsilon$} 
+  \KwResult{V, P} 
+  G $\gets$ $[g_1,g_2,...,g_c]$\; 
+  $P_0$ $\gets$ \textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}\; 
+  $\gamma_j \gets$ calcula utilizando (\ref{eq:pcmgamma})\;
+  $t \gets 0$\; 
+  \Do{ $\parallel P_{t-1} - P_t\parallel > \varepsilon$ }{ 
+    $V_t$ $\gets$ calcula usando (\ref{eq:prototipos})\; 
+    $t \gets t + 1$\; 
+    $P_t$ $\gets$ calcula usando (\ref{eq:pcmpart})\; 
+  }
+  $\textbf{retorne} (P_t, V_t)$\; 
+  \caption{Pseudo código da implementação iterativa do método PCM}
+  \label{alg:pcm} 
+\end{algorithm}
+Por fim está ilustrado na figura (\ref{fig:samples_pcm_fcm}) (a), o resultado do agrupamento
+obtido pelo método FCM, e em (b) o agrupamento gerado pelo algoritmo PCM em um conjunto de 
+coordenadas no $R^2$. Na figura os pontos foram pintados com a cor correspondente ao grupo em que o 
+mesmo obteve o maior valor de pertinência. Observa-se nessa comparação simplificada que o algoritmo 
+PCM tentou maximizar a pertinência dos pontos aos grupos maiores, ocasionando uma maior quantidade
+de pontos com pertinência elevada em dois grupos, ao contrário do FCM que distribuiu de maneira
+uniforme os pontos em 4 grupos.
+
+\begin{figure}[!htp] 
+  \centering 
+  \includegraphics[width=0.8\columnwidth]{assets/samples_pcm_fcm.png}
+  \caption{Demonstração de agrupamentos obtidos com os algoritmos 
+    FCM (a) e PCM\protect\footnotemark(b)
+  .} 
+  \label{fig:samples_pcm_fcm} 
+\end{figure}
 
 \subsection{Algoritmo Possibilistic Fuzzy C Means (PFCM)} \subsection{Algoritmo Hierarchic Fuzzy C
 Means (HFCM)}
 
-\section{Extração de descritores} \footnotetext{Implementação na linguagem C do algoritmo FCM,
-disponível em: \url{https://github.com/niltonvasques/fcm}}
+\section{Extração de descritores} \footnotetext{Resultados obtidos baseados na implementação
+  dos algoritmo FCM e PCM, produzida como parte este trabalho disponível em: 
+\url{https://github.com/niltonvasques/fcm}}
 
 A tarefa de rotular grupos é um dos problemas chaves do agrupamento de textos, pois ao final do
 processo de agrupamento, os grupos precisam apresentar alguma relevância para o

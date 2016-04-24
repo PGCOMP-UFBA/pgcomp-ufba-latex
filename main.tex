@@ -26,10 +26,22 @@
 \documentclass[bsc, classic, a4paper]{ufbathesis}
 
 %% Preambulo:
-\usepackage{xcolor} \hypersetup{ colorlinks, linkcolor={red!30!black}, citecolor={blue!50!black},
-urlcolor={blue!80!black} } \usepackage[utf8]{inputenc} \usepackage{graphicx,url} \usepackage{lipsum}
-\usepackage{amsmath} \usepackage{mathtools} \usepackage{enumitem} \graphicspath{{assets/}}
-\usepackage{algorithm2e} \SetKwRepeat{Do}{do}{while} % Macro to allow do while in algorithm2e
+\usepackage{xcolor}
+\hypersetup{
+  colorlinks,
+  linkcolor={red!30!black},
+  citecolor={blue!50!black},
+  urlcolor={blue!80!black}
+}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx,url}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\graphicspath{{assets/}}
+\usepackage{algorithm2e}
+\SetKwRepeat{Do}{do}{while} % Macro to allow do while in algorithm2e
 \SetAlgorithmName{Algoritmo}{Lista de Algoritmos}
 
 % Universidade
@@ -51,21 +63,25 @@ urlcolor={blue!80!black} } \usepackage[utf8]{inputenc} \usepackage{graphicx,url}
 \majorfield{CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
 
 % Titulo da dissertação
-\title{Uma abordagem fuzzy híbrida para organização flexível de documentos, utilizando os algoritmos
-de agrupamento possibilístico e fuzzy c means }
+\title{Uma abordagem fuzzy híbrida para organização flexível de documentos, utilizando os algoritmos de agrupamento possibilístico e fuzzy c means }
 
-% Data da defesa e.g. \date{19 de fevereiro de 2003}
+% Data da defesa
+% e.g. \date{19 de fevereiro de 2003}
 \date{1 de junho de 2016}
 
-% Autor e.g. \author{Jose da Silva}
+% Autor
+% e.g. \author{Jose da Silva}
 \author{Nilton Vasques Carvalho Junior}
 
-% Orientador(a) Opção: [f] - para orientador do sexo feminino e.g. \adviser[f]{Profa. Dra. Maria
-% Santos}
+% Orientador(a)
+% Opção: [f] - para orientador do sexo feminino
+% e.g. \adviser[f]{Profa. Dra. Maria Santos}
 \adviser[f]{Profa. Dra. Tatiane Nogueira Rios}
 
-% Orientador(a) Opção: [f] - para orientador do sexo feminino e.g. \coadviser{Prof. Dr. Pedro
-% Pedreira} Comente se não se aplicar
+% Orientador(a)
+% Opção: [f] - para orientador do sexo feminino
+% e.g. \coadviser{Prof. Dr. Pedro Pedreira}
+% Comente se não se aplicar
 %\coadviser{NOME DO(DA) CO-ORIENTADOR(A)}
 
 %% Inicio do documento
@@ -81,71 +97,90 @@ de agrupamento possibilístico e fuzzy c means }
 % Ficha catalográfica
 \authorcitationname{Carvalho, Nilton Vasques Jr.} % e.g. Terceiro, Antonio Soares de Azevedo
 \advisercitationname{Rios, Tatiane Nogueira} % e.g. Chavez, Christina von Flach Garcia
-\catalogtype{Monografia (Graduação)} % e.g. ``Tese (Doutorado)'' \catalogtopics{``1. Fuzzy C Means.
-2. Organização flexível de documents. 3. Lógica Fuzzy. 4. Mineração de dados.''} % e.g. ``1.
-Complexidade Estrutural. 2. Engenharia de Software'' \catalogcdd{NUMERO CDD} % e.g. ``CDD 20.ed.
-XXX.YY'' (esse número vai lhe ser dado pela biblioteca) \catalogingsheet
+\catalogtype{Monografia (Graduação)} % e.g. ``Tese (Doutorado)''
+\catalogtopics{``1. Fuzzy C Means. 2. Organização flexível de documents. 3. Lógica Fuzzy. 4. Mineração de dados.''} % e.g. ``1. Complexidade Estrutural. 2. Engenharia de Software''
+\catalogcdd{NUMERO CDD} % e.g. ``CDD 20.ed. XXX.YY'' (esse número vai lhe ser dado pela biblioteca)
+\catalogingsheet
 
 % Termo de aprovação
-\approvalsheet{Salvador, DIA de MES de ANO}{ \comittemember{Profa. Dra. Tatiane Nogueira
-Rios}{Universidade Federal da Bahia} \comittemember{Prof. Dr. Professor 2}{Universidade 123}
-\comittemember{Profa. Dra. Professora 3}{Universidade ABC} }
+\approvalsheet{Salvador, DIA de MES de ANO}{
+   \comittemember{Profa. Dra. Tatiane Nogueira Rios}{Universidade Federal da Bahia}
+   \comittemember{Prof. Dr. Professor 2}{Universidade 123}
+   \comittemember{Profa. Dra. Professora 3}{Universidade ABC}
+}
 
-% Dedicatória Comente para ocultar
-\begin{dedicatory} Coloque sua DEDICATÓRIA AQUI.  \end{dedicatory}
+% Dedicatória
+% Comente para ocultar
+\begin{dedicatory}
+Coloque sua DEDICATÓRIA AQUI.
+\end{dedicatory}
 
 % Agradecimentos
-\acknowledgements Coloque seus AGRADECIMENTOS AQUI.
+\acknowledgements
+Coloque seus AGRADECIMENTOS AQUI.
 
-% Epigrafe \begin{epigraph}[Tarde, 1919]{Olavo Bilac} Ultima flor do Lácio, inculta e bela,\\ Es, a
-% um tempo, esplendor e sepultura;\\ Ouro nativo, que, na ganga impura,\\ A bruta mina entre os
-% cascalhos vela.  \end{epigraph}
-\begin{epigraph}[1687]{Isaac Newton} O que sabemos é uma gota, o que ignoramos é um oceano.
+% Epigrafe
+%  \begin{epigraph}[Tarde, 1919]{Olavo Bilac}
+%  Ultima flor do Lácio, inculta e bela,\\
+%  Es, a um tempo, esplendor e sepultura;\\
+%  Ouro nativo, que, na ganga impura,\\
+%  A bruta mina entre os cascalhos vela.
+%  \end{epigraph}
+\begin{epigraph}[1687]{Isaac Newton}
+  O que sabemos é uma gota, o que ignoramos é um oceano.
 \end{epigraph}
 
 % Resumo em Português
-\resumo \input{resumo}
+\resumo
+\input{resumo}
 % Palavras-chave do resumo em Português
-\begin{keywords} agrupamento fuzzy, agrupamento possibilístico, organização flexível de documentos,
-mineração de textos \end{keywords}
+\begin{keywords}
+agrupamento fuzzy, agrupamento possibilístico, organização flexível de documentos, 
+mineração de textos
+\end{keywords}
 
 % Resumo em Ingles
-\abstract \input{abstract}
+\abstract
+\input{abstract}
 % Palavras-chave do resumo em Ingles
-\begin{keywords} fuzzy clustering, possibilistic clustering, flexible organization, documents, text
-mining \end{keywords}
+\begin{keywords}
+fuzzy clustering, possibilistic clustering, flexible organization, documents, text mining
+\end{keywords}
 
-% Sumario / Índice Comente para ocultar
+% Sumario / Índice
+% Comente para ocultar
 \tableofcontents
 
-% Lista de figuras Comente para ocultar
+% Lista de figuras
+% Comente para ocultar
 \listoffigures
 
-% Lista de tabelas Comente para ocultar
+% Lista de tabelas
+% Comente para ocultar
 \listoftables
 
 %% Parte textual
 \mainmatter
 
-% Eh aconselhável criar cada capitulo em um arquivo separado, digamos "capitulo1.tex",
-% "capitulo2.tex", ... "capituloN.tex" e depois inclui-los com: \include{capitulo1}
-% \include{capitulo2} ...  \include{capituloN}
+% Eh aconselhável criar cada capitulo em um arquivo separado, digamos
+% "capitulo1.tex", "capitulo2.tex", ... "capituloN.tex" e depois
+% inclui-los com:
+% \include{capitulo1}
+% \include{capitulo2}
+% ...
+% \include{capituloN}
 %
-% Importante: Use \xchapter ao invés de \chapter, se quiser colocar texto antes do inicio do
-% capitulo.
+% Importante: Use \xchapter ao invés de \chapter, se quiser colocar texto antes do inicio do capitulo.
 
-\xchapter{Introdução}{Uma breve introdução sobre do que se trata esta monografia e a maneira como o
-texto está organizado.}
+\xchapter{Introdução}{Uma breve introdução sobre do que se trata esta monografia e a maneira como o texto está organizado.}
 
 \input{introducao}
 
-\xchapter{Fundamentação Teórica}{Este capítulo tem como objetivo fundamentar as bases necessárias
-dos campos de estudos utilizados nesta monografia.}
+\xchapter{Fundamentação Teórica}{Este capítulo tem como objetivo fundamentar as bases necessárias dos campos de estudos utilizados nesta monografia.}
 
 \input{fundamentacao}
 
-\xchapter{Revisão Bibliográfica}{Revisão de todo material utilizado desde a fase de pesquisa e
-implementação até a execução dos experimentos.}
+\xchapter{Revisão Bibliográfica}{Revisão de todo material utilizado desde a fase de pesquisa e implementação até a execução dos experimentos.}
 
 \input{revisao}
 
@@ -160,28 +195,50 @@ implementação até a execução dos experimentos.}
 %
 %\chapter{Exemplos}
 %
-%Figura \ref{default-regular} e tabela \ref{default-table}.  \begin{figure}[htbp] \begin{center}
-%\includegraphics[scale=0.5]{ufba.eps}[0.5] \caption{Figura UFBA} \label{default-regular}
-%\end{center} \end{figure}
+%Figura \ref{default-regular} e tabela \ref{default-table}.
+%\begin{figure}[htbp]
+%\begin{center}
+%  \includegraphics[scale=0.5]{ufba.eps}[0.5]
+%\caption{Figura UFBA}
+%\label{default-regular}
+%\end{center}
+%\end{figure}
 %
-%\begin{table}[htbp] \caption{Tabela Exemplo} \begin{center} \begin{tabular}{|c|c|} \hline elemento
-%11 & elemento 12 \\ \hline elemento 21 & elemento 22 \\ \hline elemento 31 & elemento 32 \\ \hline
-%\end{tabular} \end{center} \label{default-table} \end{table}%
+%\begin{table}[htbp]
+%\caption{Tabela Exemplo}
+%\begin{center}
+%\begin{tabular}{|c|c|} 
+%\hline
+%elemento 11 & elemento 12 \\ \hline
+%elemento 21 & elemento 22 \\ \hline
+%elemento 31 & elemento 32 \\
+%\hline
+%\end{tabular}
+%\end{center}
+%\label{default-table}
+%\end{table}%
 
 %% Parte pos-textual
 \backmatter
 
-% Apendices Comente se naoo houver apendices
+% Apendices
+% Comente se naoo houver apendices
 \appendix
 
-% Eh aconselhavel criar cada apendice em um arquivo separado, digamos "apendice1.tex",
-% "apendice.tex", ... "apendiceM.tex" e depois inclui--los com: \include{apendice1}
-% \include{apendice2} ...  \include{apendiceM}
+% Eh aconselhavel criar cada apendice em um arquivo separado, digamos
+% "apendice1.tex", "apendice.tex", ... "apendiceM.tex" e depois
+% inclui--los com:
+% \include{apendice1}
+% \include{apendice2}
+% ...
+% \include{apendiceM}
 
-% Bibliografia Ã aconselhÃ¡vel utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
-% Para ajuda na criaÃ§Ã£o do arquivo .bib e utilizaÃ§Ã£o do BibTeX, recorra ao BibTeXpress em
-% www.cin.ufpe.br/~paguso/bibtexpress
-\bibliographystyle{abntex2-alf} \bibliography{biblio}
+% Bibliografia
+% Ã aconselhÃ¡vel utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
+% Para ajuda na criaÃ§Ã£o do arquivo .bib e utilizaÃ§Ã£o do BibTeX, recorra ao
+% BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
+\bibliographystyle{abntex2-alf}
+\bibliography{biblio}
 
 %% Fim do documento
 \end{document}
