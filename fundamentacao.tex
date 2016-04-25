@@ -546,6 +546,95 @@ na figura (\ref{fig:samples_pcm_fcm}).
 \end{figure}
 
 \subsection{Algoritmo Hierarchic Fuzzy C Means (HFCM)}
+Documentos de texto tratam de vários temas, como política, esporte, tecnologia e etc.
+E os métodos de agrupamento $soft$, como FCM e PCM, quando aplicados a coleções textuais, buscam
+encontrar semelhanças entre os documentos e agrupar por tópicos. Porém acontece, que um
+tópico pode se dividir em sub temas, como por exemplo esporte, que pode se dividir em futebol,
+vôlei, tênis e etc. Deste modo os temas presentes em uma coleção textual podem ser organizados 
+em uma hierarquia de tópicos conforme a figura \ref{fig:hierarquia}. Portanto construir hierarquias
+utilizando métodos de agrupamento fuzzy é o propósito principal do algoritmo HFCM proposto em
+\cite{PedryczR2006}.
+
+\begin{figure}[!htp] 
+  \centering 
+  \Tree [.Documentos [.Esporte [.Futebol ] [.Vôlei ] [.Karatê ] ] [.Ciência [.Biologia ] 
+  [.Física ] [.Química ] [.Astronomia ]] ]
+  \caption{Exemplo de hierarquia de tópicos presentes em uma coleção de textos.}
+  \label{fig:hierarquia}
+\end{figure}
+
+O HFCM consegue realizar essa tarefa, expandindo sucessivamente as folhas presentes na hierarquia em
+subgrupos mais detalhados\cite{PedryczR2006}. Onde a expansão é realizada através de novos
+agrupamentos com o algoritmo CFCM, que é uma versão condicional do FCM. No entanto o primeiro nível
+da hierarquia é o resultado direto do algoritmo FCM, enquanto os demais níveis são agrupamentos
+obtidos com o CFCM, sobre a coleção de documentos presentes no nó a ser expandido. 
+
+Seja então $D = \{d_1,d_2,...,d_n\}$ um conjunto com $n$ documentos, para produzir o primeiro nível
+da hierarquia o método HFCM executa o algoritmo FCM sobre $D$, produzindo uma partição 
+fuzzy $U_{c \times n}[1]$ e os protótipos 
+$V[1] = \{v_1[1],v_2[1],...,v_c[1]\}$, onde $[1]$ representa o nível da 
+hierarquia\cite{Nogueira2013}, cuja largura da até o momento corresponde a quantidade de grupos $c$.
+
+A decisão de expandir um determinado grupo presente nas folhas da árvore, se dá pela avaliação do
+agrupamento, que é realizado através do índice de desempenho $Q$ (\ref{eq:qindex1})(\ref{eq:qindex2})
+, tal que o índice $Q$
+avalia a qualidade dos protótipos gerados pelo agrupamento. De maneira que quanto melhor for um 
+grupo mais próximo de zero
+será o resultado da medida de desempenho $Q$, e quanto maior for o desempenho pior será o
+grupo. Portanto o grupo que obtiver o maior valor de $Q$, será escolhido para a
+expansão condicional através do CFCM. Considere então $j$ o grupo com maior valor de $Q$ do nível
+$l$ da hierarquia e
+\begin{equation}
+  D_j[l] = \left\{d_{k} | \mu(d_{k}, g_j[l]) \leq \frac{\frac{1}{l}}{c}\right\}
+\end{equation}
+a coleção de documentos selecionados do grupo $j$ com
+pertinência maior que a pertinência média. O agrupamento com o algoritmo CFCM é então executado
+sobre a coleção $D_j[l]$ produzindo $c$ novos grupos para o nível $l+1$ da hierarquia. Todo o
+processo se repete então para o nível $l+1$ da hierarquia, e assim sucessivamente. Segundo os
+autores o ponto de parada da expansão hierárquica pode ser uma profundidade predefinida pelo usuário
+ou com a estabilização das medidas de desempenho dos grupos.  
+
+\begin{equation}
+  Q_j[1] = \sum_{d_i \in g_j} dist(d'_i,d_i)^2
+  \label{eq:qindex1}
+\end{equation}
+\begin{equation}
+  Q'_j[2] = \sum_{d_i \in g_j} dist(d'_i,d_i)^2
+  \label{eq:qindex2}
+\end{equation}
+\begin{equation}
+  d'_i = \sum_{h=1}^c \mu(d_i,g_h)[1]v_h[1] 
+  \label{eq:dlinha1}
+\end{equation}
+\begin{equation}
+  d'_i = \sum_{h=1}^c \mu'(d_i,g_h)[j,2]v_h[2] 
+  \label{eq:dlinha2}
+\end{equation}
+
+Para o nível inicial da hierarquia a função de pertinência é a mesma do FCM (\ref{eq:pertinencia}),
+porém para os níveis mais abaixo a função de pertinência é redefinida como sendo
+\begin{equation}
+  \mu(d_i,g_h[l])[j,l] = \frac{\mu(d_i,g_j[l-1])}
+  {\sum_{k=1}^c \left(\frac{dist(d_i,v_h[l])}{dist(d_i,v_k[l])}\right)^{\frac{1}{m-1}}}, 
+  1 < h \leq c,
+  d_i \in D_j[l-1]
+  \label{eq:pertcfcm}
+\end{equation}
+, cujo o valor de $l$ corresponde ao nível da hierarquia e $j$ seja o grupo expandido no nível $l-1$.
+Portanto percebe-se que a pertinência
+de um documento $d_i$ em um grupo $g_h[l]$, será no máximo a pertinência do documento ao grupo que
+foi expandido.
+
+Segundo \cite{Nogueira2013},
+os protótipos dos grupos representam uma versão condensada dos documentos agrupados, portanto
+$d_i$ também pode ser representado pela combinação linear das pertinências de $d_i$ com os
+protótipos, resultando em $d'_i$. Logo é esperado que $d'_i$ seja o mais próximo possível do 
+documento
+original $d_i$. Consequentemente, é utilizado essa noção para estimar a qualidade de um grupo
+através das equações \ref{eq:qindex1} para o nível inicial da hierarquia e \ref{eq:qindex2} nos
+demais níveis, onde $Q$ calcula a soma total das distâncias dos documentos $d_i$ de um grupo com
+$d'_j$.
+
 
 \section{Extração de descritores} 
 \footnotetext{Resultados obtidos baseados na implementação
