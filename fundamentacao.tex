@@ -673,7 +673,9 @@ representado com o parâmetro $lmax$.
   \SetAlgoLined \KwData{D, c, m, $\varepsilon$, lmax} 
   \KwResult{Hierarquia} 
   $l \gets 0$\; 
+  Hierarquia $\gets \empty$
   G[l],V[l],U[l] $\gets \textbf{{\color{blue}fcm}}$(D,c,m,$\varepsilon$); Algoritmo \ref{alg:fcm}\; 
+  Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$
   Q[l] $\gets$ calcula desempenho dos grupos com a equação (\ref{eq:qindex1})\;
   $g_{max}$ $\gets$ escolhe o grupo $g_j$ com maior valor de Q\;
   $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com equação (\ref{eq:cfcmfilter})\;
@@ -684,6 +686,7 @@ representado com o parâmetro $lmax$.
     $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com equação (\ref{eq:cfcmfilter})\;
     G[l],V[l],U[l] $\gets \textbf{{\color{blue}cfcm}}$$(D_{max},U[l-1],l,c,m,\varepsilon)$; 
     Algoritmo \ref{alg:cfcm}\; 
+    Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$
     $l \gets l + 1$\; 
   }
   $\textbf{retorne} (Hierarquia)$\; 
@@ -698,7 +701,7 @@ representado com o parâmetro $lmax$.
 
 A tarefa de rotular grupos é um dos problemas chaves do agrupamento de textos, pois ao final do
 processo de agrupamento, os grupos precisam apresentar alguma relevância para o
-usuário\cite{Zhang2008}. Assim como pretend-se que os descritores escolhidos também sejam
+usuário\cite{Zhang2008}. Assim como pretende-se que os descritores escolhidos também sejam
 significativos para os documentos presentes no grupo a ser rotulado. 
 
 Essa etapa pode ser realizada manualmente, com o usuário guiando o processo, ou de forma
