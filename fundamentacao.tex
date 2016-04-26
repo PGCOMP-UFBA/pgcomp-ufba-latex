@@ -675,7 +675,7 @@ representado com o parâmetro $lmax$.
   $l \gets 0$\; 
   Hierarquia $\gets \empty$
   G[l],V[l],U[l] $\gets \textbf{{\color{blue}fcm}}$(D,c,m,$\varepsilon$); Algoritmo \ref{alg:fcm}\; 
-  Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$
+  Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$\;
   Q[l] $\gets$ calcula desempenho dos grupos com a equação (\ref{eq:qindex1})\;
   $g_{max}$ $\gets$ escolhe o grupo $g_j$ com maior valor de Q\;
   $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com equação (\ref{eq:cfcmfilter})\;
@@ -686,7 +686,7 @@ representado com o parâmetro $lmax$.
     $D_{max}$ $\gets$ seleciona documentos de $g_{max}$ com equação (\ref{eq:cfcmfilter})\;
     G[l],V[l],U[l] $\gets \textbf{{\color{blue}cfcm}}$$(D_{max},U[l-1],l,c,m,\varepsilon)$; 
     Algoritmo \ref{alg:cfcm}\; 
-    Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$
+    Hierarquia $\gets Hierarquia + \{U[l],V[l]\}$\;
     $l \gets l + 1$\; 
   }
   $\textbf{retorne} (Hierarquia)$\; 
