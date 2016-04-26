@@ -1,81 +1,102 @@
 % Strings de busca 
 %
-% (((((clustering) OR cluster labeling) OR cluster description) AND fuzzy AND( document OR text mining)))
+% (((((clustering) OR cluster labeling) OR cluster description) AND fuzzy AND( document OR text
+% mining)))
 % http://ieeexplore.ieee.org/search/searchresult.jsp?queryText=(((((clustering)%20OR%20cluster%20labeling)%20OR%20cluster%20description)%20AND%20fuzzy%20%20AND(%20document%20OR%20text%20mining)))&ranges=2010_2016_Year&matchBoolean=true&searchField=Search_All
 
-% ((clustering OR "cluster label*" OR "cluster descriptors") AND fuzzy AND (document OR "text mining" OR "document organization" OR "soft document" OR "text data"))
+% ((clustering OR "cluster label*" OR "cluster descriptors") AND fuzzy AND (document OR "text
+% mining" OR "document organization" OR "soft document" OR "text data"))
 % http://ieeexplore.ieee.org/search/searchresult.jsp?queryText=((clustering%20OR%20.QT.cluster%20label*.QT.%20OR%20.QT.cluster%20descriptors.QT.)%20AND%20fuzzy%20AND%20(document%20OR%20.QT.text%20mining.QT.%20OR%20.QT.document%20organization.QT.%20OR%20.QT.soft%20document.QT.%20OR%20.QT.text%20data.QT.))&sortType=desc_p_Publication_Year&matchBoolean=true&searchField=Search_All
 
 \section{Considerações Iniciais}
 
-A proposta de organização flexível de documentos está relacionada a vários campos de estudo, 
-como ficou evidenciado na fundamentação teórica. Por isso a literatura existente para essa proposta 
-é bastante rica e densa. Portanto com o propósito de otimizar a atividade de pesquisa e seleção
-do conhecimento científico produzido a respeito do tema, foram utilizados algumas técnicas de 
-revisão sistemática de literatura ($SLR\ -\ Sistematic\ Literature\ Review$) utilizadas em \cite{Rios2010}. 
+A proposta de organização flexível de documentos está relacionada a vários campos de estudo, como
+ficou evidenciado na fundamentação teórica. Por isso a literatura existente para essa proposta é
+bastante rica e densa. Portanto com o propósito de otimizar a atividade de pesquisa e seleção do
+conhecimento científico produzido a respeito do tema, foram utilizados algumas técnicas de revisão
+sistemática de literatura ($SLR\ -\ Sistematic\ Literature\ Review$) utilizadas em \cite{Rios2010}.
 Com o objetivo de estabelecer critérios mais precisos na fase inicial da descoberta de conteúdo
-científico relacionado ao tema. Foi então adotada uma técnica comum ao método SLR, que consiste na 
-elaboração de uma uma string de busca, usando operadores lógicos. Estabelecendo assim uma 
-maneira mais objetiva para a obtenção de resultados relevantes a proposta dessa monografia.
-Portanto, levando em consideração os tópicos chaves e a proposta desse trabalho, foi 
-construída a seguinte string de busca: 
+científico relacionado ao tema. Foi então adotada uma técnica comum ao método SLR, que consiste na
+elaboração de uma uma string de busca, usando operadores lógicos. Estabelecendo assim uma maneira
+mais objetiva para a obtenção de resultados relevantes a proposta dessa monografia.  Portanto,
+levando em consideração os tópicos chaves e a proposta desse trabalho, foi construída a seguinte
+string de busca: 
 
-\begin{multline}
-(clustering\ OR\ "cluster\ label*"\ OR\ "cluster\ descriptors")\ AND\ fuzzy \\ 
-AND\ (document\ OR\ "text\ mining"\ OR\ "document\ organization"\ OR\ \\
-"soft\ document"\ OR\ "text\ data")
-\label{eq:busca}
-\end{multline}
+\begin{multline} (clustering\ OR\ "cluster\ label*"\ OR\ "cluster\ descriptors")\ AND\ fuzzy \\ AND\
+  (document\ OR\ "text\ mining"\ OR\ "document\ organization"\ OR\ \\ "soft\ document"\ OR\ "text\
+data") \label{eq:busca} \end{multline}
 
-Devido o amplo acervo de publicações científicas presentes no repositório 
+Devido o amplo acervo de publicações científicas presentes no repositório
 IEEExplore\footnote{http://ieeexplore.ieee.org/}, assim como também a possibilidade de se utilizar
-operadores lógicos e buscas parametrizadas. Foi realizado então uma busca no repositório 
-IEEExplore, restringindo o período de resultados entre os anos de 2010 e 2016, permitindo então que 
-os resultados obtidos fossem mais recentes.
+operadores lógicos e buscas parametrizadas. Foi realizado então uma busca no repositório IEEExplore,
+restringindo o período de resultados entre os anos de 2010 e 2016, permitindo então que os
+resultados obtidos fossem mais recentes.
 
-Com base nos resultados obtidos, foi realizada a leitura dos títulos e resumos
-dos artigos, com o propósito de descartar resultados com baixa relevância para essa pesquisa.
-Durante a fase de leitura parcial dos resultados da busca, foram agrupados os artigos em 
-três categorias: agrupamento fuzzy, extração de descritores e organização flexível de documentos.
-As publicações selecionadas e direcionadas para a categoria de agrupamento fuzzy, foram as que
-possuíam propostas de alteração de métodos de agrupamento existentes ou novos métodos. Enquanto
-artigos que tinham como conteúdo a análise dos termos de uma coleção, critério de seleção de termos
-ou atribuição de termos a grupos de documentos, foram agrupados na categoria de extração de 
-descritores. Por fim, artigos mais gerais, propondo métodos ou realizando revisões de métodos,
-pertinentes ao processo de organização de documentos textuais, foram categorizados no grupo 
-de organização flexível de documentos.
+Com base nos resultados obtidos, foi realizada a leitura dos títulos e resumos dos artigos, com o
+propósito de descartar resultados com baixa relevância para essa pesquisa.  Durante a fase de
+leitura parcial dos resultados da busca, foram agrupados os artigos em três categorias: agrupamento
+fuzzy, extração de descritores e organização flexível de documentos.  As publicações selecionadas e
+direcionadas para a categoria de agrupamento fuzzy, foram as que possuíam propostas de alteração de
+métodos de agrupamento existentes ou novos métodos. Enquanto artigos que tinham como conteúdo a
+análise dos termos de uma coleção, critério de seleção de termos ou atribuição de termos a grupos de
+documentos, foram agrupados na categoria de extração de descritores. Por fim, artigos mais gerais,
+propondo métodos ou realizando revisões de métodos, pertinentes ao processo de organização de
+documentos textuais, foram categorizados no grupo de organização flexível de documentos.
 
-Para complementar os resultados obtidos foram adicionados artigos de alta relevância para o tema,
-e que apesar de serem antigos, ainda são amplamente citados em pesquisas recentes. Muitos desses
-artigos como é o caso do método FCM proposto em \cite{Bezdek1984}, são pilares fundamentais para
-o tema.
+Para complementar os resultados obtidos foram adicionados artigos de alta relevância para o tema, e
+que apesar de serem antigos, ainda são amplamente citados em pesquisas recentes. Muitos desses
+artigos como é o caso do método FCM proposto em \cite{Bezdek1984}, são pilares fundamentais para o
+tema.
 
-Nas próximas seções contém a revisão das pesquisas selecionadas, onde é elucidado os pontos
-chaves de cada pesquisa, a definição das propostas contida nos artigos e por fim a conexão com o 
-objetivo dessa monografia.
+Nas próximas seções contém a revisão das pesquisas selecionadas, onde é elucidado os pontos chaves
+de cada pesquisa, a definição das propostas contida nos artigos e por fim a conexão com o objetivo
+dessa monografia.
 
 \section{Organização Flexível de Documentos}
 
-Após a proposição da lógica fuzzy que se propunha a lidar com a incerteza e imprecisão em 
-\cite{Zadeh1965}, foi possível a elaboração de diversos métodos que se utilizassem dos benefícios
-da lógica fuzzy e aplicassem a diversos problemas do mundo real. Este é o caso da organização
-de documentos, que por não ser uma tarefa precisa, necessita de uma certa flexibilidade no 
-processo.
+Após a proposição da lógica fuzzy que se propunha a lidar com a incerteza e imprecisão em
+\cite{Zadeh1965}, foi possível a elaboração de diversos métodos que se utilizassem dos benefícios da
+lógica fuzzy e aplicassem a diversos problemas do mundo real. Este é o caso da organização de
+documentos, que por não ser uma tarefa precisa, necessita de uma certa flexibilidade no processo.
 
-\cite{Matsumoto10} informa que os mecanismos adotados em sistemas de recuperação de informação 
-(SRI), tais como buscadores web, estão dispostos em dois grupos. Sendo que o primeiro tem como
-foco o usuário realizando a busca, a qual é comumente chamada de busca web personalizada. 
-Nessa abordagem os resultados obtidos são ordenados de acordo com a relevância do resultado
-para o usuário. Para calcular essa relevância, os buscadores realizam tarefas de 
-coleta de dados dos usuários e comparação das preferências com demais usuários do sistema.  
-Enquanto na segunda abordagem os resultados da busca é categorizado em grupos, permitindo assim
-que o usuário decida em qual grupo ele pretende visualizar as informações. Por exemplo, quando um usuário pesquisar pelo termo java, os resultados poderiam ser agrupados nas seções: máquina virtual,
-linguagem java, programas em java, oracle e etc. Baseada nessa abordagem de categorização 
-de resultados em SRIs, \cite{MarcaciniR10} propõe uma abordagem de agrupamento incremental 
-e hierárquico para construção dos tópicos dos documentos, a qual permite a atualização das 
-categorias a medida que novos documentos são adicionados sem realizar a etapa de agrupamento 
-novamente. É possível a visualização dessa abordagem de categorização hierárquica, 
-através da ferramenta online 
-Torch\footnote{http://sites.labic.icmc.usp.br/torch/webcluster/},
-dos autores do artigo.
+\cite{Matsumoto10} informa que os mecanismos adotados em sistemas de recuperação de informação
+(SRI), tais como buscadores web, estão dispostos em dois grupos. Sendo que o primeiro tem como foco
+o usuário realizando a busca, a qual é comumente chamada de busca web personalizada.  Nessa
+abordagem os resultados obtidos são ordenados de acordo com a relevância do resultado para o
+usuário. Para calcular essa relevância, os buscadores realizam tarefas de coleta de dados dos
+usuários e comparação das preferências com demais usuários do sistema.  Enquanto na segunda
+abordagem os resultados da busca é categorizado em grupos, permitindo assim que o usuário decida em
+qual grupo ele pretende visualizar as informações. Por exemplo, quando um usuário pesquisar pelo
+termo java, os resultados poderiam ser agrupados nas seções: máquina virtual, linguagem java,
+programas em java, oracle e etc. Seguindo essa linha de categorização de resultados em SRIs,
+\cite{MarcaciniR10} propõe uma abordagem de agrupamento incremental e hierárquico para construção
+dos tópicos dos documentos, a qual permite a atualização das categorias a medida que novos
+documentos são adicionados sem realizar a etapa de agrupamento novamente. É possível a visualização
+dessa abordagem de categorização hierárquica, através da ferramenta online
+Torch\footnote{http://sites.labic.icmc.usp.br/torch/webcluster/}, dos autores do artigo.
 
+Com o surgimento de várias tecnologias, como mídias sociais, computação ubíqua, internet das coisas 
+e principalmente os dispositivos móveis, que ultrapassou os 7 bilhões de
+dispositivos\footnote{Segundo o relatório do The Mobile Economy disponível em
+\url{http://www.gsmamobileeconomy.com/GSMA_Global_Mobile_Economy_Report_2015.pdf}, a quantidade de
+dispositivos móveis (smartphones e tablets) atingiu o total de 7,517 bilhões no ano de 2015.} no ano
+de 2015. Onde por sua vez, todas essas tecnologias produzem uma abundante quantidade de dados não
+estruturados, dificultando a tarefa de métodos de mineração de dados, e por consequência
+também os métodos de organização de documentos já existentes. A esse cenário é usualmente atribuído
+o nome de $Big Data$. Sendo assim novas pesquisas como \cite{Havens2012} e \cite{Kumar2015} tem 
+sido conduzidas, focadas em bases com imensas quantidades de dados. Em \cite{Havens2012} é definido
+uma classificação das bases de dados de acordo com o seu tamanho conforme apresentado na Tabela
+\ref{table:datasize}.
+
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |c|c c c c c|}
+    \hline
+    Bytes & $10^6$ & $10^8$ & $10^{10}$ & $10^{12}$ & $10^{>12}$ \\
+    \hline
+    "tamanho" & medium & large & huge & monster & very large \\
+    \hline
+  \end{tabular}
+  \label{table:datasize}
+  \caption{Classificação das bases de dados de acordo com o seu tamanho\cite{Havens2012}}
+\end{table}
