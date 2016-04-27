@@ -1,5 +1,4 @@
-\section{Conjuntos e Lógica Fuzzy}
-\subsection{Considerações iniciais}
+\section{Considerações iniciais}
 Primeiramente introduzida em \cite{Zadeh1965}, onde o autor inicia a discussão definindo os
 conjuntos fuzzy, sendo uma classe de objetos com valores contínuos de pertinência. Cada conjunto é
 então caracterizado por uma função de pertinência, a qual atribui a cada objeto do conjunto um grau
@@ -15,8 +14,17 @@ clássica. Pois essa forma imprecisa de descrever o mundo a nossa volta, desempe
 fundamental na forma de pensar humana, assim como também nas áreas de reconhecimento de padrões,
 comunicação e abstração\cite{Zadeh1965}.  Portanto esta seção tem como propósito contextualizar os
 principais aspectos da lógica fuzzy que a torna tão importante no contexto da organização flexível
-de documentos. Portanto definições mais aprofundadas sobre fuzzy fogem do escopo desse texto .
-% TODO: Necessário informar o leitor sobre isso? Verificar com Tati
+de documentos. Portanto definições mais aprofundadas sobre fuzzy fogem do escopo desse texto.
+A definição dos fundamentos necessários para realizar a organização de documentos utilizando os
+benefícios da lógica fuzzy, também é apresentado. Dentre os fundamentos está a atividade de
+pré-processamento dos dados, cuja finalidade é filtrar e estruturar os dados para serem processados
+nas etapas seguintes. Adicionalmente é abordado um dos principais algoritmos de agrupamento fuzzy,
+presentes na literatura, com as suas definições matemáticas e pseudo códigos. E por fim é abordado a
+a tarefa de rotular os grupos encontrados na etapa de agrupamento com os termos que melhor os
+representem, permitindo assim a realização de consultas ém Sistemas de Recuperação da Informação
+(SRI).
+
+\section{Conjuntos e Lógica Fuzzy}
 
 \subsection{Definição de conjuntos fuzzy}
 
@@ -546,6 +554,7 @@ na figura (\ref{fig:samples_pcm_fcm}).
 \end{figure}
 
 \subsection{Algoritmo Hierarchic Fuzzy C Means (HFCM)}
+
 Documentos de texto tratam de vários temas, como política, esporte, tecnologia e etc.
 E os métodos de agrupamento $soft$, como FCM e PCM, quando aplicados a coleções textuais, buscam
 encontrar semelhanças entre os documentos e agrupar por tópicos. Porém acontece, que um
@@ -555,7 +564,7 @@ em uma hierarquia de tópicos conforme a figura \ref{fig:hierarquia}. Portanto c
 utilizando métodos de agrupamento fuzzy é o propósito principal do algoritmo HFCM proposto em
 \cite{PedryczR2006}.
 
-\begin{figure}[!htp] 
+\begin{figure}[!ht] 
   \centering 
   \Tree [.Documentos [.Esporte [.Futebol ] [.Vôlei ] [.Karatê ] ] [.Ciência [.Biologia ] 
   [.Física ] [.Química ] [.Astronomia ]] ]
@@ -653,7 +662,7 @@ pseudo código do método HFCM, exemplificando como o mesmo reúne o FCM e o CFC
 hierarquia de tópicos. Onde o critério de parada adotado foi a profundidade máxima da hierarquia,
 representado com o parâmetro $lmax$.
 
-\begin{algorithm}[H] 
+\begin{algorithm}[!htp] 
   \SetAlgoLined \KwData{$D_j[l]$, U[l-1], l, c, m, $\varepsilon$} 
   \KwResult{V[l], U[l]} 
   G[l] $\gets$ $[g_1,g_2,...,g_c]$\; 
@@ -669,7 +678,7 @@ representado com o parâmetro $lmax$.
   \label{alg:cfcm} 
 \end{algorithm}
 
-\begin{algorithm}[H] 
+\begin{algorithm}[!htp]
   \SetAlgoLined \KwData{D, c, m, $\varepsilon$, lmax} 
   \KwResult{Hierarquia} 
   $l \gets 0$\; 
@@ -730,6 +739,7 @@ de maneira independente, permitem uma melhor adaptação da proposta de organiza
 documentos para diferentes contextos. Essa flexibilidade possibilitou que a investigação misturasse
 diferentes técnicas, permitindo obter melhores resultados.
 
+\section{Considerações finais}
 
 
 

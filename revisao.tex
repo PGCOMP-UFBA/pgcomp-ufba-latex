@@ -86,7 +86,7 @@ também os métodos de organização de documentos já existentes. A esse cenár
 o nome de $Big\ Data$. Sendo assim novas pesquisas como \cite{Havens2012} e \cite{Kumar2015} tem 
 sido conduzidas, focadas em bases com imensas quantidades de dados. Segundo \cite{Havens2012} 
 existem duas abordagens principais para otimizar o agrupamento de dados que se encaixam na categoria
-$Very\ Large$ (Tabela \ref{table:datasize}, a primeira consiste na técnica de agrupamento
+$Very\ Large$ (Tabela \ref{table:datasize}), a primeira consiste na técnica de agrupamento
 distribuído incremental e o agrupamento por amostragem progressiva ou aleatória. Nos métodos que
 usam a técnica de amostragem, primeiramente é selecionado uma amostra com os dados representativos 
 da coleção, depois é realizado o agrupamento, e em seguida é generalizado o agrupamento para o
@@ -107,8 +107,8 @@ seleção aleatória.
     "tamanho" & medium & large & huge & monster & very large \\
     \hline
   \end{tabular}
-  \label{table:datasize}
   \caption{Classificação das bases de dados de acordo com o seu tamanho\cite{Havens2012}}
+  \label{table:datasize}
 \end{table}
 
 De acordo com \cite{Deng2010}, a organização flexível de dados através do algoritmo FCM possui
@@ -130,12 +130,58 @@ de maneira que termos com alta pertinência possuem significados
 semânticos mais próximos. Essa aproximação semântica é realizada com base em um vocabulário
 predefinido.
 
-Em \cite{Nogueira2013} é apresentado um modelo de SRI para organização flexível de documentos, com
-a adição de três métodos de extração descritores na etapa final do processo. A extração de termos
+A extração de termos
 que representem bem os grupos obtidos na fase de agrupamento é de fundamental importância, pois é
-a partir dos termos extraídos que permitem a recuperação dos documentos, através de uma consulta 
-realizada por um usuário. Os métodos de extração de descritores propostos, se baseiam nas medidas de
-precisão, revocação e a medida-F, que são índices bem estabelecidos na área de mineração de textos.
+a partir dos termos extraídos que é possível a recuperação dos documentos através de uma consulta 
+realizada por um usuário. Dada essa importância, \cite{Nogueira2013} conduziu uma investigação
+acerca dos principais métodos de extração de descritores, que resultou na proposta de um
+modelo de SRI para organização flexível de documentos, com
+a adição de três métodos de extração de descritores. Os métodos de extração de descritores 
+propostos, se baseiam em medidas na clássicas na literatura, que quantizam a efetividade da 
+recuperação da informação de um SRI, as quais são a precisão, revocação e a medida-F. 
+A medida de precisão procura identificar dentre os documentos recuperados a proporção de documentos
+relevantes. Enquanto a revocação calcula a taxa de documentos relevantes recuperados a partir dos
+documentos que são previamente definidos como relevantes durante uma consulta em um SRI.
+A metodologia de extração adotada pelo autor nos métodos propostos, 
+é do tipo $Description\ Comes\ Last$ (DCL), que
+realiza a extração de descritores separado do processo de agrupamento, em contraste com outros
+métodos de extração do tipo \textit{Description Comes First\/} (DCF), no qual os descritores 
+são extraídos na
+fase de pré-processamento ou simultaneamente com o agrupamento. \cite{Nogueira2013} destaca que
+utilizar métodos do tipo DCL, traz o benefício de tornar independente o algoritmo de extração de
+descritores do algoritmo de agrupamento utilizado. 
+
+O primeiro método proposto em \cite{Nogueira2013} é o SoftO-FDCL (\textit{Soft Organization - Fuzzy Description Comes
+Last\/}), que tem como propósito extrair descritores de partições fuzzy de documentos, de maneira a
+flexibilizar um SRI. A avaliação dos termos candidatos a descritores é feita então com base na
+pertinência do documento ao qual o termo pertence, onde os termos só são considerados se o documento
+tiver pertinência maior que um dado limiar, definido como sendo 
+$\delta = \frac{1}{c}$. Ao fazer isso o método penaliza os termos de
+documentos com baixa pertinência ao grupo e ao mesmo tempo considera os termos de documentos que
+pertencem também a outros grupos, de modo a conservar a flexibilidade que o agrupamento fuzzy
+proporciona. Como extensão ao SoftO-FDCL, foi também proposto o método Soft-wFDCL(\textit{ Soft
+Organization - weighted Fuzzy Description Comes Last\/}), onde é levado em consideração também o
+grau de pertinência do documento no cálculo de relevância do termo. A adição da pertinência na
+equação, é justificada como sendo um fator de ponderação da importância de um termo ao grupo. Deste
+modo os termos que forem considerados relevantes para compor os descritores, ou seja os que
+estiverem a cima do limiar definido no método SoftO-FDCL, serão ponderados em função da pertinência.
+
+Os dois métodos anteriores são aplicados a uma organização flexível de documentos organizados de
+modo $flat$. Portanto com a finalidade de adicionar flexibilidade também a uma organização de
+documentos hierárquica, como por exemplo a obtida no método de
+agrupamento HFCM, \cite{Nogueira2013} traz o método HSoftO-FDCL (\textit{Hierarchical Soft
+Organization - Fuzzy Description Comes Last\/}), como outra extensão do SoftO-FDCL. 
+A modificação realizada nesse método ocorre no limiar de corte dos termos, pois no algoritmo HFCM a
+pertinência de um documento em um dado grupo, é relativa a pertinência desse mesmo documento no
+grupo imediatamente superior na hierarquia, conforme foi definido na equação \ref{eq:cfcmrestri1} na
+página \pageref{eq:cfcmrestri1}. Assim sendo o limiar do SoftO-FDCL é redefinido como
+sendo a pertinência do documento $d_i$ no grupo superior dividido pela quantidade de grupos, ou seja
+$\zeta = \frac{\mu(d_i,g_j[l-1])}{c}$, tal que $c$ seja a quantidade de grupos e $l$ o nível do
+grupo que está sendo extraído os descritores. Para os grupos do primeiro nível da hierarquia os
+descritores são extraídos usando o $\delta$. 
+
 
 % TODO: ADAPTAR A FIGURA 3.6 DE NOGUEIRA2013 
+% TODO: DETALHAR AS EQUAÇÕES DOS MÉTODOS DE EXTRAÇÃO DE DESCRITORES PROPOSTSO EM NOGUEIRA2013 
  
+\section{Considerações finais}
