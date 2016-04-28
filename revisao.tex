@@ -180,8 +180,43 @@ $\zeta = \frac{\mu(d_i,g_j[l-1])}{c}$, tal que $c$ seja a quantidade de grupos e
 grupo que está sendo extraído os descritores. Para os grupos do primeiro nível da hierarquia os
 descritores são extraídos usando o $\delta$. 
 
-
 % TODO: ADAPTAR A FIGURA 3.6 DE NOGUEIRA2013 
 % TODO: DETALHAR AS EQUAÇÕES DOS MÉTODOS DE EXTRAÇÃO DE DESCRITORES PROPOSTSO EM NOGUEIRA2013 
+
+Conforme foi definido no capítulo 2, os algoritmos de agrupamento fuzzy apresentados são baseados na
+otimização de funções objetivos. Contudo, \cite{GasparCunha2012} descreve que a otimização de 
+funções que possuam vários mínimos locais
+sem nenhuma tendência global, utilizando as clássicas técnicas de otimização, podem simplesmente
+não só demorar a convergir, como a convergência pode nunca ser encontrada, ou ainda convergir para
+um mínimo local. Portanto diante da necessidade de se otimizar funções com
+tais características, desenvolveu-se estratégias de otimização baseadas em heurísticas, os quais
+permitem uma análise das características globais da função, de maneira que se possa realizar
+sucessivas buscas do mínimo global. Entretanto métodos heurísticos não garantem a convergência para
+o mínimo global, porém de modo geral apresentam boas aproximações. Dentre estas, tem-se heurísticas
+evolutivas
+inspiradas no processo de adaptação dos seres vivos. Que é o caso dos algoritmos
+genéticos, que são métodos de busca de soluções probabilísticos inspirados nos mecanismos 
+genéticos de adaptação dos seres vivos através da seleção natural. Assim sendo \cite{Jiang2013} 
+traz um proposta para enriquecer a tarefa de agrupamento textual, baseada na
+combinação dos algoritmos genéticos, com o método de agrupamento FCM, para 
+evitar o problema de convergência para mínimos locais. 
+O autor destaca ainda que os algoritmos genéticos possuem grande potencial na realização de
+buscas paralelas globais, principalmente quando trata-se de grande volumes de dados, com elevados
+requisitos de classificação e computação paralela, restrições as quais o algoritmo iterativo para
+otimizar a função objetivo do FCM não é capaz de atender.
+Este problema de convergência do FCM apresentado por
+\cite{Bezdek1984}, ocorre quando algumas condições iniciais são satisfeitas, levando o FCM para 
+convergir para um mínimo local. No artigo o autor explora as qualidades e deficiências do algoritmo 
+\textit{Immnune Genetic Algorithm}(IGA), que é uma versão mais atual do algoritmo genético (GA),
+que garante a diversidade dos indivíduos, aprimorando assim os potenciais de busca pela solução
+ótima global. Porém o IGA demanda muito custo computacional para garantir a diversidade da
+população, assim como também existe uma dificuldade em estimar os parâmetros iniciais, levando o IGA
+a uma finalização precoce, ou uma execução indefinida. Por conta dessas deficiências é investigado
+o algoritmo \textit{Partheno Genetic Algorithm}(PGA), o qual não necessita da inicialização da
+população inicial, e também não sofre do problema de finalização prematura do IGA. Portanto o autor
+propõe o método PGA-FCM, que utiliza o PGA para encontrar solução aproximada global da função de
+minimização do FCM, e em seguida utiliza o próprio FCM tendo como entrada a partição de saída do
+PGA, para encontrar a solução ótima, de maneira reduzir o tempo de convergência.
+
  
 \section{Considerações finais}
