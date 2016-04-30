@@ -218,5 +218,39 @@ propõe o método PGA-FCM, que utiliza o PGA para encontrar solução aproximada
 minimização do FCM, e em seguida utiliza o próprio FCM tendo como entrada a partição de saída do
 PGA, para encontrar a solução ótima, de maneira reduzir o tempo de convergência.
 
+Segundo \cite{Saranya2014}, está presente na literatura uma outra visão do agrupamento textual, que
+realiza o agrupamento das sentenças contidas nos documentos. Tal abordagem tem-se mostrado 
+fundamental para por exemplo, evitar a sobreposição de informações em técnicas de sumarização de 
+documentos. Assim como também
+pode ser útil para a obtenção de novas informações a partir de um conjunto de resultados em uma
+busca na web por exemplo. A sumarização de sentenças tem como objetivo, produzir um sumário que
+contenha informações relevantes dos documentos. Onde por sua vez, estratégias de ordenação das
+sentenças($ranking$) de acordo com sua relevância, medidas de similaridade de sentenças utilizando
+informações da semântica dos termos são utilizadas para cumprir o objetivo. O autor também 
+descreve que o agrupamento fuzzy de sentenças, pode ser utilizado para realizar
+tarefas de análise de contradição do conteúdo com o assunto da coleção de documentos o qual este
+está inserido. De modo que se possa identificar dados ruidosos que não contribuem com a ideia geral
+da coleção.
+
+Em \cite{Murali2015} é apresentado um sistema de recuperação de informação e organização flexível de
+documentos, de maneira a considerar a informação semântica contida nos termos, de maneirar a tornar
+mais precisa a similaridade entre os documentos. A estratégia proposta pelos autores, usa
+identificação de sinônimos baseado em ontologias da WordNet, 
+hiperônimos\footnote{Palavras de sentido genérico, ou seja, 
+  possuem significado bem amplo. Por exemplo
+ferramenta é um hiperônimo de chave de fenda.} 
+e hipônimos\footnote{Palavras de sentido específico, sendo a palavra que está abaixo de um 
+  hiperônimo na
+hierarquia. Por exemplo, chave de fenda é hipônimo de ferramenta.}, para realizar tarefas de
+desambiguação semântica entre os termos, durante o pré-processamento. Em seguida os autores utilizam
+o método de agrupamento PFCM, devido ao potencial de agregar as qualidades e minimizar as
+deficiências dos algoritmos FCM e PCM. Então a extração de termos descritores dos grupos é
+realizada, construindo-se um índice de termos para cada grupo. Um dos diferenciais apresentados na
+proposta de \cite{Murali2015} ocorre na fase final, quando o usuário realiza uma busca. As palavras
+chaves inseridas pelo usuário, são processadas na ontologia do WordNet visando encontrar palavras
+com significados similares. A partir dessas palavras resultantes é calculado a similaridade com os
+termos descritores dos grupos, e por final os documentos que estiverem no grupo que obteve a maior
+similaridade com a busca digitada pelo usuário são retornados.
+
  
 \section{Considerações finais}
