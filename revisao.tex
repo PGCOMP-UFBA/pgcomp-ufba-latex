@@ -130,6 +130,100 @@ de maneira que termos com alta pertinência possuem significados
 semânticos mais próximos. Essa aproximação semântica é realizada com base em um vocabulário
 predefinido.
 
+Conforme foi definido no capítulo 2, os algoritmos de agrupamento fuzzy apresentados são baseados na
+otimização de funções objetivos. Contudo, \cite{GasparCunha2012} descreve que a otimização de 
+funções que possuam vários mínimos locais
+sem nenhuma tendência global, utilizando as clássicas técnicas de otimização, podem simplesmente
+não só demorar a convergir, como a convergência pode nunca ser encontrada, ou ainda convergir para
+um mínimo local. Portanto diante da necessidade de se otimizar funções com
+tais características, desenvolveu-se estratégias de otimização baseadas em heurísticas, os quais
+permitem uma análise das características globais da função, de maneira que se possa realizar
+sucessivas buscas do mínimo global. Entretanto métodos heurísticos não garantem a convergência para
+o mínimo global, porém de modo geral apresentam boas aproximações. Dentre estas, tem-se heurísticas
+evolutivas
+inspiradas no processo de adaptação dos seres vivos. Que é o caso dos algoritmos
+genéticos, que são métodos de busca de soluções probabilísticos inspirados nos mecanismos 
+genéticos de adaptação dos seres vivos através da seleção natural. Assim sendo \cite{Jiang2013} 
+traz um proposta para enriquecer a tarefa de agrupamento textual, baseada na
+combinação dos algoritmos genéticos, com o método de agrupamento FCM, para 
+evitar o problema de convergência para mínimos locais. 
+O autor destaca ainda que os algoritmos genéticos possuem grande potencial na realização de
+buscas paralelas globais, principalmente quando trata-se de grande volumes de dados, com elevados
+requisitos de classificação e computação paralela, restrições as quais o algoritmo iterativo para
+otimizar a função objetivo do FCM não é capaz de atender.
+Este problema de convergência do FCM apresentado por
+\cite{Bezdek1984}, ocorre quando algumas condições iniciais são satisfeitas, levando o FCM para 
+convergir para um mínimo local. No artigo o autor explora as qualidades e deficiências do algoritmo 
+\textit{Immnune Genetic Algorithm}(IGA), que é uma versão mais atual do algoritmo genético (GA),
+que garante a diversidade dos indivíduos, aprimorando assim os potenciais de busca pela solução
+ótima global. Porém o IGA demanda muito custo computacional para garantir a diversidade da
+população, assim como também existe uma dificuldade em estimar os parâmetros iniciais, levando o IGA
+a uma finalização precoce, ou uma execução indefinida. Por conta dessas deficiências é investigado
+o algoritmo \textit{Partheno Genetic Algorithm}(PGA), o qual não necessita da inicialização da
+população inicial, e também não sofre do problema de finalização prematura do IGA. Portanto o autor
+propõe o método PGA-FCM, que utiliza o PGA para encontrar solução aproximada global da função de
+minimização do FCM, e em seguida utiliza o próprio FCM tendo como entrada a partição de saída do
+PGA, para encontrar a solução ótima, de maneira reduzir o tempo de convergência.
+
+Segundo \cite{Saranya2014}, está presente na literatura uma outra visão do agrupamento textual, que
+realiza o agrupamento das sentenças contidas nos documentos. Tal abordagem tem-se mostrado 
+fundamental para por exemplo, evitar a sobreposição de informações em técnicas de sumarização de 
+documentos. Assim como também
+pode ser útil para a obtenção de novas informações a partir de um conjunto de resultados em uma
+busca na web por exemplo. A sumarização de sentenças tem como objetivo, produzir um sumário que
+contenha informações relevantes dos documentos. Onde por sua vez, estratégias de ordenação das
+sentenças($ranking$) de acordo com sua relevância, medidas de similaridade de sentenças utilizando
+informações da semântica dos termos são utilizadas para cumprir o objetivo. O autor também 
+descreve que o agrupamento fuzzy de sentenças, pode ser utilizado para realizar
+tarefas de análise de contradição do conteúdo com o assunto da coleção de documentos o qual este
+está inserido. De modo que se possa identificar dados ruidosos que não contribuem com a ideia geral
+da coleção.
+
+Ainda seguindo essa linha de otimização dos resultados apresentados após uma busca em um SRI,
+\cite{Nogueira2012} cita que uma das principais limitações de um SRI, está na maneira rígida de
+interpretar as strings de busca do usuário. O que pode ocasionar que alguns documentos relevantes
+para o usuário, não sejam retornados na busca. O autor informa que a literatura usualmente aborda
+esse problema de duas formas, em que ambas se baseiam na reformulação das strings de busca. Sendo
+que a primeira procura reformular os termos de uma busca, levando em conta características
+semânticas dos termos, de modo a encontrar versões mais apropriadas, permitindo então que uma maior
+quantidade de documentos relevantes seja retornado pela busca. A segunda forma de abordar esse
+problema consiste em ir ajustando os termos da busca, a partir dos primeiros documentos encontrados.
+
+Portanto, seguindo a abordagem de reformulação semântica, em \cite{Murali2015} é apresentado um 
+sistema de recuperação de informação e organização flexível de
+documentos, de maneira a considerar a informação semântica contida nos termos, de maneirar a tornar
+mais precisa a similaridade entre os documentos, assim como também atuar na reformulação da busca. 
+A estratégia proposta pelos autores, usa
+identificação de sinônimos baseado em ontologias da WordNet, 
+hiperônimos\footnote{Palavras de sentido genérico, ou seja, 
+  possuem significado bem amplo. Por exemplo
+ferramenta é um hiperônimo de chave de fenda.} 
+e hipônimos\footnote{Palavras de sentido específico, sendo a palavra que está abaixo de um 
+  hiperônimo na
+hierarquia. Por exemplo, chave de fenda é hipônimo de ferramenta.}, para realizar tarefas de
+desambiguação semântica entre os termos, durante o pré-processamento. Em seguida os autores utilizam
+o método de agrupamento PFCM, devido ao potencial de agregar as qualidades e minimizar as
+deficiências dos algoritmos FCM e PCM. Então a extração de termos descritores dos grupos é
+realizada, construindo-se um índice de termos para cada grupo. Um dos diferenciais apresentados na
+proposta de \cite{Murali2015} ocorre na fase final, quando o usuário realiza uma busca. As palavras
+chaves inseridas pelo usuário, são processadas na ontologia do WordNet visando encontrar palavras
+com significados similares. A partir dessas palavras resultantes é calculado a similaridade com os
+termos descritores dos grupos, e por final os documentos que estiverem no grupo que obteve a maior
+similaridade com a busca digitada pelo usuário são retornados.
+
+Com o objetivo de apresentar uma alternativa a essas duas abordagens para prover flexibilidade me um
+SRI, \cite{Nogueira2012} propõe um método para gerenciar a precisão e incerteza inerentes a
+documentos textuais, ainda na fase de organização dos documentos. Evitando assim a dependência da
+busca e a participação do usuário no processo. Portanto um dos diferenciais apresentados pelos
+autores é a possibilidade de obtenção dos termos de busca ainda na fase de organização de
+documentos, de maneira não supervisionada. O que traz uma grande independência ao processo,
+possibilitando a automatização da organização flexível de documentos com pouca ou nenhuma
+intervenção do usuário durante o processo. Os termos de busca encontrados na etapa de organização
+dos documentos, são os descritores dos grupos, que são utilizados para distribuir os documentos em
+tópicos ou temas, e desde que durante a etapa de organização é utilizado o agrupamento fuzzy, os
+documentos podem sem rotulados em mais de um tópico. O que por sua vez, essa abordagem fortalece
+ainda mais a flexibilidade na organização de documentos.
+
 A extração de termos
 que representem bem os grupos obtidos na fase de agrupamento é de fundamental importância, pois é
 a partir dos termos extraídos que é possível a recuperação dos documentos através de uma consulta 
@@ -183,74 +277,7 @@ descritores são extraídos usando o $\delta$.
 % TODO: ADAPTAR A FIGURA 3.6 DE NOGUEIRA2013 
 % TODO: DETALHAR AS EQUAÇÕES DOS MÉTODOS DE EXTRAÇÃO DE DESCRITORES PROPOSTSO EM NOGUEIRA2013 
 
-Conforme foi definido no capítulo 2, os algoritmos de agrupamento fuzzy apresentados são baseados na
-otimização de funções objetivos. Contudo, \cite{GasparCunha2012} descreve que a otimização de 
-funções que possuam vários mínimos locais
-sem nenhuma tendência global, utilizando as clássicas técnicas de otimização, podem simplesmente
-não só demorar a convergir, como a convergência pode nunca ser encontrada, ou ainda convergir para
-um mínimo local. Portanto diante da necessidade de se otimizar funções com
-tais características, desenvolveu-se estratégias de otimização baseadas em heurísticas, os quais
-permitem uma análise das características globais da função, de maneira que se possa realizar
-sucessivas buscas do mínimo global. Entretanto métodos heurísticos não garantem a convergência para
-o mínimo global, porém de modo geral apresentam boas aproximações. Dentre estas, tem-se heurísticas
-evolutivas
-inspiradas no processo de adaptação dos seres vivos. Que é o caso dos algoritmos
-genéticos, que são métodos de busca de soluções probabilísticos inspirados nos mecanismos 
-genéticos de adaptação dos seres vivos através da seleção natural. Assim sendo \cite{Jiang2013} 
-traz um proposta para enriquecer a tarefa de agrupamento textual, baseada na
-combinação dos algoritmos genéticos, com o método de agrupamento FCM, para 
-evitar o problema de convergência para mínimos locais. 
-O autor destaca ainda que os algoritmos genéticos possuem grande potencial na realização de
-buscas paralelas globais, principalmente quando trata-se de grande volumes de dados, com elevados
-requisitos de classificação e computação paralela, restrições as quais o algoritmo iterativo para
-otimizar a função objetivo do FCM não é capaz de atender.
-Este problema de convergência do FCM apresentado por
-\cite{Bezdek1984}, ocorre quando algumas condições iniciais são satisfeitas, levando o FCM para 
-convergir para um mínimo local. No artigo o autor explora as qualidades e deficiências do algoritmo 
-\textit{Immnune Genetic Algorithm}(IGA), que é uma versão mais atual do algoritmo genético (GA),
-que garante a diversidade dos indivíduos, aprimorando assim os potenciais de busca pela solução
-ótima global. Porém o IGA demanda muito custo computacional para garantir a diversidade da
-população, assim como também existe uma dificuldade em estimar os parâmetros iniciais, levando o IGA
-a uma finalização precoce, ou uma execução indefinida. Por conta dessas deficiências é investigado
-o algoritmo \textit{Partheno Genetic Algorithm}(PGA), o qual não necessita da inicialização da
-população inicial, e também não sofre do problema de finalização prematura do IGA. Portanto o autor
-propõe o método PGA-FCM, que utiliza o PGA para encontrar solução aproximada global da função de
-minimização do FCM, e em seguida utiliza o próprio FCM tendo como entrada a partição de saída do
-PGA, para encontrar a solução ótima, de maneira reduzir o tempo de convergência.
 
-Segundo \cite{Saranya2014}, está presente na literatura uma outra visão do agrupamento textual, que
-realiza o agrupamento das sentenças contidas nos documentos. Tal abordagem tem-se mostrado 
-fundamental para por exemplo, evitar a sobreposição de informações em técnicas de sumarização de 
-documentos. Assim como também
-pode ser útil para a obtenção de novas informações a partir de um conjunto de resultados em uma
-busca na web por exemplo. A sumarização de sentenças tem como objetivo, produzir um sumário que
-contenha informações relevantes dos documentos. Onde por sua vez, estratégias de ordenação das
-sentenças($ranking$) de acordo com sua relevância, medidas de similaridade de sentenças utilizando
-informações da semântica dos termos são utilizadas para cumprir o objetivo. O autor também 
-descreve que o agrupamento fuzzy de sentenças, pode ser utilizado para realizar
-tarefas de análise de contradição do conteúdo com o assunto da coleção de documentos o qual este
-está inserido. De modo que se possa identificar dados ruidosos que não contribuem com a ideia geral
-da coleção.
-
-Em \cite{Murali2015} é apresentado um sistema de recuperação de informação e organização flexível de
-documentos, de maneira a considerar a informação semântica contida nos termos, de maneirar a tornar
-mais precisa a similaridade entre os documentos. A estratégia proposta pelos autores, usa
-identificação de sinônimos baseado em ontologias da WordNet, 
-hiperônimos\footnote{Palavras de sentido genérico, ou seja, 
-  possuem significado bem amplo. Por exemplo
-ferramenta é um hiperônimo de chave de fenda.} 
-e hipônimos\footnote{Palavras de sentido específico, sendo a palavra que está abaixo de um 
-  hiperônimo na
-hierarquia. Por exemplo, chave de fenda é hipônimo de ferramenta.}, para realizar tarefas de
-desambiguação semântica entre os termos, durante o pré-processamento. Em seguida os autores utilizam
-o método de agrupamento PFCM, devido ao potencial de agregar as qualidades e minimizar as
-deficiências dos algoritmos FCM e PCM. Então a extração de termos descritores dos grupos é
-realizada, construindo-se um índice de termos para cada grupo. Um dos diferenciais apresentados na
-proposta de \cite{Murali2015} ocorre na fase final, quando o usuário realiza uma busca. As palavras
-chaves inseridas pelo usuário, são processadas na ontologia do WordNet visando encontrar palavras
-com significados similares. A partir dessas palavras resultantes é calculado a similaridade com os
-termos descritores dos grupos, e por final os documentos que estiverem no grupo que obteve a maior
-similaridade com a busca digitada pelo usuário são retornados.
 
  
 \section{Considerações finais}
