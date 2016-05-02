@@ -277,7 +277,24 @@ descritores são extraídos usando o $\delta$.
 % TODO: ADAPTAR A FIGURA 3.6 DE NOGUEIRA2013 
 % TODO: DETALHAR AS EQUAÇÕES DOS MÉTODOS DE EXTRAÇÃO DE DESCRITORES PROPOSTSO EM NOGUEIRA2013 
 
-
-
+Em \cite{Yan2013} é informado que em estudos recentes os métodos de co-agrupamento fuzzy,
+tem apresentados resultados superiores a extensões do FCM, e métodos de co-agrupamento $crisp$, para
+algumas bases de dados com alta dimensionalidade. O diferencial dos métodos de co-agrupamento fuzzy 
+em relação ao agrupamento fuzzy clássico (FCM), está no agrupamento simultâneo de documentos e
+termos, assim como a literatura sugere a relevância desse método para categorização de dados com
+alta dimensionalidade\cite{Yan2013}. Esse potencial dos algoritmos de co-agrupamento é devido a
+a sua inerente característica de redução da dimensão dos dados, através do agrupamento também dos
+termos, que permite melhor capturar a estrutura dos dados. Entretanto base de dados com elevada
+sobreposição de termos entre os documentos, ou seja termos que aparecem em vários documentos, podem
+afetar significativamente os métodos de co-agrupamento, assim como a organização dos termos
+produzidos podem não condizer com a realidade dos dados\cite{Tjhi2008}. Assim sendo o método HFCR
+definido em \cite{Tjhi2008}, tenta contornar esses problemas, substituindo o $ranking$ dos termos,
+pelo agrupamento fuzzy, gerando assim duas partições fuzzy, uma de termos e uma de documentos.
+Segundo os autores, essa estratégia permite o HFCR contornar os problemas comuns dos métodos de
+co-agrupamento, mantendo a capacidade melhor agrupar dados de alta dimensionalidade e ainda
+reduzindo a complexidade computacional em relação a outros algoritmos de co-agrupamento presentes na
+literatura. No entanto a função objetivo do HFCR possui complexidade de $O(c*n*k)$, que maior que a
+complexidade da função objetivo (\ref{eq:fcm_obj}) do FCM clássico $O(c*n)$, onde $c$ é o número de
+grupos, $n$ é o número de documentos e $k$ o número de termos distintos em toda coleção.
  
 \section{Considerações finais}
