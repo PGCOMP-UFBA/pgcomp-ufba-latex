@@ -1,27 +1,26 @@
 \section{Considerações iniciais}
-Primeiramente introduzida em \cite{Zadeh1965}, onde o autor inicia a discussão definindo os
-conjuntos fuzzy, sendo uma classe de objetos com valores contínuos de pertinência. Cada conjunto é
-então caracterizado por uma função de pertinência, a qual atribui a cada objeto do conjunto um grau
+A lógica fuzzy foi introduzida por Lofti Zadeh em \cite{Zadeh1965}, onde o autor inicia a discussão definindo os
+conjuntos fuzzy, as quais constituem classes de objetos com valores contínuos de pertinência. Cada conjunto é
+caracterizado por uma função de pertinência, a qual atribui a cada objeto do conjunto um grau
 de pertinência que varia entre zero e um. As operações matemáticas da teoria dos conjuntos, como
 inclusão, união, intersecção, complemento, relação, etc., também são estendidas aos conjuntos fuzzy,
 assim como várias propriedades dessas notações são definidas.
 
-Uma das motivações da lógica fuzzy, vem da maneira como nosso cérebro classifica e rotula o mundo
+Uma das motivações para o uso da lógica fuzzy, vem da maneira como nosso cérebro classifica e rotula o mundo
 real. Por exemplo, ao rotularmos uma pessoa como alta, estamos atribuindo ela ao grupo de pessoas
 altas. Assim como quando nos expressamos sobre o quanto um determinado dia está fazendo calor ou
 frio. O conjunto de pessoas altas ou dias frios, não se enquadra na sua totalidade na lógica
-clássica. Pois essa forma imprecisa de descrever o mundo a nossa volta, desempenha um papel
+clássica, pois essa forma imprecisa de descrever o mundo a nossa volta desempenha um papel
 fundamental na forma de pensar humana, assim como também nas áreas de reconhecimento de padrões,
-comunicação e abstração\cite{Zadeh1965}.  Portanto esta seção tem como propósito contextualizar os
+comunicação e abstração\cite{Zadeh1965}.  Neste sentido, esta seção tem como propósito contextualizar os
 principais aspectos da lógica fuzzy que a torna tão importante no contexto da organização flexível
-de documentos. Portanto definições mais aprofundadas sobre fuzzy fogem do escopo desse texto.
-A definição dos fundamentos necessários para realizar a organização de documentos utilizando os
-benefícios da lógica fuzzy, também é apresentado. Dentre os fundamentos está a atividade de
+de documentos. Ressalta-se, portanto, que definições mais aprofundadas sobre a lógica fuzzy fogem do escopo desse texto.
+Adicionalmente, além dos principais fundamentos necessários para compreensão da abordagem apresentada neste documento, estão a atividade de
 pré-processamento dos dados, cuja finalidade é filtrar e estruturar os dados para serem processados
-nas etapas seguintes. Adicionalmente é abordado um dos principais algoritmos de agrupamento fuzzy,
-presentes na literatura, com as suas definições matemáticas e pseudo códigos. E por fim é abordado a
+nas etapas seguintes; os principais algoritmos de agrupamento fuzzy,
+presentes na literatura, com as suas definições matemáticas e pseudo códigos; e, por fim, a
 a tarefa de rotular os grupos encontrados na etapa de agrupamento com os termos que melhor os
-representem, permitindo assim a realização de consultas ém Sistemas de Recuperação da Informação
+representem, permitindo assim a realização de consultas em Sistemas de Recuperação da Informação
 (SRI).
 
 \section{Conjuntos e Lógica Fuzzy}
@@ -36,9 +35,9 @@ representação do grau de pertinência de $x$ em $A$.
 \subsection{Lógica fuzzy}
 
 A lógica fuzzy é uma lógica multi valorada, onde os valores das variáveis pertencem ao intervalo de
-[0,1], enquanto na lógica clássica os valores verdades só possuem os estados 0 ou 1 (também
+$[0,1]$, enquanto na lógica clássica os valores verdades só possuem os estados 0 ou 1 (também
 conhecido como valores {\it crisp\/}). Uma da mais importantes aplicações está no tratamento de
-precisão e incerteza. O que nos permite a modelar soluções mais adequadas para ambientes imprecisos
+precisão e incerteza. O que nos permite modelar soluções mais adequadas para ambientes imprecisos
 e incertos.  Antes da lógica fuzzy ser introduzida em \cite{Zadeh1965}, em 1930
 Lukasiewics\cite{Chen2000} desenvolveu a lógica n-valorada para $3 < n < \infty$, utilizando apenas
 os operadores lógicos de negação $-$ e implicação $\Rightarrow$. Dado então um inteiro positivo, $n
@@ -52,29 +51,35 @@ min\{a,b\}$$ $$a \vee b = max\{a,b\}$$ $$a \Rightarrow b = min\{1, 1+b-a\}$$ $$a
 
 O objetivo da lógica fuzzy é prover mecanismos para tratar imprecisão e incerteza, se baseando na
 teoria de conjuntos fuzzy e usando proposições imprecisas, de modo similar a lógica clássica usando
-proposições precisas baseadas na teoria dos conjuntos.  Para entendermos essa noção, vejamos então
-um mesmo exemplo pela ótica do raciocínio clássico e em seguida usando as ferramentas para descrever
-imprecisão da lógica fuzzy.  \begin{enumerate}[label=\alph*)] \item Todo texto com 100 palavras ou
-mais da área jurídica, tem como assunto o direito.  \item O texto A com título as manifestações
-de junho, tem 100 palavras da área jurídica.  \item O texto B com título política nas
-universidades, tem 99 palavras da área jurídica.  \item O texto A tem como assunto o direito e o
-texto B não tem como assunto o direito.  \end{enumerate} Essa série de proposições ilustra o
-raciocínio empregado na lógica clássica, e seguindo as regras de inferência conseguimos verificar
-que as sentenças estão corretas. No entanto é fácil notar que a sentença d) não expressa muito bem o
-nosso entendimento sobre a temática dos textos.  Seria comum alguém substituir a sentença d), por e)
-O texto B fala um pouco sobre direito.  Vamos então adicionar a imprecisão comum no mundo real as
-sentenças anteriores.  \begin{enumerate}[label=\alph*)] \item Todo texto que tem entre 50 e 100
-palavras da área jurídica fala um pouco sobre direito.  Enquanto todo texto que contenha 100
-ou mais palavras da área jurídica fala bastante sobre direito.  \item O texto A com título as
-manifestações de junho, tem 100 palavras da área jurídica.  \item O texto B com título
-política nas universidades, tem 99 palavras da área jurídica.  \item O texto A fala bastante
-sobre direito, enquanto o texto B fala um pouco sobre direito.  \end{enumerate} Esse tipo de
-dedução comumente utilizada no nosso dia a dia, não tem como ser tratada pela lógica
-clássica. No entanto podemos lidar com esse tipo de inferência imprecisa, empregando a
+proposições precisas baseadas na teoria dos conjuntos.  Para entender essa noção, observe
+a seguir um mesmo exemplo pela ótica do raciocínio clássico e pela ótica das ferramentas usadas para descrever
+imprecisão da lógica fuzzy.  
+
+\begin{enumerate}[label=\alph*)] 
+\item Todo texto com 100 palavras ou mais da área jurídica, tem como assunto o direito. 
+\item O texto A com título ``as manifestações de junho'', tem 100 palavras da área jurídica.  
+\item O texto B com título ``política nas universidades'', tem 99 palavras da área jurídica.  
+\item O texto A tem como assunto o direito e o texto B não tem como assunto o direito.  
+\end{enumerate} 
+
+Essa série de proposições ilustra o raciocínio empregado na lógica clássica e, seguindo as regras de inferência, conseguimos verificar que as sentenças estão corretas. No entanto, é fácil notar que a sentença d) não expressa muito bem o
+nosso entendimento sobre a temática dos textos.  Seria comum alguém substituir a sentença d), por: O texto B fala um pouco sobre direito.  Sendo assim é possível adicionar a imprecisão comum no mundo real às sentenças anteriores, conforme reescrito a seguir.
+
+\begin{enumerate}[label=\alph*)] 
+\item Todo texto que tem entre 50 e 100 palavras da área jurídica fala um pouco sobre direito.  Enquanto todo texto que contenha 100 ou mais palavras da área jurídica fala bastante sobre direito.  
+\item O texto A com título ``as manifestações de junho'', tem 100 palavras da área jurídica.  
+\item O texto B com título ``política nas universidades'', tem 99 palavras da área jurídica.  
+\item O texto A fala bastante sobre direito, enquanto o texto B fala um pouco sobre direito. 
+\end{enumerate} 
+
+Esse tipo de dedução comumente utilizada no nosso dia a dia, não tem como ser tratada pela lógica
+clássica. No entanto, podemos lidar com esse tipo de inferência imprecisa, empregando a
 lógica fuzzy, a qual permite o uso de alguns termos linguísticos imprecisos como:
-\begin{itemize} \item Predicados fuzzy: antigo, raro, caro, alto, rápido \item Quantificadores
-fuzzy: muito, pouco, quase, alguns \item Graus de verdade fuzzy: totalmente verdadeiro,
-verdadeiro, parcialmente falso, falso, definitivamente falso \end{itemize}
+\begin{itemize} 
+\item Predicados fuzzy: antigo, raro, caro, alto, rápido 
+\item Quantificadores fuzzy: muito, pouco, quase, alguns 
+\item Graus de verdade fuzzy: totalmente verdadeiro, verdadeiro, parcialmente falso, falso, definitivamente falso 
+\end{itemize}
 
 %\section{Organização Flexível de Documentos}
 %
@@ -90,23 +95,17 @@ verdadeiro, parcialmente falso, falso, definitivamente falso \end{itemize}
             %documentos seguindo o modelo defendido em \cite{Nogueira2013},
 
 
-\section{Pré-Processamento} Pré-processamento dos dados é o processo de limpeza e preparação do
-texto para classificação.  Assim como muitas palavras em um texto não causam nenhum impacto no
-significado geral do documento\cite{Haddi2013}.  Soma se a isso o enorme custo computacional do
-processo de mineração de textos, devido a grande quantidade de verbetes presente em dados textuais.
-Portanto quanto maior for a coleção de textos, maior será a quantidade de palavras distintas.
-Elevando bastante o custo computacional das tarefas de agrupamento e classificação, que por sua vez
-são baseadas na análise do vocabulário dos documentos.  Com isso, vários pesquisadores propuseram
-métodos para tentar simplificar, sintetizar e eliminar redundâncias desnecessárias nas coleções de
-textos.  Pois, quanto mais compacto for a quantidade de verbetes da coleção de documentos, menor o
-custo computacional e a quantidade de memória utilizada nas fases de agrupamento, extração de
-descritores e classificação. A esse conjunto de técnicas realizadas inicialmente sobre os
-documentos, denominamos de pré-processamento. 
+\section{Pré-Processamento} Pré-processamento dos dados é o processo de limpeza e preparação dos
+dados para extração de padrões.  Para este trabalho, especificamente, considera-se dado como sendo um documento textual e a tarefa de extração de padrões a ser considerada é o agrupamento.
 
-A fase de pré-processamento voltada para a mineração de textos, requer técnicas muito diferentes no
-preparo dos dados não estruturados para as fases posteriores, do que as técnicas comumente
-encontradas nos métodos de descoberta de informação. As quais visam preparar dados estruturados para
-as clássicas operações de mineração de dados \cite{Feldman2007}.
+Essa etapa é importante porque algumas palavras em um documento podem causar pouco ou nenhum impacto no significado geral do documento\cite{Haddi2013}.  Soma-se a isso o enorme custo computacional do
+processo de mineração de textos, devido à grande quantidade de atributoss presente em dados textuais, visto que quanto maior for a coleção de textos, maior será a quantidade de palavras distintas. Tal dimensionalidade eleva bastante o custo computacional de qualquer tarefa de extração de padrões.  Por isso, vários pesquisadores propuseram
+métodos para tentar simplificar, sintetizar e eliminar redundâncias desnecessárias nas coleções de
+textos.  
+
+A fase de pré-processamento voltada para a mineração de textos, as quais visam preparar dados estruturados para
+as clássicas operações de mineração de dados, requer técnicas muito específicas para o
+preparo dos dados não estruturados \cite{Feldman2007}.
 
 Segundo \cite{Feldman2007}, é possível categorizar de maneira clara as técnicas de pré-processamento
 de textos em duas categorias, de acordo com as tarefas realizadas pela técnica e através dos
@@ -118,53 +117,51 @@ esquemas de classificação, modelos probabilísticos e sistemas baseado em regr
 
 O processo de pré-processamento de dados textuais, inicia com um documento parcialmente estruturado
 e avança incrementando a estrutura através do refinamento das características do documento e
-adicionando novas \cite{Feldman2007}.  No contexto da mineração de textos as características dos
+adicionando novas \cite{Feldman2007}.  No contexto da mineração de textos, as características dos
 documentos são as suas palavras\cite{Haddi2013}. Ao final do processo, as palavras mais relevantes
-são utilizadas, e as demais são descartadas. Uma vez que manter estas palavras torna a
-dimensionalidade do problema maior, pois cada palavra no texto é tratada como uma
-dimensão\cite{Haddi2013}.
+são utilizadas, e as demais são descartadas.
 
-O processo como um todo envolve várias etapas, as quais podemos elencar a remoção de espaços,
+O processo como um todo envolve várias etapas, as quais pode-se elencar a remoção de espaços,
 expansão de abreviações, remoção de $stopwords$, que são palavras que não possuem relevância no
 significado geral do texto e geralmente são compostas por proposições, pronomes, artigos,
 interjeições dentre outras\cite{Nogueira2013}. Assim como também o processo de $stemming$ ou
 lematização, onde se busca encontrar o radical da palavra, visando assim remover palavras que
 possuam significados similares. Ainda é possível usar as técnicas de NLP ($Natural Language
-Processing$) para eliminar sinônimos. Por fim é realizada a seleção de termos \cite{Haddi2013}. 
+Processing$) para eliminar sinônimos. Por fim, é realizada a seleção de termos mais característicos para toda a coleção \cite{Haddi2013}. 
 
-Diversos métodos foram então propostos para se capturar a importância dos termos em coleções
+Diversos métodos foram propostos visando capturar a importância dos termos em coleções
 textuais. Sendo o método { \it Term Frequency Inverse Document Frequency\/ }(TF-IDF) um dos mais
-importantes\cite{Haddi2013} e frequentemente utilizado na literatura. A definição da TF-IDF está na
-equação (\ref{eq:tfidf}), onde $N$ é o número de documentos da coleção, $DF$ o total de documentos
+importantes e frequentemente utilizado na literatura \cite{Haddi2013}. A definição da TF-IDF está na
+equação (\ref{eq:tfidf}), onde $n$ é o número de documentos da coleção, $DF$ o total de documentos
 que possuem este termo e $FF$ ({\it frequency feature}) a frequência do termo no documento.
 
 \begin{equation} \varphi(t,d) = FF * log(\frac{N}{DF}) \label{eq:tfidf} \end{equation}
 
 Como resultado final de todo o processo de pré-processamento, obtém-se a matrix $D$. Onde $D$
-representa os $n$ documentos da coleção, sendo cada documento $d_{i}$, com $1 \leq n \leq N$, uma
+representa os $n$ documentos da coleção, sendo cada documento $d_{i}$, com $1 \leq i \leq n$, uma
 linha da matriz $D$, definido como sendo $ d_{i} =
 [\varphi(t_{1},d_{i}),\varphi(t_{2},d_{i}),\varphi(t_{3},d_{i}),...,\varphi(t_{k},d_{i})] $, onde
 $t_{j}$ é um termo presente na coleção, com $1 \leq j \leq k$.
 
-\section{Agrupamento Fuzzy} O agrupamento é um processo não supervisionado \cite{Feldman2007}, onde
-o objetivo é organizar os documentos similares no mesmo grupo e os documentos com grau de
-dissimilaridade elevado em grupos distintos\cite{Nogueira2013}\cite{Feldman2007}. Este processo é de
+\section{Agrupamento Fuzzy} 
+
+O agrupamento é um processo não supervisionado cujo o objetivo é organizar os objetos similares no mesmo grupo e os objetos com grau de
+dissimilaridade elevado em grupos distintos\cite{Nogueira2013}. Este processo é de
 grande utilidade para diversos campos de estudo da inteligência computacional, como a mineração de
-dados, recuperação de informação, segmentação de imagens e classificação de padrões
-\cite{Feldman2007}.
+dados, recuperação de informação, segmentação de imagens e classificação de padrões. Neste trabalho, os objetos a serem agrupados são os documentos textuais.
 
 O problema de organizar os documentos de maneira a maximizar a similaridade entre os membros de um
 mesmo grupo, e minimizar a similaridade entre documentos de grupos distintos, é essencialmente um
-problema de otimização \cite{Feldman2007}.  Então pretende-se otimizar a escolha dos grupos, entre
-todos as possibilidades de agrupamento, dada uma função objetivo que captura a qualidade dos grupos.
+problema de otimização.  Sendo assim, pretende-se otimizar a escolha dos grupos, entre
+todas as possibilidades de agrupamento, dada uma função objetivo que captura a qualidade dos grupos.
 Esta função é responsável por atribuir ao conjunto de possíveis grupos um número real, de maneira
 que quanto melhor for os grupos, maior será o seu valor\cite{Feldman2007}.
 
 A medida de similaridade desempenha um papel fundamental no agrupamento, uma vez que ela precisa
-expressar o quanto distante está um elemento do outro na coleção. Assim sendo, para obtermos bons
-resultados durante a organização dos elementos é de grande importância a escolha adequada da medida
-de similaridade, e esta escolha precisa ser feita de acordo com o tipo dos dados.  Na literatura a
-medida de similaridade mais popular\cite{Feldman2007} é a distância euclidiana (Equação
+expressar o quão distante está um elemento do outro na coleção. Assim sendo, para obtermos bons
+resultados durante o processo de agrupamento é de grande importância a escolha adequada da medida
+de similaridade, e esta escolha precisa ser feita de acordo com o tipo dos dados.  Na literatura, a
+medida de similaridade mais popular é a distância euclidiana (Equação
 \ref{eq:euclidiana}), que tem se mostrado bastante adequada em dados com baixa dimensionalidade.
 
 \begin{equation} 
@@ -173,12 +170,13 @@ medida de similaridade mais popular\cite{Feldman2007} é a distância euclidiana
 \end{equation}
 
 No entanto, em coleções textuais a matriz documentos x termos é naturalmente esparsa, devido a
-grande variedade de verbetes em uma coleção, o que faz com que um determinado documento $d_{i}$, não
-contenha diversos termos presentes em um outro documento $d_{j}$. Resultando assim que o vetor de
-características de cada documento, seja preenchido com vários zeros. Reduzindo então a eficácia da
-distância euclidiana (Equação \ref{eq:euclidiana}) \cite{Nogueira2013}. Consequentemente a medida de
-similaridade mais comum para coleções textuais é o coeficiente de similaridade de cosseno
-\cite{Nogueira2013}\cite{Feldman2007}.  Por sua vez o coeficiente de similaridade de cosseno,
+grande variedade de termos em uma coleção, o que faz com que um determinado documento $d_{i}$ não
+contenha diversos termos presentes em um outro documento $d_{j}$. Assim, o vetor de
+características de cada documento acaba sendo preenchido com vários zeros, reduzindo a eficácia da
+distância euclidiana (Equação \ref{eq:euclidiana}) \cite{Nogueira2013}. 
+
+A medida de similaridade mais comum para coleções textuais é o coeficiente de similaridade de cosseno
+\cite{Feldman2007}.  Por sua vez o coeficiente de similaridade de cosseno,
 desconsidera os diversos zeros presentes nos vetores de termos dos documentos, levando em conta
 apenas o ângulo formado entre eles\cite{Nogueira2013}.  Na equação (\ref{eq:simcos}) temos a
 definição do coeficiente de similaridade de cosseno, onde $d_1$ e $d_2$, são dois documentos
@@ -191,21 +189,18 @@ coleção, e $d_{ik}$ a frequência do termo $t$ no documento $d_i$.
   \label{eq:simcos}
 \end{equation}
 
-Os grupos resultantes desse processo, podem possuir algumas características que estão diretamente
+Os grupos resultantes de um  processo de agrupamento, podem possuir algumas características que estão diretamente
 relacionadas com o método de agrupamento empregado. Estes podem ser $hard$ ou $crisp$, caso o método
 de agrupamento seja baseado na lógica clássica, assim como podem ser $soft$, caso o método seja
 baseado na lógica fuzzy. No agrupamento $hard$, cada documento $d_{i}$ só poderá pertencer a um
 único grupo $g_{j}$ \cite{Bezdek1984}. Enquanto em grupos $soft$, cada documento $d_{i}$ pode
-pertencer a um ou mais grupos $g_{j}$, com grau de pertinência variados.  Além destes, os grupos
+pertencer a um ou mais grupos $g$, com grau de pertinência variados.  Além destes, os grupos
 ainda podem ser $flat$ ou hierárquicos, onde no agrupamento $flat$ todos os grupos estão no mesmo
 nível, enquanto no modelo hierárquico os grupos podem estar dispostos em uma hierarquia, de modo que
 uma relação de parentesco é definida entre eles.
 
-Portanto, seja $G = \{g_{1},g_{2},g_{3},...,g_{c}\}$ os grupos resultantes do agrupamento, sendo $c$
-o total de grupos. No agrupamento $hard$, a pertinência de cada documento $d_{i}$ pode ser
-representada pela função de pertinência $\kappa(d_{i}, g_{j}) \in \{0,1\}$, tal que $\sum_{j=1}^c
-\kappa(d_{i}, g_{j}) = 1$.  Um dos mais populares algoritmos a implementar essa abordagem $hard$ é o
-K Means.  Em \cite{Bezdek1984}\cite{Nogueira2013}\cite{Feldman2007}, é apontado uma falha inerente
+Para o agrupamento $hard$, considere $G = \{g_{1},g_{2},g_{3},...,g_{c}\}$ os grupos resultantes do agrupamento, sendo $c$
+o total de grupos, e a pertinência de cada documento $d_{i}$ à um grupo $g_{l}$, $1 \leq l \leq c$, pode ser representada pela função característica $\kappa(d_{i}, g_{j}) \in \{0,1\}$.  Um dos mais populares algoritmos a implementar essa abordagem é o K-Means.  Em \cite{Bezdek1984}\cite{Nogueira2013}\cite{Feldman2007}, é apontada uma falha inerente
 dessa abordagem, pois quando um documento só pode pertencer a um único grupo, fica evidenciado que o
 mesmo não compartilha nenhuma similaridade com os documentos dos demais grupos, o que não expressa a
 imprecisão intrínseca da sobreposição dos assuntos em documentos de texto.
@@ -213,40 +208,49 @@ imprecisão intrínseca da sobreposição dos assuntos em documentos de texto.
 Com o objetivo de tratar essa falha da abordagem $hard$ e adicionar o tratamento de imprecisão e
 incerteza no agrupamento, \cite{Bezdek1984} utilizou o modelo de partições fuzzy definido em
 \cite{Zadeh1965}, para permitir pertinências parciais de um elemento a um grupo, propondo assim o
-algoritmo Fuzzy C Means (FCM).  Sendo assim, a função de pertinência de um documento $d_{i}$ em um
-grupo $g_{j}$, pode ser definida como sendo $\mu(d_{i}, g_{j}) \in [0,1]$, tal que $\sum_{j=1}^m
+algoritmo Fuzzy C Means (FCM).  Sendo assim, a função característica passa a ser considerada como uma função de pertinência de um documento $d_{i}$ em um grupo $g_{l}$, a qual é definida por $\mu(d_{i}, g_{l}) \in [0,1]$, tal que $\sum_{l=1}^c
 \mu(d_{i}, g_{j}) = 1$.
 
-Outro desafio sempre presente em métodos de agrupamento é a descoberta do número ideal de grupos em
+Um desafio sempre presente em métodos de agrupamento é a descoberta do número ideal de grupos em
 uma coleção. O método de organização flexível proposto em \cite{Nogueira2013} utiliza a  $Fuzzy\
 Silhouette$ (FS) para realizar a validação do agrupamento fuzzy, e por conseguinte encontrar o
 número de grupos ideal. A função FS é uma adaptação do método de critério de largura média
-($Average\ Silhuette\ Width\ Criterion$ - ASWC), desenvolvido para o agrupamento $crisp$
-\cite{Nogueira2013}. A definição da silhueta fuzzy está nas equações (\ref{eq:silhuette}) e
+($Average\ Silhuette\ Width\ Criterion$ - ASWC), desenvolvido para o agrupamento $crisp$. A definição da silhueta fuzzy está nas equações (\ref{eq:silhuette}) e
 (\ref{eq:fs}), onde $\alpha(d_i, g_l)$ é a distância média entre o documento $d_i$ e todos os
 documentos presentes no grupo $g_l$, enquanto $\beta(d_i,g_l) = min\{\alpha(d_i,g_h) | 1 \leq h \leq
 c; h \neq l\}$, é a medida de dissimilaridade de $d_i$ ao grupo vizinho mais próximo de $g_l$, tal
-que $c$ é a quantidade de grupos.  \begin{equation} S(d_i) = \frac{\beta(d_i, g_l) -
-\alpha(d_i,g_l)}{max\{\alpha(d_i,g_l), \beta(d_i,g_l)\}} \label{eq:silhuette} \end{equation}
-\begin{equation} FS = \frac{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}S(d_i)}{\sum_{i=1}^n{(\mu_1(d_i)
-  - \mu_2(d_i))}} \label{eq:fs} \end{equation} Na equação (\ref{eq:fs}), $\mu_1(d_i)$ é maior
+que $c$ é a quantidade de grupos.  
+
+
+\begin{equation} 
+S(d_i) = \frac{\beta(d_i, g_l) - \alpha(d_i,g_l)}{max\{\alpha(d_i,g_l), \beta(d_i,g_l)\}} \label{eq:silhuette}
+\end{equation}
+
+
+\begin{equation} 
+FS = \frac{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}S(d_i)}{\sum_{i=1}^n{(\mu_1(d_i) - \mu_2(d_i))}}}
+\label{eq:fs}\end{equation} 
+
+Na equação (\ref{eq:fs}), $\mu_1(d_i)$ é a maior
   pertinência do documento $d_i$ em um grupo, enquanto $\mu_2(d_i)$ é a segunda maior. Quanto maior
-  então for o valor da função FS, melhor será o agrupamento. Deste modo para encontrar o número de
+  então for o valor da função FS, melhor será o agrupamento. Deste modo, para encontrar o número de
   grupos ideal, basta executar a função FS variando o número de grupos, e selecionar o agrupamento
   que tiver o valor máximo de FS.
 
 Toda investigação realizada neste trabalho tomou como base os métodos de agrupamento que derivam do
-algoritmo FCM\cite{Bezdek1984}, para se beneficiar da capacidade de tratar imprecisão e incerteza da
+algoritmo FCM\cite{Bezdek1984}, descrito a seguir, para se beneficiar da capacidade de tratar imprecisão e incerteza da
 lógica fuzzy, e por conseguinte permitir que um mesmo documento seja categorizado em mais de um
-tópico, refletindo a realidade dos documentos textuais. Utilizando como medida de similaridade o
-coeficiente de similaridade de cosseno (Equação \ref{eq:simcos}). E por fim a quantidade de grupos
-ideal foi escolhida utilizando o método da silhueta fuzzy ( Equação \ref{eq:fs}).
+tópico (grupo), refletindo a realidade dos documentos textuais. 
 
-\subsection{Algoritmo Fuzzy C Means (FCM)} \cite{Bezdek1984} descreve um método de agrupamento fuzzy
+Em todos os experimentos a medida de similaridade de cosseno (Equação \ref{eq:simcos}) foi utilizada, e a quantidade de grupos ideal foi escolhida utilizando o método da silhueta fuzzy ( Equação \ref{eq:fs}).
+
+\subsection{Algoritmo Fuzzy C Means (FCM)} 
+
+\cite{Bezdek1984} descreve um método de agrupamento fuzzy
 que produz como saída partições fuzzy e protótipos dos grupos. Esse algoritmo desempenha um papel
 importante no contexto do agrupamento fuzzy, devido seu pioneirismo no campo de estudo, possuindo
-diversas extensões. Assim como também é considerado um dos mais amplamente utilizados métodos de
-agrupamento fuzzy da literatura\cite{Pal2005}. Sendo a maioria dos métodos de agrupamento fuzzy,
+diversas extensões, sendo considerado um dos mais amplamente utilizados métodos de
+agrupamento fuzzy da literatura\cite{Pal2005}. A maioria dos métodos de agrupamento fuzzy são
 derivações do FCM\cite{Krishnapuram1993}.
 
 Seja então $V = \{v_1,v_2,v_3,...,v_c\}$ os protótipos dos grupos $G = \{g_1,g_2,g_3,...g_c\}$
