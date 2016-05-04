@@ -1,8 +1,38 @@
+\section{Considerações inicias}
+A organização de uma coleção de documentos em vários tópicos, de modo que exista sobreposição
+entre os grupos é um importante problema em sistemas de recuperação de informação(SRIs). Na
+literatura diversas estratégias são utilizadas visando otimizar a organização flexível de
+documentos, conforme foi abordado no capítulo anterior. Soma-se a isso o fato de que a maioria dos
+métodos que adicionam flexibilidade ao processo, como por exemplo  os métodos de agrupamento, nem
+sempre são desenvolvidos com o foco em documentos textuais. Que conforme foi abordado ao longo do
+texto, possui características que acrescentam algumas dificuldades no processo, tais como a alta
+dimensionalidade dos dados, assim como também usualmente são armazenados de maneira não estruturada.
+E ainda com o crescente aumento do uso de tecnologias de produção de conteúdo, a quantidade de dados
+textuais alcança grandes volumes de dados o que os enquadra no contexto do $Big Data$. 
+Portanto esse cenário fortalece a importância de se conduzir pesquisas e investigações em torno da
+organização flexível de documentos. Logo esse capítulo tem como objetivo detalhar as contribuições
+desta monografia a organização flexível de documentos. Motivado então pelos problemas dos algoritmos
+de agrupamento FCM e PCM, os quais são o problema dos elementos equidistantes e dos grupos
+coincidentes, foi utilizado no processo de organização flexível dos documentos o algoritmo PFCM, que
+tem as características de combinar as qualidades de ambos algoritmos. Como o PFCM produz duas
+partições, sendo um fuzzy e outra possibilística, o presente trabalho propôs duas extensões do
+método de extração de descritores Soft-wFDCL proposto por \cite{Nogueira2013}. A primeira extensão
+denominada Mixed-PDCL({\it Mixed - Possibilistic Fuzzy Descriptor Comes Last\/}), 
+a qual contempla durante a extração de descritores as duas partições do PFCM.
+E a segunda proposta é o método 
+MixedW-PDCL({\it Mixed Weighted - Possibilistic Fuzzy Descriptor Comes Last\/}), 
+que é uma extensão do Mixed-PDCL, porém ponderando as
+contribuições das partições com base nos parâmetros $a$ e $b$ do PFCM. A última contribuição é a
+proposta do método HPCM, que é uma extensão do método de agrupamento hierárquico HFCM, o qual
+utiliza o algoritmo PCM no lugar do FCM para produzir a hierarquia.
 
+Na primeira sessão deste capítulo é apresentado informações das bases de dados utilizadas, com as
+suas características, origem e composição dos documentos. Nos capítulos seguintes é definido as
+propostas sugeridas por essa monografia. E por fim os dados obtidos com os experimentos realizados.
+
+\section{Informações das bases de dados}
 \section{Refinamento com os algoritmos PCM e PFCM}
-
-
-\section{Refinamento da extração de descritores usando uma abordagem mista}
-
-
-\section{Abordagem possibilística hierárquica}
+\section{Método Mixed-PDCL}
+\section{Método MixedW-PDCL}
+\section{Método HPCM}
+\section{Considerações finais}
