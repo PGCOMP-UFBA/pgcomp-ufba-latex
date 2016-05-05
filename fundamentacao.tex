@@ -285,28 +285,30 @@ Considera-se $m$ o fator de fuzificação, que regula o quão fuzzy será as par
 
 Segundo \cite{Bezdek1984} nenhuma teoria ou evidência computacional aponta para um valor ótimo de $m$, contudo o autor aponta que a faixa de valores ideais aparenta ser $[1,30]$. Sendo assim, se existir um conjunto de dados para teste, uma boa estratégia para a escolha de $m$ é a realização de testes experimentais. Caso contrário, o intervalo de $[1.5, 3.0]$ aparenta trazer bons resultados para a maior parte dos dados.
 
-\begin{figure}[!htp] \centering 
+\begin{figure}[!htp] 
+  \centering 
   \begin{minipage}{0.45\textwidth} 
     \centering
-    \includegraphics[width=0.6\columnwidth]{assets/clusters_crisp.pdf} 
-    \caption{Ilustração denotando os
-grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.} \label{fig:cluster_crisp}
-  \end{minipage}\hfill 
+    \includegraphics[width=0.5\linewidth]{assets/clusters_crisp.pdf} 
+    \captionof{figure}{Ilustração denotando os
+grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.} 
+    \label{fig:cluster_crisp}
+  \end{minipage} 
   
-\begin{minipage}{0.45\textwidth} \centering
-    \includegraphics[width=0.6\columnwidth]{assets/clusters_fuzzy.pdf} 
-    \caption{Ilustração denotando os
+  \begin{minipage}{0.45\textwidth} 
+    \centering
+    \includegraphics[width=0.5\linewidth]{assets/clusters_fuzzy.pdf} 
+    \captionof{figure}{Ilustração denotando os
     grupos $g_1,g_2,g_3$ organizados de maneira fuzzy, com sobreposição, quando 
     $m \rightarrow \infty$.}
     \label{fig:cluster_fuzzy} 
   \end{minipage} 
 \end{figure} 
 
-
-Onde usualmente no contexto do agrupamento de coleções textuais $dist(d_i,g_k) = scos(d_i,g_k)$. Adicionalmente, o algoritmo FCM estabelece algumas restrições: deve-se evitar que o FCM produza grupos vazios (Equação (\ref{eq:fcmrestri2})) e deve-se impor que a soma das pertinências seja sempre igual a um (Equação (\ref{eq:fcmrestri2})).
-
-
-, tal que $\mu(d_i, g_k)$ está sujeita as equações 
+Onde usualmente no contexto do agrupamento de coleções textuais $dist(d_i,g_k) = scos(d_i,g_k)$.
+Adicionalmente, o algoritmo FCM estabelece algumas restrições: deve-se evitar que o FCM produza
+grupos vazios (Equação (\ref{eq:fcmrestri1})) e deve-se impor que a soma das pertinências seja
+sempre igual a um (Equação (\ref{eq:fcmrestri2})).
 
 \begin{equation} \sum_{k=1}^c
 \mu(d_i,g_k) = 1 \label{eq:fcmrestri1} 
@@ -316,8 +318,14 @@ Onde usualmente no contexto do agrupamento de coleções textuais $dist(d_i,g_k)
 \mu(d_i,g_k) < n \label{eq:fcmrestri2} 
 \end{equation}. 
 
-A restrição imposta pela Equação (\ref{eq:fcmrestri2}), no entanto, produz um problema em elementos equidistantes aos grupos. Ou seja, quando temos o caso $\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c)$. Nessa situação, o grau de pertinência de um elemento a cada grupo será a pertinência média, ou seja $\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c) = \frac{1}{c}$. Supondo agora um segundo documento $d_2$, que seja mais distante do que $d_1$, porém assim como $d_2$, também equidistante aos grupos, temos que $\mu(d_2, g_j) = \mu(d_1, g_j) = \frac{1}{c}$, para $1 < j \leq c$. Nesse contexto, a pertinência de $d_2$ e $d_1$, não expressa a distância relativa desses documentos aos grupos. Esse problema está ilustrado
-na Figura (\ref{fig:fcm_problem}).
+A restrição imposta pela Equação (\ref{eq:fcmrestri2}), no entanto, produz um problema em elementos
+equidistantes aos grupos. Ou seja, quando temos o caso $\mu(d_i, g_1) = \mu(d_i, g_2) = ... =
+\mu(d_i, g_c)$. Nessa situação, o grau de pertinência de um elemento a cada grupo será a pertinência
+média, ou seja $\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c) = \frac{1}{c}$. Supondo agora um
+segundo documento $d_2$, que seja mais distante do que $d_1$, porém assim como $d_2$, também
+equidistante aos grupos, temos que $\mu(d_2, g_j) = \mu(d_1, g_j) = \frac{1}{c}$, para $1 < j \leq
+c$. Nesse contexto, a pertinência de $d_2$ e $d_1$, não expressa a distância relativa desses
+documentos aos grupos. Esse problema está ilustrado na Figura (\ref{fig:fcm_problem}).
 
 \begin{figure}[!htp] \centering
   \includegraphics[width=0.4\columnwidth]{assets/clusters_fcm_problem.pdf} 
