@@ -249,35 +249,41 @@ Em todos os experimentos a medida de similaridade de cosseno (Equação \ref{eq:
 
 \cite{Bezdek1984} descreve um método de agrupamento fuzzy
 que produz como saída partições fuzzy e protótipos dos grupos. Esse algoritmo desempenha um papel
-importante no contexto do agrupamento fuzzy, devido seu pioneirismo no campo de estudo, possuindo
+importante no contexto do agrupamento fuzzy, devido ao seu pioneirismo no campo de estudo, possuindo
 diversas extensões, sendo considerado um dos mais amplamente utilizados métodos de
 agrupamento fuzzy da literatura\cite{Pal2005}. A maioria dos métodos de agrupamento fuzzy são
 derivações do FCM\cite{Krishnapuram1993}.
 
-Seja então $V = \{v_1,v_2,v_3,...,v_c\}$ os protótipos dos grupos $G = \{g_1,g_2,g_3,...g_c\}$
+Para compreensão do algoritmo, considere $V = \{v_1,v_2,v_3,...,v_c\}$ os protótipos dos grupos $G = \{g_1,g_2,g_3,...g_c\}$
 definidos por 
+
 \begin{equation} 
   V = \left\{ v_j | v_j = \frac{\sum_{i=1}^n[\mu(d_i,g_j)]^m d_i}{\sum_{i=1}^n[\mu(d_i,g_j)]^m}, 
-  1 < j \leq c \right\} 
+  1 < j \leq c \right\}, 
   \label{eq:prototipos} 
 \end{equation}
-, tal
-que $v_i$ seja o protótipo de $g_i$, $c$ o número de grupos gerados no agrupamento e $n$ o número de
-documentos presentes na coleção. Bem como seja 
+tal que $v_j$ seja o protótipo de $g_j$, $c$ o número de grupos gerados no agrupamento e $n$ o número de
+documentos presentes na coleção. 
+
+Seja $U_{c \times n}$ uma partição fuzzy conforme a Equação:
+
 \begin{equation} 
   U_{c \times n} = \{\mu(d_i, g_k) |\mu(d_i, g_k) \in [0,1], 1 < i \leq n, 1 < k \leq c, eqs
   (\ref{eq:fcmrestri1})(\ref{eq:fcmrestri2})\} 
   \label{eq:part_fuzzy} 
 \end{equation} 
-uma partição fuzzy, com todas as pertinências dos documentos aos grupos. Sendo $m$ o fator de
-fuzificação, que regula o quão fuzzy será as partições finais. De modo que para $m = 1$ a partição
-resultante é totalmente $crisp$ (figura \ref{fig:cluster_crisp}) e para $m \rightarrow \infty$ a
-interseção entre os grupos tende a aumentar (figura
-\ref{fig:cluster_fuzzy})\cite{Pal2005}\cite{Nogueira2013}. Segundo \cite{Bezdek1984} nenhuma teoria
-ou evidência computacional aponta para um valor ótimo de $m$, contudo o autor aponta que a faixa de
-valores ideais aparenta ser [1,30]. Sendo assim, se existir um conjunto de dados para teste, uma boa
-estratégia para a escolha de $m$ é a realização de testes experimentais. Caso contrário, o intervalo
-de [1.5, 3.0] aparenta trazer bons resultados para a maior parte dos dados.
+
+Esta partição apresenta todas as pertinências dos documentos aos grupos, cuja função de pertinência $\mu(d_i,g_k)$ de cada documento na coleção, é definida por 
+
+\begin{equation} 
+  \mu(d_i,g_k) = \frac{1}{\sum_{j=1}^n(\frac{dist(d_i,v_k)}{dist(d_i,v_j)})^{\frac{1}{m-1}}} 
+  \label{eq:pertinencia}
+\end{equation}
+
+
+Considera-se $m$ o fator de fuzificação, que regula o quão fuzzy será as partições finais. De modo que para $m = 1$ a partição resultante é totalmente $crisp$ (Figura \ref{fig:cluster_crisp}) e para $m \rightarrow \infty$ a interseção entre os grupos tende a aumentar (Figura \ref{fig:cluster_fuzzy})\cite{Pal2005}. 
+
+Segundo \cite{Bezdek1984} nenhuma teoria ou evidência computacional aponta para um valor ótimo de $m$, contudo o autor aponta que a faixa de valores ideais aparenta ser $[1,30]$. Sendo assim, se existir um conjunto de dados para teste, uma boa estratégia para a escolha de $m$ é a realização de testes experimentais. Caso contrário, o intervalo de $[1.5, 3.0]$ aparenta trazer bons resultados para a maior parte dos dados.
 
 \begin{figure}[!htp] \centering 
   \begin{minipage}{0.45\textwidth} 
@@ -286,7 +292,8 @@ de [1.5, 3.0] aparenta trazer bons resultados para a maior parte dos dados.
     \caption{Ilustração denotando os
 grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.} \label{fig:cluster_crisp}
   \end{minipage}\hfill 
-  \begin{minipage}{0.45\textwidth} \centering
+  
+\begin{minipage}{0.45\textwidth} \centering
     \includegraphics[width=0.6\columnwidth]{assets/clusters_fuzzy.pdf} 
     \caption{Ilustração denotando os
     grupos $g_1,g_2,g_3$ organizados de maneira fuzzy, com sobreposição, quando 
@@ -294,26 +301,22 @@ grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.} \label{fig:c
     \label{fig:cluster_fuzzy} 
   \end{minipage} 
 \end{figure} 
-E ademais a função de pertinência
-$\mu(d_i,g_k)$ de cada documento na coleção, é definida como sendo 
-\begin{equation} 
-  \mu(d_i,g_k) = \frac{1}{\sum_{j=1}^n(\frac{dist(d_i,v_k)}{dist(d_i,v_j)})^{\frac{1}{m-1}}} 
-  \label{eq:pertinencia}
-\end{equation}
-, tal que $\mu(d_i, g_k)$ está sujeita as equações \begin{equation} \sum_{k=1}^c
-\mu(d_i,g_k) = 1 \label{eq:fcmrestri1} \end{equation} e \begin{equation} 0 < \sum_{i=1}^n
-\mu(d_i,g_k) < n \label{eq:fcmrestri2} \end{equation} . Onde usualmente no contexto do
-agrupamento de coleções textuais $dist(d_i,g_k) = scos(d_i,g_k)$.  Sendo assim a restrição
-(\ref{eq:fcmrestri2}) da equação (\ref{eq:pertinencia}) tem como função evitar que algoritmo
-FCM produza grupos vazios\cite{Nogueira2013}. Enquanto a equação (\ref{eq:fcmrestri1}) impõe
-que a soma das pertinências seja sempre igual a um.  Entretanto a restrição
-(\ref{eq:fcmrestri2}) produz um problema em elementos equidistantes aos grupos. Ou seja,
-quando temos o caso $\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c)$. Nessa situação o grau de
-pertinência do elemento a cada grupo será a pertinência média, ou seja $\mu(d_i, g_1) = \mu(d_i,
-g_2) = ... = \mu(d_i, g_c) = \frac{1}{c}$. Supondo agora um segundo documento $d_2$, que seja mais
-distante do que $d_1$, porém assim como $d_2$, também equidistante aos grupos, temos que $\mu(d_2,
-g_j) = \mu(d_1, g_j) = \frac{1}{c}$, para $1 < j \leq c$. Nesse contexto a pertinência de $d_2$ e
-$d_1$, não expressa a distância relativa desses documentos aos grupos. Esse problema está ilustrado
+
+
+Onde usualmente no contexto do agrupamento de coleções textuais $dist(d_i,g_k) = scos(d_i,g_k)$. Adicionalmente, o algoritmo FCM estabelece algumas restrições: deve-se evitar que o FCM produza grupos vazios (Equação (\ref{eq:fcmrestri2})) e deve-se impor que a soma das pertinências seja sempre igual a um (Equação (\ref{eq:fcmrestri2})).
+
+
+, tal que $\mu(d_i, g_k)$ está sujeita as equações 
+
+\begin{equation} \sum_{k=1}^c
+\mu(d_i,g_k) = 1 \label{eq:fcmrestri1} 
+\end{equation} e 
+
+\begin{equation} 0 < \sum_{i=1}^n
+\mu(d_i,g_k) < n \label{eq:fcmrestri2} 
+\end{equation}. 
+
+A restrição imposta pela Equação (\ref{eq:fcmrestri2}), no entanto, produz um problema em elementos equidistantes aos grupos. Ou seja, quando temos o caso $\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c)$. Nessa situação, o grau de pertinência de um elemento a cada grupo será a pertinência média, ou seja $\mu(d_i, g_1) = \mu(d_i, g_2) = ... = \mu(d_i, g_c) = \frac{1}{c}$. Supondo agora um segundo documento $d_2$, que seja mais distante do que $d_1$, porém assim como $d_2$, também equidistante aos grupos, temos que $\mu(d_2, g_j) = \mu(d_1, g_j) = \frac{1}{c}$, para $1 < j \leq c$. Nesse contexto, a pertinência de $d_2$ e $d_1$, não expressa a distância relativa desses documentos aos grupos. Esse problema está ilustrado
 na Figura (\ref{fig:fcm_problem}).
 
 \begin{figure}[!htp] \centering
