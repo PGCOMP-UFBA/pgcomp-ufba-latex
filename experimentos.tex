@@ -10,13 +10,20 @@ dimensionalidade dos dados, assim como também usualmente são armazenados de ma
 E ainda com o crescente aumento do uso de tecnologias de produção de conteúdo, a quantidade de dados
 textuais alcança grandes volumes de dados o que os enquadra no contexto do $Big Data$. 
 Portanto esse cenário fortalece a importância de se conduzir pesquisas e investigações em torno da
-organização flexível de documentos. Logo esse capítulo tem como objetivo detalhar as contribuições
-desta monografia a organização flexível de documentos. Motivado então pelos problemas dos algoritmos
-de agrupamento FCM e PCM, os quais são o problema dos elementos equidistantes e dos grupos
-coincidentes, foi utilizado no processo de organização flexível dos documentos o algoritmo PFCM, que
-tem as características de combinar as qualidades de ambos algoritmos. Como o PFCM produz duas
-partições, sendo um fuzzy e outra possibilística, o presente trabalho propôs duas extensões do
-método de extração de descritores Soft-wFDCL proposto por \cite{Nogueira2013}. A primeira extensão
+organização flexível de documentos. Entretanto não é esperado que um método de agrupamento seja
+totalmente adequado para todos os tipos de dados, incluindo os dados de alta dimensionalidade como
+os dados textuais\cite{Steinbach2004}. Desta maneira esse capítulo tem como objetivo detalhar as 
+contribuições
+desta monografia a organização flexível de documentos, através da investigação dos impactos de se
+utilizar a estratégia de se misturar o agrupamento fuzzy e possibilístico provida pelo algoritmo
+PFCM. Onde este método de agrupamento pretende resolver os problemas dos elementos equidistantes e 
+dos grupos
+coincidentes, apresentados nas partições fuzzy e possibilística respectivamente. 
+
+Conforme observa-se no capítulo 2, o algoritmo PFCM produz duas
+partições, sendo um fuzzy e outra possibilística, o que induziu o presente trabalho a propor duas extensões do
+método de extração de descritores Soft-wFDCL proposto por \cite{Nogueira2013}, que leva em
+consideração apenas os valores de pertinências presentes na partição fuzzy. A primeira extensão
 denominada Mixed-PDCL({\it Mixed - Possibilistic Fuzzy Descriptor Comes Last\/}), 
 a qual contempla durante a extração de descritores as duas partições do PFCM.
 E a segunda proposta é o método 
@@ -31,6 +38,87 @@ suas características, origem e composição dos documentos. Nos capítulos segu
 propostas sugeridas por essa monografia. E por fim os dados obtidos com os experimentos realizados.
 
 \section{Informações das bases de dados}
+
+Na mineração de dados e consequentemente nos trabalhos relacionados a organização flexível de
+documentos, é comum se realizar a avaliação dos métodos propostos, conduzindo-se experimentos sobre
+bases de dados existentes na literatura com essa finalidade\cite{Rossi2013}. Para isso, as bases
+precisam estar apresentadas de maneira estruturada. Assim sendo, nesta pesquisa foi adotado o formato
+{\it tf-idf\/}(\ref{eq:tfidf}) como forma de estruturar os dados presentes nas bases, 
+de modo a capturar a
+importância relativa dos termos nos documentos e na coleção. Cada coleção foi então disposta em dois
+arquivos, sendo que o arquivo com extensão $.data$ contém $n$ linhas, onde cada linha constitui a 
+representação de um
+documento da coleção no formato {\it tf-idf\/}, para $n$ igual a quantidade de documentos 
+presentes na
+coleção, enquanto o que arquivo de extensão $.names$ possui a descrição dos $m$ termos existentes na
+coleção dispostos um por linha.
+
+Outro aspecto não menos importante, são as características particulares das coleções de dados. Pois
+ressalta-se que para uma mais apurada análise dos resultados, é pertinente considerar as
+particularidades de cada base, com a finalidade de encontrar possíveis justificativas para os
+resultados apresentados, realizando-se indagações comparativas as peculiaridades sabidamente
+conhecidas dos métodos analisados. Portanto o conjunto de características particulares de cada base
+obtidos em \cite{Rossi2013} e adaptados a esta pesquisa, dar-se à como apresentado
+na Tabela (\ref{table:datainfo}). 
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |c|p{11cm}|}
+    \hline
+    {\bf documentos} & número de documentos presentes na coleção \\
+    \hline
+    {\bf termos} & número de termos existentes na coleção após o pré-processamento \\
+    \hline
+    {\bf \% zeros} & número relativo de zeros na {\it tf-idf\/}, ou seja quantifica o quanto a
+matriz é esparsa \\
+    \hline
+    {\bf classes} & número de classes presentes na coleção \\
+    \hline
+    {\bf dp-class} & desvio padrão ao se considerar o percentual de documentos que
+pertence a determinada classe na coleção \\
+    \hline
+    {\bf $>$classe} & percentual de documentos pertencentes a maior classe na coleção \\
+    \hline
+    {\bf S-index} & quantifica a sobreposição entre as classes utilizando uma adaptação do
+coeficiente de silhueta \\
+    \hline
+    {\bf n-gramas} & quantidade de termos considerados sequencialmente na coleção \\
+    \hline
+  \end{tabular}
+  \caption{Importantes características presentes em coleções textuais}
+  \label{table:datainfo}
+\end{table}
+
+Todos os experimentos conduzidos nesta pesquisa foram realizados com seis coleções de dados
+textuais, e as características particulares de cada base está apresentada na Tabela
+(\ref{table:datasets}).
+
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |l|c c c c c c c c|}
+    \hline
+    {\bf nome} & docs & termos & classes & \% zeros & dp-classe & $>$classe & índice S &
+n-gramas \\
+    \hline
+    {\bf Opinosis} & 51 & 842 & 3 & 95,73\% & 0,1 & 96,07\% & 0,652211 & 1-grama \\
+    \hline
+    {\bf 20newsgroups} & 2000 & 11028 & 4 & 99,11\% & 0,1 & 25\% & 0,000585 & 1-grama \\
+    \hline
+    {\bf Hitech} & 600 & 6925 & 6 & 97,93\% & 0,1 & 16,67\% & 0,000459 & 1-grama \\
+    \hline
+    {\bf NSF} & 1600 & 2806 & 16 & 99,76\% & 0,1 & 3,12\% & 0,017779 & 1-grama \\
+    \hline
+    {\bf WAP} & 1560 & 8070 & 20 & 98,51\% & 0,1 & 100\% & 0,5 s & 1-grama \\
+    \hline
+    {\bf Reuters-21578} & 1052 & 3925 & 43 & 98,55\% & 0,1 & 8,55\% & 0,027781 & 1-grama \\
+    \hline
+  \end{tabular}
+  \caption{Características das coleções de documentos textuais}
+  \label{table:datasets}
+\end{table}
+
+
+
+
 \section{Refinamento com os algoritmos PCM e PFCM}
 \section{Método Mixed-PDCL}
 \section{Método MixedW-PDCL}
