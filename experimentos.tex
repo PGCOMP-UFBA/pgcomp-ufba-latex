@@ -53,13 +53,69 @@ presentes na
 coleção, enquanto o que arquivo de extensão $.names$ possui a descrição dos $m$ termos existentes na
 coleção dispostos um por linha.
 
-Outro aspecto não menos importante, são as características particulares das coleções de dados. Pois
-ressalta-se que para uma mais apurada análise dos resultados, é pertinente considerar as
-particularidades de cada base, com a finalidade de encontrar possíveis justificativas para os
-resultados apresentados, realizando-se indagações comparativas as peculiaridades sabidamente
-conhecidas dos métodos analisados. Portanto o conjunto de características particulares de cada base
-obtidos em \cite{Rossi2013} e adaptados a esta pesquisa, dar-se à como apresentado
-na Tabela (\ref{table:datainfo}). 
+A base Opinosis\footnotemark é composta de opiniões de consumidores a respeito das características de alguns
+produtos, obtidas dos portais amazon.com, tripadvisor e edmunds.com. As opiniões presentes na base,
+abordam tópicos como serviços de hospedagem, dispositivos eletrônicos e carros. Sendo que no total
+as sentenças presentes na coleção estão distribuídas em 51 categorias, onde cada categoria possui
+100 sentenças na média. Os dados dessa base
+foram obtidos no repositório {\it UCI Machine Learning Repository\/}\cite{Frank2010}, 
+que mantém várias coleções de
+dados que são utilizados pela comunidade de aprendizado de máquina para a realização de análises
+empíricas dos algoritmos.
+\footnotetext{\url{http://archive.ics.uci.edu/ml/datasets/Opinosis+Opinion+26frasl3B+Review}}
+
+A coleção de documentos 20Newsgroup\footnotemark original contém aproximadamente 20000 documentos de notícias,
+particionados em mais ou menos 20 temas. No entanto para os experimentos realizados nesta pesquisa, 
+foi utilizado uma versão mais
+compacta da coleção, contendo 2000 documentos pertencentes ao tema ciência, a qual contém os tópicos
+sci.space, sci.electronics e sci.med. Esta base tem-se mostrado bastante popular em
+aplicações textuais de aprendizado de máquina\cite{Nogueira2015}, tais como agrupamento e 
+classificação de textos.
+Essa base foi coletada originalmente por Ken Lang para a pesquisa Newsweeder apresentada em
+\cite{Lang1995}. 
+\footnotetext{\url{http://qwone.com/~jason/20Newsgroups/}}
+
+Os documentos presentes na base de dados Reuters-21578\footnotemark apareceram inicialmente na Reuters newswire
+em 1987. Sendo que os documentos foram coletados e indexados diretamente por membros da Reuters e da
+{\it Carnegie Group, Inc.} também em 1987 para o desenvolvimento do CONSTRUE\cite{Hayes1990}, que
+foi um sistema de categorização de documentos. Onde no ano de 1990 essa base de dados foi tornada
+pública pela Reuters, para ser utilizada em pesquisas de recuperação de informação. No entanto as
+versões inicias dessa base continham documentos repetidos e ambíguos, o que motivou um grupo de
+pesquisadores de categorização textual durante a conferência {\it ACM SIGIR '96\/}, a realizar uma
+limpeza na base, possibilitando uma melhor comparação dos resultados entre diferentes estudos. Essa
+versão final ficou com o total de 21578 documentos, distribuídos entre 43 diferentes categorias. 
+Contudo
+nesta pesquisa foi utilizada uma amostragem menor da coleção, contendo 1052 documentos, selecionados
+aleatoriamente de cada classe da coleção.
+\footnotetext{\url{https://archive.ics.uci.edu/ml/datasets/Reuters-21578+Text+Categorization+Collection}}
+
+A base de dados WAP({\it WebACE Project\/}) é composta de um conjunto de páginas web coletadas em
+\cite{Moore1997}, para um projeto de pesquisa de agrupamento, seleção e recuperação de páginas web.
+Os dados presentes nesta coleção foram obtidos pelos autores do artigo em 98 páginas web, onde
+posteriormente foram distribuídos em 20 diferentes categorias, que abrangem tópicos como negócios e 
+finanças, tecnologias, trabalho e
+indústria. O conteúdo obtido está disposto em 1560 documentos na sua versão original, sendo que
+todos os documentos foram utilizados nessa pesquisa.
+
+A coleção de documentos NSF\footnotemark({\it National Science Foundation\/}) foi obtida do 
+repositório de dados para pesquisas de aprendizado de máquina 
+{\it UCI Machine Learning Repository}\cite{Frank2010}. O conteúdo dos dados presentes na base é
+composto de 129000 resumos, sendo um resumo por documento, descrevendo prêmios da NSF para 
+pesquisas básicas. Para os experimentos descritos nesta monografia, foram selecionados 1600 
+documentos de maneira aleatória entre as categorias apresentadas na coleção.
+\footnotetext{\url{https://archive.ics.uci.edu/ml/datasets/NSF+Research+Award+Abstracts+1990-2003}}
+
+A base de dados Hitech adquirida em \cite{Karypis2006}, é parte de uma coleção de bases da 
+conferência TREC({\it Text REtrieval Conference\/})\footnotemark. 
+\footnotetext{\url{http://trec.nist.gov/data.html}}
+Esta base é composta de um conjunto de notícias da revista {\it Jose Mercury News\/}\footnotemark, 
+as quais são distribuídos em categorias distintas. As notícias presentes na coleção
+abordam temas como computadores, eletrônicos, saúde, medicina, pesquisa e tecnologia. 
+A base originalmente possui 2301
+documentos, onde para esta pesquisa foram selecionados uma amostragem aleatória contendo 600
+documentos. 
+\footnotetext{\url{http://www.mercurynews.com/}}
+
 \begin{table}[!htp]
   \centering
   \begin{tabular}{ |c|p{11cm}|}
@@ -81,27 +137,27 @@ pertence a determinada classe na coleção \\
     {\bf n-gramas} & quantidade de termos considerados sequencialmente na coleção \\
     \hline
   \end{tabular}
-  \caption{Importantes características presentes em coleções textuais}
+  \caption{Descrição das características objetivas presentes em coleções textuais elencadas para
+este trabalho}
   \label{table:datainfo}
 \end{table}
 
-Todos os experimentos conduzidos nesta pesquisa foram realizados com seis coleções de dados
-textuais, e as características particulares de cada base está apresentada na Tabela
-(\ref{table:datasets}).
+Outro aspecto não menos importante, são as características particulares das coleções de dados. Pois
+ressalta-se que para uma mais apurada análise dos resultados, é pertinente considerar as
+particularidades de cada base, com a finalidade de encontrar possíveis justificativas para os
+resultados apresentados, realizando-se indagações comparativas as peculiaridades sabidamente
+conhecidas dos métodos analisados. Portanto o conjunto de características particulares de cada base
+obtidos em \cite{Rossi2013} e adaptados a esta pesquisa, dar-se à como apresentado
+na Tabela (\ref{table:datainfo}). 
 
-A base Opinosis é composta de opiniões de consumidores a respeito das características de alguns
-produtos, obtidas dos portais amazon.com, tripadvisor e edmunds.com. As opiniões presentes na base,
-falam a respeito de serviços de hospedagem, dispositivos eletrônicos e carros. 
 
-A coleção de documentos 20Newsgroup original contém aproximadamente 20000 documentos de notícias,
-particionados em mais ou menos 20 temas. No entanto para os experimentos realizados nesta pesquisa, 
-foi utilizado uma versão mais
-compacta da coleção, contendo 2000 documentos pertencentes ao tema ciência, a qual contém os tópicos
-sci.med, sci.space, sci.electronics e sci.med. Esta base tem-se mostrado bastante popular em
-aplicações textuais de aprendizado de máquina\cite{Nogueira2015}, tais como agrupamento e 
-classificação de textos.
-Essa base foi coletada originalmente por Ken Lang para a pesquisa Newsweeder apresentada em
-\cite{Lang1995}. 
+Portanto, uma análise objetiva das características presentes nas seis bases descritas anteriormente 
+está apresentado na (\ref{table:datasets}). Onde é possível notar de maneira bem 
+objetiva ao se observar
+a coluna \% zeros da tabela, que todas as bases apresentam uma quantidade de zeros em mais de $90\%$
+dos dados, o que caracteriza o peculiar problema dos dados esparsos já caracterizado ao longo do
+texto, como algo inerente aos dados textuais.
+
 
 \begin{table}[!htp]
   \centering
@@ -122,7 +178,7 @@ Essa base foi coletada originalmente por Ken Lang para a pesquisa Newsweeder apr
     {\bf Reuters-21578} & 1052 & 3925 & 43 & 98,55\% & 0,1 & 8,55\% & 1-grama \\
     \hline
   \end{tabular}
-  \caption{Características das coleções de documentos textuais}
+  \caption{Características das bases de dados utilizadas nesta pesquisa}
   \label{table:datasets}
 \end{table}
 
