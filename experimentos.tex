@@ -78,9 +78,6 @@ pertence a determinada classe na coleção \\
     \hline
     {\bf $>$classe} & percentual de documentos pertencentes a maior classe na coleção \\
     \hline
-    {\bf S-index} & quantifica a sobreposição entre as classes utilizando uma adaptação do
-coeficiente de silhueta \\
-    \hline
     {\bf n-gramas} & quantidade de termos considerados sequencialmente na coleção \\
     \hline
   \end{tabular}
@@ -92,24 +89,37 @@ Todos os experimentos conduzidos nesta pesquisa foram realizados com seis coleç
 textuais, e as características particulares de cada base está apresentada na Tabela
 (\ref{table:datasets}).
 
+A base Opinosis é composta de opiniões de consumidores a respeito das características de alguns
+produtos, obtidas dos portais amazon.com, tripadvisor e edmunds.com. As opiniões presentes na base,
+falam a respeito de serviços de hospedagem, dispositivos eletrônicos e carros. 
+
+A coleção de documentos 20Newsgroup original contém aproximadamente 20000 documentos de notícias,
+particionados em mais ou menos 20 temas. No entanto para os experimentos realizados nesta pesquisa, 
+foi utilizado uma versão mais
+compacta da coleção, contendo 2000 documentos pertencentes ao tema ciência, a qual contém os tópicos
+sci.med, sci.space, sci.electronics e sci.med. Esta base tem-se mostrado bastante popular em
+aplicações textuais de aprendizado de máquina\cite{Nogueira2015}, tais como agrupamento e 
+classificação de textos.
+Essa base foi coletada originalmente por Ken Lang para a pesquisa Newsweeder apresentada em
+\cite{Lang1995}. 
+
 \begin{table}[!htp]
   \centering
-  \begin{tabular}{ |l|c c c c c c c c|}
+  \begin{tabular}{ |l|c c c c c c c|}
     \hline
-    {\bf nome} & docs & termos & classes & \% zeros & dp-classe & $>$classe & índice S &
-n-gramas \\
+    {\bf nome} & docs & termos & classes & \% zeros & dp-classe & $>$classe & n-gramas \\
     \hline
-    {\bf Opinosis} & 51 & 842 & 3 & 95,73\% & 0,1 & 96,07\% & 0,652211 & 1-grama \\
+    {\bf Opinosis} & 51 & 842 & 3 & 95,73\% & 0,1 & 96,07\% & 1-grama \\
     \hline
-    {\bf 20newsgroups} & 2000 & 11028 & 4 & 99,11\% & 0,1 & 25\% & 0,000585 & 1-grama \\
+    {\bf 20newsgroups} & 2000 & 11028 & 4 & 99,11\% & 0,1 & 25\% & 1-grama \\
     \hline
-    {\bf Hitech} & 600 & 6925 & 6 & 97,93\% & 0,1 & 16,67\% & 0,000459 & 1-grama \\
+    {\bf Hitech} & 600 & 6925 & 6 & 97,93\% & 0,1 & 16,67\% & 1-grama \\
     \hline
-    {\bf NSF} & 1600 & 2806 & 16 & 99,76\% & 0,1 & 3,12\% & 0,017779 & 1-grama \\
+    {\bf NSF} & 1600 & 2806 & 16 & 99,76\% & 0,1 & 3,12\% & 1-grama \\
     \hline
-    {\bf WAP} & 1560 & 8070 & 20 & 98,51\% & 0,1 & 100\% & 0,5 s & 1-grama \\
+    {\bf WAP} & 1560 & 8070 & 20 & 98,51\% & 0,1 & 100\% & 1-grama \\
     \hline
-    {\bf Reuters-21578} & 1052 & 3925 & 43 & 98,55\% & 0,1 & 8,55\% & 0,027781 & 1-grama \\
+    {\bf Reuters-21578} & 1052 & 3925 & 43 & 98,55\% & 0,1 & 8,55\% & 1-grama \\
     \hline
   \end{tabular}
   \caption{Características das coleções de documentos textuais}
