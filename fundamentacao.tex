@@ -247,7 +247,7 @@ Em todos os experimentos a medida de similaridade de cosseno (Equação \ref{eq:
 
 \subsection{Algoritmo Fuzzy C Means (FCM)} 
 
-\cite{Bezdek1984} descreve um método de agrupamento fuzzy
+\citeonline{Bezdek1984} descreve um método de agrupamento fuzzy
 que produz como saída partições fuzzy e protótipos dos grupos. Esse algoritmo desempenha um papel
 importante no contexto do agrupamento fuzzy, devido ao seu pioneirismo no campo de estudo, possuindo
 diversas extensões, sendo considerado um dos mais amplamente utilizados métodos de
@@ -268,22 +268,23 @@ documentos presentes na coleção.
 Seja $U_{c \times n}$ uma partição fuzzy conforme a Equação:
 
 \begin{equation} 
-  U_{c \times n} = \{\mu(d_i, g_k) |\mu(d_i, g_k) \in [0,1], 1 < i \leq n, 1 < k \leq c, eqs
-  (\ref{eq:fcmrestri1})(\ref{eq:fcmrestri2})\} 
+  U_{c \times n} = \{\mu(d_i, g_k) |\mu(d_i, g_k) \in [0,1], 1 < i \leq n, 1 < k \leq c\} 
   \label{eq:part_fuzzy} 
 \end{equation} 
 
-Esta partição apresenta todas as pertinências dos documentos aos grupos, cuja função de pertinência $\mu(d_i,g_k)$ de cada documento na coleção, é definida por 
+Esta partição apresenta todas as pertinências dos documentos aos grupos, cuja função de 
+pertinência $\mu(d_i,g_k)$ de cada documento na coleção, é definida por 
 
 \begin{equation} 
   \mu(d_i,g_k) = \frac{1}{\sum_{j=1}^n(\frac{dist(d_i,v_k)}{dist(d_i,v_j)})^{\frac{1}{m-1}}} 
   \label{eq:pertinencia}
 \end{equation}
+e está sujeita as restrições definidas nas equações (\ref{eq:fcmrestri1}) e (\ref{eq:fcmrestri2}).
 
 
 Considera-se $m$ o fator de fuzificação, que regula o quão fuzzy será as partições finais. De modo que para $m = 1$ a partição resultante é totalmente $crisp$ (Figura \ref{fig:cluster_crisp}) e para $m \rightarrow \infty$ a interseção entre os grupos tende a aumentar (Figura \ref{fig:cluster_fuzzy})\cite{Pal2005}. 
 
-Segundo \cite{Bezdek1984} nenhuma teoria ou evidência computacional aponta para um valor ótimo de $m$, contudo o autor aponta que a faixa de valores ideais aparenta ser $[1,30]$. Sendo assim, se existir um conjunto de dados para teste, uma boa estratégia para a escolha de $m$ é a realização de testes experimentais. Caso contrário, o intervalo de $[1.5, 3.0]$ aparenta trazer bons resultados para a maior parte dos dados.
+Segundo \citeonline{Bezdek1984} nenhuma teoria ou evidência computacional aponta para um valor ótimo de $m$, contudo o autor aponta que a faixa de valores ideais aparenta ser $[1,30]$. Sendo assim, se existir um conjunto de dados para teste, uma boa estratégia para a escolha de $m$ é a realização de testes experimentais. Caso contrário, o intervalo de $[1.5, 3.0]$ aparenta trazer bons resultados para a maior parte dos dados.
 
 \begin{figure}[!htp] \centering 
    \begin{minipage}{0.45\textwidth} 
@@ -333,7 +334,7 @@ documentos aos grupos. Esse problema está ilustrado na Figura (\ref{fig:fcm_pro
   \label{fig:fcm_problem} 
 \end{figure}
 
-Segundo \cite{Bezdek1984} várias funções de otimização das partições fuzzy produzidas no agrupamento
+Segundo \citeonline{Bezdek1984} várias funções de otimização das partições fuzzy produzidas no agrupamento
 foram propostas. Sendo a minimização da função objetivo $J(U_{c \times n},G,V,D)$, que visa
 minimizar a distância entre os documentos e os protótipos dos grupos\cite{Nogueira2013}, definida na
 equação (\ref{eq:fcm_obj}) a mais popular.  \begin{equation} min\{(J(U_{c \times n},G,V,D) =
