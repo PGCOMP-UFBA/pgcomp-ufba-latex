@@ -214,12 +214,16 @@ possibilística. Outro ponto a se considerar são as diversas pesquisas na liter
 desempenho do PFCM, 
 como por exemplo em \citeonline{Pal2005,Yan2009,Kumar2010,Grover2014,Popescu2015}.
 
-Com isso foi conduzido um experimento utilizando a estratégia de organização flexível de documentos
-definida por \citeonline{Nogueira2013}, e ilustrada na Figura (\ref{fig:flexibleorganization}).
+Com isso foi conduzido um experimento adaptando a estratégia de organização flexível de documentos
+definida em \citeonline{Nogueira2013},
+utilizando na etapa de agrupamento o método PFCM. Porém esse método produz duas partições uma
+possibilística e uma partição fuzzy. Desse modo foi aplicado o método de extração de descritores
+Soft-wFDCL na partição fuzzy e outra vez na partição possibilística, produzindo assim dois grupos de
+descritores. Essa adaptação está ilustrada na Figura (\ref{fig:flexibleorganization}).
 
 \begin{figure}[!htp] 
   \centering
-  \includegraphics[width=1.0\columnwidth]{assets/process.pdf} 
+  \includegraphics[width=1.0\columnwidth]{assets/process_pfcm.pdf} 
   \caption{Estratégia de organização flexível de documentos} 
   \label{fig:flexibleorganization} 
 \end{figure}
