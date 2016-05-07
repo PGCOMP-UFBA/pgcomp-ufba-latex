@@ -46,6 +46,26 @@
 \SetKwRepeat{Do}{do}{while} % Macro to allow do while in algorithm2e
 \SetAlgorithmName{Algoritmo}{Lista de Algoritmos}
 
+% ---
+% Citacao direta com mais de 3 linhas - ABNT NBR 10520/2002 - 5.3
+\newlength{\ABNTEXcitacaorecuo}% recuo de 4 cm da margem esquerda
+\setlength{\ABNTEXcitacaorecuo}{4cm}
+\newcommand{\ABNTEXfontereduzida}{\footnotesize}
+\newenvironment*{citacao}[1][default]
+{
+  \list{}%
+  \ABNTEXfontereduzida%
+  \addtolength{\leftskip}{\ABNTEXcitacaorecuo}%
+  \item[]%
+  %\begin{SingleSpace}%
+  %\ifthenelse{\not\equal{#1}{default}}{\itshape\selectlanguage{#1}}{}%
+}
+{ 
+  %\end{SingleSpace}%
+  \endlist%
+}
+
+
 % Universidade
 \university{UNIVERSIDADE FEDERAL DA BAHIA}
 
