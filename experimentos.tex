@@ -242,7 +242,7 @@ Para permitir uma análise comparativa dos resultados, o experimento foi realiza
 algoritmos FCM e PCM.
 Como resultado do agrupamento das bases, está disposto na tabela \ref{table:pfcmclusters}, a
 comparação do número de grupos obtidos no experimento. Nessa comparação nota-se que os algoritmos
-FCM e PFCM foram os obtiveram uma quantidade de partições mais próxima da quantidade classes
+FCM e PFCM foram os que alcançaram uma quantidade de partições mais próxima da quantidade de classes
 existentes em cada coleção. Enquanto o PCM manteve uma tendência a produzir uma quantidade menor de
 grupos em relação aos demais.
 
@@ -432,7 +432,9 @@ compreender melhor se os termos obtidos fazem sentido.
     central, forum, bottle, modern, adult, supply, food, reserve, dinner\\
     \hline
   \end{tabular}
-  \caption{Descritores extraídos com os métodos de agrupamento FCM, PCM e PFCM da coleção Opinosis}
+  \caption{Descritores extraídos com os métodos de agrupamento FCM, PCM e PFCM da coleção Opinosis,
+  onde $\mu$ e $\lambda$ se referem as partições fuzzy e possibilística respectivamente, da qual os
+descritores foi extraído.}
   \label{table:pfcmdescriptors}
 \end{table}
 
@@ -468,8 +470,16 @@ Na próxima sessão, motivado pelos resultados desse experimento será explorado
 método Soft-wFDCL para evitar o processo de extração dupla de descritores em algoritmos que possuam
 partições fuzzy e possibilística.
 
-
 \section{Método Mixed-PDCL}
-\section{Método MixedW-PDCL}
+
+Uma das conclusões do experimento anterior, foi acerca do problema ao se realizar a extração dos
+descritores individualmente em cada partição do PFCM, que por sua vez é utiliza uma abordagem mista.
+Logo, é intuitivo indagar, que para uma melhor interpretação dos grupos produzidos em um método de
+agrupamento híbrido, seja pertinente utilizar também uma abordagem mista de extração descritores.
+Aproveitando-se assim dos benefícios existentes na partição possibilística, a qual penaliza os
+elementos ruidosos, com baixos valores de tipicidade, sem abrir mão das vantagens presentes na
+partição fuzzy. Para isso é necessário se compreender os mecanismos de funcionamento do método
+Soft-wFDCL, para que seja possível propor uma adaptação para este cenário.
+
 \section{Método HPCM}
 \section{Considerações finais}
