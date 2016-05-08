@@ -296,7 +296,7 @@ Após atribuir as classes aos documentos, é produzida uma outra matriz,
 considerando apenas os termos descritores dos grupos. Logo essa matriz documentos x descritores
 $D'_{n \times m}$, 
 é uma versão condensada da matriz documentos x termos $D_{n \times k}$, onde seja $n$ a 
-quantidade de documentos, $k$ a quantidade de termos e $m$ a quantidade descritores. O conteúdo da
+quantidade de documentos, $k$ a quantidade de termos e $m$ a quantidade descritores. O conteúdo
 dessa matriz condensada, assim como na matriz original, também é a frequência dos descritores nos 
 documentos. 
 
@@ -371,6 +371,88 @@ classificação está apresentado nas figuras \ref{fig:pfcmopinosis},  \ref{fig:
      \label{fig:pfcmreuters} 
    \end{minipage} 
 \end{figure}
+
+O resumo dos resultados do desempenho dos descritores extraídos após o agrupamento com os
+algoritmos FCM, PCM e PFCM é apresentado na Tabela \ref{table:pfcmsummary}. Na tabela, a marcação
+($\checkmark$) denota qual método de agrupamento obteve a maior taxa de classificação dentre os
+demais.
+
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |l|c c c c c c c c|}
+    \hline
+    {\bf nome} & docs & termos & classes & \% zeros & $>$ taxa & FCM & PCM & PFCM \\
+    \hline
+    {\bf Opinosis} & 51 & 842 & 3 & 95,73\% & 100,00\% & & $\checkmark$ &  \\
+    \hline
+    {\bf 20newsgroups} & 2000 & 11028 & 4 & 99,11\% & 81,20\% & & & $\checkmark$\\
+    \hline
+    {\bf Hitech} & 600 & 6925 & 6 & 97,93\% & 58,67\% & $\checkmark$ & & \\
+    \hline
+    {\bf NSF} & 1600 & 2806 & 16 & 99,76\% & 99,87\% & $\checkmark$ & & \\
+    \hline
+    {\bf WAP} & 1560 & 8070 & 20 & 98,51\% & 100\% & & & $\checkmark$ \\
+    \hline
+    {\bf Reuters-21578} & 1052 & 3925 & 43 & 98,55\% & 90,00\% & $\checkmark$ & & \\
+    \hline
+  \end{tabular}
+  \caption{Sumário dos resultados da classificação dos descritores}
+  \label{table:pfcmsummary}
+\end{table}
+
+Esses resultados obtidos reforçam a flexibilidade e adaptação do método Soft-wFDCL
+\cite{Nogueira2013}, a novos algoritmos de agrupamento. Portanto o método se demonstra promissor na
+tarefa extrair termos relevantes dos grupos produzidos na etapa de agrupamento, e isso é demonstrado
+através do potencial preditivo evidenciado na Tabela \ref{table:pfcmsummary}, com as taxas máximas
+de classificação de mais de 80\% para quase todas as bases, com exceção da base Hitech, a qual
+obteve a taxa máxima de 58.67\%.  Por outro lado, ressalta-se a importância também de avaliar de
+maneira subjetiva os descritores selecionados dos grupos, pois isso nos permite compreender melhor
+se os termos obtidos fazem sentido. 
+
+Para realizarmos uma análise subjetiva dos resultados, foi escolhido os descritores obtidos da base
+de dados Opinosis, por possuir poucos grupos e assim facilitar a análise e a visualização. A coleção
+Opinosis contém opiniões dos usuários a respeito de serviços de hospedagem, dispositivos eletrônicos
+e carros.  Portanto na Tabela \ref{table:pfcmdescriptors} temos a seleção de termos descritores
+escolhidos para cada grupo, pelos respectivos métodos de agrupamento. Ao analisarmos os termos
+selecionados é possível notar uma tendência geral, da $classe_1$ conter palavras relacionadas a
+carros, a $classe_2$ abordando opiniões dos usuários sobre dispositivos eletrônicos e a $classe_3$
+com opiniões a respeito dos serviços de hospedagem e alimentação. Contudo nota-se que os descritores
+do PCM e do PFCM$\lambda$ (descritores da partição possibilística do PFCM) estão um pouco mais
+misturados, não apresentando uma tendência geral bem definida. Uma explicação possível a esse
+resultado, pode se encontrar na própria partição possibilística a qual permite que um mesmo
+documento possua um grau de tipicidade elevado em todos os grupos. Portanto uma solução possível,
+pode ser uma adaptação do método de extração de descritores Soft-wFDCL voltado para a partição
+possibilística, assim como também para algoritmos híbridos com duas partições, que é o caso do PFCM.
+
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |l|p{4cm} | p{4cm} | p{4cm}|}
+    \hline
+    {\bf método} & $classe_1$ & $classe_2$ & $classe_3$ \\
+    \hline
+    {\bf FCM} & easy, clear, drive, display, control, car, version, nice, work, perfect & fact,
+    import, isn't, model, problem, unit, design, don't, doesn't, found & breakfast, nearby,
+    concierge, eat, bottle, coffee, floor, food, inn, friendly \\
+    \hline
+    {\bf PCM} & easy, read, problem, version, don't, small, nice, car, work, found & fact, back,
+    turn, expect, size, close, quality, review, min, feature & feel, amazing, isn't, extreme, drive,
+    include, point, reason, give, run\\
+    \hline
+    {\bf PFCM $\mu$} & easy, drive, control, don't, version, nice, car, work, perfect, lot & fact,
+    isn't, read, complete, device, display, size, doesn't, found & breakfast, nearby, pleasant,
+    concierge, eat, coffee, floor, clean, friendly, food\\
+    \hline
+    {\bf PFCM $\lambda$} & club, immaculate, send, towel, basic, exception, spotl, pillow, typical,
+    fridge & pub, housekeep, holiday, tourist, tea, smoke, pm, renovate, facilite, london & usual,
+    central, forum, bottle, modern, adult, supply, food, reserve, dinner\\
+    \hline
+  \end{tabular}
+  \caption{Descritores extraídos com os métodos de agrupamento FCM, PCM e PFCM da coleção Opinosis}
+  \label{table:pfcmdescriptors}
+\end{table}
+
+
+
 
 \section{Método Mixed-PDCL}
 \section{Método MixedW-PDCL}
