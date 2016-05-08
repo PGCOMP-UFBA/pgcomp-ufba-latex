@@ -224,10 +224,153 @@ descritores. Essa adaptação está ilustrada na Figura (\ref{fig:flexibleorgani
 \begin{figure}[!htp] 
   \centering
   \includegraphics[width=1.0\columnwidth]{assets/process_pfcm.pdf} 
-  \caption{Estratégia de organização flexível de documentos} 
+  \caption{Estratégia de organização flexível de documentos adotada ao se misturar abordagens fuzzy
+  e possibilísticas no agrupamento} 
   \label{fig:flexibleorganization} 
 \end{figure}
 
+Para se calcular a quantidade ótima de grupos, para cada base de dados foi utilizado o
+método da silhueta fuzzy (equação \ref{eq:fs}), método bastante utilizado com o propósito de avaliar
+o agrupamento de documentos. Assim sendo, o número ideal de grupos é determinado após a execução da
+silhueta fuzzy variando o número de grupos entre 2 e o número de classes de cada coleção.
+Ressalta-se que em coleções que os dados não possuem rótulos, ou seja o número de classes é
+desconhecido, ainda é possível usar o método da silhueta fuzzy para definir o número ótimo de
+grupos. No entanto, a quantidade máxima de grupos deve ser definida de modo empírico ou com base em
+alguma informação prévia a respeito dos dados. 
+
+Para permitir uma análise comparativa dos resultados, o experimento foi realizado também com os
+algoritmos FCM e PCM.
+Como resultado do agrupamento das bases, está disposto na tabela \ref{table:pfcmclusters}, a
+comparação do número de grupos obtidos no experimento. Nessa comparação nota-se que os algoritmos
+FCM e PFCM foram os obtiveram uma quantidade de partições mais próxima da quantidade classes
+existentes em cada coleção. Enquanto o PCM manteve uma tendência a produzir uma quantidade menor de
+grupos em relação aos demais.
+
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |l|c|c|c|c|}
+    \hline
+    {\bf Coleção} & {\bf \# classes} & {\bf FCM} & {\bf PCM} & {\bf PFCM} \\
+    \hline
+    Opinosis & 3 & 3 & 3 & 3 \\
+    \hline
+    20Newsgroup & 4 & 2 & 2 & 2 \\
+    \hline
+    Hitech & 6 & 6 & 5 & 5 \\
+    \hline
+    NSF & 16 & 11 & 2 & 16 \\
+    \hline
+    WAP & 20 & 14 & 5 & 16 \\
+    \hline
+    Reuters-21578 & 43 & 22 & 11 & 36 \\
+    \hline
+  \end{tabular}
+  \caption{Quantidade ótima de grupos determinada através do método da silhueta fuzzy para cada
+  algoritmo de agrupamento}
+  \label{table:pfcmclusters}
+\end{table}
+
+Após agrupar os dados utilizando os métodos FCM, PCM e PFCM, foi aplicado o método de extração 
+de descritores Soft-wFDCL. Para nos permitir avaliar os descritores produzidos, foi verificado o
+potencial preditivo dos mesmos, possibilitando assim quantificar a qualidade dos
+termos selecionados para nomear os grupos. 
+
+A avaliação do potencial preditivo dos descritores foi realizada, considerando cada grupo produzido
+pelo pelo agrupamento como uma classe, ou seja, se durante o agrupamento foi gerado o conjunto de
+grupos $G = \{g_1,g_2,...,g_c\}$, temos então o conjunto de classes $C =
+\{classe_1,classe_2,...,classe_c\}$, onde cada $classe_i$ corresponde ao grupo $g_i$. No entanto, como as partições fuzzy e possibilística permitem 
+que
+um documento pertença a um ou mais grupos, foi considerado que a classe de um documento $d_i$,
+como sendo a $classe_j$ do respectivo $grupo_j$, no qual $d_i$ possua a maior
+pertinência/tipicidade. Esta definição está formalizada na equação \ref{eq:class}.
+\begin{equation}
+  classe(d_i) = \begin{cases}
+    classe_j, & \mu(d_i,g_j) = \displaystyle\max_{\forall g \in G} \mu(d_i,g), \text{se a partição
+  for fuzzy}\\
+  classe_j, & \lambda(d_i,g_j) = \displaystyle\max_{\forall g \in G} \lambda(d_i,g), \text{se a
+  partição for possibilística}
+  \end{cases}
+  \label{eq:class}
+\end{equation}
+Após atribuir as classes aos documentos, é produzida uma outra matriz,
+considerando apenas os termos descritores dos grupos. Logo essa matriz documentos x descritores
+$D'_{n \times m}$, 
+é uma versão condensada da matriz documentos x termos $D_{n \times k}$, onde seja $n$ a 
+quantidade de documentos, $k$ a quantidade de termos e $m$ a quantidade descritores. O conteúdo da
+dessa matriz condensada, assim como na matriz original, também é a frequência dos descritores nos 
+documentos. 
+
+Visando então avaliar a qualidade dos descritores e permitir uma comparação direta dos impactos
+dessa abordagem com os resultados publicados em \citeonline{Nogueira2013} e
+\citeonline{Nogueira2015}. Submeteu-se a matriz $D'$ 
+aos algoritmos de classificação 
+SVM, Naive Bayes, Multinomial Naive Bayes, KNN e C4.5, que são bem comuns na avaliação de 
+métodos de aprendizado de máquina, e foram os mesmos utilizados em \citeonline{Nogueira2015}.
+
+Nesse contexto, foi utilizado a implementação dos algoritmos de classificação citados anteriormente
+, presentes na ferramenta WEKA\cite{weka}. Os algoritmos Naive Bayes (NB), Multinomial Naive Bayes
+(NB-Multinomial) e o J48 (que é a implementação do C4.5 existente no WEKA), foram executados com os
+parâmetros padrão da ferramenta. Por outro lado o SVM foi ajustado para usar o {\it Normalized
+Polynomial Kernel\/} com o parâmetro de complexidade sendo $c = 2.0$. O algoritmo IBk (implementação
+do KNN presente no WEKA) foi executado 7 vezes, variando o parâmetro de vizinhos de 1 até 7, sendo
+escolhido o melhor resultado. Ressalta-se que foi adotada a técnica {\it 10-fold cross validation\/}
+no experimento para melhor capturar a capacidade de generalização do modelo. O resultado dessa
+classificação está apresentado nas figuras \ref{fig:pfcmopinosis},  \ref{fig:pfcm20news},
+\ref{fig:pfcmhitech}, \ref{fig:pfcmnsf}, \ref{fig:pfcmwap} e \ref{fig:pfcmreuters}. 
+
+\begin{figure}[!htp] \centering 
+   \begin{minipage}{0.45\textwidth} 
+     \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pfcm/opinosis} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção Opinosis} 
+  \label{fig:pfcmopinosis}
+  \end{minipage}\hfill 
+  \begin{minipage}{0.45\textwidth} \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pfcm/newsgroup} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção 20Newsgroup} 
+     \label{fig:pfcm20news} 
+   \end{minipage} 
+\end{figure}
+
+\begin{figure}[!htp] \centering 
+   \begin{minipage}{0.45\textwidth} 
+     \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pfcm/hitech} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção Hitech} 
+  \label{fig:pfcmhitech}
+  \end{minipage}\hfill 
+  \begin{minipage}{0.45\textwidth} \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pfcm/nsf} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção NSF} 
+     \label{fig:pfcmnsf} 
+   \end{minipage} 
+\end{figure}
+
+\begin{figure}[!htp] \centering 
+   \begin{minipage}{0.45\textwidth} 
+     \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pfcm/wap} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção WAP} 
+    \label{fig:pfcmwap}
+  \end{minipage}\hfill 
+  \begin{minipage}{0.45\textwidth} \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pfcm/reuters} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção Reuters-21578} 
+     \label{fig:pfcmreuters} 
+   \end{minipage} 
+\end{figure}
 
 \section{Método Mixed-PDCL}
 \section{Método MixedW-PDCL}
