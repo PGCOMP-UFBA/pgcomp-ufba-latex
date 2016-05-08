@@ -401,28 +401,13 @@ demais.
 \end{table}
 
 Esses resultados obtidos reforçam a flexibilidade e adaptação do método Soft-wFDCL
-\cite{Nogueira2013}, a novos algoritmos de agrupamento. Portanto o método se demonstra promissor na
-tarefa extrair termos relevantes dos grupos produzidos na etapa de agrupamento, e isso é demonstrado
-através do potencial preditivo evidenciado na Tabela \ref{table:pfcmsummary}, com as taxas máximas
-de classificação de mais de 80\% para quase todas as bases, com exceção da base Hitech, a qual
-obteve a taxa máxima de 58.67\%.  Por outro lado, ressalta-se a importância também de avaliar de
-maneira subjetiva os descritores selecionados dos grupos, pois isso nos permite compreender melhor
-se os termos obtidos fazem sentido. 
-
-Para realizarmos uma análise subjetiva dos resultados, foi escolhido os descritores obtidos da base
-de dados Opinosis, por possuir poucos grupos e assim facilitar a análise e a visualização. A coleção
-Opinosis contém opiniões dos usuários a respeito de serviços de hospedagem, dispositivos eletrônicos
-e carros.  Portanto na Tabela \ref{table:pfcmdescriptors} temos a seleção de termos descritores
-escolhidos para cada grupo, pelos respectivos métodos de agrupamento. Ao analisarmos os termos
-selecionados é possível notar uma tendência geral, da $classe_1$ conter palavras relacionadas a
-carros, a $classe_2$ abordando opiniões dos usuários sobre dispositivos eletrônicos e a $classe_3$
-com opiniões a respeito dos serviços de hospedagem e alimentação. Contudo nota-se que os descritores
-do PCM e do PFCM$\lambda$ (descritores da partição possibilística do PFCM) estão um pouco mais
-misturados, não apresentando uma tendência geral bem definida. Uma explicação possível a esse
-resultado, pode se encontrar na própria partição possibilística a qual permite que um mesmo
-documento possua um grau de tipicidade elevado em todos os grupos. Portanto uma solução possível,
-pode ser uma adaptação do método de extração de descritores Soft-wFDCL voltado para a partição
-possibilística, assim como também para algoritmos híbridos com duas partições, que é o caso do PFCM.
+\cite{Nogueira2013}, a novos algoritmos de agrupamento. De modo que o método se demonstra promissor
+na tarefa extrair termos relevantes dos grupos produzidos na etapa de agrupamento, e isso é
+demonstrado através do potencial preditivo evidenciado na Tabela \ref{table:pfcmsummary}, com as
+taxas máximas de classificação de mais de 80\% para quase todas as bases, com exceção da base
+Hitech, a qual obteve a taxa máxima de 58.67\%.  Por outro lado, ressalta-se a importância também de
+avaliar de maneira subjetiva os descritores selecionados dos grupos, pois isso nos permite
+compreender melhor se os termos obtidos fazem sentido. 
 
 \begin{table}[!htp]
   \centering
@@ -451,7 +436,37 @@ possibilística, assim como também para algoritmos híbridos com duas partiçõ
   \label{table:pfcmdescriptors}
 \end{table}
 
+Para realizarmos uma análise subjetiva dos resultados, foi escolhido os descritores obtidos da base
+de dados Opinosis, por possuir poucos grupos e assim facilitar a análise e a visualização. A coleção
+Opinosis contém opiniões dos usuários a respeito de serviços de hospedagem, dispositivos eletrônicos
+e carros.  Portanto na Tabela \ref{table:pfcmdescriptors} temos a seleção de termos descritores
+escolhidos para cada grupo, pelos respectivos métodos de agrupamento. Ao analisarmos os termos
+selecionados é possível notar uma tendência geral, da $classe_1$ conter palavras relacionadas a
+carros, a $classe_2$ abordando opiniões dos usuários sobre dispositivos eletrônicos e a $classe_3$
+com opiniões a respeito dos serviços de hospedagem e alimentação. Contudo nota-se que os descritores
+do PCM e do PFCM$\lambda$ (descritores da partição possibilística do PFCM) estão um pouco mais
+misturados, não apresentando uma tendência geral bem definida. Uma explicação possível a esse
+resultado, pode se encontrar na própria partição possibilística a qual permite que um mesmo
+documento possua um grau de tipicidade elevado em todos os grupos. Portanto uma solução possível,
+pode ser uma adaptação do método de extração de descritores Soft-wFDCL voltado para a partição
+possibilística, assim como também para algoritmos híbridos com duas partições, que é o caso do PFCM.
 
+De maneira complementar, é importante salientar que o método de extração de descritores Soft-wFDCL é
+totalmente influenciado pelos valores contidos nas partições fuzzy e possibilística. Portanto, é
+também importante se realizar uma análise dos métodos de agrupamento utilizados no experimento, com
+a finalidade de se entender qual método é mais apropriado em determinados contextos. Nesse contexto
+os resultados apontam que a dimensionalidade das bases foi um fator determinante no desempenho dos
+métodos de agrupamento no contexto da organização flexível de documentos, e consequentemente a
+extração de descritores. Por exemplo, do sumário de resultados apresentados na Tabela
+\ref{table:pfcmsummary}, podemos observar que a o método PCM obteve o melhor resultado na coleção
+Opinosis, que possui a menor dimensionalidade (842 termos), enquanto que o algoritmo FCM superou os
+demais métodos nas bases NSF (2806 termos), Reuters-21578 (3925 termos), Hitech (6925 termos), e por
+fim o algoritmo PFCM atingiu melhores resultados para as bases WAP (8070 termos) e 20Newsgroup
+(11028 termos), que são as bases de maior dimensionalidade na coleção.
+
+Na próxima sessão, motivado pelos resultados desse experimento será explorado uma adaptação do
+método Soft-wFDCL para evitar o processo de extração dupla de descritores em algoritmos que possuam
+partições fuzzy e possibilística.
 
 
 \section{Método Mixed-PDCL}
