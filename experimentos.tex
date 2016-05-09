@@ -472,28 +472,84 @@ partições fuzzy e possibilística.
 
 \section{Método Mixed-PDCL}
 
-Uma das conclusões do experimento anterior, foi acerca do problema ao se realizar a extração dos
-descritores individualmente em cada partição do PFCM, que por sua vez é utiliza uma abordagem mista.
+No experimento anterior identificamos um possível problema ao realizar a extração dos
+descritores de maneira separada em cada partição do PFCM, assim como também foi apontado que o
+método pode não capturar toda essência da partição possibilística, que difere da partição fuzzy do
+FCM por não possuir a restrição que obriga a soma das pertinências de um grupo ser igual a um
+(equação \ref{eq:fcmrestri1}).
 Logo, é intuitivo indagar, que para uma melhor interpretação dos grupos produzidos em um método de
 agrupamento híbrido, seja pertinente utilizar também uma abordagem mista de extração descritores.
 Aproveitando-se assim dos benefícios existentes na partição possibilística, a qual penaliza os
 elementos ruidosos, com baixos valores de tipicidade, sem abrir mão das vantagens presentes na
 partição fuzzy. Para isso é necessário se compreender os mecanismos de funcionamento do método
-SoftO-wFDCL, para que seja possível propor uma adaptação para este cenário.
+SoftO-wFDCL, para que seja possível propor uma adaptação para este contexto.
 
-O método SoftO-wFDCL ({\it Soft Organization - weighted Fuzzy Description Comes Last}) proposto por
-\citeonline{Nogueira2013}, busca
-quantificar a relevância dos termos candidatos a descritores dos grupos obtidos na etapa de
-agrupamento, utilizando a informação de pertinência advinda do algoritmo de agrupamento. 
-A pertinência desempenha um papel fundamental na seleção dos termos candidatos a descritores de um
-determinado grupo, pois utilizando a pertinência é possível penalizar os termos de documentos que
-possuam baixo grau de pertinência no grupo o qual o descritor está sendo extraído. Além disso o
-método utiliza também as medidas de precisão $(precision$), revocação ($recall$) e a medida $f1$
-(F1-$measure$), para realizar a avaliação quantitativa da importância do termo. A medida de precisão
-checa a quantidade de documentos significantes entre os documentos recuperados. Enquanto a medida de
-revocação calcula a proporção de documentos relevantes recuperados entre todos os documentos
-relevantes da coleção. Por fim a médida $f1$ representa a média harmônica da precisão e
-revocação.
+O método SoftO-wFDCL ({\it Soft Organization - weighted Fuzzy Description Comes Last}) proposto em 
+\citeonline{Nogueira2013}, é baseado em uma adaptação das medidas clássicas de Recuperação de
+Informação (RI), para quantificar a relevância dos termos candidatos a descritores dos grupos
+obtidos na etapa de agrupamento, utilizando a informação de pertinência ou tipicidade advinda do
+algoritmo de agrupamento.  Esse grau de compatibilidade entre o documento e o grupo, desempenha um
+papel fundamental na seleção dos termos candidatos a descritores de um determinado grupo, pois
+através deste, é possível penalizar os termos de documentos que possuam baixo grau de
+compatibilidade com grupo o qual o descritor está sendo extraído.  
+
+Para realizar a extração dos descritores, inicialmente todos os termos que permanecem na coleção
+após a etapa de pré-processamento são considerados como candidatos a descritores. Posteriormente o
+método realiza uma avaliação quantitativa da relevância de cada termo $t_k$ para um grupo $g_j$,
+utilizando a medida $f1$ apresentada na equação \ref{eq:fmeasure}, que é a média harmônica da
+precisão (equação \ref{eq:precision}) e da revocação (equação \ref{eq:recall}).
+A medida de precisão checa a quantidade de documentos significantes entre os documentos
+recuperados. Enquanto a medida de revocação calcula a proporção de documentos relevantes recuperados
+entre todos os documentos relevantes da coleção. Tanto a medida de precisão e de revocação, tomam
+como base as informações obtidas a partir da matriz de contingência apresentada na Tabela
+\ref{table:softmatrix}. Adicionalmente tem-se que um documento $d_i$ é considerado como parte do
+grupo $g_j$, caso $\mu(d_j,g_j) \geq \delta$ para valores de pertinências ou $\lambda(d_i,g_j) \geq
+\delta$ para partição possibilística, onde seja $\delta = \frac{1}{c}$ e $c$ a quantidade de
+grupos. O limiar $\delta$ é uma parte relevante do método SoftO-wFDCL, pois ele possibilita se
+considerar como candidatos a descritores, os termos presentes em documentos que pertençam a mais de
+um grupo, ao mesmo tempo que também penaliza os termos presentes em documentos com baixa
+compatibilidade em um grupo.
+
+Portanto, para efetuar a seleção dos termos descritores, é construído um $ranking$ dos termos
+candidatos de cada grupo, ordenados pela pontuação obtida com a medida $f1$ (equação
+\ref{eq:fmeasure}). A partir dessa pontuação dos termos candidatos, é escolhido os termos com maior
+pontuação em cada grupo. \citeonline{Nogueira2013} destaca, que a quantidade de descritores a ser
+selecionada fica a critério do usuário.
+
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |p{5cm}|p{5cm}|p{5cm}|}
+    \cline{2-3}
+    \multicolumn{1}{p{5cm}|}{} & Documentos do grupo $g_j$ com grau de compatibilidade 
+    maior ou igual a $\delta$ &
+    Documentos do grupo $g_j$ com grau de compatibilidade menor do que $\delta$ \\
+    \hline
+    Documentos que possuem o descritor candidato $t_k$ & \parbox[c]{5cm}{\centering $ganhos$} &
+    \parbox[c]{5cm}{\centering \it ruídos\/} \\
+    \hline
+    Documentos que não possuem o descritor candidato $t_k$ & \parbox[c]{5cm}{\centering $perdas$} &
+    \parbox[c]{5cm}{\centering $rejeitos$} \\
+    \hline
+  \end{tabular}
+  \caption{Matriz de contingência do termo $t_k$ para o grupo $g_j$ para as medidas de recuperação
+  de informação}
+  \label{table:softmatrix}
+\end{table}
+
+\begin{equation}
+  precis\tilde{a}o(t_k,g_j) = \frac{ganhos}{ganhos + \text{\it ruídos}}
+  \label{eq:precision}
+\end{equation}
+\begin{equation}
+  \text{\it recuperação\/}(t_k,g_j) = \frac{ganhos}{ganhos + perdas}
+  \label{eq:recall}
+\end{equation}
+\begin{equation}
+  f1(t_k,g_j) = \frac{2 * \text{\it precisão}(t_k,g_j) * \text{\it recuperação}(t_k,g_j)}
+  {\text{\it precisão}(t_k,g_j) + \text{\it recuperação}(t_k,g_j)}
+  \label{eq:fmeasure}
+\end{equation}
+
 
 \section{Método HPCM}
 \section{Considerações finais}
