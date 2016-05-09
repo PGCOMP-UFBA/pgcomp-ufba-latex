@@ -22,7 +22,7 @@ coincidentes, apresentados nas partições fuzzy e possibilística respectivamen
 
 Conforme observa-se no capítulo 2, o algoritmo PFCM produz duas
 partições, sendo um fuzzy e outra possibilística, o que induziu o presente trabalho a propor duas extensões do
-método de extração de descritores Soft-wFDCL proposto por \cite{Nogueira2013}, que leva em
+método de extração de descritores SoftO-wFDCL proposto por \cite{Nogueira2013}, que leva em
 consideração apenas os valores de pertinências presentes na partição fuzzy. A primeira extensão
 denominada Mixed-PDCL({\it Mixed - Possibilistic Fuzzy Descriptor Comes Last\/}), 
 a qual contempla durante a extração de descritores as duas partições do PFCM.
@@ -218,7 +218,7 @@ Com isso foi conduzido um experimento adaptando a estratégia de organização f
 definida em \citeonline{Nogueira2013},
 utilizando na etapa de agrupamento o método PFCM. Porém esse método produz duas partições uma
 possibilística e uma partição fuzzy. Desse modo foi aplicado o método de extração de descritores
-Soft-wFDCL na partição fuzzy e outra vez na partição possibilística, produzindo assim dois grupos de
+SoftO-wFDCL na partição fuzzy e outra vez na partição possibilística, produzindo assim dois grupos de
 descritores. Essa adaptação está ilustrada na Figura (\ref{fig:flexibleorganization}).
 
 \begin{figure}[!htp] 
@@ -271,7 +271,7 @@ grupos em relação aos demais.
 \end{table}
 
 Após agrupar os dados utilizando os métodos FCM, PCM e PFCM, foi aplicado o método de extração 
-de descritores Soft-wFDCL. Para nos permitir avaliar os descritores produzidos, foi verificado o
+de descritores SoftO-wFDCL. Para nos permitir avaliar os descritores produzidos, foi verificado o
 potencial preditivo dos mesmos, possibilitando assim quantificar a qualidade dos
 termos selecionados para nomear os grupos. 
 
@@ -322,14 +322,14 @@ classificação está apresentado nas figuras \ref{fig:pfcmopinosis},  \ref{fig:
    \begin{minipage}{0.45\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/opinosis} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção Opinosis} 
   \label{fig:pfcmopinosis}
   \end{minipage}\hfill 
   \begin{minipage}{0.45\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/newsgroup} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção 20Newsgroup} 
      \label{fig:pfcm20news} 
@@ -340,14 +340,14 @@ classificação está apresentado nas figuras \ref{fig:pfcmopinosis},  \ref{fig:
    \begin{minipage}{0.45\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/hitech} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção Hitech} 
   \label{fig:pfcmhitech}
   \end{minipage}\hfill 
   \begin{minipage}{0.45\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/nsf} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção NSF} 
      \label{fig:pfcmnsf} 
@@ -358,14 +358,14 @@ classificação está apresentado nas figuras \ref{fig:pfcmopinosis},  \ref{fig:
    \begin{minipage}{0.45\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/wap} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção WAP} 
     \label{fig:pfcmwap}
   \end{minipage}\hfill 
   \begin{minipage}{0.45\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/reuters} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção Reuters-21578} 
      \label{fig:pfcmreuters} 
@@ -400,7 +400,7 @@ demais.
   \label{table:pfcmsummary}
 \end{table}
 
-Esses resultados obtidos reforçam a flexibilidade e adaptação do método Soft-wFDCL
+Esses resultados obtidos reforçam a flexibilidade e adaptação do método SoftO-wFDCL
 \cite{Nogueira2013}, a novos algoritmos de agrupamento. De modo que o método se demonstra promissor
 na tarefa extrair termos relevantes dos grupos produzidos na etapa de agrupamento, e isso é
 demonstrado através do potencial preditivo evidenciado na Tabela \ref{table:pfcmsummary}, com as
@@ -450,10 +450,10 @@ do PCM e do PFCM$\lambda$ (descritores da partição possibilística do PFCM) es
 misturados, não apresentando uma tendência geral bem definida. Uma explicação possível a esse
 resultado, pode se encontrar na própria partição possibilística a qual permite que um mesmo
 documento possua um grau de tipicidade elevado em todos os grupos. Portanto uma solução possível,
-pode ser uma adaptação do método de extração de descritores Soft-wFDCL voltado para a partição
+pode ser uma adaptação do método de extração de descritores SoftO-wFDCL voltado para a partição
 possibilística, assim como também para algoritmos híbridos com duas partições, que é o caso do PFCM.
 
-De maneira complementar, é importante salientar que o método de extração de descritores Soft-wFDCL é
+De maneira complementar, é importante salientar que o método de extração de descritores SoftO-wFDCL é
 totalmente influenciado pelos valores contidos nas partições fuzzy e possibilística. Portanto, é
 também importante se realizar uma análise dos métodos de agrupamento utilizados no experimento, com
 a finalidade de se entender qual método é mais apropriado em determinados contextos. Nesse contexto
@@ -467,7 +467,7 @@ fim o algoritmo PFCM atingiu melhores resultados para as bases WAP (8070 termos)
 (11028 termos), que são as bases de maior dimensionalidade na coleção.
 
 Na próxima sessão, motivado pelos resultados desse experimento será explorado uma adaptação do
-método Soft-wFDCL para evitar o processo de extração dupla de descritores em algoritmos que possuam
+método SoftO-wFDCL para evitar o processo de extração dupla de descritores em algoritmos que possuam
 partições fuzzy e possibilística.
 
 \section{Método Mixed-PDCL}
@@ -479,7 +479,21 @@ agrupamento híbrido, seja pertinente utilizar também uma abordagem mista de ex
 Aproveitando-se assim dos benefícios existentes na partição possibilística, a qual penaliza os
 elementos ruidosos, com baixos valores de tipicidade, sem abrir mão das vantagens presentes na
 partição fuzzy. Para isso é necessário se compreender os mecanismos de funcionamento do método
-Soft-wFDCL, para que seja possível propor uma adaptação para este cenário.
+SoftO-wFDCL, para que seja possível propor uma adaptação para este cenário.
+
+O método SoftO-wFDCL ({\it Soft Organization - weighted Fuzzy Description Comes Last}) proposto por
+\citeonline{Nogueira2013}, busca
+quantificar a relevância dos termos candidatos a descritores dos grupos obtidos na etapa de
+agrupamento, utilizando a informação de pertinência advinda do algoritmo de agrupamento. 
+A pertinência desempenha um papel fundamental na seleção dos termos candidatos a descritores de um
+determinado grupo, pois utilizando a pertinência é possível penalizar os termos de documentos que
+possuam baixo grau de pertinência no grupo o qual o descritor está sendo extraído. Além disso o
+método utiliza também as medidas de precisão $(precision$), revocação ($recall$) e a medida $f1$
+(F1-$measure$), para realizar a avaliação quantitativa da importância do termo. A medida de precisão
+checa a quantidade de documentos significantes entre os documentos recuperados. Enquanto a medida de
+revocação calcula a proporção de documentos relevantes recuperados entre todos os documentos
+relevantes da coleção. Por fim a médida $f1$ representa a média harmônica da precisão e
+revocação.
 
 \section{Método HPCM}
 \section{Considerações finais}
