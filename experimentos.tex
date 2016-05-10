@@ -22,7 +22,7 @@ coincidentes, apresentados nas partições fuzzy e possibilística respectivamen
 
 Conforme observa-se no capítulo 2, o algoritmo PFCM produz duas
 partições, sendo um fuzzy e outra possibilística, o que induziu o presente trabalho a propor duas extensões do
-método de extração de descritores SoftO-wFDCL proposto por \cite{Nogueira2013}, que leva em
+método de extração de descritores Soft-FDCL proposto por \cite{Nogueira2013}, que leva em
 consideração apenas os valores de pertinências presentes na partição fuzzy. A primeira extensão
 denominada Mixed-PDCL({\it Mixed - Possibilistic Fuzzy Descriptor Comes Last\/}), 
 a qual contempla durante a extração de descritores as duas partições do PFCM.
@@ -129,11 +129,6 @@ matriz é esparsa \\
     \hline
     {\bf classes} & número de classes presentes na coleção \\
     \hline
-    {\bf dp-class} & desvio padrão ao se considerar o percentual de documentos que
-pertence a determinada classe na coleção \\
-    \hline
-    {\bf $>$classe} & percentual de documentos pertencentes a maior classe na coleção \\
-    \hline
     {\bf n-gramas} & quantidade de termos considerados sequencialmente na coleção \\
     \hline
   \end{tabular}
@@ -161,21 +156,21 @@ texto, como algo inerente aos dados textuais.
 
 \begin{table}[!htp]
   \centering
-  \begin{tabular}{ |l|c c c c c c c|}
+  \begin{tabular}{ |l|c c c c c|}
     \hline
-    {\bf nome} & docs & termos & classes & \% zeros & dp-classe & $>$classe & n-gramas \\
+    {\bf nome} & docs & termos & classes & \% zeros & n-gramas \\
     \hline
-    {\bf Opinosis} & 51 & 842 & 3 & 95,73\% & 0,1 & 96,07\% & 1-grama \\
+    {\bf Opinosis} & 51 & 842 & 3 & 95,73\% & 1-grama \\
     \hline
-    {\bf 20newsgroups} & 2000 & 11028 & 4 & 99,11\% & 0,1 & 25\% & 1-grama \\
+    {\bf 20newsgroups} & 2000 & 11028 & 4 & 99,11\% & 1-grama \\
     \hline
-    {\bf Hitech} & 600 & 6925 & 6 & 97,93\% & 0,1 & 16,67\% & 1-grama \\
+    {\bf Hitech} & 600 & 6925 & 6 & 97,93\% & 1-grama \\
     \hline
-    {\bf NSF} & 1600 & 2806 & 16 & 99,76\% & 0,1 & 3,12\% & 1-grama \\
+    {\bf NSF} & 1600 & 2806 & 16 & 99,76\% & 1-grama \\
     \hline
-    {\bf WAP} & 1560 & 8070 & 20 & 98,51\% & 0,1 & 100\% & 1-grama \\
+    {\bf WAP} & 1560 & 8070 & 20 & 98,51\% & 1-grama \\
     \hline
-    {\bf Reuters-21578} & 1052 & 3925 & 43 & 98,55\% & 0,1 & 8,55\% & 1-grama \\
+    {\bf Reuters-21578} & 1052 & 3925 & 43 & 98,55\% & 1-grama \\
     \hline
   \end{tabular}
   \caption{Características das bases de dados utilizadas nesta pesquisa}
@@ -218,7 +213,7 @@ Com isso foi conduzido um experimento adaptando a estratégia de organização f
 definida em \citeonline{Nogueira2013},
 utilizando na etapa de agrupamento o método PFCM. Porém esse método produz duas partições uma
 possibilística e uma partição fuzzy. Desse modo foi aplicado o método de extração de descritores
-SoftO-wFDCL na partição fuzzy e outra vez na partição possibilística, produzindo assim dois grupos de
+Soft-FDCL na partição fuzzy e outra vez na partição possibilística, produzindo assim dois grupos de
 descritores. Essa adaptação está ilustrada na Figura (\ref{fig:flexibleorganization}).
 
 \begin{figure}[!htp] 
@@ -271,7 +266,7 @@ grupos em relação aos demais.
 \end{table}
 
 Após agrupar os dados utilizando os métodos FCM, PCM e PFCM, foi aplicado o método de extração 
-de descritores SoftO-wFDCL. Para nos permitir avaliar os descritores produzidos, foi verificado o
+de descritores Soft-FDCL. Para nos permitir avaliar os descritores produzidos, foi verificado o
 potencial preditivo dos mesmos, possibilitando assim quantificar a qualidade dos
 termos selecionados para nomear os grupos. 
 
@@ -322,14 +317,14 @@ classificação está apresentado nas figuras \ref{fig:pfcmopinosis},  \ref{fig:
    \begin{minipage}{0.45\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/opinosis} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-FDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção Opinosis} 
   \label{fig:pfcmopinosis}
   \end{minipage}\hfill 
   \begin{minipage}{0.45\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/newsgroup} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-FDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção 20Newsgroup} 
      \label{fig:pfcm20news} 
@@ -340,14 +335,14 @@ classificação está apresentado nas figuras \ref{fig:pfcmopinosis},  \ref{fig:
    \begin{minipage}{0.45\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/hitech} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-FDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção Hitech} 
   \label{fig:pfcmhitech}
   \end{minipage}\hfill 
   \begin{minipage}{0.45\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/nsf} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-FDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção NSF} 
      \label{fig:pfcmnsf} 
@@ -358,14 +353,14 @@ classificação está apresentado nas figuras \ref{fig:pfcmopinosis},  \ref{fig:
    \begin{minipage}{0.45\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/wap} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-FDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção WAP} 
     \label{fig:pfcmwap}
   \end{minipage}\hfill 
   \begin{minipage}{0.45\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pfcm/reuters} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-wFDCL a partir dos
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo Soft-FDCL a partir dos
       métodos de agrupamento FCM,
     PCM e PFCM executados na coleção Reuters-21578} 
      \label{fig:pfcmreuters} 
@@ -379,28 +374,28 @@ demais.
 
 \begin{table}[!htp]
   \centering
-  \begin{tabular}{ |l|c c c c c c c c|}
+  \begin{tabular}{ |l|c c c c c c c|}
     \hline
-    {\bf nome} & docs & termos & classes & \% zeros & $>$ taxa & FCM & PCM & PFCM \\
+    {\bf nome} & docs & termos & classes & \% zeros & FCM & PCM & PFCM \\
     \hline
-    {\bf Opinosis} & 51 & 842 & 3 & 95,73\% & 100,00\% & & $\checkmark$ &  \\
+    {\bf Opinosis} & 51 & 842 & 3 & 95,73\% & & $\checkmark$ &  \\
     \hline
-    {\bf 20newsgroups} & 2000 & 11028 & 4 & 99,11\% & 81,20\% & & & $\checkmark$\\
+    {\bf 20newsgroups} & 2000 & 11028 & 4 & 99,11\% & & & $\checkmark$\\
     \hline
-    {\bf Hitech} & 600 & 6925 & 6 & 97,93\% & 58,67\% & $\checkmark$ & & \\
+    {\bf Hitech} & 600 & 6925 & 6 & 97,93\% & $\checkmark$ & & \\
     \hline
-    {\bf NSF} & 1600 & 2806 & 16 & 99,76\% & 99,87\% & $\checkmark$ & & \\
+    {\bf NSF} & 1600 & 2806 & 16 & 99,76\% & $\checkmark$ & & \\
     \hline
-    {\bf WAP} & 1560 & 8070 & 20 & 98,51\% & 100\% & & & $\checkmark$ \\
+    {\bf WAP} & 1560 & 8070 & 20 & 98,51\% & & & $\checkmark$ \\
     \hline
-    {\bf Reuters-21578} & 1052 & 3925 & 43 & 98,55\% & 90,00\% & $\checkmark$ & & \\
+    {\bf Reuters-21578} & 1052 & 3925 & 43 & 98,55\% & $\checkmark$ & & \\
     \hline
   \end{tabular}
   \caption{Sumário dos resultados da classificação dos descritores}
   \label{table:pfcmsummary}
 \end{table}
 
-Esses resultados obtidos reforçam a flexibilidade e adaptação do método SoftO-wFDCL
+Esses resultados obtidos reforçam a flexibilidade e adaptação do método Soft-FDCL
 \cite{Nogueira2013}, a novos algoritmos de agrupamento. De modo que o método se demonstra promissor
 na tarefa extrair termos relevantes dos grupos produzidos na etapa de agrupamento, e isso é
 demonstrado através do potencial preditivo evidenciado na Tabela \ref{table:pfcmsummary}, com as
@@ -450,10 +445,10 @@ do PCM e do PFCM$\lambda$ (descritores da partição possibilística do PFCM) es
 misturados, não apresentando uma tendência geral bem definida. Uma explicação possível a esse
 resultado, pode se encontrar na própria partição possibilística a qual permite que um mesmo
 documento possua um grau de tipicidade elevado em todos os grupos. Portanto uma solução possível,
-pode ser uma adaptação do método de extração de descritores SoftO-wFDCL voltado para a partição
+pode ser uma adaptação do método de extração de descritores Soft-FDCL voltado para a partição
 possibilística, assim como também para algoritmos híbridos com duas partições, que é o caso do PFCM.
 
-De maneira complementar, é importante salientar que o método de extração de descritores SoftO-wFDCL é
+De maneira complementar, é importante salientar que o método de extração de descritores Soft-FDCL é
 totalmente influenciado pelos valores contidos nas partições fuzzy e possibilística. Portanto, é
 também importante se realizar uma análise dos métodos de agrupamento utilizados no experimento, com
 a finalidade de se entender qual método é mais apropriado em determinados contextos. Nesse contexto
@@ -467,7 +462,7 @@ fim o algoritmo PFCM atingiu melhores resultados para as bases WAP (8070 termos)
 (11028 termos), que são as bases de maior dimensionalidade na coleção.
 
 Na próxima sessão, motivado pelos resultados desse experimento será explorado uma adaptação do
-método SoftO-wFDCL para evitar o processo de extração dupla de descritores em algoritmos que possuam
+método Soft-FDCL para evitar o processo de extração dupla de descritores em algoritmos que possuam
 partições fuzzy e possibilística.
 
 \section{Método Mixed-PDCL}
@@ -482,9 +477,9 @@ agrupamento híbrido, seja pertinente utilizar também uma abordagem mista de ex
 Aproveitando-se assim dos benefícios existentes na partição possibilística, a qual penaliza os
 elementos ruidosos, com baixos valores de tipicidade, sem abrir mão das vantagens presentes na
 partição fuzzy. Para isso é necessário se compreender os mecanismos de funcionamento do método
-SoftO-wFDCL, para que seja possível propor uma adaptação para este contexto.
+Soft-FDCL, para que seja possível propor uma adaptação para este contexto.
 
-O método SoftO-wFDCL ({\it Soft Organization - weighted Fuzzy Description Comes Last}) proposto em 
+O método Soft-FDCL ({\it Soft Organization - weighted Fuzzy Description Comes Last}) proposto em 
 \citeonline{Nogueira2013}, é baseado em uma adaptação das medidas clássicas de Recuperação de
 Informação (RI), para quantificar a relevância dos termos candidatos a descritores dos grupos
 obtidos na etapa de agrupamento, utilizando a informação de pertinência ou tipicidade advinda do
@@ -505,15 +500,15 @@ como base as informações obtidas a partir da matriz de contingência apresenta
 \ref{table:softmatrix}. Adicionalmente tem-se que um documento $d_i$ é considerado como parte do
 grupo $g_j$, caso $\mu(d_j,g_j) \geq \delta$ para valores de pertinências ou $\lambda(d_i,g_j) \geq
 \delta$ para partição possibilística, onde seja $\delta = \frac{1}{c}$ e $c$ a quantidade de
-grupos. O limiar $\delta$ é uma parte relevante do método SoftO-wFDCL, pois ele possibilita se
+grupos. O limiar $\delta$ é uma parte relevante do método Soft-FDCL, pois ele possibilita se
 considerar como candidatos a descritores, os termos presentes em documentos que pertençam a mais de
 um grupo, ao mesmo tempo que também penaliza os termos presentes em documentos com baixa
 compatibilidade em um grupo.
 
 Portanto, para efetuar a seleção dos termos descritores, é construído um $ranking$ dos termos
 candidatos de cada grupo, ordenados pela pontuação obtida com a medida $f1$ (equação
-\ref{eq:fmeasure}). A partir dessa pontuação dos termos candidatos, é escolhido os termos com maior
-pontuação em cada grupo. \citeonline{Nogueira2013} destaca, que a quantidade de descritores a ser
+\ref{eq:fmeasure}). A partir dessa pontuação, é selecionado os termos com as maiores
+pontuações em cada grupo. \citeonline{Nogueira2013} destaca, que a quantidade de descritores a ser
 selecionada fica a critério do usuário.
 
 \begin{table}[!htp]
@@ -549,6 +544,47 @@ selecionada fica a critério do usuário.
   {\text{\it precisão}(t_k,g_j) + \text{\it recuperação}(t_k,g_j)}
   \label{eq:fmeasure}
 \end{equation}
+
+Em síntese o método SoftO-FDCL, cria uma tabela de pontuação dos termos candidatos aos grupos,
+e seleciona os que obtiverem a maior quantidade de pontos. Bem como a promoção a termo candidato é
+feita considerando os termos que ocorrem em documentos com grau de compatibilidade maior que o
+limiar $\delta = \frac{1}{c}$. Ao se considerar esse limiar em em partições com graus de
+pertinência, como a partição fuzzy do FCM, esse limiar $\delta$ se mostra adequado, pois como foi
+definido no capitulo 2, o grau de compatibilidade do FCM é restrito a equação \ref{eq:fcmrestri1}.
+Portanto ao filtrar os documentos em uma partição de pertinências utilizando $\delta$ como critério
+de corte, na maioria das vezes será descartado algum documento no processo. 
+
+Formalizando essa
+percepção, podemos então definir as duas propriedades  que derivam dessa discussão, as quais são as
+equações (\ref{eq:limiarp1}) e (\ref{eq:limiarp2}), onde seja $c$ a quantidade de grupos. A primeira
+propriedade (equação \ref{eq:limiarp1}) expressa que se um documento possuir pertinência maior do
+que o limiar $\delta$ em um grupo $g_1$ qualquer, obrigatoriamente existirá ao menos um outro grupo
+$g_2$ no qual esse mesmo documento terá pertinência inferior ao limiar $\delta$. Portanto, essa
+propriedade nos indica que na maioria das vezes um ou mais documentos serão descartados na análise
+dos termos candidatos do grupo, o que reforça a adequação desse limiar para a partição de
+pertinências. Por outro lado, a segunda
+propriedade (equação \ref{eq:limiarp2}) denota o único caso particular, no qual um documento $d_i$
+não será descartado em nenhum grupo. Isto ocorre apenas se $d_i$ possuir pertinência igual em todos
+os grupos, o que só acontece em dados ruidosos, que apresentam o problema do elemento equidistante
+detalhado na Figura \ref{fig:fcm_problem} do capítulo 2.
+
+\begin{equation}
+  \mu(d_1,g_j) > \delta \rightarrow \exists \mu(d_i, g_2) < \delta
+  \label{eq:limiarp1}
+\end{equation}
+\begin{equation}
+  ( \mu(d_1,g_1) = \delta ) \wedge ( \mu(d_i,g_2) = \delta ) \wedge ... \wedge ( \mu(d_i,g_{c_1}) =
+  \delta ) \rightarrow ( \mu(d_i, g_c) = \delta  )
+  \label{eq:limiarp2}
+\end{equation}
+
+Contudo, para a partição possibilística, essas duas propriedades não são satisfeitas. Isso se deve,
+por conta da remoção da restrição da equação (\ref{eq:fcmrestri1}), o que possibilita que
+o grau de compatibilidade da partição possibilística varie de maneira independente entre o intervalo
+de $[0,1]$ sem ser influenciado pelo grau de compatibilidade do documento nos demais grupos.
+
+
+
 
 
 \section{Método HPCM}
