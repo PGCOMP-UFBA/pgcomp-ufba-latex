@@ -479,6 +479,8 @@ elementos ruidosos, com baixos valores de tipicidade, sem abrir mão das vantage
 partição fuzzy. Para isso é necessário se compreender os mecanismos de funcionamento do método
 SoftO-FDCL, para que seja possível propor uma adaptação para este contexto.
 
+\subsection{Investigações da extração de descritores em partições possibilísticas}
+
 O método SoftO-FDCL ({\it Soft Organization - Fuzzy Description Comes Last}) proposto em 
 \citeonline{Nogueira2013}, é baseado em uma adaptação das medidas clássicas de Recuperação de
 Informação (RI), para quantificar a relevância dos termos candidatos a descritores dos grupos
@@ -579,7 +581,7 @@ detalhado na Figura \ref{fig:fcm_problem} do capítulo 2.
 \end{equation}
 
 Contudo, para a partição possibilística, essas duas propriedades não são satisfeitas. Isso se deve,
-por conta da remoção da restrição da equação (\ref{eq:fcmrestri1}), o que possibilita que
+por conta da remoção da restrição da equação (\ref{eq:fcmrestri1}), o que possibilita 
 o grau de compatibilidade da partição possibilística variar de maneira independente entre o intervalo
 de $[0,1]$, sem ser influenciado pelo grau de compatibilidade do documento nos demais grupos.
 
@@ -666,7 +668,6 @@ $f1(t_2,g_1) = 0,8$, $f1(t_3,g_2) = 0,5$. Foi obtido então a mesma pontuação 
 candidatos nos dois grupos. Com isso, fica claro as causas que levaram a extração dos descritores
 confusos apresentados na Tabela \ref{table:pfcmdescriptors}.
 
+\subsection{Interpretando os graus de compatibilidade das partições possibilísticas}
 
-
-\section{Método HPCM}
 \section{Considerações finais}
