@@ -10,3 +10,4 @@ ufba-eps-converted-to.pdf
 *.swp
 paper.tex
 *.out
+results/
