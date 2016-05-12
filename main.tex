@@ -46,6 +46,8 @@
 \usepackage{qtree}
 \usepackage{amstext} % Useful package to put accents in mathmode with \text
 \usepackage{array,booktabs}
+%\everymath=\expandafter{\the\everymath\displaystyle}
+\everymath{\displaystyle}
 \SetKwRepeat{Do}{do}{while} % Macro to allow do while in algorithm2e
 \SetAlgorithmName{Algoritmo}{Lista de Algoritmos}
 

@@ -666,8 +666,134 @@ candidatos, pois $d_1, d_2$ e $d_3$ também possuem valores de tipicidade maiore
 $\delta$, portanto os valores de $f1$ para o grupo $g_2$ são:  $g_1$: $f1(t_1,g_1) = 0,8$,
 $f1(t_2,g_1) = 0,8$, $f1(t_3,g_2) = 0,5$. Foi obtido então a mesma pontuação para os mesmos termos
 candidatos nos dois grupos. Com isso, fica claro as causas que levaram a extração dos descritores
-confusos apresentados na Tabela \ref{table:pfcmdescriptors}.
+confusos apresentados na Tabela \ref{table:pfcmdescriptors}. 
+
+E ainda ressalta-se que esta situação
+se agrava ainda mais, com o aumento do número de grupos produzidos pelo agrupamento. Pois quanto
+maior for a quantidade de grupos, menor será o valor do limiar $\delta$. Esta noção fica explicita
+na terceira propriedade do limiar apresentada na equação (\ref{eq:limiarp3}). Ou seja, mais
+facilmente os graus de compatibilidade possibilísticos irão passar no filtro do limiar. E
+consequentemente todos os documentos serão considerados relevantes para todos os grupos. 
+
+\begin{equation}
+  \lim_{c \rightarrow \infty} \delta = 0
+  \label{eq:limiarp3}
+\end{equation}
+
+
+Na próxima sessão será descrito uma possível proposta para interpretação dos graus de
+compatibilidade das partições possibilística.
 
 \subsection{Interpretando os graus de compatibilidade das partições possibilísticas}
+
+A interpretação direta dos graus de compatibilidade possibilísticos gera um série de problemas na
+extração de descritores, conforme ficou demonstrado na sessão anterior. Com isso, podemos formular a
+seguinte pergunta: Como interpretar corretamente os graus de compatibilidade possibilísticos, para
+corretamente identificar os documentos relevantes de um dado grupo? Conforme sabemos, o valor de
+tipicidade pode variar livremente entre o intervalo $[0,1]$, sem a restrição probabilística
+(equação \ref{eq:fcm_restri1}) do FCM. Essa é uma
+característica positiva introduzida em \citeonline{Krishnapuram1993}, a qual atribui valores de
+pertinência mais justos aos grupos fuzzy, em consonância com a teoria de conjuntos fuzzy proposta em
+\citeonline{Zadeh1965} e brevemente contextualizada no capítulo 2. Para melhor compreendermos esse
+conceito de valores mais justos, podemos analisar o que os autores defenderam na publicação
+original:
+
+\begin{citacao}
+Since our membership functions correspond more closely to
+the notion of typicality, the resulting algorithms are naturally
+more immune to noise. Noise points will have low degrees
+of compatibility in all clusters, which makes their effect on
+the clustering negligible \cite{Krishnapuram1993}.
+\end{citacao}
+Portanto, a vantagem em deixar os graus de compatibilidade independentes, é a de se expressar a
+relevância/importância real de um elemento em relação a um grupo, o que consequentemente torna o
+método mais robusto e menos suscetível a ruídos. Para então identificar a importância de um
+documento em um grupo, poderíamos por exemplo escolher em qual grupo um documento $d_i$ deveria ser
+considerado relevante, considerando o grupo em que esse documento $d_i$ possuísse o maior grau de
+compatibilidade. No entanto, essa estratégia resultaria em uma extração de descritores $crisp$,
+perdendo assim toda a flexibilidade proporcionada nas partições $soft$ \cite{Nogueira2013}.
+
+Sendo assim, precisamos de uma estratégia que consiga interpretar bem os graus de compatibilidade,
+de modo a se conservar a flexibilidade inerente a partição fuzzy, sem sacrificar a robustez contra
+ruídos da tipicidade. 
+
+Nesse contexto, propõe-se realizar essa interpretação em duas etapas. A primeira será constituída de
+uma conversão da tipicidade oriunda do PCM para a pertinência do FCM, de maneira a se satisfazer a
+restrição probabilística do FCM (equação \ref{eq:fcmrestri1}). No entanto, ao apenas realizar a
+conversão iremos perder a robustez contra ruídos do PCM. Por isso, vamos adicionar uma penalidade ao
+cálculo da pontuação dos termos.
+
+A conversão proposta dos valores de tipicidade para pertinência, dar-se a como apresentado na
+equação (\ref{eq:tip2pert}), a qual satisfaz a condição necessária (equação
+\ref{eq:tiplinharestri1}) para que o limiar $\delta$ seja aplicado, sem sofrer do problema de se
+considerar um documento como relevante em todos os grupos.
+
+\begin{equation}
+  \lambda'(d_i,g_j) = \frac{\lambda(d_i,g_j)}{\sum_{k=1}^c \lambda(d_i,g_k)}
+  \label{eq:tip2pert}
+\end{equation}
+
+\begin{equation}
+  \sum_{k=1}^c \lambda'(d_i,g_k) = 1
+  \label{eq:tiplinharestri1}
+\end{equation}
+
+Porém como já foi anunciado, a conversão sozinha não atende aos dois requisitos exigidos. Para isso
+vamos adaptar a matriz de contingência apresentada na Tabela \ref{table:softmatrix}, adicionando uma
+ponderação as medidas, de modo a adicionar uma gratificação nos termos de documentos com elevada
+tipicidade e penalizar os termos de documentos com baixo valor de tipicidade, uma abordagem similar
+é encontrada no método SoftO-wFDCL({\it Soft Organization - weighted Fuzzy Description Comes Last})
+em \citeonline{Nogueira2013}.
+
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |p{5cm}|p{5cm}|p{5cm}|}
+    \cline{2-3}
+    \multicolumn{1}{p{5cm}|}{} & Documentos do grupo $g_j$ com grau de compatibilidade 
+    maior ou igual a $\delta$ &
+    Documentos do grupo $g_j$ com grau de compatibilidade menor do que $\delta$ \\
+    \hline
+    Documentos que possuem o descritor candidato $t_k$ & \parbox[c]{5cm}{\centering
+  $ganhos(t_i,g_j)$} & \parbox[c]{5cm}{\centering \it ruídos\/$(t_i,g_j)$} \\
+    \hline
+    Documentos que não possuem o descritor candidato $t_k$ & \parbox[c]{5cm}{\centering
+  $perdas(t_i,g_j)$} & \parbox[c]{5cm}{\centering $rejeitos(t_i,g_j)$} \\
+    \hline
+  \end{tabular}
+  \caption{Matriz de contingência do termo $t_k$ para o grupo $g_j$ adaptada para a partição
+  possibilística}
+  \label{table:softmatrix2}
+\end{table}
+
+\begin{equation}
+  ganhos(t_i,g_j) = 
+  \sum_{
+      d \in D' 
+  } \lambda'(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) \geq \delta, \varphi(t_i,d) > 0
+  \right\}
+  \label{eq:ganhos}
+\end{equation}
+\begin{equation}
+  perdas(t_i,g_j) = 
+  \sum_{
+      d \in D' 
+  } \lambda'(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) \geq \delta, \varphi(t_i,d) = 0
+  \right\}
+  \label{eq:perdas}
+\end{equation}
+\begin{equation}
+  \text{\it ruídos\/}(t_i,g_j) = 
+  \sum_{
+      d \in D' 
+  } \lambda'(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) < \delta, \varphi(t_i,d) > 0 \right\}
+  \label{eq:ruidos}
+\end{equation}
+\begin{equation}
+  \text{\it rejeitos\/}(t_i,g_j) = 
+  \sum_{
+      d \in D' 
+  } \lambda'(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) < \delta, \varphi(t_i,d) = 0 \right\}
+  \label{eq:ruidos}
+\end{equation}
 
 \section{Considerações finais}
