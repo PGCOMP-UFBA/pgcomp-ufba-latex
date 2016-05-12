@@ -738,7 +738,7 @@ considerar um documento como relevante em todos os grupos.
   \label{eq:tiplinharestri1}
 \end{equation}
 
-Porém como já foi anunciado, a conversão sozinha não atende aos dois requisitos exigidos. Para isso
+Entretanto, só realizar a conversão não atende aos dois requisitos exigidos. Para isso
 vamos adaptar a matriz de contingência apresentada na Tabela \ref{table:softmatrix}, adicionando uma
 ponderação as medidas, de modo a adicionar uma gratificação nos termos de documentos com elevada
 tipicidade e penalizar os termos de documentos com baixo valor de tipicidade, uma abordagem similar
@@ -765,11 +765,23 @@ em \citeonline{Nogueira2013}.
   \label{table:softmatrix2}
 \end{table}
 
+A adaptação sugerida da matriz contingência está apresentada na Tabela \ref{table:softmatrix2}, na
+qual os valores de ganhos, perdas, ruídos e rejeitos foram mapeados para as equações
+(\ref{eq:ganhos}), (\ref{eq:perdas}),  (\ref{eq:ruidos}) e  (\ref{eq:rejeitos}) respectivamente.
+Portanto ao invés de realizar uma contagem discreta dos ganhos, perdas, ruídos e rejeitos, é
+realizado uma soma contínua das contribuições de cada documento ao grupo, considerando o valor de
+tipicidade. Desse modo, conseguimos reduzir a contribuição de documentos com baixa tipicidade no
+grupo e aumentar a contribuição de documentos com alta tipicidade no grupo. Resultando assim, em uma
+pontuação mais justa e mais coerente dos termos extraídos dos grupos. Os ajustes necessários nas
+medidas de precisão e recuperação estão detalhados nas equações (\ref{eq:precision2}) e
+(\ref{eq:recall2}), enquanto o cálculo da medida $f1(t_k,g_j)$ permanece como definido na
+equação (\ref{eq:fmeasure}).
+
 \begin{equation}
   ganhos(t_i,g_j) = 
   \sum_{
       d \in D' 
-  } \lambda'(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) \geq \delta, \varphi(t_i,d) > 0
+  } \lambda(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) \geq \delta, \varphi(t_i,d) > 0
   \right\}
   \label{eq:ganhos}
 \end{equation}
@@ -777,7 +789,7 @@ em \citeonline{Nogueira2013}.
   perdas(t_i,g_j) = 
   \sum_{
       d \in D' 
-  } \lambda'(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) \geq \delta, \varphi(t_i,d) = 0
+  } \lambda(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) \geq \delta, \varphi(t_i,d) = 0
   \right\}
   \label{eq:perdas}
 \end{equation}
@@ -785,15 +797,24 @@ em \citeonline{Nogueira2013}.
   \text{\it ruídos\/}(t_i,g_j) = 
   \sum_{
       d \in D' 
-  } \lambda'(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) < \delta, \varphi(t_i,d) > 0 \right\}
+  } \lambda(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) < \delta, \varphi(t_i,d) > 0 \right\}
   \label{eq:ruidos}
 \end{equation}
 \begin{equation}
   \text{\it rejeitos\/}(t_i,g_j) = 
   \sum_{
       d \in D' 
-  } \lambda'(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) < \delta, \varphi(t_i,d) = 0 \right\}
-  \label{eq:ruidos}
+  } \lambda(d,g_j), D' = \left\{d | d \in D, \lambda'(d,g_j) < \delta, \varphi(t_i,d) = 0 \right\}
+  \label{eq:rejeitos}
+\end{equation}
+
+\begin{equation}
+  precis\tilde{a}o(t_k,g_j) = \frac{ganhos(t_k,g_j)}{ganhos(t_k,g_j) + \text{\it ruídos}(t_k,g_j)}
+  \label{eq:precision2}
+\end{equation}
+\begin{equation}
+  \text{\it recuperação\/}(t_k,g_j) = \frac{ganhos(t_k,g_j)}{ganhos(t_k,g_j) + perdas(t_k,g_j)}
+  \label{eq:recall2}
 \end{equation}
 
 \section{Considerações finais}
