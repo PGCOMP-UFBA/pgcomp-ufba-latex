@@ -21,21 +21,24 @@ dos grupos
 coincidentes, apresentados nas partições fuzzy e possibilística respectivamente. 
 
 Conforme observa-se no capítulo 2, o algoritmo PFCM produz duas
-partições, sendo um fuzzy e outra possibilística, o que induziu o presente trabalho a propor duas extensões do
+partições, sendo um fuzzy e outra possibilística, o que induziu o presente trabalho a propor duas
+extensões do
 método de extração de descritores SoftO-FDCL proposto por \cite{Nogueira2013}, que leva em
 consideração apenas os valores de pertinências presentes na partição fuzzy. A primeira extensão
-denominada Mixed-PDCL({\it Mixed - Possibilistic Fuzzy Descriptor Comes Last\/}), 
-a qual contempla durante a extração de descritores as duas partições do PFCM.
-E a segunda proposta é o método 
-MixedW-PDCL({\it Mixed Weighted - Possibilistic Fuzzy Descriptor Comes Last\/}), 
-que é uma extensão do Mixed-PDCL, porém ponderando as
-contribuições das partições com base nos parâmetros $a$ e $b$ do PFCM. A última contribuição é a
-proposta do método HPCM, que é uma extensão do método de agrupamento hierárquico HFCM, o qual
-utiliza o algoritmo PCM no lugar do FCM para produzir a hierarquia.
+denominada PDCL({\it Possibilistic Descriptor Comes Last\/}), 
+a qual aborda uma nova estratégia de interpretação dos graus de compatibilidade da partição
+possibilística.
+Enquanto a segunda abordagem proposta é o método 
+Mixed-PFDCL({\it Mixed - Possibilistic Fuzzy Descriptor Comes Last\/}), 
+que é uma extensão do PDCL, utilizando uma abordagem híbrida para mesclar as duas partições
+presentes no algoritmo PFCM assim como também ponderar as
+contribuições das partições com base nos parâmetros $a$ e $b$ do PFCM. 
 
 Na primeira sessão deste capítulo é apresentado informações das bases de dados utilizadas, com as
-suas características, origem e composição dos documentos. Nos capítulos seguintes é definido as
-propostas sugeridas por essa monografia. E por fim os dados obtidos com os experimentos realizados.
+suas características, origem e composição dos documentos. Nas sessões seguintes, iremos fazer um
+estudo sobre a interpretação dos graus de compatibilidade possibilísticos durante a extração de
+descritores. Em seguida é definido as propostas sugeridas por essa monografia, que derivam desse
+estudo. E por fim é apresentado os dados obtidos com os experimentos realizados.
 
 \section{Informações das bases de dados}
 
@@ -178,6 +181,7 @@ texto, como algo inerente aos dados textuais.
 \end{table}
 
 \section{Refinamento com o algoritmo PFCM}
+\label{sec:exppfcm}
 
 Conforme ficou evidenciado, a tarefa de organizar de maneira flexível um conjunto de documentos
 textuais, possui diversos desafios. Em particular, ao se agrupar um conjunto de documentos é
@@ -465,7 +469,7 @@ Na próxima sessão, motivado pelos resultados desse experimento será explorado
 método SoftO-FDCL para evitar o processo de extração dupla de descritores em algoritmos que possuam
 partições fuzzy e possibilística.
 
-\section{Método Mixed-PDCL}
+\section{Uma abordagem híbrida para extração de descritores}
 
 No experimento anterior identificamos um possível problema ao realizar a extração dos
 descritores de maneira separada em cada partição do PFCM, assim como também foi apontado que o
@@ -479,7 +483,7 @@ elementos ruidosos, com baixos valores de tipicidade, sem abrir mão das vantage
 partição fuzzy. Para isso é necessário se compreender os mecanismos de funcionamento do método
 SoftO-FDCL, para que seja possível propor uma adaptação para este contexto.
 
-\subsection{Investigações da extração de descritores em partições possibilísticas}
+\subsection{Investigações na extração de descritores em partições possibilísticas}
 
 O método SoftO-FDCL ({\it Soft Organization - Fuzzy Description Comes Last}) proposto em 
 \citeonline{Nogueira2013}, é baseado em uma adaptação das medidas clássicas de Recuperação de
@@ -691,7 +695,7 @@ extração de descritores, conforme ficou demonstrado na sessão anterior. Com i
 seguinte pergunta: Como interpretar corretamente os graus de compatibilidade possibilísticos, para
 corretamente identificar os documentos relevantes de um dado grupo? Conforme sabemos, o valor de
 tipicidade pode variar livremente entre o intervalo $[0,1]$, sem a restrição probabilística
-(equação \ref{eq:fcm_restri1}) do FCM. Essa é uma
+(equação \ref{eq:fcmrestri1}) do FCM. Essa é uma
 característica positiva introduzida em \citeonline{Krishnapuram1993}, a qual atribui valores de
 pertinência mais justos aos grupos fuzzy, em consonância com a teoria de conjuntos fuzzy proposta em
 \citeonline{Zadeh1965} e brevemente contextualizada no capítulo 2. Para melhor compreendermos esse
@@ -816,5 +820,117 @@ equação (\ref{eq:fmeasure}).
   \text{\it recuperação\/}(t_k,g_j) = \frac{ganhos(t_k,g_j)}{ganhos(t_k,g_j) + perdas(t_k,g_j)}
   \label{eq:recall2}
 \end{equation}
+
+Nas próximas duas sessões é caracterizado as duas abordagens que derivam dessa interpretação aqui
+detalhada. A primeira, é uma proposta de extensão do método SoftO-FDCL voltado para a partição
+possibilística do PCM, com a interpretação apresentada nessa sessão. Enquanto a segunda abordagem,
+apresenta uma estratégia de extração de descritores para o algoritmo PFCM, interpretando em conjunto
+as duas partições presentes no algoritmo.
+
+\subsection{O método PDCL}
+
+A agora que a proposta de interpretação da partição possibilística está concluída, vamos reunir
+todos esses passos em um método para extração de descritores para a partição possibilística, a qual
+será denominado aqui de PDCL ({\it Possibilistic Descriptor Comes Last\/}). Para realizar a extração
+de descritores o método PDCL, considera inicialmente todos os termos como candidatos, em seguida
+para cada grupo $g_j$ é calculado a precisão (equação \ref{eq:precision2}) e recuperação (equação
+\ref{eq:recall2}) de todos os termos $t_k$. A partir então destes valores é calculada a
+pontuação de cada termo $t_k$ no grupo $g_j$, com a medida $f1(t_k,g_j)$ (equação
+\ref{eq:fmeasure}). Obtido então essa pontuação por grupo dos termos candidatos, deve-se selecionar
+os $m$ descritores de maior pontuação em cada grupo. No qual a quantidade $m$ de descritores é
+definida pelo usuário. A síntese do método PDCL está apresentado no Algoritmo \ref{alg:pdcl}.
+
+\subsection{O método Mixed-PFDCL}
+
+Na discussão do experimento da sessão \ref{sec:exppfcm}, onde é apresentado os resultados do
+refinamento com o método PFCM ({\it Possibilistic Fuzzy C Means\/}) na proposta de organização
+flexível de documentos, foi salientado a importância de se montar uma estratégia que conseguisse
+capturar a filosofia híbrida do algoritmo PFCM, levando em consideração suas duas partições. 
+
+Uma das características presentes no método PFCM, é a adição dos parâmetros $a$ e $b$ que atuam como
+reguladores da influência do FCM e do PCM no agrupamento obtido. Portanto há de destacar, a
+importância de se considerar tais parâmetros no processo de extração de descritores, objetivando
+assim mais coerência com o algoritmo.
+
+Nesse contexto, é apresentado a equação (\ref{eq:pfcmmix}), a qual combina os valores de pertinência
+e de tipicidade convertidos, em um único grau de compatibilidade. Essa combinação nada mais é do que
+a média ponderada pelos parâmetros $a$ e $b$ dos valores de pertinência e tipicidade convertido
+respectivamente.
+
+\begin{equation}
+  \mu'(d_i,g_j) = \frac{a \mu(d_i,g_j) + b \lambda'(d_i,g_j)}{a+b}
+  \label{eq:pfcmmix}
+\end{equation}
+
+Como resultado dessa combinação precisamos apenas adaptar as medidas de ganhos, perdas, ruídos e
+rejeitos, para considerarem a relevância de um dado documento $d$ em relação ao limiar $\delta$, a
+partir da pertinência híbrida $\mu'(d_i,g_j)$. Essa adaptação está então disposta nas equações
+(\ref{eq:ganhos2}), (\ref{eq:perdas2}), (\ref{eq:ruidos2}) e (\ref{eq:rejeitos2}). Ressalta-se que
+foi mantido no somatório de ganhos, perdas, ruídos e rejeitos, o valor de tipicidade, devido a
+capacidade do mesmo em expressar melhor a realidade do agrupamento. As demais medidas de precisão,
+recuperação e $f1$, permanecem com a mesma definição apresentada anteriormente. Para uma melhor
+compreensão de como se encaixa todas essas partes, um pseudo código do método Mixed-PFDCL está
+apresentado no Algoritmo \ref{alg:pdcl}.
+
+\begin{equation}
+  ganhos(t_i,g_j) = 
+  \sum_{
+      d \in D' 
+  } \lambda(d,g_j), D' = \left\{d | d \in D, \mu'(d,g_j) \geq \delta, \varphi(t_i,d) > 0
+  \right\}
+  \label{eq:ganhos2}
+\end{equation}
+\begin{equation}
+  perdas(t_i,g_j) = 
+  \sum_{
+      d \in D' 
+  } \lambda(d,g_j), D' = \left\{d | d \in D, \mu'(d,g_j) \geq \delta, \varphi(t_i,d) = 0
+  \right\}
+  \label{eq:perdas2}
+\end{equation}
+\begin{equation}
+  \text{\it ruídos\/}(t_i,g_j) = 
+  \sum_{
+      d \in D' 
+  } \lambda(d,g_j), D' = \left\{d | d \in D, \mu'(d,g_j) < \delta, \varphi(t_i,d) > 0 \right\}
+  \label{eq:ruidos2}
+\end{equation}
+\begin{equation}
+  \text{\it rejeitos\/}(t_i,g_j) = 
+  \sum_{
+      d \in D' 
+  } \lambda(d,g_j), D' = \left\{d | d \in D, \mu'(d,g_j) < \delta, \varphi(t_i,d) = 0 \right\}
+  \label{eq:rejeitos2}
+\end{equation}
+
+\begin{algorithm}[H] 
+  \SetAlgoLined 
+  \textbf{{\color{blue}extrair-descritores}(U, P, D, G, m)}\\
+  \Begin{
+    descritores $\gets \emptyset$\;
+    \ForEach{$g \in G$}{
+      candidatos $\gets [t_1,t_2,...,t_k]$\;
+      ranking $\gets \emptyset$\;
+      \ForEach{$t \in$ candidatos}{
+        precisao $\gets$ equação (\ref{eq:precision}) para o PDCL ou (\ref{eq:precision2}) para o
+        Mixed-PFDCL\;
+        recuperacao $\gets$ equação (\ref{eq:recall}) para o PDCL ou (\ref{eq:recall2}) para o
+        Mixed-PFDCL\;
+        pontuacao $\gets$ equação (\ref{eq:fmeasure})\;
+        ranking[t] $\gets$ pontuacao\;
+      }
+      descritores[g] $\gets$ $m$ termos do ranking com maior pontuacao\;
+    }
+    $\textbf{retorne}$ (descritores)\; 
+  }
+  \caption{Pseudo código da extração de descritores com os métodos PDCL e Mixed-PFDCL. Onde
+    considere U a
+  partição de pertinências fuzzy (equação \ref{eq:part_fuzzy}), P a partição
+  possibilística (equação \ref{eq:pcmpart}), D a coleção de documentos da coleção, G os grupos
+produzidos pelo método de agrupamento e $m$ a quantidade descritores desejada por grupo.}
+\label{alg:pdcl} 
+\end{algorithm}
+
+\subsection{Resultados}
 
 \section{Considerações finais}

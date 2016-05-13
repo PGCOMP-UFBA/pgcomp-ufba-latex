@@ -455,18 +455,20 @@ FCM, apenas alterando a pertinência $\mu(d_i,g_j)$ por $\lambda(d_i,g_j)$. A s�
 algoritmo PCM está apresentada em forma de pseudo código no algoritmo (\ref{alg:pcm}). 
 
 \begin{algorithm}[H] 
-  \SetAlgoLined \KwData{D, c, m, $\varepsilon$} 
-  \KwResult{V, P} 
-  G $\gets$ $[g_1,g_2,...,g_c]$\; 
-  $P_0$ $\gets$ \textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}\; 
-  $\gamma_j \gets$ calcula utilizando (\ref{eq:pcmgamma})\;
-  $t \gets 0$\; 
-  \Do{ $\parallel P_{t-1} - P_t\parallel > \varepsilon$ }{ 
-    $V_t$ $\gets$ calcula usando (\ref{eq:prototipos})\; 
-    $t \gets t + 1$\; 
-    $P_t$ $\gets$ calcula usando (\ref{eq:pcmpart})\; 
+  \SetAlgoLined 
+  \textbf{{\color{blue}pcm}(D,c,m,$\varepsilon$)}\\
+  \Begin{
+    G $\gets$ $[g_1,g_2,...,g_c]$\; 
+    $P_0$ $\gets$ \textbf{{\color{blue}inicializa-particao-fuzzy}(D,G)}\; 
+    $\gamma_j \gets$ calcula utilizando (\ref{eq:pcmgamma})\;
+    $t \gets 0$\; 
+    \Do{ $\parallel P_{t-1} - P_t\parallel > \varepsilon$ }{ 
+      $V_t$ $\gets$ calcula usando (\ref{eq:prototipos})\; 
+      $t \gets t + 1$\; 
+      $P_t$ $\gets$ calcula usando (\ref{eq:pcmpart})\; 
+    }
+    $\textbf{retorne} (P_t, V_t)$\; 
   }
-  $\textbf{retorne} (P_t, V_t)$\; 
   \caption{Pseudo código da implementação iterativa do método PCM}
   \label{alg:pcm} 
 \end{algorithm}
