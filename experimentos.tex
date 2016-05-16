@@ -41,6 +41,7 @@ descritores. Em seguida é definido as propostas sugeridas por essa monografia, 
 estudo. E por fim é apresentado os dados obtidos com os experimentos realizados.
 
 \section{Informações das bases de dados}
+\label{section:datasets}
 
 Na mineração de dados e consequentemente nos trabalhos relacionados a organização flexível de
 documentos, é comum se realizar a avaliação dos métodos propostos, conduzindo-se experimentos sobre
@@ -274,24 +275,25 @@ de descritores SoftO-FDCL. Para nos permitir avaliar os descritores produzidos, 
 potencial preditivo dos mesmos, possibilitando assim quantificar a qualidade dos
 termos selecionados para nomear os grupos. 
 
-A avaliação do potencial preditivo dos descritores foi realizada, considerando cada grupo produzido
-pelo pelo agrupamento como uma classe, ou seja, se durante o agrupamento foi gerado o conjunto de
-grupos $G = \{g_1,g_2,...,g_c\}$, temos então o conjunto de classes $C =
-\{classe_1,classe_2,...,classe_c\}$, onde cada $classe_i$ corresponde ao grupo $g_i$. No entanto, como as partições fuzzy e possibilística permitem 
-que
-um documento pertença a um ou mais grupos, foi considerado que a classe de um documento $d_i$,
-como sendo a $classe_j$ do respectivo $grupo_j$, no qual $d_i$ possua a maior
+A avaliação do potencial preditivo dos descritores foi realizada, realizando se uma defuzificação
+dos grupos produzidos pelo pelo agrupamento, ou seja, se durante o agrupamento foi gerado o conjunto
+de grupos $G = \{g_1,g_2,...,g_c\}$, temos então o conjunto de grupos $crisp$ $C' =
+\{crisp_1,crisp_2,...,crisp_c\}$, onde cada $crisp_i$ corresponde ao grupo $g_i$. A função de
+defuzificação adotada para se converter as
+as partições fuzzy e possibilística, as quais permitem que um documento pertença a um ou mais
+grupos, considera o grupo $crisp$ de um documento $d_i$, como sendo o grupo $crisp_j$ do respectivo
+$grupo_j$, no qual $d_i$ possua a maior
 pertinência/tipicidade. Esta definição está formalizada na equação \ref{eq:class}.
 \begin{equation}
-  classe(d_i) = \begin{cases}
-    classe_j, & \mu(d_i,g_j) = \displaystyle\max_{\forall g \in G} \mu(d_i,g), \text{se a partição
+  crisp(d_i) = \begin{cases}
+    crisp_j, & \mu(d_i,g_j) = \displaystyle\max_{\forall g \in G} \mu(d_i,g), \text{se a partição
   for fuzzy}\\
-  classe_j, & \lambda(d_i,g_j) = \displaystyle\max_{\forall g \in G} \lambda(d_i,g), \text{se a
+  crisp_j, & \lambda(d_i,g_j) = \displaystyle\max_{\forall g \in G} \lambda(d_i,g), \text{se a
   partição for possibilística}
   \end{cases}
   \label{eq:class}
 \end{equation}
-Após atribuir as classes aos documentos, é produzida uma outra matriz,
+Após se atribuir os documentos aos grupos $crisp$, é produzida uma outra matriz,
 considerando apenas os termos descritores dos grupos. Logo essa matriz documentos x descritores
 $D'_{n \times m}$, 
 é uma versão condensada da matriz documentos x termos $D_{n \times k}$, onde seja $n$ a 
@@ -412,7 +414,7 @@ compreender melhor se os termos obtidos fazem sentido.
   \centering
   \begin{tabular}{ |l|p{4cm} | p{4cm} | p{4cm}|}
     \hline
-    {\bf método} & $classe_1$ & $classe_2$ & $classe_3$ \\
+    {\bf método} & $crisp_1$ & $crisp_2$ & $crisp_3$ \\
     \hline
     {\bf FCM} & easy, clear, drive, display, control, car, version, nice, work, perfect & fact,
     import, isn't, model, problem, unit, design, don't, doesn't, found & breakfast, nearby,
@@ -442,12 +444,12 @@ de dados Opinosis, por possuir poucos grupos e assim facilitar a análise e a vi
 Opinosis contém opiniões dos usuários a respeito de serviços de hospedagem, dispositivos eletrônicos
 e carros.  Portanto na Tabela \ref{table:pfcmdescriptors} temos a seleção de termos descritores
 escolhidos para cada grupo, pelos respectivos métodos de agrupamento. Ao analisarmos os termos
-selecionados é possível notar uma tendência geral, da $classe_1$ conter palavras relacionadas a
-carros, a $classe_2$ abordando opiniões dos usuários sobre dispositivos eletrônicos e a $classe_3$
-com opiniões a respeito dos serviços de hospedagem e alimentação. Contudo nota-se que os descritores
-do PCM e do PFCM$\lambda$ (descritores da partição possibilística do PFCM) estão um pouco mais
-misturados, não apresentando uma tendência geral bem definida. Uma explicação possível a esse
-resultado, pode se encontrar na própria partição possibilística a qual permite que um mesmo
+selecionados é possível notar uma tendência geral, do grupo $crisp_1$ conter palavras relacionadas a
+carros, o $crisp_2$ abordando opiniões dos usuários sobre dispositivos eletrônicos e o grupo
+$crisp_3$ com opiniões a respeito dos serviços de hospedagem e alimentação. Contudo nota-se que os
+descritores do PCM e do PFCM$\lambda$ (descritores da partição possibilística do PFCM) estão um
+pouco mais misturados, não apresentando uma tendência geral bem definida. Uma explicação possível a
+esse resultado, pode se encontrar na própria partição possibilística a qual permite que um mesmo
 documento possua um grau de tipicidade elevado em todos os grupos. Portanto uma solução possível,
 pode ser uma adaptação do método de extração de descritores SoftO-FDCL voltado para a partição
 possibilística, assim como também para algoritmos híbridos com duas partições, que é o caso do PFCM.
@@ -932,5 +934,125 @@ produzidos pelo método de agrupamento e $m$ a quantidade descritores desejada p
 \end{algorithm}
 
 \subsection{Resultados}
+
+Para mensurar os impactos das duas estratégias híbridas para extração de descritores apresentadas
+aqui nesta seção, foi realizado outro experimento, com os algoritmos PCM e PFCM, com as bases
+apresentadas na seção \ref{section:datasets}. Durante o experimento fora utilizado os métodos de
+extração de descritores SoftO-FDCL, PDCL, Mixed-PFDCL. 
+
+Desde que as propostas aqui apresentadas, pretendem otimizar os resultados apresentados
+anteriormente, foi adotada uma metodologia similar ao experimento anterior. Ou seja, o agrupamento
+final obtido para cada base, é resultado dos grupos que obtiveram o maior valor na medida de
+silhueta fuzzy. Onde a quantidade de grupos para cada base, variou entre 2 e o número de classes
+de cada base (Tabela \ref{table:datasets}). Ressalta-se ainda que para minimizar os efeitos da
+aleatoriedade da partição inicial nesse experimento, o agrupamento foi executado 5 vezes para cada
+quantidade de grupos na silhueta fuzzy. 
+
+Os parâmetros $m$ e $n$ que regulam a variação entre fuzzy e $crisp$ das partições resultantes
+conforme ilustrados nas Figuras \ref{fig:cluster_crisp} e \ref{fig:cluster_fuzzy}, foram definidos
+para 1.2 de maneira empírica. De maneira geral, observou-se que as bases de maior dimensionalidade,
+estavam produzindo grupos coincidentes mais facilmente, quando os valores de $m$ e $n$ eram maior do
+que $1.5$. Por sua vez os parâmetros $a$ e $b$ do algoritmo PFCM, o qual define a influência das
+pertinências fuzzy do FCM e os graus de compatibilidade possibilísticos do PCM respectivamente,
+foram definidos como sendo $a = 1,0$ e $b = 1,2$. Essa escolha deriva das conclusões apresentadas
+em \citeonline{Pal2005}, o qual nos informa que de acordo com a função objetivo (equação
+\ref{eq:pfcmobj}) do PFCM, se utilizarmos valores de $a$ maiores que $b$, os protótipos dos grupos
+são mais influenciados pelas pertinências. Contudo, como em coleções textuais 
+naturalmente esparsas, é mais comum haver documentos ruidosos, o qual não se encaixe totalmente em
+nenhum grupo. Sendo assim, foi adotado o valor de $b$ maior do que $a$, para reduzir os efeitos
+indesejados dos ruídos.
+
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |l|c|c|c|c|}
+    \hline
+    {\bf Coleção} & {\bf \# classes} & {\bf PCM} & {\bf PFCM} \\
+    \hline
+    Opinosis & 3 &  3 & 3 \\
+    \hline
+    20Newsgroup & 4 &  2 & 2 \\
+    \hline
+    Hitech & 6 & 5 & 5 \\
+    \hline
+    NSF & 16 &  2 & 16 \\
+    \hline
+    WAP & 20 & 5 & 16 \\
+    \hline
+    Reuters-21578 & 43 & 11 & 36 \\
+    \hline
+  \end{tabular}
+  \caption{Quantidade ótima de grupos determinada através do método da silhueta fuzzy para cada
+  algoritmo de agrupamento no experimento conduzido com o PCM e PFCM}
+  \label{table:pfcmclusters}
+\end{table}
+
+\begin{figure}[!htp] \centering 
+   \begin{minipage}{0.45\textwidth} 
+     \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pdcl/opinosis} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção Opinosis} 
+  \label{fig:pfcmopinosis}
+  \end{minipage}\hfill 
+  \begin{minipage}{0.45\textwidth} \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pdcl/newsgroup} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção 20Newsgroup} 
+     \label{fig:pfcm20news} 
+   \end{minipage} 
+\end{figure}
+
+\begin{figure}[!htp] \centering 
+   \begin{minipage}{0.45\textwidth} 
+     \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pdcl/hitech} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção Hitech} 
+  \label{fig:pfcmhitech}
+  \end{minipage}\hfill 
+  \begin{minipage}{0.45\textwidth} \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pdcl/nsf} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção NSF} 
+     \label{fig:pfcmnsf} 
+   \end{minipage} 
+\end{figure}
+
+\begin{figure}[!htp] \centering 
+   \begin{minipage}{0.45\textwidth} 
+     \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pdcl/wap} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção WAP} 
+    \label{fig:pfcmwap}
+  \end{minipage}\hfill 
+  \begin{minipage}{0.45\textwidth} \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pdcl/hitech} 
+    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
+      métodos de agrupamento FCM,
+    PCM e PFCM executados na coleção Reuters-21578} 
+     \label{fig:pfcmreuters} 
+   \end{minipage} 
+\end{figure}
+
+\begin{figure}[!htp] \centering 
+  \centering
+  \includegraphics[width=0.8\columnwidth]{assets/pdcl/20newsgrou2fcmsoft-fdcleuclidian.pdf} 
+  \caption{Ilustração denotando os
+  grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.} 
+  \label{fig:newsgroup}
+\end{figure}
+\begin{figure}[!htp] \centering 
+    \includegraphics[width=0.8\columnwidth]{assets/pdcl/pfcmmixed-pdcleuclidian.pdf} 
+    \caption{Ilustração denotando os
+     grupos $g_1,g_2,g_3$ organizados de maneira fuzzy, com sobreposição, quando 
+     $m \rightarrow \infty$.}
+     \label{fig:mixed_opinosis} 
+\end{figure}
 
 \section{Considerações finais}
