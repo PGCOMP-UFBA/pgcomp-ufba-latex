@@ -284,6 +284,7 @@ as partições fuzzy e possibilística, as quais permitem que um documento perte
 grupos, considera o grupo $crisp$ de um documento $d_i$, como sendo o grupo $crisp_j$ do respectivo
 $grupo_j$, no qual $d_i$ possua a maior
 pertinência/tipicidade. Esta definição está formalizada na equação \ref{eq:class}.
+
 \begin{equation}
   crisp(d_i) = \begin{cases}
     crisp_j, & \mu(d_i,g_j) = \displaystyle\max_{\forall g \in G} \mu(d_i,g), \text{se a partição
@@ -293,6 +294,7 @@ pertinência/tipicidade. Esta definição está formalizada na equação \ref{eq
   \end{cases}
   \label{eq:class}
 \end{equation}
+
 Após se atribuir os documentos aos grupos $crisp$, é produzida uma outra matriz,
 considerando apenas os termos descritores dos grupos. Logo essa matriz documentos x descritores
 $D'_{n \times m}$, 
@@ -962,6 +964,13 @@ naturalmente esparsas, é mais comum haver documentos ruidosos, o qual não se e
 nenhum grupo. Sendo assim, foi adotado o valor de $b$ maior do que $a$, para reduzir os efeitos
 indesejados dos ruídos.
 
+As coleções foram então agrupadas com os métodos PCM e PFCM, utilizando a metodologia descrita. A
+quantidade ótima de grupos, obtida com o método da silhueta fuzzy, está apresentado na Tabela
+\ref{table:pfcmclusters}. Os resultados apresentado nesta tabela, reforçam as conclusões
+apresentadas experimento anterior, de que a quantidade de grupos ótima do método PFCM tende a se
+aproximar mais da quantidade original de classes de cada coleção, enquanto o método PCM possui uma
+tendência em se obter um número de grupos bem inferior a quantidade original de classes.
+
 \begin{table}[!htp]
   \centering
   \begin{tabular}{ |l|c|c|c|c|}
@@ -985,6 +994,31 @@ indesejados dos ruídos.
   algoritmo de agrupamento no segundo experimento conduzido com os métodos PCM e PFCM}
   \label{table:pfcmclusters}
 \end{table}
+
+Em seguida, foi realizado a extração dos descritores sobre as partições ótimas encontradas por
+cada algoritmo de agrupamento, sobre as coleções textuais. Como a motivação desse experimento, foi
+avaliar a qualidade dos descritores produzidos pelos métodos PDCL e Mixed-PDCL propostos, a extração
+de descritores foi também realizada com o método SoftO-FDCL, possibilitando assim compararmos os
+resultados. E assim como no experimento anterior, essa análise quantitativa dos descritores
+produzidos, foi feita, utilizando a mesma estratégia de avaliação preditiva,
+com os 5 algoritmos de classificação do experimento anterior. No entanto, como a proposta de
+interpretação das duas partições produzidas pelo algoritmo PFCM, contempla um grau de
+compatibilidade misto entre as duas partições, foi então pertinente generalizar essa interpretação
+híbrida dos graus de compatibilidade também para função de defuzificação apresentada na equação
+(\ref{eq:class}). Com isso, essa adaptação está apresentada na equação (\ref{eq:class2}), onde 
+foi adicionado, o grau de compatibilidade híbrido proposto na equação (\ref{eq:pfcmmix}).
+
+\begin{equation}
+  crisp(d_i) = \begin{cases}
+    crisp_j, & \mu(d_i,g_j) = \displaystyle\max_{\forall g \in G} \mu(d_i,g), \text{se a partição
+  for fuzzy}\\
+  crisp_j, & \lambda(d_i,g_j) = \displaystyle\max_{\forall g \in G} \lambda(d_i,g), \text{se a
+  partição for possibilística}\\
+  crisp_j, & \mu'(d_i,g_j) = \displaystyle\max_{\forall g \in G} \mu'(d_i,g), \text{se houver
+duas partições}
+  \end{cases}
+  \label{eq:class2}
+\end{equation}
 
 
 \begin{figure}[!htp] \centering 
