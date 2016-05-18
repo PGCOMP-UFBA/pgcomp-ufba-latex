@@ -968,74 +968,69 @@ indesejados dos ruídos.
     \hline
     {\bf Coleção} & {\bf \# classes} & {\bf PCM} & {\bf PFCM} \\
     \hline
-    Opinosis & 3 &  3 & 3 \\
+    Opinosis & 3 & 2 & 3 \\
     \hline
-    20Newsgroup & 4 &  2 & 2 \\
+    20Newsgroup & 4 & 4 & 4 \\
     \hline
-    Hitech & 6 & 5 & 5 \\
+    Hitech & 6 & 2 & 6 \\
     \hline
-    NSF & 16 &  2 & 16 \\
+    NSF & 16 &  2 & 8 \\
     \hline
-    WAP & 20 & 5 & 16 \\
+    WAP & 20 & 2 & 17 \\
     \hline
-    Reuters-21578 & 43 & 11 & 36 \\
+    Reuters-21578 & 43 & 4 & 40 \\
     \hline
   \end{tabular}
   \caption{Quantidade ótima de grupos determinada através do método da silhueta fuzzy para cada
-  algoritmo de agrupamento no experimento conduzido com o PCM e PFCM}
+  algoritmo de agrupamento no segundo experimento conduzido com os métodos PCM e PFCM}
   \label{table:pfcmclusters}
 \end{table}
 
+
 \begin{figure}[!htp] \centering 
-   \begin{minipage}{0.45\textwidth} 
+   \begin{minipage}{0.48\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/opinosis} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
-      métodos de agrupamento FCM,
-    PCM e PFCM executados na coleção Opinosis} 
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção Opinosis} 
   \label{fig:pfcmopinosis}
   \end{minipage}\hfill 
-  \begin{minipage}{0.45\textwidth} \centering
+  \begin{minipage}{0.48\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/newsgroup} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
-      métodos de agrupamento FCM,
-    PCM e PFCM executados na coleção 20Newsgroup} 
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção 20Newsgroup} 
      \label{fig:pfcm20news} 
    \end{minipage} 
 \end{figure}
 
 \begin{figure}[!htp] \centering 
-   \begin{minipage}{0.45\textwidth} 
+   \begin{minipage}{0.48\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/hitech} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
-      métodos de agrupamento FCM,
-    PCM e PFCM executados na coleção Hitech} 
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção Hitech} 
   \label{fig:pfcmhitech}
   \end{minipage}\hfill 
-  \begin{minipage}{0.45\textwidth} \centering
+  \begin{minipage}{0.48\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/nsf} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
-      métodos de agrupamento FCM,
-    PCM e PFCM executados na coleção NSF} 
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção NSF} 
      \label{fig:pfcmnsf} 
    \end{minipage} 
 \end{figure}
 
 \begin{figure}[!htp] \centering 
-   \begin{minipage}{0.45\textwidth} 
+   \begin{minipage}{0.48\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/wap} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
-      métodos de agrupamento FCM,
-    PCM e PFCM executados na coleção WAP} 
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção WAP} 
     \label{fig:pfcmwap}
   \end{minipage}\hfill 
-  \begin{minipage}{0.45\textwidth} \centering
-    \includegraphics[width=1.0\columnwidth]{assets/pdcl/hitech} 
-    \caption{Desempenho obtido com os descritores extraídos com o algoritmo SoftO-FDCL a partir dos
-      métodos de agrupamento FCM,
-    PCM e PFCM executados na coleção Reuters-21578} 
+  \begin{minipage}{0.48\textwidth} \centering
+    \includegraphics[width=1.0\columnwidth]{assets/pdcl/reuters} 
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção Reuters-21578} 
      \label{fig:pfcmreuters} 
    \end{minipage} 
 \end{figure}
