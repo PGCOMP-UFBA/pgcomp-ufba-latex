@@ -969,7 +969,7 @@ quantidade ótima de grupos, obtida com o método da silhueta fuzzy, está apres
 \ref{table:pfcmclusters}. Os resultados apresentado nesta tabela, reforçam as conclusões
 apresentadas experimento anterior, de que a quantidade de grupos ótima do método PFCM tende a se
 aproximar mais da quantidade original de classes de cada coleção, enquanto o método PCM possui uma
-tendência em se obter um número de grupos bem inferior a quantidade original de classes.
+tendência em obter um número de grupos bem inferior a quantidade original de classes.
 
 \begin{table}[!htp]
   \centering
@@ -1003,9 +1003,9 @@ resultados. E assim como no experimento anterior, essa análise quantitativa dos
 produzidos, foi feita, utilizando a mesma estratégia de avaliação preditiva,
 com os 5 algoritmos de classificação do experimento anterior. No entanto, como a proposta de
 interpretação das duas partições produzidas pelo algoritmo PFCM, contempla um grau de
-compatibilidade misto entre as duas partições, foi então pertinente generalizar essa interpretação
-híbrida dos graus de compatibilidade também para função de defuzificação apresentada na equação
-(\ref{eq:class}). Com isso, essa adaptação está apresentada na equação (\ref{eq:class2}), onde 
+compatibilidade misto entre as duas partições, foi pertinente generalizar essa interpretação
+também para função de defuzificação dos grupos, apresentada na equação
+(\ref{eq:class}). Essa adaptação está apresentada na equação (\ref{eq:class2}), onde 
 foi adicionado, o grau de compatibilidade híbrido proposto na equação (\ref{eq:pfcmmix}).
 
 \begin{equation}
@@ -1068,6 +1068,31 @@ duas partições}
      \label{fig:pfcmreuters} 
    \end{minipage} 
 \end{figure}
+
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |l|c c|c c|}
+    \hline
+    & \multicolumn{2}{|c|}{PCM} & \multicolumn{2}{c|}{PFCM} \\
+    \hline
+    {\bf nome} & SoftO-FDCL & PDCL & SoftO-FDCL & Mixed-PDCL \\
+    \hline
+    {\bf Opinosis} & & $\checkmark$ & & $\checkmark$ \\
+    \hline
+    {\bf 20newsgroups} & $\checkmark$ & $\checkmark$ & & $\checkmark$\\
+    \hline
+    {\bf Hitech} & & $\checkmark$ & & $\checkmark$ \\
+    \hline
+    {\bf NSF} &  $\checkmark$ & $\checkmark$ & & $\checkmark$\\
+    \hline
+    {\bf WAP} & & $\checkmark$ & & $\checkmark$\\
+    \hline
+    {\bf Reuters-21578} & & $\checkmark$ & & $\checkmark$\\
+    \hline
+  \end{tabular}
+  \caption{Sumário dos resultados da classificação dos descritores}
+  \label{table:pfcmsummary}
+\end{table}
 
 \begin{figure}[!htp] \centering 
   \centering
