@@ -997,7 +997,7 @@ tendência em obter um número de grupos bem inferior a quantidade original de c
 
 Em seguida, foi realizado a extração dos descritores sobre as partições ótimas encontradas por
 cada algoritmo de agrupamento, sobre as coleções textuais. Como a motivação desse experimento, foi
-avaliar a qualidade dos descritores produzidos pelos métodos PDCL e Mixed-PDCL propostos, a extração
+avaliar a qualidade dos descritores produzidos pelos métodos PDCL e Mixed-PFDCL propostos, a extração
 de descritores foi também realizada com o método SoftO-FDCL, possibilitando assim compararmos os
 resultados. E assim como no experimento anterior, essa análise quantitativa dos descritores
 produzidos, foi feita, utilizando a mesma estratégia de avaliação preditiva,
@@ -1020,20 +1020,27 @@ duas partições}
   \label{eq:class2}
 \end{equation}
 
+Sendo assim, é realizada uma redução na matrix documentos x termos original para a matriz documentos
+x descritores, conforme descrito na seção \ref{sec:exppfcm}, onde a pertinência de cada documento é
+submetida a uma defuzificação com a equação (\ref{eq:class2}). Posteriormente, essa matriz de
+dimensionalidade reduzida é submetida aos mesmos classificadores do experimento anterior, com os
+mesmos parâmetros. Os resultados dessa classificação estão apresentados nas Figuras
+\ref{fig:pdclopinosis}, \ref{fig:pdcl20news}, \ref{fig:pdclhitech}, \ref{fig:pdclnsf},
+\ref{fig:pdclwap} e \ref{fig:pdclreuters}.
 
 \begin{figure}[!htp] \centering 
    \begin{minipage}{0.48\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/opinosis} 
-    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PFDCL e
     PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção Opinosis} 
-  \label{fig:pfcmopinosis}
+  \label{fig:pdclopinosis}
   \end{minipage}\hfill 
   \begin{minipage}{0.48\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/newsgroup} 
-    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PFDCL e
     PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção 20Newsgroup} 
-     \label{fig:pfcm20news} 
+     \label{fig:pdcl20news} 
    \end{minipage} 
 \end{figure}
 
@@ -1041,15 +1048,15 @@ duas partições}
    \begin{minipage}{0.48\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/hitech} 
-    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PFDCL e
     PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção Hitech} 
-  \label{fig:pfcmhitech}
+  \label{fig:pdclhitech}
   \end{minipage}\hfill 
   \begin{minipage}{0.48\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/nsf} 
-    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PFDCL e
     PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção NSF} 
-     \label{fig:pfcmnsf} 
+     \label{fig:pdclnsf} 
    \end{minipage} 
 \end{figure}
 
@@ -1057,25 +1064,42 @@ duas partições}
    \begin{minipage}{0.48\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/wap} 
-    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PFDCL e
     PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção WAP} 
-    \label{fig:pfcmwap}
+    \label{fig:pdclwap}
   \end{minipage}\hfill 
   \begin{minipage}{0.48\textwidth} \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/reuters} 
-    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PDCL e
+    \caption{Desempenho obtido dos descritores extraídos com os algoritmos SoftO-FDCL, Mixed-PFDCL e
     PDCL sobre o agrupamento produzido pelos métodos PCM e PFCM na coleção Reuters-21578} 
-     \label{fig:pfcmreuters} 
+     \label{fig:pdclreuters} 
    \end{minipage} 
 \end{figure}
 
+O sumário desses resultados consta na Tabela \ref{table:pdclsummary}, onde o marcador ($\checkmark$)
+denota que o método obteve maiores taxas de acerto entre os 5 algoritmos de classificação
+utilizados. Como nessa investigação o propósito foi comparar os métodos de extração de descritores,
+dividiu-se o sumário de resultados de acordo com o método de agrupamento, PCM e PFCM
+respectivamente. Ressalta-se ainda, que garantir que a extração fosse realizada sobre os mesmos
+grupos, ambos os
+métodos de extração de descritores foram aplicados simultaneamente ao agrupamento. Portanto, os
+métodos SoftO-FDCL e PDCL foram aplicados ao mesmo agrupamento produzido pelo PCM, enquanto o
+SoftO-FDCL e o Mixed-PFDCL foram executados no mesmo agrupamento gerado pelo PFCM. 
+
+Os resultados dispostos nesse sumário, corroboram a hipótese formulada a respeito da interpretação
+das partições possibilísticas e híbridas no contexto da extração de descritores para a organização
+flexível de documentos. Pois, como se observa na Tabela \ref{table:pdclsummary}, o método PDCL e o
+Mixed-PFDCL, superam os resultados do método SoftO-FDCL, em ambos os algoritmos de agrupamento.
+Embora, tenha existido 2 empates na comparação entre os métodos SoftO-FDCL e PDCL, para as coleções
+20newsgroups e NSF.
+
 \begin{table}[!htp]
   \centering
-  \begin{tabular}{ |l|c c|c c|}
+  \begin{tabular}{|l|c c|c c|}
     \hline
-    & \multicolumn{2}{|c|}{PCM} & \multicolumn{2}{c|}{PFCM} \\
+    & \multicolumn{2}{c|}{PCM} & \multicolumn{2}{c|}{PFCM} \\
     \hline
-    {\bf nome} & SoftO-FDCL & PDCL & SoftO-FDCL & Mixed-PDCL \\
+    {\bf Coleção} & SoftO-FDCL & PDCL & SoftO-FDCL & Mixed-PFDCL \\
     \hline
     {\bf Opinosis} & & $\checkmark$ & & $\checkmark$ \\
     \hline
@@ -1090,8 +1114,9 @@ duas partições}
     {\bf Reuters-21578} & & $\checkmark$ & & $\checkmark$\\
     \hline
   \end{tabular}
-  \caption{Sumário dos resultados da classificação dos descritores}
-  \label{table:pfcmsummary}
+  \caption{Sumário dos resultados da classificação dos descritores extraídos com os métodos
+  SoftO-FDCL, PDCL e Mixed-PFDCL}
+  \label{table:pdclsummary}
 \end{table}
 
 \begin{figure}[!htp] \centering 
