@@ -1162,12 +1162,95 @@ resultados da classificação isoladamente. Por outro lado, percebe-se na Tabela
 PCM. Isso por sua vez, indica que o agrupamento produzido pelo PFCM, gerou grupos mais coerentes, o
 que reforça a adequação desse algoritmo para coleções textuais.
 
-Nos estudos do limiar $\delta$, detalhados na seção \ref{sec:softofdcl}, foi pontuado, que esse
-limiar aplicado em partições possibilísticas poderiam resultar na mesmo $ranking$ de descritores
-entre os grupos. Portanto, para comprovarmos as conclusões obtidas dessa investigação, vamos
-analisar a lista dos descritores com maior pontuação em cada grupo, produzidas pelos métodos
-Soft-FDCL, PDCL e Mixed-PFDCL.
+Nos estudos do limiar $\delta$, detalhados na seção \ref{sec:softofdcl}, foi pontuado que ao 
+se utilizar esse limiar em partições possibilísticas, poderia resultar em listas similares de
+descritores entre os grupos. Portanto, para comprovar essas conclusões obtidas dessa
+investigação, é pertinente analisar as listas dos descritores com maior pontuação em cada grupo,
+produzidas pelos métodos Soft-FDCL, PDCL e Mixed-PFDCL nesse experimento. Contudo, como são muitas
+bases, e em alguns casos a quantidade de grupos é demasiadamente elevada, está apresentado nas
+Tabelas \ref{table:rankingpdcl} e \ref{table:rankingmixedpdcl}, somente as 5 maiores pontuações dos
+termos candidatos aos grupos obtidos pelos algoritmos PCM e PFCM na base Opinosis. Assim como no
+experimento anterior, foi escolhido apresentar essa base, para facilitar a interpretação dos
+resultados, pois a mesma contém uma quantidade baixa de documentos e de grupos resultantes do
+agrupamento.
 
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |l| l l | l l|}
+    \hline
+    & \multicolumn{2}{c|}{$grupo_1$} & \multicolumn{2}{c|}{$grupo_2$} \\
+    \hline
+    {\bf método} & termo & pontuação & termo & pontuação \\
+    \hline
+    \multirow{5}{*}{{\bf SoftO-FDCL}} & caf & 0,923077 & caf & 0,923077 \\
+                                       & floor	    & 0.888889  & floor	  & 0.888889 \\
+                                       & food	    & 0.880000  & food	  & 0.880000 \\
+                                       & coffe	    & 0.857143  & coffe	  & 0.857143 \\
+                                       & concierge  & 0.846154  & concierge & 0.846154 \\
+    \hline
+    \multirow{5}{*}{{\bf PDCL}} & bathro      &  0.894716  & make    & 0.800980 \\       
+                                 & food        &  0.888785  & time    & 0.789846 \\       
+                                 & concierge    &  0.860127  & nice    & 0.779338 \\       
+                                 & supermarket &  0.856632  & feature & 0.778138 \\       
+                                 & chain       &  0.856632  & easy    & 0.768564 \\       
+    \hline
+  \end{tabular}
+  \caption{Lista ordenada com 5 termos candidatos de maior pontuação, obtidos após a extração de
+  descritores com os métodos Soft-FDCL e PDCL aplicados ao agrupamento da coleção Opinosis com o
+algoritmo PCM}
+  \label{table:rankingpdcl}
+\end{table}
+
+Portanto, ao se analisar na Tabela \ref{table:rankingpdcl}, as pontuações e os termos do $grupo_1$ e
+do $grupo_2$, obtidos com o método SoftO-FDCL, nota-se uma repetição dos termos e pontuações para
+ambos os grupos. Essa evidência, por usa vez, fortalece a problemática na interpretação dos graus de
+compatibilidade possibilísticos apresentada na seção \ref{sec:softofdcl}.  Por outro lado, os termos
+obtidos com o método proposto, não se repetem em ambos os grupos, assim como também estão mais
+coerentes entre si. Conforme foi detalhado, a base Opinosis é composta de uma série de opiniões
+sobre eletrônicos, hotéis e carros, sendo assim é possível observar nos termos encontrados pelo
+método PDCL, uma proximidade semântica com esses assuntos.
+
+Já Tabela \ref{table:rankingmixedpdcl}, a qual contém os 5 termos candidatos de maior pontuação no 
+$grupo_1$, $grupo_2$ e $grupo_3$, não apresentou o problema da repetição dos mesmos termos nos
+grupos para o método SoftO-FDCL. Isto se deve por conta da extração de descritores com o método
+SoftO-FDCL nesse experimento, utilizar somente os graus de pertinências, os são adequados a este
+método, conforme foi destacado durante a investigação desse método. Contudo, no experimento
+anterior, foi levantado a importância de se utilizar as pertinências e tipicidades presentes no
+algoritmo PFCM, para melhor interpretar o agrupamento produzido por essa abordagem híbrida. Nesse
+contexto, observa-se que os termos de maior pontuação do método Mixed-PFDCL, diferem parcialmente
+dos termos obtidos com o método SoftO-FDCL, porém há de se observar que os termos dos grupos
+SoftO-FDCL podem ser semanticamente relacionados aos termos do método Mixed-PFDCL. Ainda é possível
+notar, que os 3 grupos de termos são similares aos 3 tópicos presentes na coleção Opinosis. O que
+por sua vez, reforça a adequadação do método proposto para interpretar de maneira híbrida ambas as
+partições geradas no pelo método PFCM.
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | l | l l | l l | l l |}
+    \hline
+    & \multicolumn{2}{c|}{$grupo_1$} & \multicolumn{2}{c|}{$grupo_2$} &
+    \multicolumn{2}{c|}{$grupo_3$} \\
+    \hline
+    {\bf método} & termo & pontuação & termo & pontuação & termo & pontuação \\
+    \hline
+ \multirow{5}{*}{{\bf SoftO-FDCL}} & text   & 0.850000 & coff  &  0.933333 &  ga     & 0.833333 \\
+                                    & featur & 0.758621 & eat   &  0.903226 &  camr   & 0.818182 \\
+                                    & devic  & 0.750000 & flo   &  0.896552 &  transm & 0.818182 \\
+                                    & user   & 0.750000 & inn   &  0.896552 &  seat   & 0.769231 \\
+                                    & unit   & 0.727273 & lobb  &  0.896552 &  rir    & 0.769231 \\
+    \hline
+ \multirow{5}{*}{{\bf Mixed-PFDCL}} & featur & 0.876540 & friendl & 0.951225 & fun & 0.891245  \\
+&  text          &  0.869230  &  bed           &  0.950665  &  ga            &  0.868032  \\
+&  find          &  0.830332  &  coff          &  0.948341  &  rir           &  0.847864  \\
+&  isn           &  0.817311  &  sta           &  0.945294  &  seat          &  0.843576  \\
+&  eas           &  0.809918  &  night         &  0.933519  &  engin         &  0.840700  \\
+    \hline
+  \end{tabular}
+  \caption{Lista ordenada com 5 termos candidatos de maior pontuação, obtidos após a extração de
+  descritores com os métodos Soft-FDCL e PDCL aplicados ao agrupamento da coleção Opinosis com o
+algoritmo PFCM}
+  \label{table:rankingmixedpdcl}
+\end{table}
 
 
 \section{Considerações finais}
