@@ -1028,7 +1028,7 @@ mesmos parâmetros. Os resultados dessa classificação estão apresentados nas 
 \ref{fig:pdclopinosis}, \ref{fig:pdcl20news}, \ref{fig:pdclhitech}, \ref{fig:pdclnsf},
 \ref{fig:pdclwap} e \ref{fig:pdclreuters}.
 
-\begin{figure}[!htp] \centering 
+\begin{figure}[!h] \centering 
    \begin{minipage}{0.48\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/opinosis} 
@@ -1044,7 +1044,7 @@ mesmos parâmetros. Os resultados dessa classificação estão apresentados nas 
    \end{minipage} 
 \end{figure}
 
-\begin{figure}[!htp] \centering 
+\begin{figure}[!h] \centering 
    \begin{minipage}{0.48\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/hitech} 
@@ -1060,7 +1060,7 @@ mesmos parâmetros. Os resultados dessa classificação estão apresentados nas 
    \end{minipage} 
 \end{figure}
 
-\begin{figure}[!htp] \centering 
+\begin{figure}[!h] \centering 
    \begin{minipage}{0.48\textwidth} 
      \centering
     \includegraphics[width=1.0\columnwidth]{assets/pdcl/wap} 
@@ -1119,19 +1119,50 @@ Embora, tenha existido 2 empates na comparação entre os métodos SoftO-FDCL e 
   \label{table:pdclsummary}
 \end{table}
 
-\begin{figure}[!htp] \centering 
+Ao se analisar os resultados, comparando as taxas de acerto obtidas entre os métodos de agrupamento,
+é possível se observar uma relevante tendência do PCM superar o PFCM. Entretanto, as taxas de acerto
+próximas de 100\% no PCM, desperta atenção. Nesse sentido, vamos analisar na Tabela
+\ref{table:pdclmajority}, os grupos majoritários da matriz documentos x descritores, obtidos após a
+defuzificação do agrupamento com a equação (\ref{eq:class2}), para entender o por que de taxas tão
+elevadas. 
+
+\begin{table}[!htp]
   \centering
-  \includegraphics[width=0.8\columnwidth]{assets/pdcl/20newsgrou2fcmsoft-fdcleuclidian.pdf} 
-  \caption{Ilustração denotando os
-  grupos $g_1,g_2,g_3$ organizados sem sobreposição, para $m = 1$.} 
-  \label{fig:newsgroup}
-\end{figure}
-\begin{figure}[!htp] \centering 
-    \includegraphics[width=0.8\columnwidth]{assets/pdcl/pfcmmixed-pdcleuclidian.pdf} 
-    \caption{Ilustração denotando os
-     grupos $g_1,g_2,g_3$ organizados de maneira fuzzy, com sobreposição, quando 
-     $m \rightarrow \infty$.}
-     \label{fig:mixed_opinosis} 
-\end{figure}
+  \begin{tabular}{|l|c|c c|}
+    \hline
+    & PCM & \multicolumn{2}{c|}{PFCM} \\
+    \hline
+    {\bf Coleção} & SoftO-FDCL e PDCL & SoftO-FDCL & Mixed-PFDCL \\
+    \hline
+    {\bf Opinosis} & 84,31\% & 43,13\% & 43,13\% \\
+    \hline
+    {\bf 20newsgroups} & 99,9\% & 49,55\% & 51,65\% \\
+    \hline
+    {\bf Hitech} & 95,16\% & 25,83\% & 25,83\% \\
+    \hline
+    {\bf NSF} & 100\% & 44,43\% &  34,21\% \\
+    \hline
+    {\bf WAP} & 93,3\% & 57,69\% & 86,53\% \\
+    \hline
+    {\bf Reuters-21578} & 97,81\% & 68,91\% & 76,42\% \\
+    \hline
+  \end{tabular}
+  \caption{Informações das classes majoritárias obtidas através da defuzificação dos grupos fuzzy,
+  com a equação (\ref{eq:class2})}
+  \label{table:pdclmajority}
+\end{table}
+
+É demonstrado então na Tabela \ref{table:pdclmajority}, que a defuzificação dos agrupamentos
+produzidos pelo método PCM em cada coleção, resultou em grupos majoritários próximo de 100\%, o que
+por sua vez facilita a tarefa do classificador. Desse modo, fica claro as causas de taxas de acertos
+tão elevadas no método PCM, e assim como também nos mostra a importância de não analisarmos os
+resultados da classificação isoladamente. Por outro lado, percebe-se na Tabela
+\ref{table:pdclmajority}, a discrepância dos grupos majoritários no algoritmo PFCM em comparação ao
+PCM. Isso por sua vez, indica que o agrupamento produzido pelo PFCM, gerou grupos mais coerentes, o
+que reforça a adequação desse algoritmo para coleções textuais.
+
+
 
 \section{Considerações finais}
+
+
