@@ -139,10 +139,13 @@ Nesse sentido, está apresentado na Figura \ref{fig:pfcmvarying}, um exemplo dos
 da quantidade de grupos e do parâmetro $m$, sobre a medida de silhueta fuzzy. Ao analisar o gráfico,
 observa-se uma clara tendência da medida de silhueta fuzzy (FS) aumentar, com o incremento no número
 de grupos e para a faixa de valores de $m$ entre 1,0 e 1,4. Contudo, esse tipo de análise, requer
-sucessivas execuções de todo o agrupamento. O que por sua vez é um processo bastante oneroso
+sucessivas execuções de todo o agrupamento, o que por sua vez é um processo bastante oneroso
 computacionalmente. Sendo assim, pretende-se estender esse estudo para outras bases e para os
-demais algoritmos de agrupamento, assim como também utilizar outras medidas de validação do
-agrupamento, tais como a medida de entropia.
+demais algoritmos de agrupamento. Assim como também mensurar a qualidade do agrupamento produzido
+através de outras medidas de validação existentes na literatura, como por exemplo as medidas de
+entropia e pureza do agrupamento apresentadas em \citeonline{Deepa2012} ou a medida de validação
+proposta em \citeonline{ZhangZhou2008}, que explora as pertinências e tipiciadades existentes no
+PFCM.
 
 \begin{figure}[!htp] \centering 
   \centering
@@ -152,11 +155,10 @@ pontuação obtida pela medida de silhueta fuzzy para o algoritmo PFCM na base N
   \label{fig:pfcmvarying}
 \end{figure}
 
-\begin{figure}[!htp] \centering 
-  \centering
-  \includegraphics[width=0.8\columnwidth]{assets/future_works/opinosis_sammons.pdf} 
-  \caption{Visualização do agrupamento produzido com o método PCM, com a técnica do mapeamento de
-Sammons \cite{Sammon1969}, com as cores dos grupos obtidas através da defuzificação apresentada na
-equação \ref{eq:class2}.} 
-  \label{fig:opinosissammons}
-\end{figure}
+Nesta monografia também foi observado diversas vezes que um dos grandes desafios no agrupamento de
+documentos está na dimensionalidade dos dados. Soma-se a isso o fato de que os principais algoritmos
+de agrupamento possuem como ponto crítico de decisão no processo de separação dos elementos em
+grupos, a medida de similaridade. Sendo assim, é importante se investigar também as possibilidades de
+aprimoramento da organização flexível de documentos com as recentes medidas de similaridade
+propostas na literatura \cite{Lin2014,Nagwani2015} para dados de alta dimensionalidade e em
+particular para coleções textuais.
