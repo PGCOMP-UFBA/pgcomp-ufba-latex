@@ -37,3 +37,89 @@ desta monografia é definido como segue:
 se compreender e interpretar corretamente as peculiaridades de se extrair descritores em um
 agrupamento híbrido.}
 \end{quote}
+
+Com o propósito de atender esse objetivo, foi realizado nesta monografia um estudo dos fundamentos
+necessários para a organização flexível de documentos, uma revisão das estratégias recentes
+utilizadas por pesquisadores para aprimorar a organização flexível de documentos. E por fim como
+resultado, o estudo dos impactos de se utilizar o algoritmo PFCM no processo e na extração de
+descritores, o qual derivaram a proposição de dois métodos de extração de descritores: PDCL e
+Mixed-PFDCL. Tais métodos são extensões do método SoftO-FDCL apresentado em \cite{Nogueira2013}, e
+diante dos resultados, contribuem de maneira significativa para o estado da arte da extração de
+descritores dos grupos fuzzy.
+
+Na próxima seção será apresentada as principais contribuições fornecidas por esta monografia, as
+limitações desta proposta e os possíveis trabalhos futuros que derivam desta pesquisa.
+
+\section{Resumo das contribuições}
+
+A investigação realizada nesta monografia, produziu algumas importantes contribuições para o
+processo de se organizar documentos de maneira flexível. As quais são distribuídas no estudo e
+fundamentação da teoria relacionada a esse campo de estudo, investigação e apresentação das
+possibilidades de aprimoramento e otimização do processo explorados recentemente na literatura e a
+investigação das peculiaridades de adotar uma estratégia híbrida o que posteriormente motivou a
+proposição de dois métodos de extração de descritores. 
+
+A partir do estudo da teoria e dos fundamentos necessários para o tema, é apresentado nesta
+monografia um rico conteúdo abordando os detalhes dos métodos de agrupamento FCM, PCM, PFCM e HFCM,
+juntamente com os seus pseudo códigos, para auxiliar novos pesquisadores na rápida implementação de
+tais métodos.
+
+Outra importante contribuição, consiste na apresentação das pesquisas que se situam no estado da
+arte das etapas presentes no processo de organização flexível de documentos. Ficou evidenciado a
+partir das pesquisas encontradas na literatura a diversidade as estratégias existentes na literatura
+para mitigar os desafios existentes. Foi visto que ainda é proposto abordagens para aprimorar todas
+as etapas existentes no processo, as quais são contemplam o pré-processamento, agrupamento, extração
+de descritores e recuperação da informação, com isso conclui-se que a organização flexível não é um
+problema resolvido na literatura, o que o torna um problema de pesquisa bastante promissor. 
+
+A primeira contribuição experimental dessa monografia, consistiu no estudo dos impactos de se
+adicionar o método PFCM no processo de organização flexível de documentos. A partir desse estudo
+foi observado que o algoritmo PFCM possui uma tendência para aumentar a eficiência do
+agrupamento produzido em coleções textuais de maior dimensionalidade, o que foi comprovado a partir
+das evidências contidas na Tabela \ref{table:pfcmsummary}. No entanto se destaca aqui a importância
+de se realizar novos estudos com um maior número de coleções textuais de baixa e alta
+dimensionalidade para se confirmar esta tendência. 
+
+Por outro lado foi observado também neste experimento, a capacidade de adaptação do método
+SoftO-FDCL a novos algoritmos de agrupamento, no entanto o mesmo considera somente uma única
+partição no processo de pontuação dos termos candidatos, o que por sua vez não consegue capturar
+toda a essência do agrupamento produzido pelo PFCM. Ainda neste experimento foi observado um
+problema na interpretação das tipicidades contidas em partições possibilísticas, no processo de
+extração de descritores. Esse problema deriva diretamente da natureza probabilística dos graus de
+pertinência da partição fuzzy do FCM, a qual não se aplica as tipicidades, a qual influencia
+direta adequação ou não do limiar $\delta$ do método SoftO-FDCL. 
+
+Portanto, a partir da identificação desse problema de interpretação dos graus de compatibilidade
+possibilísticos, uma outra importante contribuição dessa monografia, consiste na formulação das
+propriedades do limiar apresentadas nas equações \ref{eq:limiarp1}, \ref{eq:limiarp2} e
+\ref{eq:limiarp3}. Essas propriedades expressam características importantes, que os graus de
+compatibilidade devem possuir, para o limiar $\delta$ do método do método SoftO-FDCL conseguir
+extrair bons descritores dos grupos. 
+
+A partir é apresentado as duas principais contribuições dessa monografia. A primeira consiste no
+método PDCL, que propõe uma abordagem para interpretar os graus de compatibilidade possibilísticos,
+respeitando as propriedades das equações \ref{eq:limiarp1}, \ref{eq:limiarp2} e \ref{eq:limiarp3},
+sem deixar de lado a resiliência contra ruídos inerente das tipicidades. Os experimentos conduzidos
+com esse método demonstraram a qualidade dos descritores extraídos com o PDCL em comparação com o
+método SoftO-FDCL, que estão apresentados na Tabela \ref{table:rankingpdcl}. No entanto, observou-se
+neste experimento que o método PCM produziu uma quantidade baixa de grupos em comparação ao número
+total de classes em cada coleção, assim como também a defuzificação resultou em grupos majoritários
+com elevado percentual. Com isso é importante salientar, a necessidade de se conduzir estudos
+experimentais a respeito dos parâmetros ideais dos métodos de agrupamento para coleções textuais.
+
+A segunda grande contribuição dessa monografia, consiste na proposta de um método de extração de
+descritores híbrido, capaz de interpretar as duas partições presentes no algoritmo PFCM de maneira
+bastante satisfatória. Um segundo experimento foi então conduzido nesta monografia para atestar os
+benefícios desse abordagem híbrida de extração de descritores. Os resultados apresentados no sumário
+da Tabela \ref{table:pdclsummary}, atestam através de uma avaliação preditiva com clássicos
+algoritmos de classificação, que os descritores extraídos através do método Mixed-PFDCL no
+agrupamento resultante do método PFCM, foram melhores do que os descritores do método SoftO-FDCL.
+Ainda na Tabela \ref{table:rankingmixedpdcl}, se demonstrou que os descritores obtidos com o método
+Mixed-PFDCL preservam uma proximidade semântica, com os demais termos do mesmo grupo, assim como os
+descritores do método SoftO-FDCL.
+
+
+
+
+
+\section{Trabalhos futuros}
