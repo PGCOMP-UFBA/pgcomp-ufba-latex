@@ -162,3 +162,13 @@ grupos, a medida de similaridade. Sendo assim, é importante se investigar tamb�
 aprimoramento da organização flexível de documentos com as recentes medidas de similaridade
 propostas na literatura \cite{Lin2014,Nagwani2015} para dados de alta dimensionalidade e em
 particular para coleções textuais.
+
+Outro aspecto de grande relevância é a escalabilidade da proposta de organização flexível de
+documentos, para coleções textuais que se enquadram na categoria $Very Large$ de acordo com a Tabela
+\ref{table:datasetsize}. Portanto, se pretende realizar estudos objetivando escalar o processo
+utilizado nesta pesquisa para o cenário de $Big$ $Data$. De ante mão é observado no que diz respeito
+a implementação dos algoritmos aqui utilizados, que todo o processo foi paralelizado utilizando o
+framework de computação paralela OpenMP ({\it Open Multi-Processing\/})\footnotemark, o que nos
+habilita a conduzir experimentos em computadores com elevado potencial de processamento.
+\footnotetext{\url{http://openmp.org/}}
+
