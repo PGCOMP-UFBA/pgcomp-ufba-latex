@@ -129,6 +129,21 @@ Clustering algorithms. IEEE International Conference on Fuzzy Systems (FUZZ- IEE
 
 \section{Trabalhos futuros}
 
+Ao se considerar todas as conclusões apresentadas anteriormente, existem diversas possibilidades que
+podem derivar deste trabalho. Em particular, foi notado que é necessário se realizar uma avaliação
+mais apurada dos impactos na variação dos parâmetros dos algoritmos de agrupamento, de modo que se
+possa obter senão uma forma automatizada dos parâmetros com base nas características das bases,
+indicações de quais parâmetros utilizar. 
+
+Nesse sentido, está apresentado na Figura \ref{fig:pfcmvarying}, um exemplo dos impactos da variação
+da quantidade de grupos e do parâmetro $m$, sobre a medida de silhueta fuzzy. Ao analisar o gráfico,
+observa-se uma clara tendência da medida de silhueta fuzzy (FS) aumentar, com o incremento no número
+de grupos e para a faixa de valores de $m$ entre 1,0 e 1,4. Contudo, esse tipo de análise, requer
+sucessivas execuções de todo o agrupamento. O que por sua vez é um processo bastante oneroso
+computacionalmente. Sendo assim, pretende-se estender esse estudo para outras bases e para os
+demais algoritmos de agrupamento, assim como também utilizar outras medidas de validação do
+agrupamento, tais como a medida de entropia.
+
 \begin{figure}[!htp] \centering 
   \centering
   \includegraphics[width=0.8\columnwidth]{assets/future_works/pfcm_nsf_varying.pdf} 
@@ -141,7 +156,7 @@ pontuação obtida pela medida de silhueta fuzzy para o algoritmo PFCM na base N
   \centering
   \includegraphics[width=0.8\columnwidth]{assets/future_works/opinosis_sammons.pdf} 
   \caption{Visualização do agrupamento produzido com o método PCM, com a técnica do mapeamento de
-Sammons \cite{Sammons2013}, com as cores dos grupos obtidas através da defuzificação apresentada na
+Sammons \cite{Sammon1969}, com as cores dos grupos obtidas através da defuzificação apresentada na
 equação \ref{eq:class2}.} 
   \label{fig:opinosissammons}
 \end{figure}
