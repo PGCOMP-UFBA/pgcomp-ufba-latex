@@ -104,7 +104,8 @@
   \RequirePackage[dvips,usenames]{color}
   \RequirePackage[dvipdfm,colorlinks,backref]{hyperref}
 \fi
-\RequirePackage[alf]{abntex2cite}
+\RequirePackage[bookmarks]{hyperref}
+\RequirePackage[alf,abnt-etal-cite=2]{abntex2cite}
 \RequirePackage{lastpage}
 \RequirePackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
 \RequirePackage{fix-cm}
@@ -224,7 +225,7 @@ grau de \@degree\ em \@majorfield.}
 \def\program#1{%
   \gdef\@program{#1}}
 \def\@program{\@notdefined}
-\program{Programa de P\'{o}s-gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
+\program{Programa de Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
 
 \def\majorfield#1{%
   \gdef\@majorfield{#1}}
@@ -399,8 +400,13 @@ grau de \@degree\ em \@majorfield.}
     \vspace{2em}
     \begin{flushright}
       \begin{minipage}{0.5\textwidth}
-        Esta \@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do t\'{i}tulo de \@degree\  em Ci\^{e}ncia da Computa\c{c}\~{a}o e aprovada em sua
-        forma final pelo Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o da Universidade Federal da Bahia.
+          \if\@degreetype0
+          Este \@texttype\ foi julgado adequado \`{a} obten\c{c}\~{a}o do t\'{i}tulo de \@degree\  em Ci\^{e}ncia da Computa\c{c}\~{a}o e aprovado em sua
+          forma final pelo \@program\ da Universidade Federal da Bahia.
+          \else
+          Esta \@texttype\ foi julgado adequada \`{a} obten\c{c}\~{a}o do t\'{i}tulo de \@degree\  em Ci\^{e}ncia da Computa\c{c}\~{a}o e aprovada em sua
+          forma final pelo \@program\  da Universidade Federal da Bahia.
+          \fi
       \end{minipage}
     \end{flushright}
 
@@ -485,7 +491,11 @@ grau de \@degree\ em \@majorfield.}
       \vskip\baselineskip
       \@author
       \vskip 45mm
-      \textbf{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
+      \if\@degreetype0
+        \textbf{Programa de Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
+      \else
+        \textbf{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
+      \fi
       \\
       \vskip\baselineskip
       \@address\\
@@ -547,11 +557,10 @@ grau de \@degree\ em \@majorfield.}
   \vskip 45mm
   \begin{flushright}
     \begin{minipage}{0.5\textwidth}
-        Esta \@texttype\
-        foi apresentada ao Programa de P\'{o}s-Gradua\c{c}\~{a}o 
-        em Ci\^{e}ncia da Computa\c{c}\~{a}o da Universidade Federal da Bahia, 
-        como requisito parcial para obten\c{c}\~{a}o do grau de \@degree\
-        em Ci\^{e}ncia da Computa\c{c}\~{a}o.
+      Este \@texttype\
+      foi apresentado ao \@program\ da Universidade Federal da Bahia, 
+      como requisito parcial para obten\c{c}\~{a}o do grau de \@degree\
+      em Ci\^{e}ncia da Computa\c{c}\~{a}o.
     \end{minipage}
   \end{flushright}
   \begin{center}

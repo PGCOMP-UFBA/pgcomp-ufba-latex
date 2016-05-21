@@ -1,0 +1,32 @@
+%A new powerful and flexible organization of documents can be obtained by mixing fuzzy and possibilistic clustering, in which documents can belong to more than one cluster simultaneously with different compatibility degrees with a particular topic. The topics are represented by clusters and the clusters are identified by one or more descriptors extracted by a proposed method. We aim to investigate whether the descriptors extracted after fuzzy and possibilistic clustering improves the flexible organization of documents. Experiments were carried using a collection of documents and we evaluated the descriptors ability to capture the essential information of the used collection. The results prove that the fuzzy possibilistic clusters descriptors extraction is effective and can improve the flexible organization of documents.
+
+Diante da grande quantidade de informações geradas e armazenadas pela humanidade na atualidade, 
+vários métodos foram propostos visando processar esses dados. Dentre esses dados, temos uma imensa
+quantidade de dados textuais, que por sua vez são não estruturados. Com isso é notória a importância,
+de organizar de maneira automatizada, esses documentos pelos assuntos ao qual se tratam. Em particular temos um conjunto de técnicas pertencentes ao campo de estudo da mineração de textos, que visam realizar a tarefa de extrair informações relevantes de documentos textuais. Esta tarefa de análise e extração de informações é 
+comumente segmentada nas tarefas de coleta, pré-processamento dos documentos, agrupamento dos dados
+e por fim a extração de descritores dos grupos obtidos na etapa de agrupamento. Os métodos de agrupamento podem ser separados então pela lógica matemática utilizada, que pode ser a lógica clássica ou a lógica fuzzy. Na lógica clássica, após o agrupamento, cada documento só poderá pertencer a um grupo, enquanto na lógica fuzzy, a pertinência do documento será distribuída entre os grupos. 
+Se analisarmos a diversidade de conteúdo em documentos textuais, é trivial notar que frequentemente
+um texto aborda um ou mais temas. Com isso é evidente a necessidade de desenvolver-se técnicas para
+organizar de maneira flexível os documentos. Percebe-se então, que os métodos de agrupamento fuzzy,
+se mostram coerentes com a realidade multi temática dos documentos textuais. Por sua vez, o método FCM(fuzzy c means), que é uma adaptação do clássico k means, se propõe a identificar e separar uma coleção de documentos em grupos, respeitando a lógica multi valorada, permitindo assim que um documento pertença a um ou mais grupos. No entanto o FCM possui algumas falhas conhecidas, o que motivou a pesquisa e desenvolvimento de métodos alternativos e baseados no FCM, com o propósito de sanar estes problemas. Este é o caso dos métodos PCM(Possibilístico C Means) e PFCM(Possibilístico C Means). 
+Para então avaliarmos corretamente o resultado do agrupamento e a qualidade da organização flexível 
+de documentos, é preciso extrair corretamente os descritores dos grupos obtidos, levando em 
+consideração a relevância de determinado termo para cada grupo. Com isso temos um cenário no qual é 
+preciso combinar métodos de agrupamento fuzzy com métodos de extração de descritores, para obtermos
+uma bom resultado no processo de organização dos documentos. A investigação e refinamento dessa 
+combinação de métodos, foi a motivação do presente trabalho. Como resultado desse trabalho foi,
+proposto extender os experimentos referentes a organização flexível de documentos, utilizando
+novos métodos de agrupamento fuzzy existentes na literatura, como o PCM e o PFCM. Assim como também 
+foi proposto os métodos de extração de descritores: i) Mixed-PFDCL 
+({ \it Mixed - Possibilistic Fuzzy Descriptor Comes Last\/ }), que se utiliza da abordagem híbrida do 
+algoritmo PFCM, misturando assim descritores fuzzy e possibilísticos. ii) MixedW-PFDCL
+({ \it Mixed Weight - Possibilistic Fuzzy Descriptor Comes Last\/ }), 
+onde além de misturar descritores 
+fuzzy e possibilístico, leva em consideração os parâmetros de ponderação do método PFCM.
+Além dos métodos de extração de descritores, foi conduzido um estudo dos impactos de se utilizar o 
+algoritmo PCM, no método de agrupamento hierárquico HFCM, o que resultou no método de 
+agrupamento hierárquico HPCM ({ \it Hierarchical Possibilistic C Means\/ }).
+% FALAR SOBRE OS MÈTODOS FUZZY UTILIZADOS, FCM, PFCM, PCM, HFCM, HPCM
+% FALAR SOBRE A EXTRAÇÂO DE DESCRITORES
+% FALAR SOBRE A MISTURA REALIZADA NA EXTRAÇÃO DE DESCRITORES

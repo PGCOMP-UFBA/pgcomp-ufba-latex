@@ -1,0 +1,13 @@
+ufba-eps-converted-to.pdf
+*.aux
+*.log
+*.dvi
+*.lot
+*.toc
+*.bbl
+*.blg
+*.lof
+*.swp
+paper.tex
+*.out
+results/

@@ -1,56 +1,26 @@
-VERSION = 1.0
-TARBALL = ufbathesis-$(VERSION).tar.gz
-UPLOAD_TO = app.dcc.ufba.br:~/public_html/ufbathesis/
+# FILE
 
-LATEX	= latex
-BIBTEX	= bibtex
-MAKEINDEX = makeindex
-XDVI	= xdvi -gamma 4
-DVIPS	= dvips
-DVIPDF  = dvipdft
-L2H	= latex2html
-GH	= gv
+LATEX_FILE 	= main.tex
+LATEX_AUX 	=  main.aux
 
-RERUN = "(There were undefined references|Rerun to get (cross-references|the bars) right)"
-RERUNBIB = "No file.*\.bbl|Citation.*undefined"
-MAKEIDX = "^[^%]*\\makeindex"
-MPRINT = "^[^%]*print"
-USETHUMBS = "^[^%]*thumbpdf"
 
-all: qual prop msc phd
+# TOOLCHAINS
 
-qual: template-qual.dvi template-qual.pdf 
+CC 	= pdflatex
+BIB	= bibtex
+REMOVE  = rm
 
-msc: template-msc.dvi template-msc.pdf
 
-prop: template-prop.dvi template-prop.pdf
 
-phd: template-phd.dvi template-phd.pdf
+all: biblio
+	$(CC) --shell-escape $(LATEX_FILE) ufbathesis.cls
 
-%.dvi: %.tex ufbathesis.cls
-	latex $<
+pdflatex:
+	$(CC) --shell-escape $(LATEX_FILE) ufbathesis.cls
 
-%.pdf: %.tex ufbathesis.cls
-	pdflatex $<
 
-%.bbl %.blg : biblio.bib %.aux
-	bibtex $<
-
-%.aux : %.tex
-	latex $<
-
-dist: $(TARBALL)
-
-$(TARBALL): ufbathesis.cls abntex2-alf.bst
-	tar czf $(TARBALL) $^
-
-index.html: README.md
-	(pandoc -s -f markdown -t html $< | sed -e 's/##VERSION##/$(VERSION)/g' > $@) || ($(RM) $@; false)
-
-upload: $(TARBALL) index.html template-qual.tex template-msc.tex template-prop.tex template-phd.tex .htaccess
-	rsync -avp $^ $(UPLOAD_TO)
-
+biblio: clean pdflatex
+	$(BIB) $(LATEX_AUX)
+	$(CC) --shell-escape $(LATEX_FILE)
 clean:
-	$(RM) $(TARBALL)
-	$(RM) *.bbl *.blg *.aux *.lof *.log *.lot *.toc *.out template*.pdf template*.dvi
-	$(RM) index.html
+	$(REMOVE) *.aux *.bbl *.blg *.out *.log -f

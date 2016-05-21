@@ -1,0 +1,324 @@
+% Strings de busca 
+%
+% (((((clustering) OR cluster labeling) OR cluster description) AND fuzzy AND( document OR text
+% mining)))
+% http://ieeexplore.ieee.org/search/searchresult.jsp?queryText=(((((clustering)%20OR%20cluster%20labeling)%20OR%20cluster%20description)%20AND%20fuzzy%20%20AND(%20document%20OR%20text%20mining)))&ranges=2010_2016_Year&matchBoolean=true&searchField=Search_All
+
+% ((clustering OR "cluster label*" OR "cluster descriptors") AND fuzzy AND (document OR "text
+% mining" OR "document organization" OR "soft document" OR "text data"))
+% http://ieeexplore.ieee.org/search/searchresult.jsp?queryText=((clustering%20OR%20.QT.cluster%20label*.QT.%20OR%20.QT.cluster%20descriptors.QT.)%20AND%20fuzzy%20AND%20(document%20OR%20.QT.text%20mining.QT.%20OR%20.QT.document%20organization.QT.%20OR%20.QT.soft%20document.QT.%20OR%20.QT.text%20data.QT.))&sortType=desc_p_Publication_Year&matchBoolean=true&searchField=Search_All
+
+\section{Considerações Iniciais}
+
+A proposta de organização flexível de documentos está relacionada a vários campos de estudo, como
+ficou evidenciado na fundamentação teórica. Por isso a literatura existente para essa proposta é
+bastante rica e densa. Portanto com o propósito de otimizar a atividade de pesquisa e seleção do
+conhecimento científico produzido a respeito do tema, foram utilizados algumas técnicas de revisão
+sistemática de literatura ($SLR\ -\ Sistematic\ Literature\ Review$) utilizadas em \cite{Rios2010}.
+Com o objetivo de estabelecer critérios mais precisos na fase inicial da descoberta de conteúdo
+científico relacionado ao tema. Foi então adotada uma técnica comum ao método SLR, que consiste na
+elaboração de uma uma string de busca, usando operadores lógicos. Estabelecendo assim uma maneira
+mais objetiva para a obtenção de resultados relevantes a proposta dessa monografia.  Portanto,
+levando em consideração os tópicos chaves e a proposta desse trabalho, foi construída a seguinte
+string de busca: 
+
+\begin{multline} (clustering\ OR\ "cluster\ label*"\ OR\ "cluster\ descriptors")\ AND\ fuzzy \\ AND\
+  (document\ OR\ "text\ mining"\ OR\ "document\ organization"\ OR\ \\ "soft\ document"\ OR\ "text\
+data") \label{eq:busca} \end{multline}
+
+Devido o amplo acervo de publicações científicas presentes no repositório
+IEEExplore\footnote{http://ieeexplore.ieee.org/}, assim como também a possibilidade de se utilizar
+operadores lógicos e buscas parametrizadas. Foi realizado então uma busca no repositório IEEExplore,
+restringindo o período de resultados entre os anos de 2010 e 2016, permitindo então que os
+resultados obtidos fossem mais recentes.
+
+Com base nos resultados obtidos, foi realizada a leitura dos títulos e resumos dos artigos, com o
+propósito de descartar resultados com baixa relevância para essa pesquisa.  Durante a fase de
+leitura parcial dos resultados da busca, foram agrupados os artigos em três categorias: agrupamento
+fuzzy, extração de descritores e organização flexível de documentos.  As publicações selecionadas e
+direcionadas para a categoria de agrupamento fuzzy, foram as que possuíam propostas de alteração de
+métodos de agrupamento existentes ou novos métodos. Enquanto artigos que tinham como conteúdo a
+análise dos termos de uma coleção, critério de seleção de termos ou atribuição de termos a grupos de
+documentos, foram agrupados na categoria de extração de descritores. Por fim, artigos mais gerais,
+propondo métodos ou realizando revisões de métodos, pertinentes ao processo de organização de
+documentos textuais, foram categorizados no grupo de organização flexível de documentos.
+
+Para complementar os resultados obtidos foram adicionados artigos de alta relevância para o tema, e
+que apesar de serem antigos, ainda são amplamente citados em pesquisas recentes. Muitos desses
+artigos como é o caso do método FCM proposto em \cite{Bezdek1984}, são pilares fundamentais para o
+tema.
+
+Nas próximas seções contém a revisão das pesquisas selecionadas, onde é elucidado os pontos chaves
+de cada pesquisa, a definição das propostas contida nos artigos e por fim a conexão com o objetivo
+dessa monografia.
+
+\section{Organização Flexível de Documentos}
+
+Após a proposição da lógica fuzzy que se propunha a lidar com a incerteza e imprecisão em
+\cite{Zadeh1965}, foi possível a elaboração de diversos métodos que se utilizassem dos benefícios da
+lógica fuzzy e aplicassem a diversos problemas do mundo real. Este é o caso da organização de
+documentos, que por não ser uma tarefa precisa, necessita de uma certa flexibilidade no processo.
+
+\cite{Matsumoto10} informa que os mecanismos adotados em sistemas de recuperação de informação
+(SRI), tais como buscadores web, estão dispostos em dois grupos. Sendo que o primeiro tem como foco
+o usuário realizando a busca, a qual é comumente chamada de busca web personalizada.  Nessa
+abordagem os resultados obtidos são ordenados de acordo com a relevância do resultado para o
+usuário. Para calcular essa relevância, os buscadores realizam tarefas de coleta de dados dos
+usuários e comparação das preferências com demais usuários do sistema.  Enquanto na segunda
+abordagem os resultados da busca é categorizado em grupos, permitindo assim que o usuário decida em
+qual grupo ele pretende visualizar as informações. Por exemplo, quando um usuário pesquisar pelo
+termo java, os resultados poderiam ser agrupados nas seções: máquina virtual, linguagem java,
+programas em java, oracle e etc. Seguindo essa linha de categorização de resultados em SRIs,
+\cite{MarcaciniR10} propõe uma abordagem de agrupamento incremental e hierárquico para construção
+dos tópicos dos documentos, a qual permite a atualização das categorias a medida que novos
+documentos são adicionados sem realizar a etapa de agrupamento novamente. É possível a visualização
+dessa abordagem de categorização hierárquica, através da ferramenta online
+Torch\footnote{http://sites.labic.icmc.usp.br/torch/webcluster/}, dos autores do artigo.
+
+Com o surgimento de várias tecnologias, como mídias sociais, computação ubíqua, internet das coisas 
+e principalmente os dispositivos móveis, que ultrapassou os 7 bilhões de
+dispositivos\footnote{Segundo o relatório do The Mobile Economy disponível em
+\url{http://www.gsmamobileeconomy.com/GSMA_Global_Mobile_Economy_Report_2015.pdf}, a quantidade de
+dispositivos móveis (smartphones e tablets) atingiu o total de 7,517 bilhões no ano de 2015.} no ano
+de 2015. Onde por sua vez, todas essas tecnologias produzem uma abundante quantidade de dados não
+estruturados, dificultando a tarefa de métodos de mineração de dados, e por consequência
+também os métodos de organização de documentos já existentes. A esse cenário é usualmente atribuído
+o nome de $Big\ Data$. Sendo assim novas pesquisas como \cite{Havens2012} e \cite{Kumar2015} tem 
+sido conduzidas, focadas em bases com imensas quantidades de dados. Segundo \cite{Havens2012} 
+existem duas abordagens principais para otimizar o agrupamento de dados que se encaixam na categoria
+$Very\ Large$ (Tabela \ref{table:datasize}), a primeira consiste na técnica de agrupamento
+distribuído incremental e o agrupamento por amostragem progressiva ou aleatória. Nos métodos que
+usam a técnica de amostragem, primeiramente é selecionado uma amostra com os dados representativos 
+da coleção, depois é realizado o agrupamento, e em seguida é generalizado o agrupamento para o
+restante dos dados. Um dos métodos mais populares baseado em amostragem é o algoritmo 
+$generalized\ extensible\ fast\ FCM$ (geFFCM)\cite{Havens2012}. O geFFCM utiliza amostragem
+progressiva para se obter uma versão reduzida dos dados, de maneira que a mesma preserve as
+características da base original. Porém segundo \cite{Havens2012}, a técnica de amostragem do geFFCM
+é ineficiente para dados na categoria $Very\ Large$, o que levou os autores a propor uma extensão do
+geFFCM com uma melhoria na forma de realizar a amostragem dos dados, utilizando uma metodologia de
+seleção aleatória.
+
+\begin{table}[!htp]
+  \centering
+  \begin{tabular}{ |c|c c c c c|}
+    \hline
+    Bytes & $10^6$ & $10^8$ & $10^{10}$ & $10^{12}$ & $10^{>12}$ \\
+    \hline
+    "tamanho" & medium & large & huge & monster & very large \\
+    \hline
+  \end{tabular}
+  \caption{Classificação das bases de dados de acordo com o seu tamanho\cite{Havens2012}}
+  \label{table:datasize}
+\end{table}
+
+De acordo com \cite{Deng2010}, a organização flexível de dados através do algoritmo FCM possui
+uma falta de estabilidade, pois como a inicialização do FCM depende da aleatoriedade, o resultado
+final do agrupamento pode variar a cada inicialização. Assim como os dados presentes em bases de
+dados textuais são de alta dimensionalidade.  Os autores propuseram então um modelo de inicialização
+da partição que extrai da coleção medidas de peso, raio e objetos mais representativos para orientar
+a inicialização da partição inicial. A respeito do problema da dimensionalidade, \cite{Deng2010}
+sugere a redução da matrix documentos x termos, usando uma medida estatística para avaliar a
+qualidade dos termos presentes na coleção, descartando assim os termos considerados de baixa
+qualidade e consequentemente reduzindo a largura da matriz.
+
+\cite{Karami2015} propõe um modelo para análise textual de documentos médicos. Um dos pontos
+interessantes propostos pelo autor é a utilização do agrupamento fuzzy na etapa de
+pré-processamento e ponderação dos termos, antes de realizar o agrupamento e classificação. 
+O agrupamento fuzzy é aplicado a coleção de termos presentes na coleção, e ao contrário do
+agrupamento na etapa pós processamento, a pertinência ocorre da palavra a um tópico ou grupo, 
+de maneira que termos com alta pertinência possuem significados
+semânticos mais próximos. Essa aproximação semântica é realizada com base em um vocabulário
+predefinido.
+
+Conforme foi definido no capítulo 2, os algoritmos de agrupamento fuzzy apresentados são baseados na
+otimização de funções objetivos. Contudo, \cite{GasparCunha2012} descreve que a otimização de 
+funções que possuam vários mínimos locais
+sem nenhuma tendência global, utilizando as clássicas técnicas de otimização, podem simplesmente
+não só demorar a convergir, como a convergência pode nunca ser encontrada, ou ainda convergir para
+um mínimo local. Portanto diante da necessidade de se otimizar funções com
+tais características, desenvolveu-se estratégias de otimização baseadas em heurísticas, os quais
+permitem uma análise das características globais da função, de maneira que se possa realizar
+sucessivas buscas do mínimo global. Entretanto métodos heurísticos não garantem a convergência para
+o mínimo global, porém de modo geral apresentam boas aproximações. Dentre estas, tem-se heurísticas
+evolutivas
+inspiradas no processo de adaptação dos seres vivos. Que é o caso dos algoritmos
+genéticos, que são métodos de busca de soluções probabilísticos inspirados nos mecanismos 
+genéticos de adaptação dos seres vivos através da seleção natural. Assim sendo \cite{Jiang2013} 
+traz um proposta para enriquecer a tarefa de agrupamento textual, baseada na
+combinação dos algoritmos genéticos, com o método de agrupamento FCM, para 
+evitar o problema de convergência para mínimos locais. 
+O autor destaca ainda que os algoritmos genéticos possuem grande potencial na realização de
+buscas paralelas globais, principalmente quando trata-se de grande volumes de dados, com elevados
+requisitos de classificação e computação paralela, restrições as quais o algoritmo iterativo para
+otimizar a função objetivo do FCM não é capaz de atender.
+Este problema de convergência do FCM apresentado por
+\cite{Bezdek1984}, ocorre quando algumas condições iniciais são satisfeitas, levando o FCM para 
+convergir para um mínimo local. No artigo o autor explora as qualidades e deficiências do algoritmo 
+\textit{Immnune Genetic Algorithm}(IGA), que é uma versão mais atual do algoritmo genético (GA),
+que garante a diversidade dos indivíduos, aprimorando assim os potenciais de busca pela solução
+ótima global. Porém o IGA demanda muito custo computacional para garantir a diversidade da
+população, assim como também existe uma dificuldade em estimar os parâmetros iniciais, levando o IGA
+a uma finalização precoce, ou uma execução indefinida. Por conta dessas deficiências é investigado
+o algoritmo \textit{Partheno Genetic Algorithm}(PGA), o qual não necessita da inicialização da
+população inicial, e também não sofre do problema de finalização prematura do IGA. Portanto o autor
+propõe o método PGA-FCM, que utiliza o PGA para encontrar solução aproximada global da função de
+minimização do FCM, e em seguida utiliza o próprio FCM tendo como entrada a partição de saída do
+PGA, para encontrar a solução ótima, de maneira reduzir o tempo de convergência.
+
+Segundo \cite{Saranya2014}, está presente na literatura uma outra visão do agrupamento textual, que
+realiza o agrupamento das sentenças contidas nos documentos. Tal abordagem tem-se mostrado 
+fundamental para por exemplo, evitar a sobreposição de informações em técnicas de sumarização de 
+documentos. Assim como também
+pode ser útil para a obtenção de novas informações a partir de um conjunto de resultados em uma
+busca na web por exemplo. A sumarização de sentenças tem como objetivo, produzir um sumário que
+contenha informações relevantes dos documentos. Onde por sua vez, estratégias de ordenação das
+sentenças($ranking$) de acordo com sua relevância, medidas de similaridade de sentenças utilizando
+informações da semântica dos termos são utilizadas para cumprir o objetivo. O autor também 
+descreve que o agrupamento fuzzy de sentenças, pode ser utilizado para realizar
+tarefas de análise de contradição do conteúdo com o assunto da coleção de documentos o qual este
+está inserido. De modo que se possa identificar dados ruidosos que não contribuem com a ideia geral
+da coleção.
+
+Ainda seguindo essa linha de otimização dos resultados apresentados após uma busca em um SRI,
+\cite{Nogueira2012} cita que uma das principais limitações de um SRI, está na maneira rígida de
+interpretar as strings de busca do usuário. O que pode ocasionar que alguns documentos relevantes
+para o usuário, não sejam retornados na busca. O autor informa que a literatura usualmente aborda
+esse problema de duas formas, em que ambas se baseiam na reformulação das strings de busca. Sendo
+que a primeira procura reformular os termos de uma busca, levando em conta características
+semânticas dos termos, de modo a encontrar versões mais apropriadas, permitindo então que uma maior
+quantidade de documentos relevantes seja retornado pela busca. A segunda forma de abordar esse
+problema consiste em ir ajustando os termos da busca, a partir dos primeiros documentos encontrados.
+
+Portanto, seguindo a abordagem de reformulação semântica, em \cite{Murali2015} é apresentado um 
+sistema de recuperação de informação e organização flexível de
+documentos, de maneira a considerar a informação semântica contida nos termos, de maneirar a tornar
+mais precisa a similaridade entre os documentos, assim como também atuar na reformulação da busca. 
+A estratégia proposta pelos autores, usa
+identificação de sinônimos baseado em ontologias da WordNet, 
+hiperônimos\footnote{Palavras de sentido genérico, ou seja, 
+  possuem significado bem amplo. Por exemplo
+ferramenta é um hiperônimo de chave de fenda.} 
+e hipônimos\footnote{Palavras de sentido específico, sendo a palavra que está abaixo de um 
+  hiperônimo na
+hierarquia. Por exemplo, chave de fenda é hipônimo de ferramenta.}, para realizar tarefas de
+desambiguação semântica entre os termos, durante o pré-processamento. Em seguida os autores utilizam
+o método de agrupamento PFCM, devido ao potencial de agregar as qualidades e minimizar as
+deficiências dos algoritmos FCM e PCM. Então a extração de termos descritores dos grupos é
+realizada, construindo-se um índice de termos para cada grupo. Um dos diferenciais apresentados na
+proposta de \cite{Murali2015} ocorre na fase final, quando o usuário realiza uma busca. As palavras
+chaves inseridas pelo usuário, são processadas na ontologia do WordNet visando encontrar palavras
+com significados similares. A partir dessas palavras resultantes é calculado a similaridade com os
+termos descritores dos grupos, e por final os documentos que estiverem no grupo que obteve a maior
+similaridade com a busca digitada pelo usuário são retornados.
+
+Com o objetivo de apresentar uma alternativa a essas duas abordagens para prover flexibilidade me um
+SRI, \cite{Nogueira2012} propõe um método para gerenciar a precisão e incerteza inerentes a
+documentos textuais, ainda na fase de organização dos documentos. Evitando assim a dependência da
+busca e a participação do usuário no processo. Portanto um dos diferenciais apresentados pelos
+autores é a possibilidade de obtenção dos termos de busca ainda na fase de organização de
+documentos, de maneira não supervisionada. O que traz uma grande independência ao processo,
+possibilitando a automatização da organização flexível de documentos com pouca ou nenhuma
+intervenção do usuário durante o processo. Os termos de busca encontrados na etapa de organização
+dos documentos, são os descritores dos grupos, que são utilizados para distribuir os documentos em
+tópicos ou temas, e desde que durante a etapa de organização é utilizado o agrupamento fuzzy, os
+documentos podem sem rotulados em mais de um tópico. O que por sua vez, essa abordagem fortalece
+ainda mais a flexibilidade na organização de documentos.
+
+A extração de termos
+que representem bem os grupos obtidos na fase de agrupamento é de fundamental importância, pois é
+a partir dos termos extraídos que é possível a recuperação dos documentos através de uma consulta 
+realizada por um usuário. Dada essa importância, \cite{Nogueira2013} conduziu uma investigação
+acerca dos principais métodos de extração de descritores, que resultou na proposta de um
+modelo de SRI para organização flexível de documentos, com
+a adição de três métodos de extração de descritores. Os métodos de extração de descritores 
+propostos, se baseiam em medidas na clássicas na literatura, que quantizam a efetividade da 
+recuperação da informação de um SRI, as quais são a precisão, revocação e a medida-F. 
+A medida de precisão procura identificar dentre os documentos recuperados a proporção de documentos
+relevantes. Enquanto a revocação calcula a taxa de documentos relevantes recuperados a partir dos
+documentos que são previamente definidos como relevantes durante uma consulta em um SRI.
+A metodologia de extração adotada pelo autor nos métodos propostos, 
+é do tipo $Description\ Comes\ Last$ (DCL), que
+realiza a extração de descritores separado do processo de agrupamento, em contraste com outros
+métodos de extração do tipo \textit{Description Comes First\/} (DCF), no qual os descritores 
+são extraídos na
+fase de pré-processamento ou simultaneamente com o agrupamento. \cite{Nogueira2013} destaca que
+utilizar métodos do tipo DCL, traz o benefício de tornar independente o algoritmo de extração de
+descritores do algoritmo de agrupamento utilizado. 
+
+O primeiro método proposto em \cite{Nogueira2013} é o SoftO-FDCL (\textit{Soft Organization - Fuzzy Description Comes
+Last\/}), que tem como propósito extrair descritores de partições fuzzy de documentos, de maneira a
+flexibilizar um SRI. A avaliação dos termos candidatos a descritores é feita então com base na
+pertinência do documento ao qual o termo pertence, onde os termos só são considerados se o documento
+tiver pertinência maior que um dado limiar, definido como sendo 
+$\delta = \frac{1}{c}$. Ao fazer isso o método penaliza os termos de
+documentos com baixa pertinência ao grupo e ao mesmo tempo considera os termos de documentos que
+pertencem também a outros grupos, de modo a conservar a flexibilidade que o agrupamento fuzzy
+proporciona. Como extensão ao SoftO-FDCL, foi também proposto o método Soft-wFDCL(\textit{ Soft
+Organization - weighted Fuzzy Description Comes Last\/}), onde é levado em consideração também o
+grau de pertinência do documento no cálculo de relevância do termo. A adição da pertinência na
+equação, é justificada como sendo um fator de ponderação da importância de um termo ao grupo. Deste
+modo os termos que forem considerados relevantes para compor os descritores, ou seja os que
+estiverem a cima do limiar definido no método SoftO-FDCL, serão ponderados em função da pertinência.
+
+Os dois métodos anteriores são aplicados a uma organização flexível de documentos organizados de
+modo $flat$. Portanto com a finalidade de adicionar flexibilidade também a uma organização de
+documentos hierárquica, como por exemplo a obtida no método de
+agrupamento HFCM, \cite{Nogueira2013} traz o método HSoftO-FDCL (\textit{Hierarchical Soft
+Organization - Fuzzy Description Comes Last\/}), como outra extensão do SoftO-FDCL. 
+A modificação realizada nesse método ocorre no limiar de corte dos termos, pois no algoritmo HFCM a
+pertinência de um documento em um dado grupo, é relativa a pertinência desse mesmo documento no
+grupo imediatamente superior na hierarquia, conforme foi definido na equação \ref{eq:cfcmrestri1} na
+página \pageref{eq:cfcmrestri1}. Assim sendo o limiar do SoftO-FDCL é redefinido como
+sendo a pertinência do documento $d_i$ no grupo superior dividido pela quantidade de grupos, ou seja
+$\zeta = \frac{\mu(d_i,g_j[l-1])}{c}$, tal que $c$ seja a quantidade de grupos e $l$ o nível do
+grupo que está sendo extraído os descritores. Para os grupos do primeiro nível da hierarquia os
+descritores são extraídos usando o $\delta$. 
+
+% TODO: ADAPTAR A FIGURA 3.6 DE NOGUEIRA2013 
+% TODO: DETALHAR AS EQUAÇÕES DOS MÉTODOS DE EXTRAÇÃO DE DESCRITORES PROPOSTSO EM NOGUEIRA2013 
+
+Em \cite{Yan2013} é informado que em estudos recentes os métodos de co-agrupamento fuzzy,
+tem apresentados resultados superiores a extensões do FCM, e métodos de co-agrupamento $crisp$, para
+algumas bases de dados com alta dimensionalidade. O diferencial dos métodos de co-agrupamento fuzzy 
+em relação ao agrupamento fuzzy clássico (FCM), está no agrupamento simultâneo de documentos e
+termos, assim como a literatura sugere a relevância desse método para categorização de dados com
+alta dimensionalidade\cite{Yan2013}. Esse potencial dos algoritmos de co-agrupamento é devido a
+a sua inerente característica de redução da dimensão dos dados, através do agrupamento também dos
+termos, que permite melhor capturar a estrutura dos dados. Entretanto base de dados com elevada
+sobreposição de termos entre os documentos, ou seja termos que aparecem em vários documentos, podem
+afetar significativamente os métodos de co-agrupamento, assim como a organização dos termos
+produzidos podem não condizer com a realidade dos dados\cite{Tjhi2008}. Assim sendo o método HFCR
+definido em \cite{Tjhi2008}, tenta contornar esses problemas, substituindo o $ranking$ dos termos,
+pelo agrupamento fuzzy, gerando assim duas partições fuzzy, uma de termos e uma de documentos.
+Segundo os autores, essa estratégia permite o HFCR contornar os problemas comuns dos métodos de
+co-agrupamento, mantendo a capacidade melhor agrupar dados de alta dimensionalidade e ainda
+reduzindo a complexidade computacional em relação a outros algoritmos de co-agrupamento presentes na
+literatura. No entanto a função objetivo do HFCR possui complexidade de $O(c*n*k)$, que maior que a
+complexidade da função objetivo (\ref{eq:fcm_obj}) do FCM clássico $O(c*n)$, onde $c$ é o número de
+grupos, $n$ é o número de documentos e $k$ o número de termos distintos em toda coleção.
+ 
+\section{Considerações finais}
+
+Neste capítulo foi apresentado pesquisas relacionados ao tema desta monografia. Onde foi possível
+observar a variedade de estratégias adotadas para aumentar a eficiência de sistemas de recuperação
+de informação quando utilizados no contexto da organização flexível de documentos. As pesquisas aqui
+apresentados apresentam propostas de melhorias em todas as etapas presentes na 
+organização flexível de
+documentos. Onde durante a fase de pré-processamento é possível utilizar abordagens semânticas para
+a compactação da quantidade de termos. Essa estratégia de avaliar a semântica das palavras também
+pode ser utilizada na etapa final durante a recuperação da informação. Observa-se também muitas
+estratégias concentradas na etapa de agrupamento, com inúmeras possibilidades de otimização. As
+pesquisas aqui apresentadas, exploram a adaptação dos algoritmos fuzzy existentes para o problema do
+$Big Data$, ou propõe a utilizam de outras heurísticas no processo, como a adição dos algoritmos
+genéticos no agrupamento. Outra alternativa, é a extrapolação do agrupamento, para abarbar também os
+termos, realizando assim um melhor reconhecimento da estrutura dos grupos, porém no entanto essa
+extrapolação vem com uma carga de processamento adicional. Outro conjunto de autores focam seus
+esforços em melhorar a extração de descritores dos grupos obtidos, afinal mesmo com um bom
+agrupamento realizado, se não se obtiver bons termos para descrever os grupos, a etapa de
+recuperação dos documentos pode ficar prejudicada.
+
+Portanto as pesquisas relacionadas ao tema, demonstram que a organização de documentos não é um
+problema já foi exaurido, e que não possui uma solução canônica. Consequentemente se percebe que
+existe bastante trabalho a ser feito para otimizar a organização flexível de documentos. No próximo
+capítulo então, será abordado as abordagens propostas como resultado da investigação conduzida nesse
+trabalho, assim como os resultados dos experimentos.

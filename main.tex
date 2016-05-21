@@ -1,0 +1,256 @@
+%% Template para dissertação/tese na classe UFBAthesis
+%% versão 1.0
+%% (c) 2005 Paulo G. S. Fonseca
+%% (c) 2012 Antonio Terceiro
+%% (c) 2014 Christina von Flach
+%% www.dcc.ufba.br/~flach/ufbathesis
+
+%% Carrega a classe ufbathesis
+%% Opções: * Idiomas
+%%           pt   - português (padrão)
+%%           en   - inglês
+%%         * Tipo do Texto
+%%           bsc  - para monografias de graduação
+%%           msc  - para dissertações de mestrado (padrão)
+%%           qual - exame de qualificação de mestrado
+%%           prop - exame de qualificação de doutorado
+%%           phd  - para teses de doutorado
+%%         * Um­dia
+%%           scr  - para verão eletrônica (PDF) / consulte o guia do usuário
+%%         * Estilo
+%%           classic - estilo original a la TAOCP (deprecated)
+%%           std     - novo estilo a la CUP (padrão)
+%%         * Paginação
+%%           oneside - para impressão em face única
+%%           twoside - para impressão em frente e verso (padrão)
+\documentclass[bsc, classic, a4paper, oneside]{ufbathesis}
+\DeclareMathAlphabet      {\mathbfit}{OML}{cmm}{b}{it}
+
+%% Preambulo:
+\usepackage{xcolor} 
+%% This control colors of equations, tables, figures, links, references and etc.
+\hypersetup{
+  colorlinks,
+  linkcolor={red!30!black},
+  citecolor={blue!50!black},
+  urlcolor={blue!80!black}
+}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx,url}
+\usepackage{caption}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\graphicspath{{assets/}}
+\usepackage{algorithm2e}
+\usepackage{qtree}
+\usepackage{amstext} % Useful package to put accents in mathmode with \text
+\usepackage{multirow}
+\usepackage{array,booktabs}
+%\everymath=\expandafter{\the\everymath\displaystyle}
+\everymath{\displaystyle}
+\SetKwRepeat{Do}{faça}{enquanto} % Macro to allow do while in algorithm2e
+\SetKwBlock{Begin}{início}{fim}
+\SetKwFor{For}{para}{faça}{fim} 
+\SetKwFor{ForEach}{para cada}{faça}{fim} 
+\SetAlgorithmName{Algoritmo}{Lista de Algoritmos}
+
+% ---
+% Citacao direta com mais de 3 linhas - ABNT NBR 10520/2002 - 5.3
+\newlength{\ABNTEXcitacaorecuo}% recuo de 4 cm da margem esquerda
+\setlength{\ABNTEXcitacaorecuo}{4cm}
+\newcommand{\ABNTEXfontereduzida}{\footnotesize}
+\newenvironment*{citacao}[1][default]
+{
+  \list{}%
+  \ABNTEXfontereduzida%
+  \addtolength{\leftskip}{\ABNTEXcitacaorecuo}%
+  \item[]%
+  %\begin{SingleSpace}%
+  %\ifthenelse{\not\equal{#1}{default}}{\itshape\selectlanguage{#1}}{}%
+}
+{ 
+  %\end{SingleSpace}%
+  \endlist%
+}
+
+
+% Universidade
+\university{UNIVERSIDADE FEDERAL DA BAHIA}
+
+% Endereço (cidade)
+\address{Salvador}
+
+% Instituto ou Centro Acadêmico
+\institute{INSTITUTO DE MATEMÁTICA}
+
+% Nome da biblioteca - usado na ficha catalográfica
+\library{BIBLIOTECA REITOR MAC\^{E}DO COSTA}
+
+% Programa de pós-graduação
+\program{Programa de Graduação em Ciência da Computação}
+
+% Area de titulação
+\majorfield{CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
+
+% Titulo da dissertação
+\title{Uma abordagem híbrida para organização flexível de documentos}
+
+% Data da defesa
+% e.g. \date{19 de fevereiro de 2003}
+\date{2 de junho de 2016}
+
+% Autor
+% e.g. \author{Jose da Silva}
+\author{Nilton Vasques Carvalho Junior}
+
+% Orientador(a)
+% Opção: [f] - para orientador do sexo feminino
+% e.g. \adviser[f]{Profa. Dra. Maria Santos}
+\adviser[f]{Profa. Dra. Tatiane Nogueira Rios}
+
+% Orientador(a)
+% Opção: [f] - para orientador do sexo feminino
+% e.g. \coadviser{Prof. Dr. Pedro Pedreira}
+% Comente se não se aplicar
+%\coadviser{NOME DO(DA) CO-ORIENTADOR(A)}
+
+%% Inicio do documento
+\begin{document}
+
+\pgcompfrontpage{}
+
+%% Parte pre-textual
+\frontmatter
+
+\pgcomppresentationpage
+
+% Ficha catalográfica
+\authorcitationname{Carvalho, Nilton Vasques Jr.} % e.g. Terceiro, Antonio Soares de Azevedo
+\advisercitationname{Rios, Tatiane Nogueira} % e.g. Chavez, Christina von Flach Garcia
+\catalogtype{Monografia (Graduação)} % e.g. ``Tese (Doutorado)''
+\catalogtopics{``1. Fuzzy C Means. 2. Organização flexível de documents. 3. Lógica Fuzzy. 4. Mineração de dados.''} % e.g. ``1. Complexidade Estrutural. 2. Engenharia de Software''
+\catalogcdd{NUMERO CDD} % e.g. ``CDD 20.ed. XXX.YY'' (esse número vai lhe ser dado pela biblioteca)
+\catalogingsheet
+
+% Termo de aprovação
+\approvalsheet{Salvador, 02 de junho de 2016}{
+   \comittemember{Profa. Dra. Tatiane Nogueira Rios}{Universidade Federal da Bahia}
+   \comittemember{Prof. Dr. Maurício Pamplona Segundo}{Universidade Federal da Bahia}
+   \comittemember{Prof. Dr. Ricardo Rios}{Universidade Federal da Bahia}
+}
+
+% Dedicatória
+% Comente para ocultar
+\begin{dedicatory}
+Coloque sua DEDICATÓRIA AQUI.
+\end{dedicatory}
+
+% Agradecimentos
+\acknowledgements
+Coloque seus AGRADECIMENTOS AQUI.
+
+% Epigrafe
+%  \begin{epigraph}[Tarde, 1919]{Olavo Bilac}
+%  Ultima flor do Lácio, inculta e bela,\\
+%  Es, a um tempo, esplendor e sepultura;\\
+%  Ouro nativo, que, na ganga impura,\\
+%  A bruta mina entre os cascalhos vela.
+%  \end{epigraph}
+\begin{epigraph}[1687]{Isaac Newton}
+  O que sabemos é uma gota, o que ignoramos é um oceano.
+\end{epigraph}
+
+% Resumo em Português
+\resumo
+\input{resumo}
+% Palavras-chave do resumo em Português
+\begin{keywords}
+agrupamento fuzzy, agrupamento possibilístico, organização flexível de documentos, 
+mineração de textos
+\end{keywords}
+
+% Resumo em Ingles
+\abstract
+\input{abstract}
+% Palavras-chave do resumo em Ingles
+\begin{keywords}
+fuzzy clustering, possibilistic clustering, flexible organization, documents, text mining
+\end{keywords}
+
+% Sumario / Índice
+% Comente para ocultar
+\tableofcontents
+
+% Lista de figuras
+% Comente para ocultar
+\listoffigures
+
+% Lista de tabelas
+% Comente para ocultar
+\listoftables
+
+%% Parte textual
+\mainmatter
+
+% Eh aconselhável criar cada capitulo em um arquivo separado, digamos
+% "capitulo1.tex", "capitulo2.tex", ... "capituloN.tex" e depois
+% inclui-los com:
+% \include{capitulo1}
+% \include{capitulo2}
+% ...
+% \include{capituloN}
+%
+% Importante: Use \xchapter ao invés de \chapter, se quiser colocar texto antes do inicio do capitulo.
+
+\xchapter{Introdução}{Uma breve introdução sobre do que se trata esta monografia e a maneira como o texto está organizado.}
+
+\input{introducao}
+
+\xchapter{Fundamentação Teórica}{Este capítulo tem como objetivo fundamentar as bases necessárias dos campos de estudos utilizados nesta monografia.}
+
+\input{fundamentacao}
+
+\xchapter{Trabalhos Relacionados}{Trabalhos relacionados a organização flexível de documentos e
+sistemas de recuperação de informação.}
+
+\input{revisao}
+
+\xchapter{Abordagem proposta}{Investigação e refinamento do método de organização flexível de documentos}
+
+\input{experimentos}
+
+\xchapter{Conclusão}{Síntese da investigação e dos experimentos realizados nesta monografia}
+
+\input{conclusao}
+
+%\xchapter{Trabalhos Futuros}{Possíveis explorações adicionais que derivam deste trabalho}
+%
+%\input{trabalhos_futuros}
+
+%% Parte pos-textual
+\backmatter
+
+% Apendices
+% Comente se naoo houver apendices
+\appendix
+
+% Eh aconselhavel criar cada apendice em um arquivo separado, digamos
+% "apendice1.tex", "apendice.tex", ... "apendiceM.tex" e depois
+% inclui--los com:
+% \include{apendice1}
+% \include{apendice2}
+% ...
+% \include{apendiceM}
+
+% Bibliografia
+% Ã aconselhÃ¡vel utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
+% Para ajuda na criaÃ§Ã£o do arquivo .bib e utilizaÃ§Ã£o do BibTeX, recorra ao
+% BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
+\bibliographystyle{abntex2-alf}
+\bibliography{biblio}
+
+%% Fim do documento
+\end{document}
+%------------------------------------------------------------------------------------------%
