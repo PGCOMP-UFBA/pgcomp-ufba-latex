@@ -45,7 +45,7 @@
 % Programa de pos-graduacao
 \program{PROGRAMA DE P\'{O}S-GRADUA\c{C}\~{A}O EM CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
 
-% �rea de titulacao
+% �rea de titulacao
 \majorfield{CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
 
 % Titulo da dissertacao
@@ -73,7 +73,7 @@
 %% Inicio do documento
 \begin{document}
 
-\pgcompfrontpage{}
+\pgcompfrontpage{PGCOMP-Msc-XXXX}
 
 %% Parte pre-textual
 \frontmatter
@@ -99,27 +99,31 @@
 % Dedicatoria
 % Comente para ocultar
 \begin{dedicatory}
-Coloque sua DEDICATORIA AQUI.
+DIGITE A DEDICATORIA AQUI
 \end{dedicatory}
 
 % Agradecimentos
+% Se preferir, crie um arquivo `a parte e o inclua via \include{}
 \acknowledgements
-Coloque seus AGRADECIMENTOS AQUI.
+DIGITE OS AGRADECIMENTOS AQUI
 
 % Epigrafe
-%  \begin{epigraph}[Tarde, 1919]{Olavo Bilac}
-%  Ultima flor do Lacio, inculta e bela,\\
-%  Es, a um tempo, esplendor e sepultura;\\
-%  Ouro nativo, que, na ganga impura,\\
-%  A bruta mina entre os cascalhos vela.
-%  \end{epigraph}
 \begin{epigraph}[NOTA]{AUTOR}
-Se desejar, coloque  AQUI uma CITACAO
+DIGITE AQUI A CITACAO
 \end{epigraph}
 
 % Resumo em Portugues
 \resumo
-COLOQUE O RESUMO. Se preferir, crie um arquivo separado e o inclua via comando "\"include.
+COLOQUE O RESUMO. Se preferir, crie um arquivo separado e o inclua via comando include.
+
+Para evitar problemas de formato neste template (de uso geral), usamos acentua\c{c}\~{a}o mostrada abaixo. 
+
+\begin{verbatim} 
+\c{c} \~{a} \'{a} \^{e} \'{\i}
+\end{verbatim} 
+
+N\~{a}o precisa fazer dessa forma, caso use pacotes adequados (latin1, etc.).
+
 % Palavras-chave do resumo em Portugues
 \begin{keywords}
 PALAVRAS-CHAVE.
@@ -127,7 +131,7 @@ PALAVRAS-CHAVE.
 
 % Resumo em Ingles
 \abstract
-COLOQUE O RESUMO EM INGLES. Se preferir, crie um arquivo separado e o inclua via comando "\"include.
+COLOQUE O RESUMO EM INGLES. Se preferir, crie um arquivo separado e o inclua via comando include.
 % Palavras-chave do resumo em Ingles
 \begin{keywords}
 PALAVRAS-CHAVE EM INGLES.
@@ -160,6 +164,18 @@ PALAVRAS-CHAVE EM INGLES.
 
 \xchapter{Introdu\c{c}\~{a}o}{Este eh o primeiro cap\'{\i}tulo, onde eu conto toda a historia deste trabalho, o problema, a solu\c{c}\~{a}o, etc.}
 
+\section{Se\c{c}\~{a}o}
+\lipsum
+
+\subsection{Uma Subse\c{c}\~{a}o}
+
+Texto.
+
+\subsection{Outra Subse\c{c}\~{a}o}
+
+Texto.
+
+\section{Outra Se\c{c}\~{a}o}
 \lipsum
 
 \xchapter{Revis\~{a}o Bibliogr\'{a}fica}{Neste cap\'{\i}tulo eu apresento todo o material que eu estudei durante a elabora\c{c}\~{a}o do trabalho.}
@@ -168,19 +184,37 @@ PALAVRAS-CHAVE EM INGLES.
 
 Livro \cite{demeyer2008} e  livro \cite{raymond1999}.
 
-\chapter{Exemplos}
+\xchapter{Exemplos}{} %sem preambulo
 
-Figura \ref{default-regular} e tabela \ref{default-table}.
+A numera\c{c}\~{a}o de figuras \'{e} sequencial, dentro do cap\'{\i}tulo. Ver Figura \ref{default-regular1} e Figura \ref{default-regular2}.
+
+A numera\c{c}\~{a}o de tabelaas \'{e} sequencial, dentro do cap\'{\i}tulo. Ver Tabela \ref{default-table1} e Tabela \ref{default-table2}.
+
+
+\section{Exemplos de Figura}
+
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[scale=0.5]{ufba.eps}[0.5]
-\caption{Figura UFBA}
-\label{default-regular}
+  \includegraphics[scale=0.5]{ufba.eps}
+\caption{Bras\~{a}o da UFBA - Menor.}
+\label{default-regular1}
 \end{center}
 \end{figure}
 
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[scale=0.75]{ufba.eps}
+\caption{Bras\~{a}o da UFBA - Maior.}
+\label{default-regular2}
+\end{center}
+\end{figure}
+
+\lipsum
+
+\section{Exemplos de Tabela}
+\subsection{Uma Tabela}
 \begin{table}[htbp]
-\caption{Tabela Exemplo}
+\caption{Uma tabela com 3 linhas e 2 colunas.}
 \begin{center}
 \begin{tabular}{|c|c|} 
 \hline
@@ -190,23 +224,31 @@ elemento 31 & elemento 32 \\
 \hline
 \end{tabular}
 \end{center}
-\label{default-table}
+\label{default-table1}
 \end{table}%
+
+\lipsum
+
+\begin{table}[htbp]
+\caption{Uma tabela com 3 linhas e 3 colunas.}
+\begin{center}
+\begin{tabular}{|l|c|c|} 
+\hline
+elemento 11 & elemento 12 & elemento 13\\ \hline
+elemento 21 & elemento 22 & elemento 23\\ \hline
+elemento 31 & elemento 32 & elemento 33\\
+\hline
+\end{tabular}
+\end{center}
+\label{default-table2}
+\end{table}%
+
+\xchapter{Outro cap\'{\i}tulo}{} %sem preambulo
+\lipsum
+
 
 %% Parte pos-textual
 \backmatter
-
-% Apendices
-% Comente se naoo houver apendices
-\appendix
-
-% Eh aconselhavel criar cada apendice em um arquivo separado, digamos
-% "apendice1.tex", "apendice.tex", ... "apendiceM.tex" e depois
-% inclui--los com:
-% \include{apendice1}
-% \include{apendice2}
-% ...
-% \include{apendiceM}
 
 % Bibliografia
 % É aconselhável utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
@@ -214,6 +256,20 @@ elemento 31 & elemento 32 \\
 % BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
 \bibliographystyle{abntex2-alf}
 \bibliography{biblio}
+
+% Apendices
+% Comente se naoo houver apendices
+\appendix
+
+\xchapter{Exemplo de Ap\^endice}{} %sem preambulo
+\lipsum
+% Eh aconselhavel criar cada apendice em um arquivo separado, digamos
+% "apendice1.tex", "apendice.tex", ... "apendiceM.tex" e depois
+% inclui--los com:
+% \include{apendice1}
+% \include{apendice2}
+% ...
+% \include{apendiceM}
 
 %% Fim do documento
 \end{document}

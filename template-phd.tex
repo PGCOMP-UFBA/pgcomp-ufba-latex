@@ -68,7 +68,7 @@
 \begin{document}
 
 % Folha de rosto
-\pgcompfrontpage{}
+\pgcompfrontpage{PGCOMP-Dsc-XXXX}
 
 %% Parte pre-textual
 \frontmatter
@@ -96,12 +96,12 @@
 % Dedicatoria
 % Comente para ocultar
 \begin{dedicatory}
-Coloque sua DEDICATORIA AQUI.
+DIGITE A DEDICATORIA AQUI
 \end{dedicatory}
 
 % Agradecimentos
 \acknowledgements
-Coloque seus AGRADECIMENTOS AQUI.
+DIGITE OS AGRADECIMENTOS AQUI
 
 % Epigrafe
 %  \begin{epigraph}[Tarde, 1919]{Olavo Bilac}
@@ -111,12 +111,12 @@ Coloque seus AGRADECIMENTOS AQUI.
 %  A bruta mina entre os cascalhos vela.
 %  \end{epigraph}
 \begin{epigraph}[NOTA]{AUTOR}
-Se desejar, coloque  AQUI uma CITACAO
+DIGITE AQUI A CITACAO
 \end{epigraph}
 
 % Resumo em Portugues
 \resumo
-COLOQUE O RESUMO. Se preferir, crie um arquivo separado e o inclua via comando "\"include.
+COLOQUE O RESUMO. Se preferir, crie um arquivo separado e o inclua via comando include.
 % Palavras-chave do resumo em Portugues
 \begin{keywords}
 PALAVRAS-CHAVE.
@@ -176,7 +176,7 @@ Figura \ref{default-regular} e tabela \ref{default-table}.
 \end{center}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[htdp]
 \caption{Tabela Exemplo}
 \begin{center}
 \begin{tabular}{|c|c|} 
@@ -193,6 +193,13 @@ elemento 31 & elemento 32 \\
 %% Parte pos-textual
 \backmatter
 
+% Bibliografia
+% É aconselhável utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
+% Para ajuda na criação do arquivo .bib e utilização do BibTeX, recorra ao
+% BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
+\bibliographystyle{abntex2-alf}
+\bibliography{biblio}
+
 % Apendices
 % Comente se naoo houver apendices
 \appendix
@@ -204,13 +211,6 @@ elemento 31 & elemento 32 \\
 % \include{apendice2}
 % ...
 % \include{apendiceM}
-
-% Bibliografia
-% É aconselhável utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
-% Para ajuda na criação do arquivo .bib e utilização do BibTeX, recorra ao
-% BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
-\bibliographystyle{abntex2-alf}
-\bibliography{biblio}
 
 %% Fim do documento
 \end{document}

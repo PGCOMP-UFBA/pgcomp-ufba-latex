@@ -127,7 +127,7 @@ PALAVRAS-CHAVE EM INGLES.
 
 Livro \cite{demeyer2008} e  livro \cite{raymond1999}.
 
-\chapter{Exemplos}
+\xchapter{Exemplos}{}
 
 Figura \ref{default-regular} e tabela \ref{default-table}.
 \begin{figure}[htbp]
@@ -155,9 +155,18 @@ elemento 31 & elemento 32 \\
 %% Parte pos-textual
 \backmatter
 
+% Bibliografia
+% �<89> aconselhável utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
+% Para ajuda na criação do arquivo .bib e utilização do BibTeX, recorra ao
+% BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
+\bibliographystyle{abntex2-alf}
+\bibliography{biblio}
+
 % Apendices
 % Comente se naoo houver apendices
 \appendix
+
+\xchapter{Um Ap\^{e}ndice}{}
 
 % Eh aconselhavel criar cada apendice em um arquivo separado, digamos
 % "apendice1.tex", "apendice.tex", ... "apendiceM.tex" e depois
@@ -166,13 +175,6 @@ elemento 31 & elemento 32 \\
 % \include{apendice2}
 % ...
 % \include{apendiceM}
-
-% Bibliografia
-% É aconselhável utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
-% Para ajuda na criação do arquivo .bib e utilização do BibTeX, recorra ao
-% BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
-\bibliographystyle{abntex2-alf}
-\bibliography{biblio}
 
 %% Fim do documento
 \end{document}
