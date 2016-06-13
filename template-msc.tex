@@ -31,72 +31,86 @@
 \usepackage{lipsum}
 
 % Universidade
-\university{UNIVERSIDADE FEDERAL DA BAHIA}
+\university{Universidade Federal da Bahia}
 
 % Endereco (cidade)
 \address{Salvador}
 
 % Instituto ou Centro Academico
-\institute{INSTITUTO DE MATEM\'{A}TICA}
+\institute{Instituto de Matem\'{a}tica}
 
 % Nome da biblioteca - usado na ficha catalografica
-\library{BIBLIOTECA REITOR MAC\^{E}DO COSTA}
+\library{Biblioteca Reitor Mac\^{e}do Costa}
 
 % Programa de pos-graduacao
-\program{PROGRAMA DE P\'{O}S-GRADUA\c{C}\~{A}O EM CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
+\program{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
 
-% �rea de titulacao
-\majorfield{CI\^{E}NCIA DA COMPUTA\c{C}\~{A}O}
+% Area de titulacao
+\majorfield{Ci\^{e}ncia da Computa\c{c}\~{a}o}
 
 % Titulo da dissertacao
-\title{TITULO DA DISSERTACAO}
+\title{T\'{\i}tulo da Disserta\c{c}\~{a}o ou Tese}
 
 % Data da defesa
-% e.g. \date{19 de fevereiro de 2003}
-\date{DATA DA DEFESA}
+% e.g. \date{19 de fevereiro de 2013}
+\date{13 de janeiro de 2014}
+% e.g. \year{2013}
+\year{2014}
 
 % Autor
 % e.g. \author{Jose da Silva}
-\author{NOME DO AUTOR}
+\author{Nome Completo do AUTOR}
 
 % Orientador(a)
 % Opcao: [f] - para orientador do sexo feminino
 % e.g. \adviser[f]{Profa. Dra. Maria Santos}
-\adviser{NOME DO(DA) ORIENTADOR(A)}
+\adviser[f]{Nome Completo da ORIENTADORA}
 
 % Orientador(a)
 % Opcao: [f] - para orientador do sexo feminino
 % e.g. \coadviser{Prof. Dr. Pedro Pedreira}
-% Comente se nao se aplicar
-\coadviser{NOME DO(DA) CO-ORIENTADOR(A)}
+% Comente se nao ha co-orientador
+\coadviser{Nome Completo do CO-ORIENTADOR}
 
 %% Inicio do documento
 \begin{document}
-
-\pgcompfrontpage{PGCOMP-Msc-XXXX}
 
 %% Parte pre-textual
 \frontmatter
 
 \pgcomppresentationpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ficha catalografica
-\authorcitationname{SEU NOME EM CITACOES} % e.g. Terceiro, Antonio Soares de Azevedo
-\advisercitationname{NOME DO SEU ORIENTADOR EM CITACOES} % e.g. Chavez, Christina von Flach Garcia
-\coadvisercitationname{NOME DO SEU CO-ORIENTADOR EM CITACOES} % e.g. Mendonca, Manoel Gomes de
-\catalogtype{Disserta\c{c}\~{a}o (Mestrado)} % e.g. ``Tese (Doutorado)''
-\catalogtopics{TOPICOS PARA FICHA CATALOGRAFICA} % e.g. ``1. Complexidade Estrutural. 2. Engenharia de Software''
-\catalogcdd{NUMERO CDD} % e.g. ``CDD 20.ed. XXX.YY'' (esse número vai lhe ser dado pela biblioteca)
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\authorcitationname{Sobrenome, Nome do ALUNO (usado em CITACOES)} % e.g. Terceiro, Antonio Soares de Azevedo
+\advisercitationname{Sobrenome, Nome do ORIENTADOR} % e.g. Chavez, Christina von Flach Garcia
+\coadvisercitationname{Sobrenome, Nome do CO-ORIENTADOR} % e.g. Mendonca, Manoel Gomes de
+\catalogtype{Disserta\c{c}\~{a}o (Mestrado)} % e.g. ou ``Tese (Doutorado)''
+
+\catalogtopics{1. Primeira palavra-chave. 2. Segunda palavra-chave. 3. Terceira palavra-chave} % Listar palavras-chave do trabalho para a FICHA CATALOGRAFICA}, por exemplo, ``1. Complexidade Estrutural. 2. Qualidade de Software 3. Engenharia de Software''
+\catalogcdd{XXX.XX} % e.g.  XXX.XX (número nesse formato serah dado pela biblioteca)
+\catalogcdu{XXX.XX.XXX} % e.g.  XXX.XX.XXX (idem) 
 \catalogingsheet
 
+%%%%%%%%%%%%%%%%%%%%%
 % Termo de aprovacaoo
+%%%%%%%%%%%%%%%%%%%%%
+
 \approvalsheet{Salvador, DIA de MES de ANO}{
    \comittemember{Profa. Dra. Professora 1}{Universidade XYZ}
    \comittemember{Prof. Dr. Professor 2}{Universidade 123}
    \comittemember{Profa. Dra. Professora 3}{Universidade ABC}
+   % Para mestrado, apenas 3.
+   % \comittemember{Prof. Dr. Professor 4}{Universidade HJKL}
+   % \comittemember{Profa. Dra. Professora 5}{Universidade QWERTY}
 }
 
-% Dedicatoria
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dedicatoria, Agradecimentos, Epigrafe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % Comente para ocultar
 \begin{dedicatory}
 DIGITE A DEDICATORIA AQUI
@@ -112,7 +126,10 @@ DIGITE OS AGRADECIMENTOS AQUI
 DIGITE AQUI A CITACAO
 \end{epigraph}
 
+%%%%%%%%%%%%%%%%%%%%%
 % Resumo em Portugues
+%%%%%%%%%%%%%%%%%%%%%
+
 \resumo
 COLOQUE O RESUMO. Se preferir, crie um arquivo separado e o inclua via comando include.
 
@@ -129,15 +146,21 @@ N\~{a}o precisa fazer dessa forma, caso use pacotes adequados (latin1, etc.).
 PALAVRAS-CHAVE.
 \end{keywords}
 
+%%%%%%%%%%%%%%%%%%%
 % Resumo em Ingles
+%%%%%%%%%%%%%%%%%%%
+
 \abstract
-COLOQUE O RESUMO EM INGLES. Se preferir, crie um arquivo separado e o inclua via comando include.
+COLOQUE O RESUMO EM INGL\^{E}S. Se preferir, crie um arquivo separado e o inclua via comando include.
 % Palavras-chave do resumo em Ingles
 \begin{keywords}
-PALAVRAS-CHAVE EM INGLES.
+PALAVRAS-CHAVE EM INGL\^{E}S.
 \end{keywords}
 
+%%%%%%%%%%%%%%%%%%%
 % Sumario / Indice
+%%%%%%%%%%%%%%%%%%%
+
 % Comente para ocultar
 \tableofcontents
 
@@ -160,7 +183,8 @@ PALAVRAS-CHAVE EM INGLES.
 % ...
 % \include{capituloN}
 %
-% Importante: Use \xchapter ao inves de \chapter, se quiser colocar texto antes do inicio do capitulo.
+% Importante: 
+% Use \xchapter{}{} ao inves de \chapter{}; se não quiser colocar texto antes do inicio do capitulo, use \xchapter{texto}{}.
 
 \xchapter{Introdu\c{c}\~{a}o}{Este eh o primeiro cap\'{\i}tulo, onde eu conto toda a historia deste trabalho, o problema, a solu\c{c}\~{a}o, etc.}
 

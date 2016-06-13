@@ -235,6 +235,9 @@ grau de \@degree\ em \@majorfield.}
   \gdef\@address{#1}}
 \def\@address{Salvador}
 
+\def\year#1{%
+  \gdef\@year{#1}}
+
 %% Authors identification
 
 \def\author#1{%
@@ -332,58 +335,69 @@ grau de \@degree\ em \@majorfield.}
   \gdef\@catalogtopics{#1}}
 \def\catalogcdd#1{%
   \gdef\@catalogcdd{#1}}
+\def\catalogcdu#1{%
+  \gdef\@catalogcdu{#1}}
 
 \def\catalogingsheet{%
+  \newpage
+  \thispagestyle{empty}
   \begin{center}
 
-    \hspace{1cm}
+    \hspace{2.5em}
     \vfill
-    Ficha catalogr\'{a}fica.
+    Sistema de Bibliotecas - UFBA 
 
-    \fbox{
-      \hspace{1.75cm}
-      \begin{minipage}[t]{13.5cm}
+    \framebox[\textwidth][c]{
+      \hspace{1.75em}
+      \begin{minipage}[t]{0.85\textwidth}
         \vspace{1em}
-        \@authorcitationname
-
-        \advance\parindent by 1em
-        \advance\parskip by 1em
-        \@title / \@author -- \@address, \@date.
-
-        \pageref{LastPage}p.: il.
-
-        \@advisertitle: \@adviser.\\
+        \@authorcitationname.
+        \par  
+        \advance\parindent by 1.5em
+        \@title \, / \@author \, -- \@address, \@year.
+        \par 
+        \pageref{LastPage}p.: il. 
+        \par
+        \vspace{1em} 
+        \@advisertitle: Prof.~Dr. \@adviser.
+        \par
         \if\@showcoadviser1
-          \@coadvisertitle: \@coadviser.\\
+          \@coadvisertitle: Prof.~Dr. \@coadviser.
         \fi
-        \@catalogtype -- \@university, \@institute,
-        \@date.
-
-        \@catalogtopics.\\
+        \par
+        \@catalogtype \, -- \@university, \@institute,
+        \@year.
+        \par
+        \vspace{1em} 
+        \@catalogtopics. %\\
         I. \@advisercitationname.
         \if\@showcoadviser1
-          II. \@coadvisercitationname.\\
+          II. \@coadvisercitationname.
           III. \@university. \@institute.
           IV. T\'{i}tulo.
         \else
           II. \@university. \@institute.
           III T\'{i}tulo.
         \fi
-
-        \hspace{8.5cm}\@catalogcdd
-
+        \par
+        \vspace{1.5em}
+        \hspace{8cm}CDD -- \@catalogcdd
+        \advance\parskip by 0.25em          
+        \par
+        \hspace{8cm}CDU -- \@catalogcdu
+        \vspace{1.5em}
       \end{minipage}
     }
-
   \end{center}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Cataloging Sheet (``termo de aprovacao'')
+%% Termo de aprovacao
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \def\approvalsheet#1#2{%
   \newpage
+  \thispagestyle{empty}
   \begin{center}
     {\sf\large \textbf{TERMO DE APROVA\c{C}\~{A}O}}
 
