@@ -235,8 +235,9 @@ grau de \@degree\ em \@majorfield.}
   \gdef\@address{#1}}
 \def\@address{Salvador}
 
-\def\year#1{%
-  \gdef\@year{#1}}
+\def\defenseyear#1{%
+  \gdef\@defenseyear{#1}}
+
 
 %% Authors identification
 
@@ -354,7 +355,7 @@ grau de \@degree\ em \@majorfield.}
         \@authorcitationname.
         \par  
         \advance\parindent by 1.5em
-        \@title \, / \@author \, -- \@address, \@year.
+        \@title \, / \@author \, -- \@address, \@defenseyear.
         \par 
         \pageref{LastPage}p.: il. 
         \par
@@ -366,7 +367,7 @@ grau de \@degree\ em \@majorfield.}
         \fi
         \par
         \@catalogtype \, -- \@university, \@institute,
-        \@year.
+        \@defenseyear.
         \par
         \vspace{1em} 
         \@catalogtopics. %\\
