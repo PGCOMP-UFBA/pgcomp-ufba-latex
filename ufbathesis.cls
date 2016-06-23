@@ -102,7 +102,7 @@
 \if\@scr1
   \RequirePackage[dvips]{graphicx}
   \RequirePackage[dvips,usenames]{color}
-  \RequirePackage[dvipdfm,colorlinks,backref]{hyperref}
+  \RequirePackage[colorlinks,backref]{hyperref}
 \fi
 \RequirePackage[alf]{abntex2cite}
 \RequirePackage{lastpage}
@@ -482,37 +482,30 @@ grau de \@degree\ em \@majorfield.}
   \end{center}
 }
 
-\def\pgcompfrontpage#1{%
- \if@openright\cleardoublepage\else\clearpage\fi
+\def\pgcompfrontpage{%
+	\if@openright\cleardoublepage\else\clearpage\fi
   \thispagestyle{empty}
   \begin{center}
-    \includegraphics[width=2cm]{ufba}
-    \\
+  \includegraphics[width=2cm]{ufba}\\
   \sf\large
-  \textbf{%
-  UNIVERSIDADE FEDERAL DA BAHIA}
+  \@university
+  \if\@showinstitute1\\\@institute\fi
   \vskip 25mm
-  \textbf{\MakeTextUppercase{\@texttype}}
-  \vskip 25mm
-  \begin{minipage}{150mm}
+  \@program
+  \vskip 45mm
+  \begin{minipage}{110mm}
     \begin{center}
-      \textbf{\@title}
+      \textbf{\MakeTextUppercase{\@title}}
       \vskip\baselineskip
       \@author
-      \vskip 45mm
-      \textbf{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
-      \\
       \vskip\baselineskip
-      \@address\\
-      \@date
+      \MakeTextUppercase{\@texttype}
     \end{center}
   \end{minipage}\\
   \vfill
+  \@address\\
+  \@date
   \end{center}
-  \begin{flushright}
-  \sf\large
-  #1
-  \end{flushright}
 }
 
 
