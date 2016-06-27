@@ -102,7 +102,11 @@
 \if\@scr1
   \RequirePackage[dvips]{graphicx}
   \RequirePackage[dvips,usenames]{color}
-  \RequirePackage[colorlinks,backref]{hyperref}
+  \RequirePackage{hyperref}
+  \hypersetup{colorlinks=true,
+            linkcolor=black,
+            urlcolor=black,
+            citecolor=black}
 \fi
 \RequirePackage[alf]{abntex2cite}
 \RequirePackage{lastpage}
