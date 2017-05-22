@@ -30,6 +30,7 @@
 %% Preambulo:
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage[printonlyused,withpage]{acronym}
 \usepackage{lipsum}
 
 % Universidade
@@ -175,6 +176,17 @@ PALAVRAS-CHAVE EM INGL\^{E}S.
 % Comente para ocultar
 \listoftables
 
+
+\chapter*{Lista de Siglas}
+
+% Sintaxe da lista de acordo com a documentação do pacote `acronym'
+% documentação: http://mirror.unl.edu/ctan/macros/latex/contrib/acronym/acronym.pdf
+\begin{acronym}[PGCOMP]
+    \acro{PGCOMP}{Programa de Pós-Graduação em Ciência da Computação}
+    \acro{CNPq}{Conselho Nacional de Desenvolvimento Científico e Tecnológico}
+\end{acronym}
+
+
 %% Parte textual
 \mainmatter
 
@@ -190,17 +202,26 @@ PALAVRAS-CHAVE EM INGL\^{E}S.
 % Use \xchapter{}{} ao inves de \chapter{}; se não quiser colocar texto antes do inicio do capitulo, use \xchapter{texto}{}.
 
 \xchapter{Introdu\c{c}\~{a}o}{Este eh o primeiro cap\'{\i}tulo, onde eu conto toda a historia deste trabalho, o problema, a solu\c{c}\~{a}o, etc.}
+% É recomendável utilizar `\acresetall' no início de cada capítulo para reiníciar o contator de referências às siglas.
+\acresetall 
 
 \section{Se\c{c}\~{a}o}
+Trabalho do  \ac{PGCOMP}. Bolsa do \ac{CNPq}.
+
+ \begin{figure}[h]
+ Figure
+ \caption{As siglas também funcionam nas legendas, seja na forma de sigla \ac{CNPq}, seja na forma completa \acf{PGCOMP}.}
+ \end{figure}
+
 \lipsum
 
 \subsection{Uma Subse\c{c}\~{a}o}
-
-Texto.
+\acresetall
+Texto para mostrar como o \verb|\acresetall| funciona \ac{CNPq}, \ac{PGCOMP}. Ele reseta os contadoes e faz a sigla aparecer na forma estendida novamente.
 
 \subsection{Outra Subse\c{c}\~{a}o}
 
-Texto.
+Texto  \acf{CNPq}, \acf{PGCOMP}.
 
 \section{Outra Se\c{c}\~{a}o}
 \lipsum
