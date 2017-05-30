@@ -24,7 +24,7 @@
 %%           oneside - para impressao em face unica
 %%           twoside - para impressao em frente e verso (padrao)
 
-% Aten��o: Manter 'classic' na declaracao abaixo:
+% Aten��o: Manter 'classic' na declaracao abaixo:
 \documentclass[en, prop, classic, a4paper]{ufbathesis}
 
 %% Preambulo:
@@ -40,6 +40,7 @@
 \usepackage{colortbl}
 \usepackage{xfrac}
 \usepackage[FIGTOPCAP]{subfigure}
+\usepackage[printonlyused, withpage]{acronym}
 
 
 % Universidade
@@ -141,6 +142,15 @@ PALAVRAS-CHAVE EM INGL\^{E}S.
 % Comente para ocultar
 \listoftables
 
+\chapter*{Lista de Siglas}
+
+% Sintaxe da lista de acordo com a documentação do pacote `acronym'
+% documentação: http://mirror.unl.edu/ctan/macros/latex/contrib/acronym/acronym.pdf
+\begin{acronym}[PGCOMP]
+    \acro{PGCOMP}{Programa de Pós-Graduação em Ciência da Computação}
+    \acro{CNPq}{Conselho Nacional de Desenvolvimento Científico e Tecnológico}
+\end{acronym}
+
 %% Parte textual
 \mainmatter
 
@@ -153,23 +163,30 @@ PALAVRAS-CHAVE EM INGL\^{E}S.
 % \include{capituloN}
 %
 % Importante: 
-% Use \xchapter{}{} ao inves de \chapter{}; se n�o quiser colocar texto antes do inicio do capitulo, use \xchapter{texto}{}.
+% Use \xchapter{}{} ao inves de \chapter{}; se n�o quiser colocar texto antes do inicio do capitulo, use \xchapter{texto}{}.
 
 \xchapter{Introdu\c{c}\~{a}o}{Este eh o primeiro cap\'{\i}tulo, onde eu conto toda a historia deste trabalho, o problema, a solu\c{c}\~{a}o, etc.}
 
+% É recomendável utilizar `\acresetall' no início de cada capítulo para reiníciar o contator de referências às siglas.
+\acresetall 
+
 \section{Se\c{c}\~{a}o}
+Trabalho do  \ac{PGCOMP}. Bolsa do \ac{CNPq}.
+
+\begin{figure}[h]
+    Figure
+    \caption{As siglas também funcionam nas legendas, seja na forma de sigla \ac{CNPq}, seja na forma completa \acf{PGCOMP}.}
+\end{figure}
+
 \lipsum
 
 \subsection{Uma Subse\c{c}\~{a}o}
-
-Texto.
+\acresetall
+Texto para mostrar como o \verb|\acresetall| funciona \ac{CNPq}, \ac{PGCOMP}. Ele reseta os contadoes e faz a sigla aparecer na forma estendida novamente.
 
 \subsection{Outra Subse\c{c}\~{a}o}
 
-Texto.
-
-\section{Outra Se\c{c}\~{a}o}
-\lipsum
+Texto  \acf{CNPq}, \acf{PGCOMP}.
 
 \xchapter{Revis\~{a}o Bibliogr\'{a}fica}{Neste cap\'{\i}tulo eu apresento todo o material que eu estudei durante a elabora\c{c}\~{a}o do trabalho.}
 
@@ -244,8 +261,8 @@ elemento 31 & elemento 32 & elemento 33\\
 \backmatter
 
 % Bibliografia
-% � aconselh�vel utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
-% Para ajuda na cria��o do arquivo .bib e utiliza��o do BibTeX, recorra ao
+% � aconselh�vel utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
+% Para ajuda na cria��o do arquivo .bib e utiliza��o do BibTeX, recorra ao
 % BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
 \bibliographystyle{abntex2-alf}
 \bibliography{biblio}
