@@ -559,11 +559,9 @@ grau de \@degree\ em \@majorfield.}
   \vskip 45mm
   \begin{flushright}
     \begin{minipage}{0.5\textwidth}
-        Esta \@texttype\
-        foi apresentada ao Programa de P\'{o}s-Gradua\c{c}\~{a}o
-        em Ci\^{e}ncia da Computa\c{c}\~{a}o da Universidade Federal da Bahia,
-        como requisito parcial para obten\c{c}\~{a}o do grau de \@degree\
-        em Ci\^{e}ncia da Computa\c{c}\~{a}o.
+        Esta\@texttype\ foi apresentada ao \@program\ da \@university,
+        como requisito parcial para obten\c{c}\~{a}o do grau de\@degree\
+        em \@majorfield.
     \end{minipage}
   \end{flushright}
   \begin{center}
