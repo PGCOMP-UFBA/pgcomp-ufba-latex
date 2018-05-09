@@ -26,7 +26,7 @@
 \ProvidesClass{ufbathesis}[2014/11/26]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% OPTIONS 
+%% OPTIONS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \DeclareOption{pt}{%
@@ -42,14 +42,14 @@
 
 \DeclareOption{twoside}{%
   \PassOptionsToClass{twoside}{book}}
- 
+
 \DeclareOption{print}{%
   \let\@scr=0}
 
 \DeclareOption{scr}{%
   \let\@scr=1%
   \PassOptionsToClass{dvipdfm}{book}}
-  
+
 \DeclareOption{bsc}{%
   \let\@degreetype=0}
 
@@ -64,10 +64,10 @@
 
 \DeclareOption{phd}{%
   \let\@degreetype=4}
-  
+
 \DeclareOption{classic}{%
   \let\@style=0}
- 
+
 \DeclareOption{std}{%
   \let\@style=1
 }
@@ -205,7 +205,7 @@ grau de \@degree\ em \@majorfield.}
   This volume has been typeset in \LaTeX with the \textsf{UFBAThesis} class
   (\url{www.dcc.ufba.br/~flach/ufbathesis}).
   \if\@scr1
-  For details about this document, click \Acrobatmenu{GeneralInfo}{here}. 
+  For details about this document, click \Acrobatmenu{GeneralInfo}{here}.
   \fi}
 \fi\fi
 
@@ -350,20 +350,20 @@ grau de \@degree\ em \@majorfield.}
 
     \hspace{2.5em}
     \vfill
-    Sistema de Bibliotecas - UFBA 
+    Sistema de Bibliotecas - UFBA
 
     \framebox[\textwidth][c]{
       \hspace{1.75em}
       \begin{minipage}[t]{0.85\textwidth}
         \vspace{1em}
         \@authorcitationname.
-        \par  
+        \par
         \advance\parindent by 1.5em
         \@title \, / \@author \, -- \@address, \@defenseyear.
-        \par 
-        \pageref{LastPage}p.: il. 
         \par
-        \vspace{1em} 
+        \pageref{LastPage}p.: il.
+        \par
+        \vspace{1em}
         \@advisertitle: Prof.~Dr. \@adviser.
         \par
         \if\@showcoadviser1
@@ -373,7 +373,7 @@ grau de \@degree\ em \@majorfield.}
         \@catalogtype \, -- \@university, \@institute,
         \@defenseyear.
         \par
-        \vspace{1em} 
+        \vspace{1em}
         \@catalogtopics. %\\
         I. \@advisercitationname.
         \if\@showcoadviser1
@@ -387,7 +387,7 @@ grau de \@degree\ em \@majorfield.}
         \par
         \vspace{1.5em}
         \hspace{8cm}CDD -- \@catalogcdd
-        \advance\parskip by 0.25em          
+        \advance\parskip by 0.25em
         \par
         \hspace{8cm}CDU -- \@catalogcdu
         \vspace{1.5em}
@@ -418,8 +418,8 @@ grau de \@degree\ em \@majorfield.}
     \vspace{2em}
     \begin{flushright}
       \begin{minipage}{0.5\textwidth}
-        Esta \@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do t\'{i}tulo de \@degree\  em Ci\^{e}ncia da Computa\c{c}\~{a}o e aprovada em sua
-        forma final pelo Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o da Universidade Federal da Bahia.
+        Esta\@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do t\'{i}tulo de\@degree\
+        em \@majorfield\ e aprovada em sua forma final pelo \@program\ da \@university.
       \end{minipage}
     \end{flushright}
 
@@ -559,11 +559,9 @@ grau de \@degree\ em \@majorfield.}
   \vskip 45mm
   \begin{flushright}
     \begin{minipage}{0.5\textwidth}
-        Esta \@texttype\
-        foi apresentada ao Programa de P\'{o}s-Gradua\c{c}\~{a}o 
-        em Ci\^{e}ncia da Computa\c{c}\~{a}o da Universidade Federal da Bahia, 
-        como requisito parcial para obten\c{c}\~{a}o do grau de \@degree\
-        em Ci\^{e}ncia da Computa\c{c}\~{a}o.
+        Esta\@texttype\ foi apresentada ao \@program\ da \@university,
+        como requisito parcial para obten\c{c}\~{a}o do grau de\@degree\
+        em \@majorfield.
     \end{minipage}
   \end{flushright}
   \begin{center}
@@ -624,7 +622,7 @@ grau de \@degree\ em \@majorfield.}
   \gdef\@keywordsname{\keywordsnameEN}
   \chapter*{\abstrname}}
 
-  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Keywords
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -671,7 +669,7 @@ grau de \@degree\ em \@majorfield.}
   \end{flushright}
   \normalfont\vskip\baselineskip}
 
-  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Table of contents
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -935,7 +933,7 @@ grau de \@degree\ em \@majorfield.}
 	{\slshape}% Body style
 	{0pt}% Heading indent amount
 	{\bfseries}{.}% Heading font and punctuation after it
-	{1ex plus 0pt minus .2ex}% Space after heading 
+	{1ex plus 0pt minus .2ex}% Space after heading
 	{}% Head spec (empty = same as "plain" style
 \theoremstyle{definition}
 \newtheorem{Def}{\@defname}[chapter]
@@ -1095,7 +1093,7 @@ grau de \@degree\ em \@majorfield.}
   \gdef\@keywordsname{\keywordsnameEN}
   \chapter*{\abstrname}}
 
-  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Keywords
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1142,7 +1140,7 @@ grau de \@degree\ em \@majorfield.}
   \end{flushright}
   \normalfont\vskip2\baselineskip}
 
-  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Table of contents
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1168,7 +1166,7 @@ grau de \@degree\ em \@majorfield.}
  \renewcommand\tableofcontents{%
    \chapter*{\contentsname}
    \@starttoc{toc}}
- 
+
 
 % \def\l@part#1#2{%
 %   \ifnum \c@tocdepth >-2\relax
@@ -1288,8 +1286,8 @@ grau de \@degree\ em \@majorfield.}
           \vskip2.5pc}}\hskip\leftskip\fi
      #1\par \endgroup
   \skip@10pc \advance\skip@-\normalbaselineskip
-  \vskip\skip@ }  
-  
+  \vskip\skip@ }
+
 \def\@schapter#1{%
   \schaptermark{#1}%
   \@makeschapterhead{#1}%
@@ -1339,7 +1337,7 @@ grau de \@degree\ em \@majorfield.}
   \thispagestyle{empty}
   \null\vfill
   \small\noindent
-  \@colophontext	
+  \@colophontext
 }
 
 
@@ -1413,7 +1411,7 @@ grau de \@degree\ em \@majorfield.}
 	{\slshape}% Body style
 	{0pt}% Heading indent amount
 	{\bfseries}{.}% Heading font and punctuation after it
-	{1ex plus 0pt minus .2ex}% Space after heading 
+	{1ex plus 0pt minus .2ex}% Space after heading
 	{}% Head spec (empty = same as "plain" style
 \theoremstyle{definition}
 \newtheorem{Def}{\@defname}[chapter]
