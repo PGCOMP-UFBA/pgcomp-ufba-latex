@@ -103,7 +103,9 @@
 \fi
 \if\@scr1
   \RequirePackage[dvips]{graphicx}
-  \RequirePackage[dvips,usenames]{color}
+  %% \RequirePackage[dvips,usenames]{color}
+  %%%% Correção de erro na cor do número de capítulo.
+  \RequirePackage{color}
   \RequirePackage{hyperref}
   \hypersetup{colorlinks=true,
             linkcolor=black,
