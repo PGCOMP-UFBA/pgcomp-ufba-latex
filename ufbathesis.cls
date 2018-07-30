@@ -73,7 +73,9 @@
 }
 
 % Default options
-\ExecuteOptions{pt,msc,std,print}
+%% \ExecuteOptions{pt,msc,std,print}
+%%%% Carregar opção correta 'scr', habilita o hyperref.
+\ExecuteOptions{pt,msc,std,scr}
 \ProcessOptions
 
 \LoadClass[12pt,a4paper]{book}
