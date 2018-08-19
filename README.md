@@ -9,6 +9,7 @@ Este pacote tem como base o pacote
 Modificado para o DMCC por Alírio Sá e Antonio Terceiro em 2010.
 Adaptado para o PGCOMP por Christina von Flach em 2014.
 Modificado por Alcemir Santos em 2016.
+Correções feitas por Renato Araújo em 2018.
 
 ## Como usar
 
