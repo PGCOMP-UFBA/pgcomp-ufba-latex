@@ -17,11 +17,11 @@ Modificado por Alcemir Santos em 2016.
 
 * Baixe o pacote/clone o [projeto pgcomp-ufba no github](https://github.com/christinaflach/pgcomp-ufba.git).
 
-* Use `ufbathesis` como o `documentclass` do seu documento.
+* Use `ufba/ufbathesis` como o `documentclass` do seu documento.
 
 * Tente seguir um dos modelos o mais fielmente possível.
 
 * Os templates em latex apresentam a estrutura para `msc` (dissertacao de mestrado), `phd` (tese de doutorado), `qual` (qualificacao de mestrado) e `prop` (qualificacao de doutorado).
 
-* Em caso de dúvidas que não possam ser sanadas olhando o template, por enquanto, a melhor coisa a fazer é olhar o código do `ufbathesis.cls`.
+* Em caso de dúvidas que não possam ser sanadas olhando o template, por enquanto, a melhor coisa a fazer é olhar o código do `ufba/ufbathesis.cls`.
 
