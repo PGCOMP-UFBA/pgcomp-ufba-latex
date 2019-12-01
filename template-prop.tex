@@ -28,7 +28,9 @@
 \documentclass[en, prop, classic, a4paper]{ufbathesis}
 
 %% Preambulo:
-\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel} %traduz palavras reservadas (e.g., \chapter, \section, etc.) e é responsável pela hifenização das palavras. 
+\usepackage[utf8]{inputenc} %permite a escrita direta de acentos sem macros (e.g., "á" ao invés de "\'a").
+\usepackage[T1]{fontenc} %muda a condificação da fonte, tornando possível copiar textos com acentos.
 \usepackage{graphicx}
 \usepackage{lipsum}
 \usepackage{hyphenat}
@@ -39,7 +41,9 @@
 \usepackage{listings} 
 \usepackage{colortbl}
 \usepackage{xfrac}
-\usepackage[FIGTOPCAP]{subfigure}
+%\usepackage[FIGTOPCAP]{subfigure}
+%% Legenda abaixo de subfigures ou subtables.
+\usepackage[FIGBOTCAP]{subfigure}
 \usepackage[printonlyused, withpage]{acronym}
 
 
