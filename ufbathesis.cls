@@ -74,7 +74,9 @@
 
 % Default options
 %% \ExecuteOptions{pt,msc,std,print}
-%%%% Carregar opção correta 'scr', habilita o hyperref.
+
+%## By Renato in 2020.
+% Carregar opção correta 'scr' para habilitar o hyperref.
 \ExecuteOptions{pt,msc,std,scr}
 \ProcessOptions
 
@@ -104,16 +106,29 @@
 \if\@scr1
   \RequirePackage[dvips]{graphicx}
   %% \RequirePackage[dvips,usenames]{color}
-  %%%% Correção de erro na cor do número de capítulo.
+  
+  %## By Renato in 2020.
+  % Correção de erro na cor do número de capítulo.
   \RequirePackage{color}
+%%%% My changes Here!
   \RequirePackage{hyperref}
-  \hypersetup{colorlinks=true,
-            linkcolor=black,
-            urlcolor=black,
-            citecolor=black}
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=black,
+    pdftitle={SCaN-Mob Thesis Renato},
+    pdfauthor={Francisco Renato C. Araujo},
+    pdfstartview={FitH},
+    final=true,
+  }
+%%%% end changes.
 \fi
+%
+%## By Renato in 2020.
 %% \RequirePackage[alf]{abntex2cite}
-%%%%%%% Lista completa de autores nas referências e et. al (para mais de três autores) no texto.
+%%%% Lista completa de autores nas referências e et. al (para mais de três autores) no texto.
 \RequirePackage[alf,abnt-etal-list=0,abnt-etal-cite=3]{abntex2cite}
 \RequirePackage{lastpage}
 \RequirePackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
@@ -356,7 +371,7 @@ grau de \@degree\ em \@majorfield.}
 
     \hspace{2.5em}
     \vfill
-    Sistema de Bibliotecas - UFBA 
+    Sistema de Bibliotecas -- UFBA 
 
     \framebox[\textwidth][c]{
       \hspace{1.75em}
@@ -370,7 +385,8 @@ grau de \@degree\ em \@majorfield.}
         \pageref{LastPage}p.: il. 
         \par
         \vspace{1em} 
-        \@advisertitle: Prof.~Dr. \@adviser.
+        %\@advisertitle: Prof.~Dr. \@adviser.
+        \@advisertitle: \@adviser.
         \par
         \if\@showcoadviser1
           \@coadvisertitle: Prof.~Dr. \@coadviser.
@@ -459,8 +475,14 @@ grau de \@degree\ em \@majorfield.}
 %% Fonts
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\font\quotefont=cmssq8 scaled\magstep1
-\font\quotefonti=cmssqi8 scaled\magstep1
+%\font\quotefont=cmssq8 scaled\magstep1
+%\font\quotefonti=cmssqi8 scaled\magstep1
+
+%## By Renato in 2020.
+%%% Comentei as 2 linhas acima e redefini as fontes abaixo para que letras acentuadas apareçam, mesmo com o pacote T1 fontenc (definiçao com \font causa conflito com fontenc)[https://pt.overleaf.com/learn/latex/Font_sizes,_families,_and_styles#Reference_guide].
+\newcommand\quotefont{\fontencoding{T1}\upshape\sffamily\normalsize}
+\newcommand\quotefonti{\fontencoding{T1}\itshape\sffamily\normalsize}
+%##
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -496,7 +518,11 @@ grau de \@degree\ em \@majorfield.}
 	\if@openright\cleardoublepage\else\clearpage\fi
   \thispagestyle{empty}
   \begin{center}
-  \includegraphics[width=2cm]{ufba}\\
+  
+  %## By Renato in 2020. 
+  %Alteração aqui, inclui o caminho images/ para possibilitar mover o brasão da univ. para a pasta imagens.
+  
+  \includegraphics[width=2cm]{images/ufba}\\
   \sf\large
   \@university
   \if\@showinstitute1\\\@institute\fi
@@ -586,6 +612,7 @@ grau de \@degree\ em \@majorfield.}
   \@date
   \end{center}
 }
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Dedicatory
