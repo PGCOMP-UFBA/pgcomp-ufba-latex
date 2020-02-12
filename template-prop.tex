@@ -1,4 +1,4 @@
-%% Template para dissertacaoo/tese na classe UFBAthesis
+%% Template para dissertacao/tese na classe UFBAthesis
 %% versao 1.0
 %% (c) 2005 Paulo G. S. Fonseca
 %% (c) 2012 Antonio Terceiro
@@ -24,16 +24,20 @@
 %%           oneside - para impressao em face unica
 %%           twoside - para impressao em frente e verso (padrao)
 
-% Aten��o: Manter 'classic' na declaracao abaixo:
+% Atenção: Manter 'classic' na declaracao abaixo:
 \documentclass[en, prop, classic, a4paper]{ufbathesis}
 
 %% Preambulo:
-\usepackage[brazil]{babel} %traduz palavras reservadas (e.g., \chapter, \section, etc.) e é responsável pela hifenização das palavras. 
+\usepackage[T1]{fontenc} %muda a codificação da fonte, tornando possível copiar textos com acentos no arquivo de saída, pdf.
+\usepackage{lmodern} %usado com [T1], tornará as fontes com contornos de alta qualidade para as três famílias de fontes LaTeX.
 \usepackage[utf8]{inputenc} %permite a escrita direta de acentos sem macros (e.g., "á" ao invés de "\'a").
-\usepackage[T1]{fontenc} %muda a condificação da fonte, tornando possível copiar textos com acentos.
+\usepackage[brazil]{babel} %traduz palavras reservadas (e.g., \chapter, \section, etc.) e é responsável pela hifenização das palavras.
+\usepackage{hyphenat} %Hyphenation rules
+\hyphenation{mate-mática recu-perar}
+%
 \usepackage{graphicx}
 \usepackage{lipsum}
-\usepackage{hyphenat}
+%\usepackage{hyphenat}
 \usepackage[usenames, dvipsnames, table]{xcolor}
 \usepackage{booktabs}
 \usepackage{pifont}
@@ -42,9 +46,26 @@
 \usepackage{colortbl}
 \usepackage{xfrac}
 %\usepackage[FIGTOPCAP]{subfigure}
-%% Legenda abaixo de subfigures ou subtables.
-\usepackage[FIGBOTCAP]{subfigure}
-\usepackage[printonlyused, withpage]{acronym}
+\usepackage[FIGBOTCAP]{subfigure} %adiciona a legenda das subfiguras abaixo delas.
+\usepackage[printonlyused, withpage]{acronym} %adiciona lista de acrônimos.
+
+%%%%%%%%%%%%%%%%%%%%%
+% Pacotes que inclui.
+%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tabularx} %usado em tabelas para quebra de linha automática.
+\usepackage{algpseudocode} %para pseudo-codigo.
+\usepackage[portuguese,linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{fancybox} %para caixa de texto.
+
+% for comments while writing.
+\usepackage{color}
+\newcommand{\advisor}[1]{\textcolor{red}{\bf [Advisor]: #1}}
+\newcommand{\you}[1]{\textcolor{blue}{[You]: #1}}
+
+
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%
 
 
 % Universidade
