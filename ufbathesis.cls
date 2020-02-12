@@ -118,8 +118,8 @@
     citecolor=black,
     filecolor=black,
     urlcolor=black,
-    pdftitle={SCaN-Mob Thesis Renato},
-    pdfauthor={Francisco Renato C. Araujo},
+    %pdftitle={},
+    %pdfauthor={},
     pdfstartview={FitH},
     final=true,
   }
@@ -479,7 +479,9 @@ grau de \@degree\ em \@majorfield.}
 %\font\quotefonti=cmssqi8 scaled\magstep1
 
 %## By Renato in 2020.
-%%% Comentei as 2 linhas acima e redefini as fontes abaixo para que letras acentuadas apareçam, mesmo com o pacote T1 fontenc (definiçao com \font causa conflito com fontenc)[https://pt.overleaf.com/learn/latex/Font_sizes,_families,_and_styles#Reference_guide].
+%Comentei as 2 linhas acima e redefini as fontes abaixo para que letras acentuadas apareçam, 
+%mesmo com o pacote T1 fontenc (definiçao com \font causa conflito com fontenc)
+%[https://pt.overleaf.com/learn/latex/Font_sizes,_families,_and_styles#Reference_guide].
 \newcommand\quotefont{\fontencoding{T1}\upshape\sffamily\normalsize}
 \newcommand\quotefonti{\fontencoding{T1}\itshape\sffamily\normalsize}
 %##
