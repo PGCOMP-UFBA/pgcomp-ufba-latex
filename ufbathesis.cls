@@ -1444,4 +1444,23 @@ grau de \@degree\ em \@majorfield.}
 \newcommand{\propref}[1]{\@propname~\ref{#1}\xspace}
 \newcommand{\pgref}[1]{\@pagename~\pageref{#1}\xspace}
 
+% ---
+% Citacao direta com mais de 3 linhas - ABNT NBR 10520/2002 - 5.3
+\newlength{\ABNTEXcitacaorecuo}% recuo de 4 cm da margem esquerda
+\setlength{\ABNTEXcitacaorecuo}{4cm}
+\newcommand{\ABNTEXfontereduzida}{\footnotesize}
+\newenvironment*{citacao}[1][default]
+{
+  \list{}%
+  \ABNTEXfontereduzida%
+  \addtolength{\leftskip}{\ABNTEXcitacaorecuo}%
+  \item[]%
+  %\begin{SingleSpace}%
+  %\ifthenelse{\not\equal{#1}{default}}{\itshape\selectlanguage{#1}}{}%
+}
+{
+  %\end{SingleSpace}%
+  \endlist%
+}
+
 \fi\fi
