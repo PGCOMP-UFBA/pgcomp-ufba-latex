@@ -13,7 +13,7 @@
 %%%    Date                = "26 Nov 2014",
 %%%    Filename            = "ufbathesis.cls",
 %%%    Address             = "Universidade Federal da Bahia
-%%%                           Instituto de Matematica",
+%%%                           Instituto de Computacao",
 %%%    Telephone           = "+55 71 3283-6292",
 %%%    Email               = "flach@dcc.ufba.br",
 %%%    Keywords            = "LaTeX, Thesis, Dissertation",
@@ -223,7 +223,7 @@ grau de \@degree\ em \@majorfield.}
 \def\institute#1{%
   \let\@showinstitute=1
   \gdef\@institute{#1}}
-\institute{Instituto de Matem\'{a}tica}
+\institute{Instituto de Computa\c{c}\~{a}o}
 
 \def\program#1{%
   \gdef\@program{#1}}
