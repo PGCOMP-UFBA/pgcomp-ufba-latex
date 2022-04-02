@@ -1,4 +1,4 @@
-VERSION = 1.0
+VERSION = 1.1
 TARBALL = ufbathesis-$(VERSION).tar.gz
 UPLOAD_TO = app.dcc.ufba.br:~/public_html/ufbathesis/
 

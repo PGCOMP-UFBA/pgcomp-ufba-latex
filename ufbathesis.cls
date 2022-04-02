@@ -4,13 +4,14 @@
 %%% (C) 2003--2005 Paulo Gustavo Soares Fonseca
 %%% (C) 2012 Antonio Terceiro
 %%% (C) 2014 Christina von Flach
+%%% (c) 2020 Fernanda Lopes
 %%% THIS FILE COMES WITH NO WARRANTIES
 %%% PERMISSION TO COPY AND REDISTRIBUTE FREE OF CHARGE
 %%% FOR ACADEMIC PURPOSES ONLY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%    Author              = "Paulo G. S. Fonseca and Antonio Terceiro and Christina von Flach",
-%%%    Version             = "1.0",
-%%%    Date                = "26 Nov 2014",
+%%%    Version             = "1.1",
+%%%    Date                = "21 Jul 2020",
 %%%    Filename            = "ufbathesis.cls",
 %%%    Address             = "Universidade Federal da Bahia
 %%%                           Instituto de Computacao",
@@ -23,7 +24,7 @@
 %%%    SeeAlso             = "book.sty",
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ProvidesClass{ufbathesis}[2014/11/26]
+\ProvidesClass{ufbathesis}[2020/07/21]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% OPTIONS
