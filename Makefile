@@ -30,16 +30,16 @@ prop: template-prop.dvi template-prop.pdf
 phd: template-phd.dvi template-phd.pdf
 
 %.dvi: %.tex ufbathesis.cls
-	latex $<
+	latex -src -interaction=nonstopmode $<
 
 %.pdf: %.tex ufbathesis.cls
-	pdflatex $<
+	pdflatex -synctex=1 -interaction=nonstopmode $<
 
 %.bbl %.blg : biblio.bib %.aux
 	bibtex $<
 
 %.aux : %.tex
-	latex $<
+	latex -src -interaction=nonstopmode $<
 
 dist: $(TARBALL)
 
@@ -54,5 +54,5 @@ upload: $(TARBALL) index.html template-bsc.tex template-qual.tex template-msc.te
 
 clean:
 	$(RM) $(TARBALL)
-	$(RM) *.bbl *.blg *.aux *.lof *.log *.lot *.toc *.out template*.pdf template*.dvi
+	$(RM) *.bbl *.blg *.aux *.lof *.log *.lot *.toc *.out *.brf *.synctex.* template*.pdf template*.dvi
 	$(RM) index.html
