@@ -1,0 +1,327 @@
+%% Template para dissertacao/tese na classe UFBAthesis
+%% versao 1.0
+%% (c) 2005 Paulo G. S. Fonseca
+%% (c) 2012 Antonio Terceiro
+%% (c) 2014 Christina von Flach
+%% www.dcc.ufba.br/~flach/ufbathesis
+
+%% Carrega a classe ufbathesis
+%% Opcoes: * Idiomas
+%%           pt   - portugues (padrao)
+%%           en   - ingles
+%%         * Tipo do Texto
+%%           bsc  - para monografias de graduacao
+%%           msc  - para dissertacoes de mestrado (padrao)
+%%           qual - exame de qualificacao de mestrado
+%%           prop - exame de qualificacao de doutorado
+%%           phd  - para teses de doutorado
+%%         * Media
+%%           scr  - para versao eletronica (PDF) / consulte o guia do usuario
+%%         * Estilo
+%%           classic - estilo original a la TAOCP (deprecated) - apesar de deprecated, manter esse.
+%%           std     - novo estilo a la CUP (padrao)
+%%         * Paginacao
+%%           oneside - para impressao em face unica
+%%           twoside - para impressao em frente e verso (padrao)
+
+% Atenção: Manter 'classic' na declaracao abaixo:
+\documentclass[bsc, classic, a4paper]{ufbathesis}
+
+%% Preambulo:
+\usepackage[T1]{fontenc} %muda a codificação da fonte, tornando possível copiar textos com acentos no arquivo de saída, pdf.
+\usepackage{lmodern} %usado com [T1], tornará as fontes com contornos de alta qualidade para as três famílias de fontes LaTeX.
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[printonlyused,withpage]{acronym}
+\usepackage{lipsum}
+
+
+% Universidade
+\university{Universidade Federal da Bahia}
+
+% Endereco (cidade)
+\address{Salvador}
+
+% Instituto ou Centro Academico
+\institute{Instituto de Computa\c{c}\~{a}o}
+
+% Nome da biblioteca - usado na ficha catalografica
+\library{Biblioteca Reitor Mac\^{e}do Costa}
+
+% Colegiado de graduacao
+\program{Bacharelado em Ci\^{e}ncia da Computa\c{c}\~{a}o}
+
+% Area de titulacao
+\majorfield{Ci\^{e}ncia da Computa\c{c}\~{a}o}
+
+% Titulo da dissertacao
+\title{T\'{\i}tulo da Disserta\c{c}\~{a}o ou Tese ou Monografia}
+
+% Data da defesa
+% e.g. \date{19 de fevereiro de 2013}
+\date{21 de julho de 2020}
+% e.g. \defenseyear{2013}
+\defenseyear{2020}
+
+% Autor
+% e.g. \author{Jose da Silva}
+\author{Nome Completo do AUTOR}
+
+% Orientador(a)
+% Opcao: [f] - para orientador do sexo feminino
+% e.g. \adviser[f]{Profa. Dra. Maria Santos}
+\adviser[f]{Nome Completo da ORIENTADORA}
+
+% Orientador(a)
+% Opcao: [f] - para orientador do sexo feminino
+% e.g. \coadviser{Prof. Dr. Pedro Pedreira}
+% Comente se nao ha co-orientador
+\coadviser{Nome Completo do CO-ORIENTADOR}
+
+%% Inicio do documento
+\begin{document}
+
+\pgcompfrontpagebsc
+
+%% Parte pre-textual
+\frontmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ficha catalografica
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\authorcitationname{Sobrenome, Nome do ALUNO (usado em CITACOES)} % e.g. Terceiro, Antonio Soares de Azevedo
+\advisercitationname{Sobrenome, Nome do ORIENTADOR} % e.g. Chavez, Christina von Flach Garcia
+\coadvisercitationname{Sobrenome, Nome do CO-ORIENTADOR} % e.g. Mendonca, Manoel Gomes de
+\catalogtype{Monografia (Gradua\c{c}\~{a}o)} % e.g. ou ``Tese (Doutorado)''
+%\catalogtype{Disserta\c{c}\~{a}o (Mestrado)} % e.g. ou ``Tese (Doutorado)''
+
+\catalogtopics{1. Primeira palavra-chave. 2. Segunda palavra-chave. 3. Terceira palavra-chave} % Listar palavras-chave do trabalho para a FICHA CATALOGRAFICA}, por exemplo, ``1. Complexidade Estrutural. 2. Qualidade de Software 3. Engenharia de Software''
+\catalogcdd{XXX.XX} % e.g.  XXX.XX (número nesse formato serah dado pela biblioteca)
+\catalogcdu{XXX.XX.XXX} % e.g.  XXX.XX.XXX (idem)
+\catalogingsheet
+
+%%%%%%%%%%%%%%%%%%%%%
+% Termo de aprovacaoo
+%%%%%%%%%%%%%%%%%%%%%
+
+\approvalsheet{Salvador, DIA de MES de ANO}{
+   \comittemember{Profa. Dra. Professora 1}{Universidade XYZ}
+   \comittemember{Prof. Dr. Professor 2}{Universidade 123}
+   \comittemember{Profa. Dra. Professora 3}{Universidade ABC}
+   % Para mestrado, apenas 3.
+   % \comittemember{Prof. Dr. Professor 4}{Universidade HJKL}
+   % \comittemember{Profa. Dra. Professora 5}{Universidade QWERTY}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dedicatoria, Agradecimentos, Epigrafe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Comente para ocultar
+\begin{dedicatory}
+DIGITE A DEDICATORIA AQUI
+\end{dedicatory}
+
+% Agradecimentos
+% Se preferir, crie um arquivo `a parte e o inclua via \include{}
+\acknowledgements
+DIGITE OS AGRADECIMENTOS AQUI
+
+% Epigrafe
+\begin{epigraph}[NOTA]{AUTOR}
+DIGITE AQUI A CITACAO
+\end{epigraph}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Resumo em Portugues
+%%%%%%%%%%%%%%%%%%%%%
+
+\resumo
+COLOQUE O RESUMO. Se preferir, crie um arquivo separado e o inclua via comando include.
+
+Para evitar problemas de formato neste template (de uso geral), usamos acentua\c{c}\~{a}o mostrada abaixo. 
+
+\begin{verbatim} 
+\c{c} \~{a} \'{a} \^{e} \'{\i}
+\end{verbatim} 
+
+N\~{a}o precisa fazer dessa forma, caso use pacotes adequados (latin1, etc.).
+
+% Palavras-chave do resumo em Portugues
+\begin{keywords}
+PALAVRAS-CHAVE.
+\end{keywords}
+
+%%%%%%%%%%%%%%%%%%%
+% Resumo em Ingles
+%%%%%%%%%%%%%%%%%%%
+
+\begin{otherlanguage*}{english}
+\abstract
+
+PUT THE ENGLISH ABSTRACT. If you'd prefer, create a separated file and include it with \texttt{include} command.
+% Palavras-chave do resumo em Ingles
+\begin{keywords}
+KEYWORDS IN ENGLISH.
+\end{keywords}
+\end{otherlanguage*}
+
+%%%%%%%%%%%%%%%%%%%
+% Sumario / Indice
+%%%%%%%%%%%%%%%%%%%
+
+% Comente para ocultar
+\tableofcontents
+
+% Lista de figuras
+% Comente para ocultar
+\listoffigures
+
+% Lista de tabelas
+% Comente para ocultar
+\listoftables
+
+
+\chapter*{Lista de Siglas}
+
+% Sintaxe da lista de acordo com a documentação do pacote `acronym'
+% documentação: http://mirror.unl.edu/ctan/macros/latex/contrib/acronym/acronym.pdf
+\begin{acronym}[PGCOMP]
+    \acro{PGCOMP}{Programa de Pós-Graduação em Ciência da Computação}
+    \acro{CNPq}{Conselho Nacional de Desenvolvimento Científico e Tecnológico}
+\end{acronym}
+
+
+%% Parte textual
+\mainmatter
+
+% Eh aconselhavel criar cada capitulo em um arquivo separado, digamos
+% "capitulo1.tex", "capitulo2.tex", ... "capituloN.tex" e depois
+% inclui-los com:
+% \include{capitulo1}
+% \include{capitulo2}
+% ...
+% \include{capituloN}
+%
+% Importante: 
+% Use \xchapter{}{} ao inves de \chapter{}; se não quiser colocar texto antes do inicio do capitulo, use \xchapter{texto}{}.
+
+\xchapter{Introdu\c{c}\~{a}o}{Este eh o primeiro cap\'{\i}tulo, onde eu conto toda a historia deste trabalho, o problema, a solu\c{c}\~{a}o, etc.}
+
+% É recomendável utilizar `\acresetall' no início de cada capítulo para reiníciar o contator de referências às siglas.
+\acresetall 
+
+\section{Se\c{c}\~{a}o}
+Trabalho do  \ac{PGCOMP}. Bolsa do \ac{CNPq}.
+
+\begin{figure}[h]
+    Figure
+    \caption[As siglas também funcionam nas legendas]{As siglas também funcionam nas legendas, seja na forma de sigla \ac{CNPq}, seja na forma completa \acf{PGCOMP}.}
+\end{figure}
+
+\lipsum
+
+\subsection{Uma Subse\c{c}\~{a}o}
+\acresetall
+Texto para mostrar como o \verb|\acresetall| funciona \ac{CNPq}, \ac{PGCOMP}. Ele reseta os contadores e faz a sigla aparecer na forma estendida novamente.
+
+\subsection{Outra Subse\c{c}\~{a}o}
+
+Texto  \acf{CNPq}, \acf{PGCOMP}.
+
+
+\xchapter{Revis\~{a}o Bibliogr\'{a}fica}{Neste cap\'{\i}tulo eu apresento todo o material que eu estudei durante a elabora\c{c}\~{a}o do trabalho.}
+
+Livro \cite{demeyer2008} e  livro \cite{raymond1999}.
+
+\xchapter{Exemplos}{} %sem preambulo
+
+A numera\c{c}\~{a}o de figuras \'{e} sequencial, dentro do cap\'{\i}tulo. Ver Figura \ref{default-regular1} e Figura \ref{default-regular2}.
+
+A numera\c{c}\~{a}o de tabelas \'{e} sequencial, dentro do cap\'{\i}tulo. Ver Tabela \ref{default-table1} e Tabela \ref{default-table2}.
+
+
+\section{Exemplos de Figura}
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[scale=0.5]{ufba.eps}
+\caption{Bras\~{a}o da UFBA - Menor.}
+\label{default-regular1}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[scale=0.75]{ufba.eps}
+\caption{Bras\~{a}o da UFBA - Maior.}
+\label{default-regular2}
+\end{center}
+\end{figure}
+
+\lipsum
+
+\section{Exemplos de Tabela}
+\subsection{Uma Tabela}
+\begin{table}[htbp]
+\caption{Uma tabela com 3 linhas e 2 colunas.}
+\begin{center}
+\begin{tabular}{|c|c|} 
+\hline
+elemento 11 & elemento 12 \\ \hline
+elemento 21 & elemento 22 \\ \hline
+elemento 31 & elemento 32 \\
+\hline
+\end{tabular}
+\end{center}
+\label{default-table1}
+\end{table}%
+
+\lipsum
+
+\begin{table}[htbp]
+\caption{Uma tabela com 3 linhas e 3 colunas.}
+\begin{center}
+\begin{tabular}{|l|c|c|} 
+\hline
+elemento 11 & elemento 12 & elemento 13\\ \hline
+elemento 21 & elemento 22 & elemento 23\\ \hline
+elemento 31 & elemento 32 & elemento 33\\
+\hline
+\end{tabular}
+\end{center}
+\label{default-table2}
+\end{table}%
+
+\xchapter{Outro cap\'{\i}tulo}{} %sem preambulo
+\lipsum
+
+
+%% Parte pos-textual
+\backmatter
+
+% Bibliografia
+% É aconselhável utilizar o BibTeX a partir de um arquivo, digamos "biblio.bib".
+% Para ajuda na criação do arquivo .bib e utilização do BibTeX, recorra ao
+% BibTeXpress em www.cin.ufpe.br/~paguso/bibtexpress
+\bibliographystyle{abntex2-alf}
+\bibliography{biblio}
+
+% Apendices
+% Comente se naoo houver apendices
+\appendix
+
+\xchapter{Exemplo de Ap\^endice}{} %sem preambulo
+\lipsum
+% Eh aconselhavel criar cada apendice em um arquivo separado, digamos
+% "apendice1.tex", "apendice.tex", ... "apendiceM.tex" e depois
+% inclui--los com:
+% \include{apendice1}
+% \include{apendice2}
+% ...
+% \include{apendiceM}
+
+%% Fim do documento
+\end{document}
+%------------------------------------------------------------------------------------------%
