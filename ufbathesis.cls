@@ -431,8 +431,15 @@ grau de \@degree\ em \@majorfield.}
     \vspace{2em}
     \begin{flushright}
       \begin{minipage}{0.5\textwidth}
-        Esta\@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do t\'{i}tulo de\@degree\
-        em \@majorfield\ e aprovada em sua forma final pelo \@program\ da \@university.
+        \if\@degreetype0
+          Este\@texttype\ foi julgado adequado \`{a} obten\c{c}\~{a}o do
+          t\'{i}tulo de\@degree\ em \@majorfield\ e aprovado em sua forma final
+          pelo Colegiado do \@program\ da \@university.
+        \else
+          Esta\@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do
+          t\'{i}tulo de\@degree\ em \@majorfield\ e aprovada em sua forma final
+          pelo \@program\ da \@university.
+        \fi
       \end{minipage}
     \end{flushright}
 
