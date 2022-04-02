@@ -98,6 +98,13 @@
 \fi
 \if\@scr0
   \RequirePackage{graphicx}
+  \RequirePackage[bookmarks]{hyperref}
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=black,
+    citecolor=black
+  }
 \fi
 \if\@scr1
   \RequirePackage[dvips]{graphicx}
