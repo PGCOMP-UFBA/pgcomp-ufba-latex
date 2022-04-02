@@ -532,6 +532,38 @@ grau de \@degree\ em \@majorfield.}
   \end{center}
 }
 
+\def\pgcompfrontpagebsc{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \thispagestyle{empty}
+
+  %---------- CAPA -------------
+  \begin{center}
+    \includegraphics[height=2.5cm]{ufba}
+    \hspace{2cm}
+    \includegraphics[height=2.5cm]{dccufba}
+  \end{center}
+
+  \begin{center}
+    \sc{\large{\@university}} \\
+    \sc{\large{\@institute}} \\
+    \sc{\large{\@program}} \\
+    \sc{\small{\@texttype}} \\
+
+    \vspace{4cm}
+
+    \sc{\Large{\@title}}
+
+    \vspace{4.5cm}
+
+    \sc{\Large{\@author}}
+
+    \vspace{5.5cm}
+
+    \textbf{\@address} \\
+    \@date
+  \end{center}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Presentation page
