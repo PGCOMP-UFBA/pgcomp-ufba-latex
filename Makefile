@@ -1,20 +1,20 @@
-VERSION = 1.1
-TARBALL = ufbathesis-$(VERSION).tar.gz
+VERSION   = 1.1
+TARBALL   = ufbathesis-$(VERSION).tar.gz
 UPLOAD_TO = app.dcc.ufba.br:~/public_html/ufbathesis/
 
-LATEX	= latex
-BIBTEX	= bibtex
+LATEX     = latex
+BIBTEX    = bibtex
 MAKEINDEX = makeindex
-XDVI	= xdvi -gamma 4
-DVIPS	= dvips
-DVIPDF  = dvipdft
-L2H	= latex2html
-GH	= gv
+XDVI      = xdvi -gamma 4
+DVIPS     = dvips
+DVIPDF    = dvipdft
+L2H       = latex2html
+GH        = gv
 
-RERUN = "(There were undefined references|Rerun to get (cross-references|the bars) right)"
-RERUNBIB = "No file.*\.bbl|Citation.*undefined"
-MAKEIDX = "^[^%]*\\makeindex"
-MPRINT = "^[^%]*print"
+RERUN     = "(There were undefined references|Rerun to get (cross-references|the bars) right)"
+RERUNBIB  = "No file.*\.bbl|Citation.*undefined"
+MAKEIDX   = "^[^%]*\\makeindex"
+MPRINT    = "^[^%]*print"
 USETHUMBS = "^[^%]*thumbpdf"
 
 all: bsc qual prop msc phd
