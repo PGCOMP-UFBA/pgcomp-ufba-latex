@@ -539,8 +539,6 @@ grau de \@degree\ em \@majorfield.}
   %---------- CAPA -------------
   \begin{center}
     \includegraphics[height=2.5cm]{ufba}
-    \hspace{2cm}
-    \includegraphics[height=2.5cm]{dccufba}
   \end{center}
 
   \begin{center}
