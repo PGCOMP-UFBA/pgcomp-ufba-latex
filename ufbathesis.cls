@@ -101,12 +101,18 @@
 \fi
 \if\@scr1
   \RequirePackage[dvips]{graphicx}
-  \RequirePackage[dvips,usenames]{color}
-  \RequirePackage{hyperref}
-  \hypersetup{colorlinks=true,
-            linkcolor=black,
-            urlcolor=black,
-            citecolor=black}
+  \RequirePackage[usenames]{color}
+  %% Use backref para referenciar as secoes onde aconteceu a citacao
+  \RequirePackage[backref,bookmarks]{hyperref}
+  %\RequirePackage[bookmarks]{hyperref}
+  \definecolor{linkcolorscr}{rgb}{0,0,0.67}
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolorscr,
+    urlcolor=linkcolorscr,
+    citecolor=linkcolorscr,
+    pdfstartview={FitH}
+  }
 \fi
 \RequirePackage[alf,abnt-etal-list=0]{abntex2cite}
 \RequirePackage{lastpage}
