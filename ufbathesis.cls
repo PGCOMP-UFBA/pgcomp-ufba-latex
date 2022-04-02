@@ -579,9 +579,15 @@ grau de \@degree\ em \@majorfield.}
   \vskip 45mm
   \begin{flushright}
     \begin{minipage}{0.5\textwidth}
-        Esta\@texttype\ foi apresentada ao \@program\ da \@university,
-        como requisito parcial para obten\c{c}\~{a}o do grau de\@degree\
-        em \@majorfield.
+      \if\@degreetype0
+        % Trabalho de graduacao
+        \@texttype\ apresentado como requisito parcial para obten\c{c}\~{a}o do
+        t\'{i}tulo de\@degree\ em \@majorfield.
+      \else
+        Esta\@texttype\ foi apresentada ao \@program\ da \@university, como
+        requisito parcial para obten\c{c}\~{a}o do grau de\@degree\ em
+        \@majorfield.
+      \fi
     \end{minipage}
   \end{flushright}
   \begin{center}
