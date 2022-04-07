@@ -4,14 +4,13 @@
 %%% (C) 2003--2005 Paulo Gustavo Soares Fonseca
 %%% (C) 2012 Antonio Terceiro
 %%% (C) 2014 Christina von Flach
-%%% (c) 2020 Fernanda Lopes
 %%% THIS FILE COMES WITH NO WARRANTIES
 %%% PERMISSION TO COPY AND REDISTRIBUTE FREE OF CHARGE
 %%% FOR ACADEMIC PURPOSES ONLY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%    Author              = "Paulo G. S. Fonseca and Antonio Terceiro and Christina von Flach",
-%%%    Version             = "1.1",
-%%%    Date                = "21 Jul 2020",
+%%%    Version             = "1.0",
+%%%    Date                = "26 Nov 2014",
 %%%    Filename            = "ufbathesis.cls",
 %%%    Address             = "Universidade Federal da Bahia
 %%%                           Instituto de Computacao",
@@ -24,7 +23,7 @@
 %%%    SeeAlso             = "book.sty",
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ProvidesClass{ufbathesis}[2020/07/21]
+\ProvidesClass{ufbathesis}[2014/11/26]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% OPTIONS
@@ -74,11 +73,7 @@
 }
 
 % Default options
-%% \ExecuteOptions{pt,msc,std,print}
-
-%## By Renato in 2020.
-% Carregar opção correta 'scr' para habilitar o hyperref.
-\ExecuteOptions{pt,msc,std,scr}
+\ExecuteOptions{pt,msc,std,print}
 \ProcessOptions
 
 \LoadClass[12pt,a4paper]{book}
@@ -103,16 +98,9 @@
 \fi
 \if\@scr0
   \RequirePackage{graphicx}
-  \RequirePackage[bookmarks]{hyperref}
-  \hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    urlcolor=black,
-    citecolor=black
-  }
 \fi
-
-
+\if\@scr1
+  \RequirePackage[dvips]{graphicx}
   \RequirePackage[dvips,usenames]{color}
   \RequirePackage{hyperref}
   \hypersetup{colorlinks=true,
@@ -120,30 +108,7 @@
             urlcolor=black,
             citecolor=black}
 \fi
-
-\if\@scr1
-  \RequirePackage[dvips]{graphicx}
-  \RequirePackage[usenames]{color}
-  %% Use backref para referenciar as secoes onde aconteceu a citacao
-  \RequirePackage[backref,bookmarks]{hyperref}
-  %\RequirePackage[bookmarks]{hyperref}
-  \definecolor{linkcolorscr}{rgb}{0,0,0.67}
-  \hypersetup{
-    colorlinks=true,
-    linkcolor=linkcolorscr,
-    urlcolor=linkcolorscr,
-    citecolor=linkcolorscr,
-    pdfstartview={FitH}
-  }
-\fi
-
-%
-%## By Renato in 2020.
-%% \RequirePackage[alf]{abntex2cite}
-%%%% Lista completa de autores nas referências e et. al (para mais de três autores) no texto.
-%\RequirePackage[alf,abnt-etal-list=0,abnt-etal-cite=3]{abntex2cite}
-\RequirePackage[alf,abnt-etal-list=0]{abntex2cite}
-
+\RequirePackage[alf]{abntex2cite}
 \RequirePackage{lastpage}
 \RequirePackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
 \RequirePackage{fix-cm}
@@ -385,8 +350,7 @@ grau de \@degree\ em \@majorfield.}
 
     \hspace{2.5em}
     \vfill
-
-    Sistema de Bibliotecas -- UFBA 
+    Sistema de Bibliotecas - UFBA
 
     \framebox[\textwidth][c]{
       \hspace{1.75em}
@@ -397,10 +361,10 @@ grau de \@degree\ em \@majorfield.}
         \advance\parindent by 1.5em
         \@title \, / \@author \, -- \@address, \@defenseyear.
         \par
-       
-        \vspace{1em} 
-        %\@advisertitle: Prof.~Dr. \@adviser.
-        \@advisertitle: \@adviser.
+        \pageref{LastPage}p.: il.
+        \par
+        \vspace{1em}
+        \@advisertitle: Prof.~Dr. \@adviser.
         \par
         \if\@showcoadviser1
           \@coadvisertitle: Prof.~Dr. \@coadviser.
@@ -454,15 +418,8 @@ grau de \@degree\ em \@majorfield.}
     \vspace{2em}
     \begin{flushright}
       \begin{minipage}{0.5\textwidth}
-        \if\@degreetype0
-          Este\@texttype\ foi julgado adequado \`{a} obten\c{c}\~{a}o do
-          t\'{i}tulo de\@degree\ em \@majorfield\ e aprovado em sua forma final
-          pelo Colegiado do \@program\ da \@university.
-        \else
-          Esta\@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do
-          t\'{i}tulo de\@degree\ em \@majorfield\ e aprovada em sua forma final
-          pelo \@program\ da \@university.
-        \fi
+        Esta\@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do t\'{i}tulo de\@degree\
+        em \@majorfield\ e aprovada em sua forma final pelo \@program\ da \@university.
       \end{minipage}
     \end{flushright}
 
@@ -496,16 +453,8 @@ grau de \@degree\ em \@majorfield.}
 %% Fonts
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\font\quotefont=cmssq8 scaled\magstep1
-%\font\quotefonti=cmssqi8 scaled\magstep1
-
-%## By Renato in 2020.
-%Comentei as 2 linhas acima e redefini as fontes abaixo para que letras acentuadas apareçam, 
-%mesmo com o pacote T1 fontenc (definiçao com \font causa conflito com fontenc)
-%[https://pt.overleaf.com/learn/latex/Font_sizes,_families,_and_styles#Reference_guide].
-\newcommand\quotefont{\fontencoding{T1}\upshape\sffamily\normalsize}
-\newcommand\quotefonti{\fontencoding{T1}\itshape\sffamily\normalsize}
-%##
+\font\quotefont=cmssq8 scaled\magstep1
+\font\quotefonti=cmssqi8 scaled\magstep1
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -541,11 +490,7 @@ grau de \@degree\ em \@majorfield.}
 	\if@openright\cleardoublepage\else\clearpage\fi
   \thispagestyle{empty}
   \begin{center}
-  
-  %## By Renato in 2020. 
-  %Alteração aqui, inclui o caminho images/ para possibilitar mover o brasão da univ. para a pasta imagens.
-  
-  \includegraphics[width=2cm]{images/ufba}\\
+  \includegraphics[width=2cm]{ufba}\\
   \sf\large
   \@university
   \if\@showinstitute1\\\@institute\fi
@@ -567,35 +512,33 @@ grau de \@degree\ em \@majorfield.}
   \end{center}
 }
 
+
 \def\pgcompfrontpagebsc{%
-  \if@openright\cleardoublepage\else\clearpage\fi
+	\if@openright\cleardoublepage\else\clearpage\fi
   \thispagestyle{empty}
-
-  %---------- CAPA -------------
   \begin{center}
-    \includegraphics[height=2.5cm]{ufba}
-  \end{center}
-
-  \begin{center}
-    \sc{\large{\@university}} \\
-    \sc{\large{\@institute}} \\
-    \sc{\large{\@program}} \\
-    \sc{\small{\@texttype}} \\
-
-    \vspace{4cm}
-
-    \sc{\Large{\@title}}
-
-    \vspace{4.5cm}
-
-    \sc{\Large{\@author}}
-
-    \vspace{5.5cm}
-
-    \textbf{\@address} \\
-    \@date
+  \includegraphics[width=2cm]{ufba}\\
+  \sf\large
+  \@university
+  \if\@showinstitute1\\\@institute\fi
+  \vskip 25mm
+  \@program
+  \vskip 45mm
+  \begin{minipage}{110mm}
+    \begin{center}
+      \textbf{\MakeTextUppercase{\@title}}
+      \vskip\baselineskip
+      \@author
+      \vskip\baselineskip
+      \MakeTextUppercase{\@texttype}
+    \end{center}
+  \end{minipage}\\
+  \vfill
+  \@address\\
+  \@date
   \end{center}
 }
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Presentation page
@@ -643,15 +586,9 @@ grau de \@degree\ em \@majorfield.}
   \vskip 45mm
   \begin{flushright}
     \begin{minipage}{0.5\textwidth}
-      \if\@degreetype0
-        % Trabalho de graduacao
-        \@texttype\ apresentado como requisito parcial para obten\c{c}\~{a}o do
-        t\'{i}tulo de\@degree\ em \@majorfield.
-      \else
-        Esta\@texttype\ foi apresentada ao \@program\ da \@university, como
-        requisito parcial para obten\c{c}\~{a}o do grau de\@degree\ em
-        \@majorfield.
-      \fi
+        Esta\@texttype\ foi apresentada ao \@program\ da \@university,
+        como requisito parcial para obten\c{c}\~{a}o do grau de\@degree\
+        em \@majorfield.
     \end{minipage}
   \end{flushright}
   \begin{center}
@@ -668,7 +605,6 @@ grau de \@degree\ em \@majorfield.}
   \@date
   \end{center}
 }
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Dedicatory
@@ -1535,23 +1471,5 @@ grau de \@degree\ em \@majorfield.}
 \newcommand{\propref}[1]{\@propname~\ref{#1}\xspace}
 \newcommand{\pgref}[1]{\@pagename~\pageref{#1}\xspace}
 
-% ---
-% Citacao direta com mais de 3 linhas - ABNT NBR 10520/2002 - 5.3
-\newlength{\ABNTEXcitacaorecuo}% recuo de 4 cm da margem esquerda
-\setlength{\ABNTEXcitacaorecuo}{4cm}
-\newcommand{\ABNTEXfontereduzida}{\footnotesize}
-\newenvironment*{citacao}[1][default]
-{
-  \list{}%
-  \ABNTEXfontereduzida%
-  \addtolength{\leftskip}{\ABNTEXcitacaorecuo}%
-  \item[]%
-  %\begin{SingleSpace}%
-  %\ifthenelse{\not\equal{#1}{default}}{\itshape\selectlanguage{#1}}{}%
-}
-{
-  %\end{SingleSpace}%
-  \endlist%
-}
-
 \fi\fi
+
