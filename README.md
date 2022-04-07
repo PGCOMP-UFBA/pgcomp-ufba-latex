@@ -10,13 +10,14 @@ Modificado para o DMCC por Alírio Sá e Antonio Terceiro em 2010.
 Adaptado para o PGCOMP por Christina von Flach em 2014.
 Modificado por Alcemir Santos em 2016.
 Correções feitas por Renato Araújo em 2018.
+Criação do bsc-template por Nanda Lopes em 2021.
 
 ## Como usar
 
 * Instale o [abnTeX2](http://code.google.com/p/abntex2/)
 (também disponível no [CTAN](http://www.ctan.org/pkg/abntex2)).
 
-* Baixe o pacote/clone o [projeto pgcomp-ufba no github](https://github.com/christinaflach/pgcomp-ufba.git).
+* Baixe o pacote/clone o [projeto pgcomp-ufba no github](https://github.com/PGCOMP-UFBA/pgcomp-ufba-latex.git).
 
 * Use `ufbathesis` como o `documentclass` do seu documento.
 
@@ -25,4 +26,3 @@ Correções feitas por Renato Araújo em 2018.
 * Os templates em latex apresentam a estrutura para `msc` (dissertacao de mestrado), `phd` (tese de doutorado), `qual` (qualificacao de mestrado) e `prop` (qualificacao de doutorado).
 
 * Em caso de dúvidas que não possam ser sanadas olhando o template, por enquanto, a melhor coisa a fazer é olhar o código do `ufbathesis.cls`.
-
