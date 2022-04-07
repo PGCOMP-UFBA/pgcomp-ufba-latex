@@ -141,7 +141,8 @@
 %## By Renato in 2020.
 %% \RequirePackage[alf]{abntex2cite}
 %%%% Lista completa de autores nas referências e et. al (para mais de três autores) no texto.
-\RequirePackage[alf,abnt-etal-list=0,abnt-etal-cite=3]{abntex2cite}
+%\RequirePackage[alf,abnt-etal-list=0,abnt-etal-cite=3]{abntex2cite}
+\RequirePackage[alf,abnt-etal-list=0]{abntex2cite}
 
 \RequirePackage{lastpage}
 \RequirePackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
