@@ -25,47 +25,15 @@
 %%           twoside - para impressao em frente e verso (padrao)
 
 % Atenção: Manter 'classic' na declaracao abaixo:
-\documentclass[msc, classic, a4paper]{ufbathesis}
+\documentclass[bsc, classic, a4paper]{ufbathesis}
 
 %% Preambulo:
 \usepackage[T1]{fontenc} %muda a codificação da fonte, tornando possível copiar textos com acentos no arquivo de saída, pdf.
 \usepackage{lmodern} %usado com [T1], tornará as fontes com contornos de alta qualidade para as três famílias de fontes LaTeX.
-\usepackage[utf8]{inputenc} %permite a escrita direta de acentos sem macros (e.g., "á" ao invés de "\'a").
-\usepackage[brazil]{babel} %traduz palavras reservadas (e.g., \chapter, \section, etc.) e é responsável pela hifenização das palavras.
-\usepackage{hyphenat} %Hyphenation rules
-\hyphenation{mate-mática recu-perar}
-%
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage[printonlyused,withpage]{acronym}
 \usepackage{lipsum}
-%\usepackage{hyphenat}
-\usepackage[usenames, dvipsnames, table]{xcolor}
-\usepackage{booktabs}
-\usepackage{pifont}
-\usepackage{multirow}
-\usepackage{listings} 
-\usepackage{colortbl}
-\usepackage{xfrac}
-%\usepackage[FIGTOPCAP]{subfigure}
-\usepackage[FIGBOTCAP]{subfigure} %adiciona a legenda das subfiguras abaixo delas.
-\usepackage[printonlyused, withpage]{acronym} %adiciona lista de acrônimos.
-
-%%%%%%%%%%%%%%%%%%%%%
-% Pacotes que inclui.
-%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{tabularx} %usado em tabelas para quebra de linha automática.
-\usepackage{algpseudocode} %para pseudo-codigo.
-\usepackage[portuguese,linesnumbered,ruled,vlined]{algorithm2e}
-\usepackage{fancybox} %para caixa de texto.
-
-% for comments while writing.
-\usepackage{color}
-\newcommand{\advisor}[1]{\textcolor{red}{\bf [Advisor]: #1}}
-\newcommand{\you}[1]{\textcolor{blue}{[You]: #1}}
-
-
-%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%
 
 
 % Universidade
@@ -80,20 +48,20 @@
 % Nome da biblioteca - usado na ficha catalografica
 \library{Biblioteca Reitor Mac\^{e}do Costa}
 
-% Programa de pos-graduacao
-\program{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
+% Colegiado de graduacao
+\program{Bacharelado em Ci\^{e}ncia da Computa\c{c}\~{a}o}
 
 % Area de titulacao
 \majorfield{Ci\^{e}ncia da Computa\c{c}\~{a}o}
 
 % Titulo da dissertacao
-\title{T\'{\i}tulo da Disserta\c{c}\~{a}o ou Tese}
+\title{T\'{\i}tulo da Disserta\c{c}\~{a}o ou Tese ou Monografia}
 
 % Data da defesa
 % e.g. \date{19 de fevereiro de 2013}
-\date{13 de janeiro de 2014}
+\date{21 de julho de 2020}
 % e.g. \defenseyear{2013}
-\defenseyear{2014}
+\defenseyear{2020}
 
 % Autor
 % e.g. \author{Jose da Silva}
@@ -113,7 +81,7 @@
 %% Inicio do documento
 \begin{document}
 
-\pgcompfrontpage
+\pgcompfrontpagebsc
 
 %% Parte pre-textual
 \frontmatter
@@ -127,11 +95,12 @@
 \authorcitationname{Sobrenome, Nome do ALUNO (usado em CITACOES)} % e.g. Terceiro, Antonio Soares de Azevedo
 \advisercitationname{Sobrenome, Nome do ORIENTADOR} % e.g. Chavez, Christina von Flach Garcia
 \coadvisercitationname{Sobrenome, Nome do CO-ORIENTADOR} % e.g. Mendonca, Manoel Gomes de
-\catalogtype{Disserta\c{c}\~{a}o (Mestrado)} % e.g. ou ``Tese (Doutorado)''
+\catalogtype{Monografia (Gradua\c{c}\~{a}o)} % e.g. ou ``Tese (Doutorado)''
+%\catalogtype{Disserta\c{c}\~{a}o (Mestrado)} % e.g. ou ``Tese (Doutorado)''
 
 \catalogtopics{1. Primeira palavra-chave. 2. Segunda palavra-chave. 3. Terceira palavra-chave} % Listar palavras-chave do trabalho para a FICHA CATALOGRAFICA}, por exemplo, ``1. Complexidade Estrutural. 2. Qualidade de Software 3. Engenharia de Software''
 \catalogcdd{XXX.XX} % e.g.  XXX.XX (número nesse formato serah dado pela biblioteca)
-\catalogcdu{XXX.XX.XXX} % e.g.  XXX.XX.XXX (idem) 
+\catalogcdu{XXX.XX.XXX} % e.g.  XXX.XX.XXX (idem)
 \catalogingsheet
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -190,12 +159,17 @@ PALAVRAS-CHAVE.
 % Resumo em Ingles
 %%%%%%%%%%%%%%%%%%%
 
+\begin{otherlanguage*}{english}
 \abstract
+
+PUT THE ENGLISH ABSTRACT. If you'd prefer, create a separated file and include it with \texttt{include} command.
 COLOQUE O RESUMO EM INGL\^{E}S. Se preferir, crie um arquivo separado e o inclua via comando include.
 % Palavras-chave do resumo em Ingles
 \begin{keywords}
+KEYWORDS IN ENGLISH.
 PALAVRAS-CHAVE EM INGL\^{E}S.
 \end{keywords}
+\end{otherlanguage*}
 
 %%%%%%%%%%%%%%%%%%%
 % Sumario / Indice
@@ -221,6 +195,7 @@ PALAVRAS-CHAVE EM INGL\^{E}S.
     \acro{PGCOMP}{Programa de Pós-Graduação em Ciência da Computação}
     \acro{CNPq}{Conselho Nacional de Desenvolvimento Científico e Tecnológico}
 \end{acronym}
+
 
 %% Parte textual
 \mainmatter

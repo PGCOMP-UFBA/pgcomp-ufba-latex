@@ -4,13 +4,14 @@
 %%% (C) 2003--2005 Paulo Gustavo Soares Fonseca
 %%% (C) 2012 Antonio Terceiro
 %%% (C) 2014 Christina von Flach
+%%% (c) 2020 Fernanda Lopes
 %%% THIS FILE COMES WITH NO WARRANTIES
 %%% PERMISSION TO COPY AND REDISTRIBUTE FREE OF CHARGE
 %%% FOR ACADEMIC PURPOSES ONLY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%    Author              = "Paulo G. S. Fonseca and Antonio Terceiro and Christina von Flach",
-%%%    Version             = "1.0",
-%%%    Date                = "26 Nov 2014",
+%%%    Version             = "1.1",
+%%%    Date                = "21 Jul 2020",
 %%%    Filename            = "ufbathesis.cls",
 %%%    Address             = "Universidade Federal da Bahia
 %%%                           Instituto de Computacao",
@@ -23,7 +24,7 @@
 %%%    SeeAlso             = "book.sty",
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ProvidesClass{ufbathesis}[2014/11/26]
+\ProvidesClass{ufbathesis}[2020/07/21]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% OPTIONS
@@ -102,28 +103,38 @@
 \fi
 \if\@scr0
   \RequirePackage{graphicx}
-\fi
-\if\@scr1
-  \RequirePackage[dvips]{graphicx}
-  %% \RequirePackage[dvips,usenames]{color}
-  
-  %## By Renato in 2020.
-  % Correção de erro na cor do número de capítulo.
-  \RequirePackage{color}
-%%%% My changes Here!
-  \RequirePackage{hyperref}
+  \RequirePackage[bookmarks]{hyperref}
   \hypersetup{
     colorlinks=true,
     linkcolor=black,
-    citecolor=black,
-    filecolor=black,
     urlcolor=black,
-    %pdftitle={},
-    %pdfauthor={},
-    pdfstartview={FitH},
-    final=true,
+    citecolor=black
   }
-%%%% end changes.
+\fi
+
+
+  \RequirePackage[dvips,usenames]{color}
+  \RequirePackage{hyperref}
+  \hypersetup{colorlinks=true,
+            linkcolor=black,
+            urlcolor=black,
+            citecolor=black}
+\fi
+
+\if\@scr1
+  \RequirePackage[dvips]{graphicx}
+  \RequirePackage[usenames]{color}
+  %% Use backref para referenciar as secoes onde aconteceu a citacao
+  \RequirePackage[backref,bookmarks]{hyperref}
+  %\RequirePackage[bookmarks]{hyperref}
+  \definecolor{linkcolorscr}{rgb}{0,0,0.67}
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolorscr,
+    urlcolor=linkcolorscr,
+    citecolor=linkcolorscr,
+    pdfstartview={FitH}
+  }
 \fi
 
 %
@@ -442,8 +453,15 @@ grau de \@degree\ em \@majorfield.}
     \vspace{2em}
     \begin{flushright}
       \begin{minipage}{0.5\textwidth}
-        Esta\@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do t\'{i}tulo de\@degree\
-        em \@majorfield\ e aprovada em sua forma final pelo \@program\ da \@university.
+        \if\@degreetype0
+          Este\@texttype\ foi julgado adequado \`{a} obten\c{c}\~{a}o do
+          t\'{i}tulo de\@degree\ em \@majorfield\ e aprovado em sua forma final
+          pelo Colegiado do \@program\ da \@university.
+        \else
+          Esta\@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do
+          t\'{i}tulo de\@degree\ em \@majorfield\ e aprovada em sua forma final
+          pelo \@program\ da \@university.
+        \fi
       \end{minipage}
     \end{flushright}
 
@@ -548,6 +566,35 @@ grau de \@degree\ em \@majorfield.}
   \end{center}
 }
 
+\def\pgcompfrontpagebsc{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \thispagestyle{empty}
+
+  %---------- CAPA -------------
+  \begin{center}
+    \includegraphics[height=2.5cm]{ufba}
+  \end{center}
+
+  \begin{center}
+    \sc{\large{\@university}} \\
+    \sc{\large{\@institute}} \\
+    \sc{\large{\@program}} \\
+    \sc{\small{\@texttype}} \\
+
+    \vspace{4cm}
+
+    \sc{\Large{\@title}}
+
+    \vspace{4.5cm}
+
+    \sc{\Large{\@author}}
+
+    \vspace{5.5cm}
+
+    \textbf{\@address} \\
+    \@date
+  \end{center}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Presentation page
@@ -595,9 +642,15 @@ grau de \@degree\ em \@majorfield.}
   \vskip 45mm
   \begin{flushright}
     \begin{minipage}{0.5\textwidth}
-        Esta\@texttype\ foi apresentada ao \@program\ da \@university,
-        como requisito parcial para obten\c{c}\~{a}o do grau de\@degree\
-        em \@majorfield.
+      \if\@degreetype0
+        % Trabalho de graduacao
+        \@texttype\ apresentado como requisito parcial para obten\c{c}\~{a}o do
+        t\'{i}tulo de\@degree\ em \@majorfield.
+      \else
+        Esta\@texttype\ foi apresentada ao \@program\ da \@university, como
+        requisito parcial para obten\c{c}\~{a}o do grau de\@degree\ em
+        \@majorfield.
+      \fi
     \end{minipage}
   \end{flushright}
   \begin{center}
