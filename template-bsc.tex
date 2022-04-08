@@ -27,6 +27,7 @@
 % Atenção: Manter 'classic' na declaracao abaixo:
 \documentclass[bsc, classic, a4paper]{ufbathesis}
 
+
 %% Preambulo:
 \usepackage[T1]{fontenc} %muda a codificação da fonte, tornando possível copiar textos com acentos no arquivo de saída, pdf.
 \usepackage{lmodern} %usado com [T1], tornará as fontes com contornos de alta qualidade para as três famílias de fontes LaTeX.
@@ -35,6 +36,21 @@
 \usepackage[printonlyused,withpage]{acronym}
 \usepackage{lipsum}
 
+%%%%%%%%%%%%%%%%%%%%%
+% Pacotes que inclui.
+%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tabularx} %usado em tabelas para quebra de linha automática.
+\usepackage{algpseudocode} %para pseudo-codigo.
+\usepackage[portuguese,linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{fancybox} %para caixa de texto.
+
+% for comments while writing.
+\usepackage{color}
+\newcommand{\advisor}[1]{\textcolor{red}{\bf [Advisor]: #1}}
+\newcommand{\you}[1]{\textcolor{blue}{[You]: #1}}
+
+%%%%%%%%%%%%%%%%%%%%%
 
 % Universidade
 \university{Universidade Federal da Bahia}
@@ -70,13 +86,13 @@
 % Orientador(a)
 % Opcao: [f] - para orientador do sexo feminino
 % e.g. \adviser[f]{Profa. Dra. Maria Santos}
-\adviser[f]{Nome Completo da ORIENTADORA}
+\adviser[f]{Titulo e Nome Completo da ORIENTADORA}
 
 % Orientador(a)
 % Opcao: [f] - para orientador do sexo feminino
 % e.g. \coadviser{Prof. Dr. Pedro Pedreira}
 % Comente se nao ha co-orientador
-\coadviser{Nome Completo do CO-ORIENTADOR}
+\coadviser{Titulo e Nome Completo do CO-ORIENTADOR}
 
 %% Inicio do documento
 \begin{document}
@@ -108,9 +124,9 @@
 %%%%%%%%%%%%%%%%%%%%%
 
 \approvalsheet{Salvador, DIA de MES de ANO}{
-   \comittemember{Profa. Dra. Professora 1}{Universidade XYZ}
-   \comittemember{Prof. Dr. Professor 2}{Universidade 123}
-   \comittemember{Profa. Dra. Professora 3}{Universidade ABC}
+   \comittemember{Titulo e Nome da Professora 1}{Universidade XYZ}
+   \comittemember{Titulo e Nome do Professor 2}{Universidade 123}
+   \comittemember{Titulo e Nome da Professora 3}{Universidade ABC}
    % Para mestrado, apenas 3.
    % \comittemember{Prof. Dr. Professor 4}{Universidade HJKL}
    % \comittemember{Profa. Dra. Professora 5}{Universidade QWERTY}
@@ -122,17 +138,17 @@
 
 % Comente para ocultar
 \begin{dedicatory}
-DIGITE A DEDICATORIA AQUI
+DIGITE A DEDICATORIA AQUI.
 \end{dedicatory}
 
 % Agradecimentos
 % Se preferir, crie um arquivo `a parte e o inclua via \include{}
 \acknowledgements
-DIGITE OS AGRADECIMENTOS AQUI
+DIGITE OS AGRADECIMENTOS AQUI.
 
 % Epigrafe
 \begin{epigraph}[NOTA]{AUTOR}
-DIGITE AQUI A CITACAO
+DIGITE AQUI A CITACAO.
 \end{epigraph}
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -318,7 +334,7 @@ elemento 31 & elemento 32 & elemento 33\\
 % Comente se naoo houver apendices
 \appendix
 
-\xchapter{Exemplo de Ap\^endice}{} %sem preambulo
+\xchapter{Exemplo de Ap\^endice}{Um preambulo.} %sem preambulo
 \lipsum
 % Eh aconselhavel criar cada apendice em um arquivo separado, digamos
 % "apendice1.tex", "apendice.tex", ... "apendiceM.tex" e depois
@@ -331,3 +347,4 @@ elemento 31 & elemento 32 & elemento 33\\
 %% Fim do documento
 \end{document}
 %------------------------------------------------------------------------------------------%
+
