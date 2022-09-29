@@ -2,11 +2,11 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  pdflatex:
-    name: Pdflatex version
+  lsal:
+    name: lsal
     runs-on: ubuntu-latest
     steps:
-      - run: pdflatex -v 
+      - run: ls -al 
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
