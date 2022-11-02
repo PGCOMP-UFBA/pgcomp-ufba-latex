@@ -2,7 +2,9 @@
 
 ## Sobre
 
-Este pacote é destinado à escrita de trabalhos de conclusão de curso, documentos de qualificação de mestrado e de doutorado, dissertações de mestrado e teses de doutorado da Universidade Federal da Bahia.
+Este pacote é destinado à escrita de trabalhos de conclusão de curso, 
+documentos de qualificação de mestrado e de doutorado, dissertações de mestrado e teses de doutorado 
+da Universidade Federal da Bahia.
 
 Este pacote tem como base o pacote 
 [UFPEThesis](http://www.cin.ufpe.br/~paguso/ufpethesis/), criado por Paulo G. S. da Fonseca.
@@ -25,4 +27,4 @@ Criação do bsc-template por Nanda Lopes em 2021.
 
 * Os templates em latex apresentam a estrutura para `msc` (dissertacao de mestrado), `phd` (tese de doutorado), `qual` (qualificacao de mestrado) e `prop` (qualificacao de doutorado).
 
-* Em caso de dúvidas que não possam ser sanadas olhando o template, por enquanto, a melhor coisa a fazer é olhar o código do `ufbathesis.cls`.
+* Em caso de dúvidas, examine o template (arquivo letex) e o código do `ufbathesis.cls`.
