@@ -922,6 +922,7 @@ grau de \@degree\ em \@majorfield.}
             \let\p@enumiv\@empty
             \renewcommand\theenumiv{\@arabic\c@enumiv}}%
       \sloppy
+      \addcontentsline{toc}{chapter}{\bibname}%
       \clubpenalty4000
       \@clubpenalty \clubpenalty
       \widowpenalty4000%
