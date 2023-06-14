@@ -48,7 +48,7 @@
 
 \DeclareOption{scr}{%
   \let\@scr=1%
-  \PassOptionsToClass{dvipdfm}{book}}
+  \PassOptionsToPackage{dvipdfm}{color}}
 
 \DeclareOption{bsc}{%
   \let\@degreetype=0}
