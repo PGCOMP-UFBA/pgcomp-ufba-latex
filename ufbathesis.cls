@@ -869,10 +869,9 @@ grau de \@degree\ em \@majorfield.}
    \@afterheading
    }
 
-\definecolor{pgcompchapterbgcolor}{rgb}{0.8,0.8,0.8}
 \def\@makexchapterhead#1#2{%
   \begin{flushright}
-    \colorbox{pgcompchapterbgcolor}{
+    \colorbox[rgb]{0.8,0.8,0.8}{
       \begin{minipage}{0.2\textwidth}
         \begin{center}
         \vspace{0.5\baselineskip}
