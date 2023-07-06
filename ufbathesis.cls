@@ -102,17 +102,20 @@
 \if\@scr1
   \RequirePackage[dvips]{graphicx}
   \RequirePackage[dvips,usenames]{color}
+  \RequirePackage[usenames, dvipsnames, table]{xcolor}
   \RequirePackage{hyperref}
   \hypersetup{colorlinks=true,
             linkcolor=black,
             urlcolor=black,
             citecolor=black}
+  \PassOptionsToPackage{media=scr}{ufbacover}
 \fi
 \RequirePackage[alf]{abntex2cite}
 \RequirePackage{lastpage}
 \RequirePackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
 \RequirePackage{fix-cm}
 \RequirePackage{color}
+\RequirePackage{ufbacover}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% GENERAL PURPOSE MACROS
@@ -141,6 +144,8 @@
 \gdef\@mscqualifying{Qualifica\c{c}\~{a}o de Mestrado}
 \gdef\@phdproposal{Qualifica\c{c}\~{a}o de Doutorado}
 \gdef\@phdthesis{Tese de Doutorado}
+\gdef\@mastersdissertationacro{MSC}
+\gdef\@phdthesisacro{DSC}
 \gdef\@bachelordegree{Bacharel}
 \gdef\@mastersdegree{Mestre}
 \gdef\@phddegree{Doutor}
@@ -296,6 +301,13 @@ grau de \@degree\ em \@majorfield.}
   \else\if\@degreetype4
     \@phdthesis
   \fi\fi\fi\fi\fi}
+
+\def\@texttypeacronym{%
+  \if\@degreetype1
+    \@mastersdissertationacro
+  \else\if\@degreetype4
+    \@phdthesisacro
+  \fi\fi}
 
 \def\@degree{%
   \if\@degreetype0
@@ -456,6 +468,20 @@ grau de \@degree\ em \@majorfield.}
 \font\quotefont=cmssq8 scaled\magstep1
 \font\quotefonti=cmssqi8 scaled\magstep1
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Cover
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\covertype{\@texttypeacronym}
+\coverdocumenttype{\@texttype}
+\coveryear{\@defenseyear}
+\let\@coverkeywordsorig\coverkeywords
+% Portuguese
+\if\@language0
+  \renewcommand{\coverkeywords}[1]{\@coverkeywordsorig{\keywordsnamePT: #1}}
+% English
+\else\if\@language1
+  \renewcommand{\coverkeywords}[1]{\@coverkeywordsorig{\keywordsnameEN: #1}}
+\fi\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Frontpage
