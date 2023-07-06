@@ -113,6 +113,54 @@
 %% Inicio do documento
 \begin{document}
 
+%%%%%%%%%%%%%%%%%
+%% Definições da Capa
+%%%%%%%%%%%%%%%%%
+% Tipo do documento (apresentado na lombada)
+%\covertype{DSC} % preenche automatico na classe
+% Codigo do discente apos defesa (fornecido pelo CEAPG-IC)
+% e.g. \covercode{000}
+\covercode{XXX}
+% Mes da defesa
+% e.g. \covermonth{Abril}
+\covermonth{Month}
+% Ano da defesa
+% e.g. \coveryear{2023}
+%\coveryear{YYYY} % preenche automatico a partir do \defenseyear
+% Tipo do documento (por extenso)
+%\coverdocumenttype{Disserta\c{c}\~{a}o de Mestrado}
+% Titulo da dissertacao
+% preenche automatico a partir do \title
+%\covertitle{T\'{\i}tulo da Disserta\c{c}\~{a}o ou Tese}
+% Nome do discente (preenche automatico a partir do \author)
+%\coverauthor{Nome Completo do AUTOR}
+% Resumo ou Abstract (idioma principal usada no documento)
+% e.g. \coverabstract{TEXTO DO ABSTRACT/RESUMO}
+\coverabstract{COLOQUE O RESUMO EM INGL\^{E}S/PORTUGU\^{E}S}
+% Palavras-chave/keyword do abstract/resumo (idioma principal)
+% e.g. \coverkeywords{Palavra, Palavra, etc.}
+% e.g. \coverkeywords{Word, Word, etc.}
+\coverkeywords{PALAVRAS-CHAVE EM PORTUGU\^{E}S/INGL\^{E}S}
+% Nota: Caso o titulo da tese ou dissertacao, nome do autor
+% e/ou resumo ultrapassem o limite, sera aceito a redução do
+% tamanho da fonte.
+% APENAS estes campos podem ter o tamanho alterado.
+%
+% Modifica a fonte do titulo na frente
+% e.g. \coverfronttitlesize{32}
+% Modifica a fonte do titulo na lombada
+% e.g. \coverspinetitlesize{11}
+% Modifica a fonte do autor na frente
+% e.g. \coverfrontauthorsize{24}
+% Modifica a fonte do autor na lombada
+% e.g. \coverspineauthorsize{11}
+% Modifica a fonte do resumo/abstract e palavras-chaves/keywords
+% e.g. \coverbacktextsize{10}
+
+%% Adicionar a capa estilizada do pgcomp
+\pgcompcover
+
+%% Folha de rosto
 \pgcompfrontpage
 
 %% Parte pre-textual
