@@ -350,10 +350,16 @@ grau de \@degree\ em \@majorfield.}
   \gdef\@catalogtype{#1}}
 \def\catalogtopics#1{%
   \gdef\@catalogtopics{#1}}
+\let\@showcatalogcdd=0
 \def\catalogcdd#1{%
+  \let\@showcatalogcdd=1%
   \gdef\@catalogcdd{#1}}
 \def\catalogcdu#1{%
   \gdef\@catalogcdu{#1}}
+\def\@catalogcdu{\@notdefined}
+\def\catalogcutter#1{%
+  \gdef\@catalogcutter{#1}}
+\def\@catalogcutter{\@notdefined}
 
 \def\catalogingsheet{%
   \newpage
@@ -365,7 +371,11 @@ grau de \@degree\ em \@majorfield.}
     Sistema de Bibliotecas - UFBA
 
     \framebox[\textwidth][c]{
-      \hspace{1.75em}
+      \hspace{0.0125\textwidth}
+      \begin{minipage}[t]{0.1\textwidth}
+        \vspace{1em}
+        \@catalogcutter
+      \end{minipage}% no par
       \begin{minipage}[t]{0.85\textwidth}
         \vspace{1em}
         \@authorcitationname.
@@ -398,12 +408,15 @@ grau de \@degree\ em \@majorfield.}
         \fi
         \par
         \vspace{1.5em}
-        \hspace{8cm}CDD -- \@catalogcdd
-        \advance\parskip by 0.25em
-        \par
+        \if\@showcatalogcdd1
+            \hspace{8cm}CDD -- \@catalogcdd
+            \advance\parskip by 0.25em
+            \par
+        \fi
         \hspace{8cm}CDU -- \@catalogcdu
         \vspace{1.5em}
-      \end{minipage}
+      \end{minipage}%
+      \hspace{0.065\textwidth}
     }
   \end{center}
 }
