@@ -409,11 +409,11 @@ grau de \@degree\ em \@majorfield.}
         \par
         \vspace{1.5em}
         \if\@showcatalogcdd1
-            \hspace{8cm}CDD -- \@catalogcdd
+            \hfill CDD -- \@catalogcdd
             \advance\parskip by 0.25em
             \par
         \fi
-        \hspace{8cm}CDU -- \@catalogcdu
+        \hfill CDU -- \@catalogcdu
         \vspace{1.5em}
       \end{minipage}%
       \hspace{0.065\textwidth}
