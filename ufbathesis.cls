@@ -164,6 +164,7 @@ grau de \@degree\ em \@majorfield.}
 \if\@language0
   \gdef\@notdefined{N\~{A}O DEFINIDO}
   \gdef\acknowledgementsname{Agradecimentos}
+  \gdef\abbreviationsname{Lista de Siglas}
   \gdef\@axiomname{Axioma}
   \gdef\@conjecturename{Conjectura}
   \gdef\@defname{Defini\c{c}\~{a}o}
@@ -190,6 +191,7 @@ grau de \@degree\ em \@majorfield.}
 \else\if\@language1
   \gdef\@notdefined{UNDEFINED}
   \gdef\acknowledgementsname{Acknowledgements}
+  \gdef\abbreviationsname{Abbreviations}
   \gdef\@axiomname{Axiom}
   \gdef\@conjecturename{Conjecture}
   \gdef\@defname{Definition}
@@ -779,6 +781,12 @@ grau de \@degree\ em \@majorfield.}
 
 \setcounter{tocdepth}{4}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Abbreviations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\abbreviations{%
+  \chapter*{\abbreviationsname}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Sectioning
