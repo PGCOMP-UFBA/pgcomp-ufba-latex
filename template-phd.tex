@@ -113,6 +113,54 @@
 %% Inicio do documento
 \begin{document}
 
+%%%%%%%%%%%%%%%%%
+%% Definições da Capa
+%%%%%%%%%%%%%%%%%
+% Tipo do documento (apresentado na lombada)
+%\covertype{DSC} % preenche automatico na classe
+% Codigo da defesa (Numero da Ata da defesa - fornecido pelo CEAPG-IC)
+% e.g. \covercode{000}
+\covercode{XXX}
+% Mes da defesa
+% e.g. \covermonth{Abril}
+\covermonth{Month}
+% Ano da defesa
+% e.g. \coveryear{2023}
+%\coveryear{YYYY} % preenche automatico a partir do \defenseyear
+% Tipo do documento (por extenso)
+%\coverdocumenttype{Disserta\c{c}\~{a}o de Mestrado}
+% Titulo da dissertacao
+% preenche automatico a partir do \title
+%\covertitle{T\'{\i}tulo da Disserta\c{c}\~{a}o ou Tese}
+% Nome do discente (preenche automatico a partir do \author)
+%\coverauthor{Nome Completo do AUTOR}
+% Resumo ou Abstract (idioma principal usada no documento)
+% e.g. \coverabstract{TEXTO DO ABSTRACT/RESUMO}
+\coverabstract{COLOQUE O RESUMO EM INGL\^{E}S/PORTUGU\^{E}S}
+% Palavras-chave/keyword do abstract/resumo (idioma principal)
+% e.g. \coverkeywords{Palavra, Palavra, etc.}
+% e.g. \coverkeywords{Word, Word, etc.}
+\coverkeywords{PALAVRAS-CHAVE EM PORTUGU\^{E}S/INGL\^{E}S}
+% Nota: Caso o titulo da tese ou dissertacao, nome do autor
+% e/ou resumo ultrapassem o limite, sera aceito a redução do
+% tamanho da fonte.
+% APENAS estes campos podem ter o tamanho alterado.
+%
+% Modifica a fonte do titulo na frente
+% e.g. \coverfronttitlesize{32}
+% Modifica a fonte do titulo na lombada
+% e.g. \coverspinetitlesize{11}
+% Modifica a fonte do autor na frente
+% e.g. \coverfrontauthorsize{24}
+% Modifica a fonte do autor na lombada
+% e.g. \coverspineauthorsize{11}
+% Modifica a fonte do resumo/abstract e palavras-chaves/keywords
+% e.g. \coverbacktextsize{10}
+
+%% Adicionar a capa estilizada do pgcomp
+\pgcompcover
+
+%% Folha de rosto
 \pgcompfrontpage
 
 %% Parte pre-textual
@@ -130,7 +178,8 @@
 \catalogtype{Disserta\c{c}\~{a}o (Mestrado)} % e.g. ou ``Tese (Doutorado)''
 
 \catalogtopics{1. Primeira palavra-chave. 2. Segunda palavra-chave. 3. Terceira palavra-chave} % Listar palavras-chave do trabalho para a FICHA CATALOGRAFICA}, por exemplo, ``1. Complexidade Estrutural. 2. Qualidade de Software 3. Engenharia de Software''
-\catalogcdd{XXX.XX} % e.g.  XXX.XX (número nesse formato serah dado pela biblioteca)
+\catalogcutter{XXXX} % e.g.  XXXX (código cutter refere-se ao sobrenome do autor dado pela biblioteca)
+%\catalogcdd{XXX.XX} % e.g.  XXX.XX (número nesse formato serah dado pela biblioteca, apenas descomentar se for fornecido)
 \catalogcdu{XXX.XX.XXX} % e.g.  XXX.XX.XXX (idem) 
 \catalogingsheet
 
@@ -211,16 +260,14 @@ PALAVRAS-CHAVE EM INGL\^{E}S.
 % Comente para ocultar
 \listoftables
 
-
-\chapter*{Lista de Siglas}
-
+% Lista de Siglas
+\abbreviations
 % Sintaxe da lista de acordo com a documentação do pacote `acronym'
 % documentação: http://mirror.unl.edu/ctan/macros/latex/contrib/acronym/acronym.pdf
 \begin{acronym}[PGCOMP]
     \acro{PGCOMP}{Programa de Pós-Graduação em Ciência da Computação}
     \acro{CNPq}{Conselho Nacional de Desenvolvimento Científico e Tecnológico}
 \end{acronym}
-
 
 %% Parte textual
 \mainmatter

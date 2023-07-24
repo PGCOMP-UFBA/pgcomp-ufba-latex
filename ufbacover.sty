@@ -1,0 +1,402 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ufbacover.sty
+%%% Allow the drawing of the IC/UFBA thesis cover using LaTeX
+%%% (C) 2023 Ibirisol Fontes Ferreira
+%%% THIS FILE COMES WITH NO WARRANTIES
+%%% PERMISSION TO COPY AND REDISTRIBUTE FREE OF CHARGE
+%%% FOR ACADEMIC PURPOSES ONLY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    Author              = "Ibirisol Fontes Ferreira",
+%%%    Version             = "2.1",
+%%%    Date                = "20 Jun 2023",
+%%%    Filename            = "ufbacover.sty",
+%%%    Keywords            = "LaTeX, Thesis, Dissertation, Cover",
+%%%    Abstract            = "LaTeX package to draw a stylized cover for
+%%%                           Monographs, Theses, and Dissertations at
+%%%                           the Federal University of Bahia - Brazil."
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ufbacover}[2023/06/20 v2.1 UFBA Stylized Cover Commands]
+\RequirePackage{kvoptions}
+
+% options
+\SetupKeyvalOptions{family=ufbacover,prefix=ufbacover@}
+\DeclareStringOption[452mm]{width}[17.80in]
+\DeclareStringOption[317mm]{height}[12.48in]
+\DeclareStringOption[1.0]{scale}[1.0]
+\DeclareStringOption[32]{fronttitlesize}[32]
+\DeclareStringOption[11]{spinetitlesize}[11]
+\DeclareStringOption[24]{frontauthorsize}[24]
+\DeclareStringOption[11]{spineauthorsize}[11]
+\DeclareStringOption[10]{backtextsize}[10]
+\DeclareStringOption[215.9mm]{textwidth}[8.5in]% from letterpaper
+\DeclareStringOption[279.4mm]{textheight}[11in]% from letterpaper
+\DeclareStringOption[print]{media}[print]% to keep compatibility with ufbathesis.cls
+\DeclareStringOption[arabic]{numberingstyle}[arabic]
+\DeclareDefaultOption{\PackageWarningNoLine{ufbacover}{Unknown option '\CurrentOption'}}
+\ProcessKeyvalOptions{ufbacover}
+
+% load remain required packages
+\RequirePackage{xstring}
+\RequirePackage{graphicx}
+\RequirePackage{color}
+\RequirePackage{array}
+\RequirePackage{ragged2e}
+\RequirePackage{xspace}
+\PassOptionsToPackage{T1}{fontenc}
+\RequirePackage{fontenc}
+
+% check required commands availability
+% adapted commands from inkscape
+\providecommand\color[2][]{%
+  \PackageError{ufbacover}{Color is used for the text and cover art, but the package 'color.sty' is not loaded}{Load the package either 'color.sty' or 'xcolor.sty' before'}
+  \renewcommand\color[2][]{}%
+}%
+\providecommand\definecolor[3][]{%
+  \PackageError{ufbacover}{Defined color is used for the text and cover art, but the package 'xcolor.sty' is not loaded}{Load the package 'xcolor.sty' before}%
+  \renewcommand\definecolor[3]{}{}{}%
+}%
+\providecommand\colorbox[2][]{%
+  \PackageError{ufbacover}{Colorbox is used for the text and cover art, but the package 'xcolor.sty' is not loaded}{Load the package 'xcolor.sty' before}%
+  \renewcommand\colorbox[2]{}{}%
+}%
+\providecommand\rotatebox[2]{#2}%
+\providecommand\savegeometry[1][]{%
+  \PackageError{ufbacover}{Geometry commands is used for cover layout, but the package 'geometry.sty' is not loaded}{Load the package 'geometry.sty' before}%
+  \renewcommand\savegeometry[1]{}{}%
+}%
+\providecommand\loadgeometry[1][]{%
+  \PackageError{ufbacover}{Geometry commands is used for cover layout, but the package 'geometry.sty' is not loaded}{Load the package 'geometry.sty' before}%
+  \renewcommand\loadgeometry[1]{}{}%
+}%
+
+% init the lengths
+\newlength\@CoverOriginalWidth
+\newlength\@CoverOriginalHeight
+\newlength\@CoverOriginalTextWidth
+\newlength\@CoverOriginalTextHeight
+\newlength\@CoverWidth
+\newlength\@CoverHeight
+\newlength\@CoverScaledWidth
+\newlength\@CoverScaledHeight
+\newlength\@CoverTextWidth
+\newlength\@CoverTextHeight
+\newlength\@CoverScaledTextWidth
+\newlength\@CoverScaledTextHeight
+
+% setup lengths
+% set deafult scale
+\newcommand{\@CoverScale}{\ufbacover@scale}
+% get original page size
+\setlength{\@CoverOriginalWidth}{\paperwidth}
+\setlength{\@CoverOriginalHeight}{\paperheight}
+% get original text proportions
+\setlength{\@CoverOriginalTextWidth}{\textwidth}
+\setlength{\@CoverOriginalTextHeight}{\textheight}
+% set default page size
+\setlength{\@CoverWidth}{\ufbacover@width}
+\setlength{\@CoverHeight}{\ufbacover@height}
+% set default scaled page size
+\setlength{\@CoverScaledWidth}{\ufbacover@width}
+\setlength{\@CoverScaledHeight}{\ufbacover@height}
+% set default text proportions
+\setlength{\@CoverTextWidth}{\ufbacover@textwidth}
+\setlength{\@CoverTextHeight}{\ufbacover@textheight}
+% set default scaled text proportions
+\setlength{\@CoverScaledTextWidth}{\ufbacover@textwidth}
+\setlength{\@CoverScaledTextHeight}{\ufbacover@textheight}
+% set default editable text font size
+\newcommand{\@CoverFrontTitleSize}{\ufbacover@fronttitlesize}
+\newcommand{\@CoverSpineTitleSize}{\ufbacover@spinetitlesize}
+\newcommand{\@CoverFrontAuthorSize}{\ufbacover@frontauthorsize}
+\newcommand{\@CoverSpineAuthorSize}{\ufbacover@spineauthorsize}
+\newcommand{\@CoverBackTextSize}{\ufbacover@backtextsize}
+% set default media (predefined shortcut to scaled size)
+\newcommand{\@CoverDistributionMedia}{\ufbacover@media}
+% setup default numbering style
+\newcommand{\@CoverNumberingStyle}{\ufbacover@numberingstyle}
+\IfEqCase{\ufbacover@numberingstyle}{
+    {alph}{}%
+    {Alph}{}%
+    {arabic}{}%
+    {gobble}{}%
+    {roman}{}%
+    {Roman}{}%
+}[%
+    \PackageWarningNoLine{ufbacover}{Unknown value '\@CoverNumberingStyle' for option 'numberingstyle'. First, ensure that the requirement for this numbering style has been loaded}%
+]
+
+
+% load title (MontSerrat) and body (Noto Sans) fonts
+\newcommand\montserratfont{\fontfamily{Montserrat-TLF}\fontseries{medium}}
+\newcommand\notofont{\fontfamily{NotoSans-TLF}\fontseries{regular}}
+% font selection commands
+\newcommand\headerfont[2]{\fontsize{#1}{#2}\montserratfont\selectfont}
+\newcommand\bodyfont[2]{\fontsize{#1}{#2}\notofont\selectfont}
+
+% externalized commands (public)
+\newcommand{\covertype}[1]{\def\@CoverType{#1}}
+\newcommand{\covercode}[1]{\def\@CoverCode{#1}}
+\newcommand{\covermonth}[1]{\def\@CoverMonth{#1}}
+\newcommand{\coveryear}[1]{\def\@CoverYear{#1}}
+\newcommand{\coverdocumenttype}[1]{\def\@CoverDocumentType{#1}}
+\newcommand{\covertitle}[1]{\def\@CoverTitle{#1}}
+\newcommand{\coverauthor}[1]{\def\@CoverAuthor{#1}}
+\newcommand{\coverabstract}[1]{\def\@CoverAbstract{#1}}
+\newcommand{\coverkeywords}[1]{\def\@CoverKeywords{#1}}
+\newcommand{\coverfronttitlesize}[1]{\def\@CoverFrontTitleSize{#1}}
+\newcommand{\coverspinetitlesize}[1]{\def\@CoverSpineTitleSize{#1}}
+\newcommand{\coverfrontauthorsize}[1]{\def\@CoverFrontAuthorSize{#1}}
+\newcommand{\coverspineauthorsize}[1]{\def\@CoverSpineAuthorSize{#1}}
+\newcommand{\coverbacktextsize}[1]{\def\@CoverBackTextSize{#1}}
+
+% new commands for betters tabular adjustments
+\newcolumntype{\@CL}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{\@CC}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{\@CM}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{\@CR}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{\@CJ}[1]{>{\justifying\let\newline\\\arraybackslash}p{#1}}
+
+%% setup scaling requirements
+% init ratio 8.27inch(thesis)/17.8inch(cover)
+% fixed with mm to 595.276(thesis)/1281.26(cover)
+\def\@CoverScrRatio{0.4646597880211667}% A5 (Portrait)
+%\def\@CoverScrRatio{0.6571617002013643}% A4 (Landscape)
+%\def\@CoverScrRatio{0.71}% SRA4
+% check if it has the digital/physical publication
+\IfStrEq{\@CoverDistributionMedia}{print}{%
+    \PackageInfo{ufbacover}{Selected print media as expected output, there is not to do\@gobble}%
+    \relax%
+}{% else if
+    \IfStrEq{\@CoverDistributionMedia}{scr}{%
+        \PackageInfo{ufbacover}{Selected 'scr' media as expected output, setting scale as thesis/cover ratio\@gobble}%
+        \def\@CoverScale{\@CoverScrRatio}%
+    }{% else
+        \PackageWarningNoLine{ufbacover}{Unknown value '\@CoverDistributionMedia' for option 'media'}%
+        \relax%
+    }
+}
+
+% setup scaled page
+\IfStrEq{\@CoverScale}{1.0}{%
+    \relax%
+}{ % else
+    \PackageInfo{ufbacover}{Scaling page attributes by proportion of '\@CoverScale'\@gobble}%
+    \setlength{\@CoverScaledWidth}{\@CoverScale\@CoverWidth}%
+    \setlength{\@CoverScaledHeight}{\@CoverScale\@CoverHeight}%
+    \setlength{\@CoverScaledTextWidth}{\@CoverScale\@CoverTextWidth}%
+    \setlength{\@CoverScaledTextHeight}{\@CoverScale\@CoverTextHeight}%
+}
+
+% cover page layout parameter
+% get old unitlength
+\def\@CoverOriginalUnitlength{\unitlength}%
+\ifx\@CoverWidth\undefined%
+    \setlength{\unitlength}{1mm}%
+    \ifx\@CoverScale\undefined%
+        \relax%
+    \else%
+        \setlength{\unitlength}{\unitlength * \real{\@CoverScale}}%
+    \fi%
+\else%
+    \setlength{\unitlength}{\@CoverWidth}%
+\fi%
+% setup new unitlength
+\def\@CoverUnitlength{\unitlength}%
+
+% get some variables from global definition
+\ifx\@notdefined\undefined%
+    \gdef\@notdefined{NA}
+\else
+    \relax
+\fi
+\def\@CoverType{\@notdefined}
+\def\@CoverCode{\@notdefined}
+\def\@CoverMonth{\@notdefined}
+\def\@CoverYear{\@notdefined}
+\def\@CoverDocumentType{\@notdefined}
+\def\@CoverTitle{\@title}
+\def\@CoverAuthor{\@author}
+\def\@CoverAbstract{\@notdefined}
+\def\@CoverKeywords{\@notdefined}
+
+% cover colors
+\@ifpackageloaded{xcolor}{%
+    % original color scheme with CMYK
+    \definecolor{coverDarkBlue}{cmyk}{0.99, 0.96, 0.25, 0.21}
+    \definecolor{coverDarkBlueLight}{cmyk}{0.6, 0.4, 0, 0.4}
+    \definecolor{coverBlue}{cmyk}{1.0, 0.2, 0, 0}
+    \definecolor{coverBlueLight}{cmyk}{0.4, 0, 0, 0}
+    \definecolor{coverWhite}{cmyk}{0, 0, 0, 0}
+    \definecolor{coverBlack}{cmyk}{1, 1, 1, 1}
+}{%
+    \PackageWarningNoLine{ufbacover}{The package 'xcolor.sty' is not loaded, but it is needed and recommended to load it in the document class. Loading colors in the fallback mode with RGB without the printer-compatible colors (CMYK)}%
+    % adapted color scheme with RGB
+    \definecolor{coverDarkBlue}{rgb}{0.15294118,0.16862745,0.40392157}
+    \definecolor{coverDarkBlueLight}{rgb}{0.28235294,0.36862745,0.53333333}
+    \definecolor{coverBlue}{rgb}{0,0.58431373,0.85490196}
+    \definecolor{coverBlueLight}{rgb}{0.55686275,0.84705882,0.97254902}
+    \definecolor{coverWhite}{rgb}{1,1,1}
+    \definecolor{coverBlack}{rgb}{0,0,0}
+}
+
+% cover art drawing
+\newcommand{\artrecta}[2][coverBlue]{%
+    \put(0,0.48695){#2\colorbox{#1}{\makebox(0.4317,0.212){}}}%
+}
+
+\newcommand{\artrectb}[2][coverDarkBlue]{%
+    \put(0.5118,0){#2\colorbox{#1}{\makebox(0.4836,0.43452){}}}%
+}
+
+\newcommand{\artrectc}[2][coverBlue]{%
+    \put(0.43585,0){#2\colorbox{#1}{\makebox(0.15022,0.098456){}}}%
+}
+
+\newcommand{\artlines}{%
+    % left top
+    \put(0.02213,0.70132751){\color{coverWhite}\line(0,-1){0.0177}}%
+    \put(0,0.67919751){\color{coverWhite}\line(1,0){0.0177}}%
+    % left bottom
+    \put(0.02213,0){\color{coverBlack}\line(0,1){0.0177}}%
+    \put(0,0.02213){\color{coverBlack}\line(1,0){0.0177}}%
+    % center top
+    \put(0.4867,0.70132751){\color{coverBlack}\line(0,-1){0.0177}}%
+    \put(0.5128,0.70132751){\color{coverBlack}\line(0,-1){0.0177}}%
+    % center bottom
+    \put(0.4867,0){\color{coverWhite}\line(0,1){0.0177}}%
+    \put(0.5128,0){\color{coverWhite}\line(0,1){0.0177}}%
+    % right top
+    \put(0.97736,0.70132751){\color{coverBlack}\line(0,-1){0.0177}}%
+    \put(1,0.6788){\color{coverBlack}\line(-1,0){0.0177}}%
+    % right bottom
+    \put(0.97736,0){\color{coverWhite}\line(0,1){0.0177}}%
+    \put(1,0.0218){\color{coverWhite}\line(-1,0){0.0177}}%
+}
+
+\newcommand{\artlogo}{%
+    \put(0.536,0.0374){\includegraphics[width=14.2mm]{ufba.pdf}}%
+}
+
+% front cover text commands
+\newcommand{\artcoverfronttitle}[4][coverDarkBlue]{%
+    \put(0.58607,0.5985){\color{#1}\makebox(0,0)[lt]{\headerfont{#2}{#3}\smash{\begin{tabular}[t]{\@CR{0.74\@CoverTextWidth}}#4\end{tabular}}}}%
+}
+
+\newcommand{\artcoverfrontauthor}[4][coverWhite]{%
+    \put(0.58607,0.33259119){\color{#1}\makebox(0,0)[lt]{\bodyfont{#2}{#3}\smash{\begin{tabular}[t]{\@CR{0.74\@CoverTextWidth}}#4\end{tabular}}}}%
+}
+
+\newcommand{\artcoverfrontdocumenttype}[4][coverBlueLight]{%
+    \put(0.58607,0.21391464){\color{#1}\makebox(0,0)[lt]{\bodyfont{#2}{#3}\smash{\begin{tabular}[t]{\@CR{0.74\@CoverTextWidth}}\bodyfont{#2}{#3}{#4}\end{tabular}}}}%
+}
+
+\newcommand{\@CoverInfo}{%
+    Universidade Federal da Bahia\\\\Programa de Pós-Graduação em\\Ciência da Computação\\\\\@CoverMonth\xspace|\xspace\@CoverYear%
+}
+
+\newcommand{\artcoverfrontinfo}[4][coverWhite]{%
+    \put(0.59070796,0.18218165){\color{#1}\makebox(0,0)[lt]{\bodyfont{#2}{#3}\smash{\begin{tabular}[t]{\@CR{0.73\@CoverTextWidth}}#4\end{tabular}}}}%
+}
+
+% back cover text commands
+\newcommand{\@PGCOMPAddressInfo}{%
+    PGCOMP - Programa de Pós-Graduação em Ciência da Computação\\Universidade Federal da Bahia (UFBA)\\Av. Milton Santos, s/n - Ondina\\Salvador, BA, Brasil, 40170-110\\\\https://pgcomp.ufba.br\\pgcomp@ufba.br%
+}
+
+\newcommand{\artcoverbackaddressinfo}[4][coverWhite]{%
+    \put(0.12603759,0.6124423){\color{#1}\makebox(0,0)[lt]{\bodyfont{#2}{#3}\smash{\begin{tabular}[t]{l}#4\end{tabular}}}}%
+}
+
+\newcommand{\artcoverbackabstractkeywords}[5][coverDarkBlueLight]{%
+    \put(0.12603759,0.46617283){\color{#1}\makebox(0,0)[lt]{\bodyfont{#2}{#3}\smash{\begin{tabular}[t]{\@CJ{0.6485\@CoverTextWidth}}\noindent#4\newline[1.5mm]#5\end{tabular}}}}%
+}
+
+% spine text commands
+\newcommand{\@CoverSpineInfo}{%
+    \xspace\@CoverType\xspace|\xspace\@CoverCode\xspace|\xspace\@CoverYear\xspace%
+}
+
+\newcommand{\artcoverspineinfo}[4][coverBlue]{%
+    \put(0.49782899,0.63889314){\color{#1}\rotatebox{-90}{\makebox(0,0)[lt]{\bodyfont{#2}{#3}\smash{\begin{tabular}[t]{l}#4\end{tabular}}}}}%
+}
+
+\newcommand{\artcoverspinetitle}[4][coverDarkBlue]{%
+    \put(0.4978,0.5493505){\color{#1}\rotatebox{-90}{\makebox(0,0)[lt]{\bodyfont{#2}{#3}\smash{\begin{tabular}[t]{\@CM{0.69\@CoverTextWidth}}#4\end{tabular}}}}}%
+}
+
+\newcommand{\artcoverspineauthor}[4][coverDarkBlue]{%
+    \put(0.4978,0.20886039){\color{#1}\rotatebox{-90}{\makebox(0,0)[lt]{\bodyfont{#2}{#3}\smash{\begin{tabular}[t]{\@CM{0.225\@CoverTextWidth}}#4\end{tabular}}}}}%
+}
+
+\newcommand{\artcoverspineinstitution}[3][coverWhite]{%
+    \put(0.4950728,0.07637041){\color{#1}\rotatebox{-90}{\makebox(0,0)[lt]{\bodyfont{#2}{#3}\smash{\begin{tabular}[t]{l}UFBA\end{tabular}}}}}%
+}
+
+% cover with sketched background command
+\newcommand{\pgcompcover}{%
+    % save original geometry
+    \savegeometry{ufbacover}%
+    % save page number
+    \def\@CoverThePage{\thepage}%
+    %% cover art with latex
+    {%
+        \if@twoside\cleardoublepage\else\clearpage\fi%
+        \thispagestyle{empty}%
+        \pagenumbering{gobble}% remove numbering style
+        \eject \pdfpagewidth=\@CoverScaledWidth \pdfpageheight=\@CoverScaledHeight \textwidth=\@CoverScaledTextWidth \textheight=\@CoverScaledTextHeight%
+        \newgeometry{margin=0mm, layoutwidth=\@CoverScaledWidth, layoutheight=\@CoverScaledHeight}%
+        \begin{figure}%
+            \resizebox{\@CoverScaledWidth}{\@CoverScaledHeight}{%
+                \begin{picture}(1,0.70132751)%
+                    \setlength\tabcolsep{0pt}%
+                    % cover background art
+                    \artrecta{}%
+                    \artrectb{}%
+                    \artrectc{}%
+                    \artlogo%
+                    % add crop lines
+                    \artlines%
+                    % cover text
+                    % call front cover elements
+                    \artcoverfronttitle{\@CoverFrontTitleSize}{39.25}{\@CoverTitle}%
+                    \artcoverfrontauthor{\@CoverFrontAuthorSize}{25.13}{\@CoverAuthor}%
+                    \artcoverfrontdocumenttype{18}{18}{\@CoverDocumentType}%
+                    \artcoverfrontinfo{15}{20.02}{\@CoverInfo}%
+                    % call back cover elements
+                    \artcoverbackabstractkeywords{\@CoverBackTextSize}{13.355}{\@CoverAbstract}{\@CoverKeywords}%
+                    \artcoverbackaddressinfo{11}{14.68}{\@PGCOMPAddressInfo}%
+                    % call spine elements
+                    \artcoverspineinstitution{14}{14}%
+                    \artcoverspineinfo{11}{12}{\@CoverSpineInfo}%
+                    \artcoverspinetitle{\@CoverSpineTitleSize}{11.054}{\@CoverTitle}%
+                    \artcoverspineauthor{\@CoverSpineAuthorSize}{12}{\@CoverAuthor}%
+                \end{picture}%
+            }%
+        \end{figure}%
+        % restore geometry to previous state
+        \loadgeometry{ufbacover}%
+    }
+
+    % apply cleaning by document class
+    \@ifundefined{@chapapp}{% other documents
+        \relax% TODO: deal with page style in the next page 
+    }{% <book|report>
+        % force back the numbering after this page
+        % needs book and report compatibility
+        \if@twoside%
+            \cleardoublepage%
+        \else%
+            \clearpage%
+            \newpage\null%
+        \fi%
+    }
+
+    \clearpage%
+    \pagenumbering{\@CoverNumberingStyle}%
+    \setcounter{page}{\@CoverThePage}%
+}
+
+\endinput
+%%
+%% End of file `ufbacover.sty'.

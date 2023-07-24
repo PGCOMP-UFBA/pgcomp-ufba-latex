@@ -48,7 +48,7 @@
 
 \DeclareOption{scr}{%
   \let\@scr=1%
-  \PassOptionsToClass{dvipdfm}{book}}
+  \PassOptionsToPackage{dvipdfm}{color}}
 
 \DeclareOption{bsc}{%
   \let\@degreetype=0}
@@ -102,17 +102,20 @@
 \if\@scr1
   \RequirePackage[dvips]{graphicx}
   \RequirePackage[dvips,usenames]{color}
+  \RequirePackage[usenames, dvipsnames, table]{xcolor}
   \RequirePackage{hyperref}
   \hypersetup{colorlinks=true,
             linkcolor=black,
             urlcolor=black,
             citecolor=black}
+  \PassOptionsToPackage{media=scr}{ufbacover}
 \fi
 \RequirePackage[alf]{abntex2cite}
 \RequirePackage{lastpage}
 \RequirePackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
 \RequirePackage{fix-cm}
 \RequirePackage{color}
+\RequirePackage{ufbacover}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% GENERAL PURPOSE MACROS
@@ -141,6 +144,8 @@
 \gdef\@mscqualifying{Qualifica\c{c}\~{a}o de Mestrado}
 \gdef\@phdproposal{Qualifica\c{c}\~{a}o de Doutorado}
 \gdef\@phdthesis{Tese de Doutorado}
+\gdef\@mastersdissertationacro{MSC}
+\gdef\@phdthesisacro{DSC}
 \gdef\@bachelordegree{Bacharel}
 \gdef\@mastersdegree{Mestre}
 \gdef\@phddegree{Doutor}
@@ -159,6 +164,7 @@ grau de \@degree\ em \@majorfield.}
 \if\@language0
   \gdef\@notdefined{N\~{A}O DEFINIDO}
   \gdef\acknowledgementsname{Agradecimentos}
+  \gdef\abbreviationsname{Lista de Siglas}
   \gdef\@axiomname{Axioma}
   \gdef\@conjecturename{Conjectura}
   \gdef\@defname{Defini\c{c}\~{a}o}
@@ -185,6 +191,7 @@ grau de \@degree\ em \@majorfield.}
 \else\if\@language1
   \gdef\@notdefined{UNDEFINED}
   \gdef\acknowledgementsname{Acknowledgements}
+  \gdef\abbreviationsname{Abbreviations}
   \gdef\@axiomname{Axiom}
   \gdef\@conjecturename{Conjecture}
   \gdef\@defname{Definition}
@@ -297,6 +304,13 @@ grau de \@degree\ em \@majorfield.}
     \@phdthesis
   \fi\fi\fi\fi\fi}
 
+\def\@texttypeacronym{%
+  \if\@degreetype1
+    \@mastersdissertationacro
+  \else\if\@degreetype4
+    \@phdthesisacro
+  \fi\fi}
+
 \def\@degree{%
   \if\@degreetype0
     \@bachelordegree
@@ -338,10 +352,16 @@ grau de \@degree\ em \@majorfield.}
   \gdef\@catalogtype{#1}}
 \def\catalogtopics#1{%
   \gdef\@catalogtopics{#1}}
+\let\@showcatalogcdd=0
 \def\catalogcdd#1{%
+  \let\@showcatalogcdd=1%
   \gdef\@catalogcdd{#1}}
 \def\catalogcdu#1{%
   \gdef\@catalogcdu{#1}}
+\def\@catalogcdu{\@notdefined}
+\def\catalogcutter#1{%
+  \gdef\@catalogcutter{#1}}
+\def\@catalogcutter{\@notdefined}
 
 \def\catalogingsheet{%
   \newpage
@@ -353,7 +373,11 @@ grau de \@degree\ em \@majorfield.}
     Sistema de Bibliotecas - UFBA
 
     \framebox[\textwidth][c]{
-      \hspace{1.75em}
+      \hspace{0.0125\textwidth}
+      \begin{minipage}[t]{0.1\textwidth}
+        \vspace{1em}
+        \@catalogcutter
+      \end{minipage}% no par
       \begin{minipage}[t]{0.85\textwidth}
         \vspace{1em}
         \@authorcitationname.
@@ -386,12 +410,15 @@ grau de \@degree\ em \@majorfield.}
         \fi
         \par
         \vspace{1.5em}
-        \hspace{8cm}CDD -- \@catalogcdd
-        \advance\parskip by 0.25em
-        \par
-        \hspace{8cm}CDU -- \@catalogcdu
+        \if\@showcatalogcdd1
+            \hfill CDD -- \@catalogcdd
+            \advance\parskip by 0.25em
+            \par
+        \fi
+        \hfill CDU -- \@catalogcdu
         \vspace{1.5em}
-      \end{minipage}
+      \end{minipage}%
+      \hspace{0.065\textwidth}
     }
   \end{center}
 }
@@ -456,6 +483,20 @@ grau de \@degree\ em \@majorfield.}
 \font\quotefont=cmssq8 scaled\magstep1
 \font\quotefonti=cmssqi8 scaled\magstep1
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Cover
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\covertype{\@texttypeacronym}
+\coverdocumenttype{\@texttype}
+\coveryear{\@defenseyear}
+\let\@coverkeywordsorig\coverkeywords
+% Portuguese
+\if\@language0
+  \renewcommand{\coverkeywords}[1]{\@coverkeywordsorig{\keywordsnamePT: #1}}
+% English
+\else\if\@language1
+  \renewcommand{\coverkeywords}[1]{\@coverkeywordsorig{\keywordsnameEN: #1}}
+\fi\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Frontpage
@@ -740,6 +781,12 @@ grau de \@degree\ em \@majorfield.}
 
 \setcounter{tocdepth}{4}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Abbreviations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\abbreviations{%
+  \chapter*{\abbreviationsname}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Sectioning
@@ -869,10 +916,9 @@ grau de \@degree\ em \@majorfield.}
    \@afterheading
    }
 
-\definecolor{pgcompchapterbgcolor}{rgb}{0.8,0.8,0.8}
 \def\@makexchapterhead#1#2{%
   \begin{flushright}
-    \colorbox{pgcompchapterbgcolor}{
+    \colorbox[rgb]{0.8,0.8,0.8}{
       \begin{minipage}{0.2\textwidth}
         \begin{center}
         \vspace{0.5\baselineskip}
