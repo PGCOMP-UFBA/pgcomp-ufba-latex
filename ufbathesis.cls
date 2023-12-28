@@ -436,7 +436,7 @@ grau de \@degree\ em \@majorfield.}
     \vspace{2em}
     {\sf\large\textbf{\MakeUppercase{\@author}}}
 
-    \vspace{3em}
+    \vspace{2em}
     \begin{minipage}{0.7\textwidth}
       \centering
       \sf\large\textbf{\MakeUppercase{\@title}}
@@ -444,13 +444,13 @@ grau de \@degree\ em \@majorfield.}
 
     \vspace{2em}
     \begin{flushright}
-      \begin{minipage}{0.5\textwidth}
+      \begin{minipage}{0.55\textwidth}
         Esta\@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do t\'{i}tulo de\@degree\
         em \@majorfield\ e aprovada em sua forma final pelo \@program\ da \@university.
       \end{minipage}
     \end{flushright}
 
-    \vspace{3em}
+    \vspace{1em}
     \begin{center}
       {#1}
     \end{center}
@@ -464,7 +464,7 @@ grau de \@degree\ em \@majorfield.}
   \end{center}
 }
 \def\comittemember#1#2{%
-  \vspace{2em}
+  \vspace{4em}
   \hrule
 		\vspace{0.25em}
 		{#1}\\{#2}\\
@@ -1519,4 +1519,5 @@ grau de \@degree\ em \@majorfield.}
 \newcommand{\pgref}[1]{\@pagename~\pageref{#1}\xspace}
 
 \fi\fi
+
 
