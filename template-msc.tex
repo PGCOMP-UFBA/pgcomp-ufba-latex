@@ -48,14 +48,9 @@
 %\usepackage[FIGTOPCAP]{subfigure}
 \usepackage[FIGBOTCAP]{subfigure} %adiciona a legenda das subfiguras abaixo delas.
 \usepackage[printonlyused, withpage]{acronym} %adiciona lista de acrônimos.
-
-%%%%%%%%%%%%%%%%%%%%%
-% Pacotes que inclui.
-%%%%%%%%%%%%%%%%%%%%%
-
 \usepackage{tabularx} %usado em tabelas para quebra de linha automática.
 \usepackage{algpseudocode} %para pseudo-codigo.
-\usepackage[portuguese,linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage[portuguese,linesnumbered,ruled,vlined]{algorithm2e} % ambiente de algoritmo
 \usepackage{fancybox} %para caixa de texto.
 
 % for comments while writing.
@@ -186,6 +181,9 @@
 %%%%%%%%%%%%%%%%%%%%%
 % Termo de aprovacaoo
 %%%%%%%%%%%%%%%%%%%%%
+
+% Adiciona o termo de aprovacao a partir de um arquivo
+%\approvaldocument{approvalsheet.pdf}
 
 \approvalsheet{Salvador, DIA de MES de ANO}{
    \comittemember{Profa. Dra. Professora 1}{Universidade XYZ}
@@ -320,6 +318,9 @@ A numera\c{c}\~{a}o de figuras \'{e} sequencial, dentro do cap\'{\i}tulo. Ver Fi
 
 A numera\c{c}\~{a}o de tabelas \'{e} sequencial, dentro do cap\'{\i}tulo. Ver Tabela \ref{default-table1} e Tabela \ref{default-table2}.
 
+A numera\c{c}\~{a}o de algoritmos \'{e} sequencial, dentro do cap\'{\i}tulo.
+Ver Algoritmo \ref{alg:default-algo1}.
+
 
 \section{Exemplos de Figura}
 
@@ -372,6 +373,26 @@ elemento 31 & elemento 32 & elemento 33\\
 \end{center}
 \label{default-table2}
 \end{table}%
+
+
+\begin{algorithm}[H]
+\caption{Exemplo de algoritmo para encontra o enésimo número da sequência de Fibonacci}
+\label{alg:default-algo1}
+\KwData{$n \geq 0$ -- a posição do na sequência do número desejado}
+\KwResult{$F_n$ -- o enésimo número da sequência}
+$i \gets 0$\;
+$j \gets 1$\;
+
+\uIf(\tcc*[f]{Comentário do caso base $F_0$}){$n$ == 0}{\Return $0$}
+
+\For(\tcc*[f]{Comentário dos casos $F_1, F_2,F_3,...$}){$k = 1, \dots, n$}{
+    $F_k \gets i + j$\;
+    $i \gets j$\;
+    $j \gets F_k$\;
+}
+
+\Return $j$\;
+\end{algorithm}
 
 \xchapter{Outro cap\'{\i}tulo}{} %sem preambulo
 \lipsum

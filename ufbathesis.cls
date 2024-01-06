@@ -427,41 +427,51 @@ grau de \@degree\ em \@majorfield.}
 %% Termo de aprovacao
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\approvalsheet#1#2{%
+\newcommand{\approvalsheet}[2]{%
   \newpage
   \thispagestyle{empty}
-  \begin{center}
-    {\sf\large \textbf{TERMO DE APROVA\c{C}\~{A}O}}
+  \ifx\@approvaldocument\@empty% default approval sheet
+      \begin{center}
+        {\sf\large \textbf{TERMO DE APROVA\c{C}\~{A}O}}
 
-    \vspace{2em}
-    {\sf\large\textbf{\MakeUppercase{\@author}}}
+        \vspace{2em}
+        {\sf\large\textbf{\MakeUppercase{\@author}}}
 
-    \vspace{2em}
-    \begin{minipage}{0.7\textwidth}
-      \centering
-      \sf\large\textbf{\MakeUppercase{\@title}}
-    \end{minipage}
+        \vspace{2em}
+        \begin{minipage}{0.7\textwidth}
+          \centering
+          \sf\large\textbf{\MakeUppercase{\@title}}
+        \end{minipage}
 
-    \vspace{2em}
-    \begin{flushright}
-      \begin{minipage}{0.55\textwidth}
-        Esta\@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do t\'{i}tulo de\@degree\
-        em \@majorfield\ e aprovada em sua forma final pelo \@program\ da \@university.
-      \end{minipage}
-    \end{flushright}
+        \vspace{2em}
+        \begin{flushright}
+          \begin{minipage}{0.55\textwidth}
+            Esta\@texttype\ foi julgada adequada \`{a} obten\c{c}\~{a}o do t\'{i}tulo de\@degree\
+            em \@majorfield\ e aprovada em sua forma final pelo \@program\ da \@university.
+          \end{minipage}
+        \end{flushright}
 
-    \vspace{1em}
-    \begin{center}
-      {#1}
-    \end{center}
+        \vspace{1em}
+        \begin{center}
+          {#1}
+        \end{center}
 
-    \begin{minipage}{0.6\textwidth}
-      \centering
-      {#2}
-    \end{minipage}
+        \begin{minipage}{0.6\textwidth}
+          \centering
+          {#2}
+        \end{minipage}
 
-    \vfill
-  \end{center}
+        \vfill
+      \end{center}
+  \else% optional sheet including by PDF
+    \newgeometry{margin=0mm}%
+    \begin{figure}%
+        \resizebox{\paperwidth}{\paperheight}{%
+        \includegraphics[width=\paperwidth]{\@approvaldocument}%
+        }%
+    \end{figure}%
+    \restoregeometry
+  \fi
 }
 \def\comittemember#1#2{%
   \vspace{4em}
@@ -469,6 +479,9 @@ grau de \@degree\ em \@majorfield.}
 		\vspace{0.25em}
 		{#1}\\{#2}\\
 }
+\let\@approvaldocument\@empty
+\def\approvaldocument#1{%
+  \gdef\@approvaldocument{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%         CLASSIC STYLE            %%%%%%%%%%%%%%%%%%%
