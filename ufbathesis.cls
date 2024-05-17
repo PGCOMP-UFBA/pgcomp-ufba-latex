@@ -115,6 +115,9 @@
 \RequirePackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
 \RequirePackage{fix-cm}
 \RequirePackage{color}
+% Workaround: duplicated command RequirePackage xcolor below.
+% Needs review.
+  \RequirePackage[usenames, dvipsnames, table]{xcolor}
 \RequirePackage{ufbacover}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
